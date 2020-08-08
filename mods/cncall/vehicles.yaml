@@ -1190,7 +1190,7 @@ STNK:
 		UncloakSound: appear1.aud
 		IsPlayerPalette: true
 		UncloakOn: Attack, Unload, Dock, Damage, Heal
-		PauseOnCondition: cloak-force-disabled && empdisable
+		PauseOnCondition: cloak-force-disabled && empdisable && intransit
 		RequiresCondition: !notmobile
 	GrantConditionOnDamageState@UNCLOAK:
 		Condition: cloak-force-disabled
@@ -1201,6 +1201,10 @@ STNK:
 		PipCount: 3
 		LoadedCondition: loaded
 		LoadingCondition: notmobile
+	Carryable:
+		LocalOffset: 0,0,100
+		RequiresCondition: !loaded
+		CarriedCondition: intransit
 	Passenger:
 		PipType: Red
 	Sellable:

@@ -984,6 +984,7 @@ STNK.Nod:
 	-Tooltip@sidebar:
 	-Tooltip@ingame:
 	-ExternalCondition@PRODUCED:
+	-Carryable:
 	Buildable:
 		BuildPaletteOrder: 8
 		Prerequisites: tmpl, ~vehicles.nod, ~techlevel.high
@@ -1010,11 +1011,12 @@ STNK.Nod:
 		UncloakSound: appear1.aud
 		UncloakOn: Attack, Dock, Damage, Heal
 		IsPlayerPalette: true
-		RequiresCondition: !cloak-force-disabled
+		PauseOnCondition: cloak-force-disabled && empdisable && intransit
 	RenderSprites:
 		Image: nodstnk
 	Carryable:
 		LocalOffset: 0,0,80
+		CarriedCondition: intransit
 	Sellable:
 		RequiresCondition: unit.sellable
 

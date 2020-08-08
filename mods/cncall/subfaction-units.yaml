@@ -413,7 +413,7 @@ AAV:
 
 #	differences to regular APC
 #	cloaked, moves slower
-#	cost more, leaves husk on death
+#	cost more
 SAPC:
 	Inherits: APC
 	-Tooltip@sidebar:
@@ -438,13 +438,15 @@ SAPC:
 		InitialDelay: 150
 		CloakDelay: 150
 		UncloakOn: Attack, Unload, Dock, Damage, Heal
-		PauseOnCondition: cloak-force-disabled && empdisable
+		PauseOnCondition: cloak-force-disabled && empdisable && intransit
 		RequiresCondition: !notmobile
 	GrantConditionOnDamageState@UNCLOAK:
 		Condition: cloak-force-disabled
 		ValidDamageStates: Critical
 	Passenger:
 		PipType: Blue
+	Carryable:
+		CarriedCondition: intransit
 	#	was supposed to act like Reckoner,
 	#	not possible with the current Traits.
 	#	SpawnActorOnDeath:
