@@ -1,0 +1,1035 @@
+ORCA:
+	Inherits: ^Helicopter
+	Inherits@EXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetGroundAntiTankandAir
+	Valued:
+		Cost: 1200
+	Tooltip:
+		Name: Orca
+	Buildable:
+		BuildPaletteOrder: 3
+		BuildAtProductionType: Helicopter
+		Prerequisites: ~hpad, ~aircraft.gdi, ~techlevel.high
+		Queue: Aircraft
+		Description: VTOL assault craft armed with\nmulti-purpose Missiles and Chaingun.\nCan detect nearby Submarines.\n  Strong vs Buildings, Tanks\n  Weak vs Infantry, Anti-Air
+	AttackAircraft:
+		FacingTolerance: 20
+		Armaments: primary, secondary, tertiary
+		PersistentTargeting: false
+		AttackType: Hover
+	Aircraft:
+		TurnSpeed: 7
+		Speed: 186
+		TakeoffSounds: orcaup1.aud
+		LandingSounds: orcadwn1.aud
+	Rearmable:
+		RearmActors: hpad, carr.deployed
+	Health:
+		HP: 12000
+	Armor:
+		Type: Light
+	RevealsShroud:
+		Range: 10c0
+		Type: GroundPosition
+	Armament@PRIMARY:
+		Name: primary
+		Weapon: OrcaAGMissiles
+		LocalOffset: 427,-171,-213, 427,171,-213
+		PauseOnCondition: !ammo
+	Armament@SECONDARY:
+		Name: secondary
+		Weapon: OrcaAAMissiles
+		LocalOffset: 427,-171,-213, 427,171,-213
+		PauseOnCondition: !ammo
+	Armament@TERTIARY:
+		Name: tertiary
+		Weapon: ChainGun
+		MuzzleSequence: muzzle
+		LocalOffset: 427,0,-213
+		PauseOnCondition: !ammogun
+	AutoTarget:
+		ScanRadius: 5
+	AmmoPool:
+		Armaments: primary, secondary
+		Ammo: 6
+		PipCount: 6
+		ReloadDelay: 40
+		AmmoCondition: ammo
+	AmmoPool@2:
+		Armaments: tertiary, quartenary
+		Ammo: 4
+		PipCount: 6
+		PipType: Red
+		AmmoCondition: ammogun
+	WithMoveAnimation:
+		MoveSequence: move
+	WithMuzzleOverlay:
+	SelectionDecorations:
+	Selectable:
+		DecorationBounds: 30,24
+	ProducibleWithLevel:
+		Prerequisites: aircraft.upgraded
+	SpawnActorOnDeath:
+		Actor: ORCA.Husk
+		RequiresCondition: airborne && !empdisable
+	SpawnActorOnDeath@EMP:
+		Actor: ORCA.Husk.EMP
+		RequiresCondition: airborne && empdisable
+	DetectCloaked:
+		Range: 2c512
+		CloakTypes: Underwater
+	RenderDetectionCircle:
+
+HELI.Nod:
+	Inherits: HELI
+	Buildable:
+		BuildPaletteOrder: 2
+		Prerequisites: ~hpad, ~aircraft.nod, ~!aitoodumb, ~techlevel.high
+		Description: Helicopter gunship with multi-purpose\nChainguns and Missiles.\nCan use Depthcharges against Submarines.\n  Strong vs Everything\n  Weak vs Anti-Air, Aircraft
+	Armament@FIFTH:
+		Name: fifth
+		Weapon: HeliDepthCharge
+		PauseOnCondition: !ammodc
+	AmmoPool@3:
+		Armaments: fifth
+		PipType: Blue
+		Ammo: 4
+		PipCount: 2
+		ReloadDelay: 9
+		AmmoCondition: ammodc
+	AttackAircraft:
+		Armaments: primary, secondary, tertiary, fourth, fifth
+	RenderSprites:
+		Image: heli
+
+HELI.Nod.AI:
+	Inherits: HELI.Nod
+	-Armament@FIFTH:
+	-AmmoPool@3:
+	Buildable:
+		Prerequisites: ~hpad, ~aircraft.nod, ~aitoodumb, ~techlevel.high
+	AttackAircraft:
+		Armaments: primary, secondary, tertiary, fourth
+	RenderSprites:
+		Image: heli
+	-MapEditorData:
+
+RH66:
+	Inherits: ^Helicopter
+	Inherits@EXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetGroundAntiInf
+	-GpsDot:
+	Buildable:
+		Queue: Aircraft
+		BuildPaletteOrder: 3
+		BuildAtProductionType: Helicopter
+		Prerequisites: ~hpad, tmpl, ~aircraft.nod, ~techlevel.high
+		Description: Fast and nimble, Helicopter that is armed\nwith air-to-ground Rockets and basic Gun.\nDoes not appear on enemy radar or GPS.\n  Special ability: Phase Cloaking\nInvisible when out of combat.\nReloads on its own.\nCannot attack Air units.\n  Strong vs Light Vehicles, Buildings\n  Weak vs Anti-Air, Detectors
+	Valued:
+		Cost: 1800
+	Tooltip:
+		Name: Comanche
+	AppearsOnRadar:
+		ValidStances: Ally
+	Health:
+		HP: 10000
+	Armor:
+		Type: Heavy
+	RevealsShroud:
+		Range: 7c0
+		Type: GroundPosition
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 5c0
+		Type: GroundPosition
+	Armament@PRIMARY:
+		Weapon: M1Carbine.Vehicle
+		LocalOffset: 427,0,-213
+		MuzzleSequence: muzzle
+	Armament@SECONDARY:
+		Weapon: rah66AG
+		LocalOffset: 0,-213,-85, 0,213,-85
+		PauseOnCondition: !ammo
+	AttackAircraft:
+		FacingTolerance: 20
+		PersistentTargeting: false
+		AttackType: Hover
+		OpportunityFire: false
+	Aircraft:
+		AltitudeVelocity: 0c100
+		TurnSpeed: 5
+		Speed: 150
+	Cloak:
+		InitialDelay: 150
+		CloakDelay: 150
+		UncloakSound: appear1.aud
+		IsPlayerPalette: true
+		UncloakOn: Attack, Dock, Damage, Heal
+		PauseOnCondition: cloak-force-disabled && !airborne
+	AutoTarget:
+		InitialStance: ReturnFire
+		InitialStanceAI: AttackAnything
+	WithIdleOverlay@ROTORAIR:
+		Offset: 10,0,80
+		Sequence: rotor
+		RequiresCondition: airborne
+	WithIdleOverlay@ROTORGROUND:
+		Offset: 10,0,80
+		Sequence: slow-rotor
+		RequiresCondition: !airborne
+	GrantConditionOnDamageState@UNCLOAK:
+		Condition: cloak-force-disabled
+		ValidDamageStates: Critical
+	AmmoPool:
+		Ammo: 8
+		PipCount: 4
+		AmmoCondition: ammo
+	ReloadAmmoPool:
+		Delay: 225
+		Count: 8
+		RequiresCondition: !ammo
+	WithMuzzleOverlay:
+	SelectionDecorations:
+	SmokeTrailWhenDamaged:
+		Offset: -427,0,0
+	Selectable:
+		DecorationBounds: 36,28
+	ProducibleWithLevel:
+		Prerequisites: aircraft.upgraded
+	WithDecoration@ammoreplenish:
+		RequiresSelection: false
+		Image: pips
+		Sequence: tag-reload-small
+		ReferencePoint: Top
+		ZOffset: 256
+		RequiresCondition: !ammo
+	SpawnActorOnDeath:
+		Actor: RH66.Husk
+		RequiresCondition: airborne && !empdisable
+	SpawnActorOnDeath@EMP:
+		Actor: RH66.Husk.EMP
+		RequiresCondition: airborne && empdisable
+
+MH60:
+	Inherits: ^Helicopter
+	Inherits@AUTOTARGET: ^AutoTargetGroundAntiInfandAir
+	-GpsDot:
+	AutoTarget:
+		InitialStance: HoldFire
+		InitialStanceAI: HoldFire
+	Buildable:
+		Queue: Aircraft
+		BuildAtProductionType: Helicopter
+		BuildPaletteOrder: 2
+		Prerequisites: ~hpad, techcenter, ~aircraft.gdi, ~techlevel.medium
+		Description: Slow moving Helicopter gunship\narmed with dual chainguns.\nCan carry 2 Infantry.\nDoesnt appear on enemy Radar or GPS.\nReloads on its own.\n  Strong vs Infantry, Light armor\n  Weak vs Tanks, Aircraft
+	Valued:
+		Cost: 1400
+	Tooltip:
+		Name: Black Hawk
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	SelectionDecorations:
+	Selectable:
+		DecorationBounds: 38,32
+	Health:
+		HP: 10000
+	AppearsOnRadar:
+		ValidStances: Ally
+	RevealsShroud:
+		MinRange: 5c0
+		Range: 7c0
+		Type: GroundPosition
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 5c0
+		Type: GroundPosition
+	Aircraft:
+		TurnSpeed: 4
+		Speed: 112
+	AttackAircraft:
+		Armaments: primary, secondary, tertiary, quartenary
+		FacingTolerance: 20
+		PersistentTargeting: false
+		AttackType: Hover
+	Armament@PRIMARY:
+		Name: primary
+		Weapon: ChainGun
+		LocalOffset: 85,-213,-85, 85,213,-85
+		MuzzleSequence: muzzle
+		PauseOnCondition: !ammo
+	Armament@SECONDARY:
+		Name: secondary
+		Weapon: ChainGun
+		LocalOffset: 85,213,-85, 85,-213,-85
+		MuzzleSequence: muzzle
+		PauseOnCondition: !ammo
+	Armament@TERTIARY:
+		Name: tertiary
+		Weapon: ChainGun.AA
+		LocalOffset: 85,-213,-85, 85,213,-85
+		MuzzleSequence: muzzle
+		PauseOnCondition: !ammo
+	Armament@QUARTENARY:
+		Name: quartenary
+		Weapon: ChainGun.AA
+		LocalOffset: 85,213,-85, 85,-213,-85
+		MuzzleSequence: muzzle
+		PauseOnCondition: !ammo
+	AmmoPool:
+		Armaments: primary, secondary, tertiary, quartenary
+		Ammo: 24
+		PipCount: 6
+		ReloadDelay: 8
+		AmmoCondition: ammo
+	ReloadAmmoPool:
+		Delay: 225
+		Count: 12
+		RequiresCondition: !ammo
+	WithDecoration@ammoreplenish:
+		RequiresSelection: false
+		Image: pips
+		Sequence: tag-reload-small
+		ReferencePoint: Top
+		ZOffset: 256
+		RequiresCondition: !ammo
+	WithMuzzleOverlay:
+	WithIdleOverlay@ROTORAIR:
+		Sequence: rotor
+		RequiresCondition: airborne
+	WithIdleOverlay@ROTORGROUND:
+		Sequence: slow-rotor
+		RequiresCondition: !airborne
+	SmokeTrailWhenDamaged:
+		Offset: -427,0,0
+	Cargo:
+		Types: Infantry
+		MaxWeight: 2
+		PipCount: 2
+		AfterUnloadDelay: 40
+	ProducibleWithLevel:
+		Prerequisites: aircraft.upgraded
+	SpawnActorOnDeath:
+		Actor: MH60.Husk
+		RequiresCondition: airborne && !empdisable
+	SpawnActorOnDeath@EMP:
+		Actor: MH60.Husk.EMP
+		RequiresCondition: airborne && empdisable
+
+OCAR:
+	Inherits: ^Helicopter
+	Valued:
+		Cost: 1000
+	Tooltip:
+		Name: Orca Carryall
+	Buildable:
+		Queue: Aircraft
+		BuildPaletteOrder: 6
+		BuildAtProductionType: Helicopter
+		Prerequisites: ~hpad, fix, ~aircraft.gdi, ~techlevel.high
+		Description: VTOL Vehicle Transporter\nCan carry one land vehicle\n  Unarmed
+	Aircraft:
+		AltitudeVelocity: 0c100
+		InitialFacing: 224
+		TurnSpeed: 4
+		Speed: 160
+		LandableTerrainTypes: Clear,Rough,Road,Beach,Ore,Gems,Shallow
+		Repulsable: True
+		Voice: Move
+	Carryall:
+		BeforeLoadDelay: 10
+		BeforeUnloadDelay: 15
+		LocalOffset: 0, 0, -128
+	Health:
+		HP: 20000
+	Armor:
+		Type: Heavy
+	RevealsShroud:
+		Range: 7c0
+		Type: GroundPosition
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 5c0
+		Type: GroundPosition
+	SmokeTrailWhenDamaged:
+		Offset: -427,0,0
+		Interval: 2
+	SelectionDecorations:
+	Selectable:
+		DecorationBounds: 30,24
+	Voiced:
+		VoiceSet: MechanicVoice
+	SpawnActorOnDeath:
+		Actor: OCAR.Husk
+		RequiresCondition: airborne && !empdisable
+	SpawnActorOnDeath@EMP:
+		Actor: OCAR.Husk.EMP
+		RequiresCondition: airborne && empdisable
+
+TRAN.Nod:
+	Inherits: TRAN
+	Buildable:
+		BuildPaletteOrder: 1
+		Prerequisites: ~hpad, ~aircraft.nod, ~techlevel.medium
+		Description: Fast Infantry Transport Helicopter.\n  Special Ability: Carryall\nCan carry light vehicles, one at a time.\n  Unarmed
+	Carryall:
+		LocalOffset: 0, 0, -128
+	RenderSprites:
+		Image: tran
+	-MapEditorData:
+
+C17:
+	Inherits: BADR
+	Tooltip:
+		Name: C-17 Cargo Plane
+	RenderSprites:
+		Image: c17
+	Contrail@1:
+		Offset: -261,-650,0
+		TrailLength: 8
+		TrailWidth: 48
+		UsePlayerColor: false
+	Contrail@2:
+		Offset: -85,-384,0
+		TrailLength: 8
+		TrailWidth: 48
+		UsePlayerColor: false
+	Contrail@3:
+		Offset: -85,384,0
+		TrailLength: 8
+		TrailWidth: 48
+		UsePlayerColor: false
+	Contrail@4:
+		Offset: -261,650,0
+		TrailLength: 8
+		TrailWidth: 48
+		UsePlayerColor: false
+	SmokeTrailWhenDamaged@0:
+		Offset: -261,-384,0
+		Interval: 2
+	SmokeTrailWhenDamaged@1:
+		Offset: -261,384,0
+		Interval: 2
+	SpawnActorOnDeath:
+		Actor: C17.Husk
+		RequiresCondition: airborne && !empdisable
+	SpawnActorOnDeath@EMP:
+		Actor: C17.Husk.EMP
+		RequiresCondition: airborne && empdisable
+	GpsDot:
+		String: BigPlane
+
+C17TRANSPORT:
+	Inherits: ^Plane
+	Inherits@AUTODAMAGE: ^KilledWithoutAirfield
+	Buildable:
+		Queue: Aircraft, MWFAir
+		BuildAtProductionType: Plane
+		BuildPaletteOrder: 5
+		BuildLimit: 1
+		Prerequisites: ~afld, fix, tmpl, ~aircraft.nod, ~!player.blackhand, ~!aitoodumb, ~techlevel.high
+		Description: Cargo lifter plane.\nMaximum 1 can be built.\n Special Ability: Supertransport\nTransports up to 12 Infantry or Vehicles.\nDeploys those with a parachute (force fire to unload)\n  Unarmed
+	Valued:
+		Cost: 2750
+	Tooltip:
+		Name: C-17 Cargo Plane
+	Health:
+		HP: 20000
+	Armor:
+		Type: Light
+	RevealsShroud:
+		Range: 10c0
+		Type: GroundPosition
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 8c0
+		Type: GroundPosition
+	AmmoPool:
+		Ammo: 1
+		PipCount: 0
+	ReloadAmmoPool:
+		Delay: 60
+		Count: 1
+	AttackAircraft:
+		FacingTolerance: 5
+	Armament:
+		Weapon: DropDummy
+	ParaDrop:
+		ChuteSound: chute1.aud
+	Aircraft:
+		CruiseAltitude: 2560
+		InitialFacing: 192
+		TurnSpeed: 3
+		Speed: 156
+		RepulsionSpeed: 40
+		MaximumPitch: 56
+		TakeOffOnCreation: False
+	Cargo:
+		MaxWeight: 12
+		PipCount: 12
+		Types: Infantry, Vehicle
+	Selectable:
+		DecorationBounds: 50,40,0,2
+	Contrail@1:
+		Offset: -261,-650,0
+		TrailLength: 8
+		TrailWidth: 48
+		UsePlayerColor: false
+	Contrail@2:
+		Offset: -85,-384,0
+		TrailLength: 8
+		TrailWidth: 48
+		UsePlayerColor: false
+	Contrail@3:
+		Offset: -85,384,0
+		TrailLength: 8
+		TrailWidth: 48
+		UsePlayerColor: false
+	Contrail@4:
+		Offset: -261,650,0
+		TrailLength: 8
+		TrailWidth: 48
+		UsePlayerColor: false
+	SmokeTrailWhenDamaged@0:
+		Offset: -261,-384,0
+		Interval: 2
+	SmokeTrailWhenDamaged@1:
+		Offset: -261,384,0
+		Interval: 2
+	RenderSprites:
+		Image: c17
+	Rearmable:
+		RearmActors: afld, afld.ukraine, carr.new.deployed
+	SpawnActorOnDeath:
+		Actor: C17.Husk
+		RequiresCondition: airborne && !empdisable
+	SpawnActorOnDeath@EMP:
+		Actor: C17.Husk.EMP
+		RequiresCondition: airborne && empdisable
+	GpsDot:
+		String: BigPlane
+
+A10:
+	Inherits: ^Plane
+	Inherits@AUTOTARGET: ^AutoTargetGroundAntiTank
+	Inherits@GAINSEXPERIENCE: ^GainsExperience
+	Inherits@AUTODAMAGE: ^KilledWithoutAirfield
+	Buildable:
+		Queue: Aircraft
+		BuildAtProductionType: Plane
+		BuildPaletteOrder: 5
+		Prerequisites: ~afld, eye, ~aircraft.gdi, ~!player.futurecorps, ~techlevel.high
+		Description: A-10 variant in Tankhunter configuration.\nCannot attack Air units\n  Strong vs Tanks, Infantry\n  Weak vs Aircraft, Defenses
+	Valued:
+		Cost: 2400
+	Tooltip:
+		Name: A-10 Warthog
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 12500
+	RevealsShroud:
+		MinRange: 9c0
+		Range: 11c0
+		Type: GroundPosition
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 9c0
+		Type: GroundPosition
+	Armament@PRIMARY:
+		Name: primary
+		Weapon: Stinger.A10.Left
+		LocalOffset: 2,-256,-43, 2,-438,-43, 2,-612,-43
+		PauseOnCondition: !ammo
+	Armament@SECONDARY:
+		Name: secondary
+		Weapon: Stinger.A10.Right
+		LocalOffset: 2,256,-43, 2,438,-43, 2,612,-43
+		PauseOnCondition: !ammo
+	Armament@TERTIARY:
+		Name: tertiary
+		Weapon: Autocannon
+		LocalOffset: 1024,0,-85
+		PauseOnCondition: !ammogun
+	Armament@QUARTENARY:
+		Name: quartenary
+		Weapon: Napalm
+		LocalOffset: -512,128,-85, -512,-128,-85 
+		PauseOnCondition: !ammobomb
+	WithMuzzleOverlay:
+	AttackAircraft:
+		Armaments: primary, secondary, tertiary, quartenary
+		FacingTolerance: 16
+		PersistentTargeting: false
+		OpportunityFire: false
+	Aircraft:
+		CruiseAltitude: 2560
+		InitialFacing: 192
+		TurnSpeed: 4
+		Speed: 178
+		RepulsionSpeed: 40
+		MaximumPitch: 56
+		TakeoffSounds: migtoff1.aud
+	AutoTarget:
+		InitialStance: HoldFire
+		InitialStanceAI: HoldFire
+	AmmoPool@1:
+		Armaments: primary, secondary
+		Ammo: 12
+		PipCount: 6
+		PipType: Red
+		ReloadDelay: 40
+		AmmoCondition: ammo
+	AmmoPool@2:
+		Armaments: quartenary
+		Ammo: 4
+		PipCount: 2
+		PipType: Yellow
+		ReloadDelay: 70
+		AmmoCondition: ammobomb
+	AmmoPool@3:
+		Armaments: tertiary
+		Ammo: 27
+		PipCount: 0
+		#	PipType: Green
+		ReloadDelay: 25
+		AmmoCondition: ammogun
+	Selectable:
+		Bounds: 36,28,0,2
+		DecorationBounds: 40,29,0,1
+	Contrail@1:
+		Offset: -258,-823,0
+		TrailLength: 8
+		TrailWidth: 48
+		UsePlayerColor: false
+	Contrail@2:
+		Offset: -258,823,0
+		TrailLength: 8
+		TrailWidth: 48
+		UsePlayerColor: false
+	SmokeTrailWhenDamaged:
+		Offset: -853,0,171
+		Interval: 2
+	ProducibleWithLevel:
+		Prerequisites: aircraft.upgraded
+	Rearmable:
+		RearmActors: afld, afld.ukraine, carr.new.deployed
+	SpawnActorOnDeath:
+		Actor: A10.Husk
+		RequiresCondition: airborne && !empdisable
+	SpawnActorOnDeath@EMP:
+		Actor: A10.Husk.EMP
+		RequiresCondition: airborne && empdisable
+
+A10.bomber:
+	Inherits: ^NeutralPlane
+	-Selectable:
+	-Voiced:
+	AttackBomber:
+		Armaments: gun, bombs
+	Armament@GUNS:
+		Name: gun
+		Weapon: Vulcan.bomber
+		LocalOffset: 1024,0,-85
+	WithMuzzleOverlay:
+	Armament@BOMBS:
+		Name: bombs
+		Weapon: Napalm.bomber
+		LocalOffset: 0,-256,-43, 0,256,-43
+	Health:
+		HP: 20000
+	Aircraft:
+		CruiseAltitude: 2560
+		TurnSpeed: 5
+		Speed: 298
+		Repulsable: False
+		MaximumPitch: 56
+	SelectionDecorations:
+		RenderSelectionBars: False
+	Tooltip:
+		Name: A-10 Bomber Plane
+	Contrail@1:
+		Offset: -640,171,0
+		TrailLength: 8
+		TrailWidth: 48
+		UsePlayerColor: false
+	Contrail@2:
+		Offset: -640,-171,0
+		TrailLength: 8
+		TrailWidth: 48
+		UsePlayerColor: false
+	RenderSprites:
+		Image: a10
+	SmokeTrailWhenDamaged@0:
+		Offset: -640,171,0
+		Interval: 2
+	SmokeTrailWhenDamaged@1:
+		Offset: -640,-171,0
+		Interval: 2
+	RejectsOrders:
+	GivesExperience:
+		Experience: 1000
+	Interactable:
+	SpawnActorOnDeath:
+		Actor: A10.Husk
+		RequiresCondition: airborne && !empdisable
+	SpawnActorOnDeath@EMP:
+		Actor: A10.Husk.EMP
+		RequiresCondition: airborne && empdisable
+	-MapEditorData:
+
+SFIG:
+	Inherits: ^Plane
+	Inherits@AUTOTARGET: ^AutoTargetGroundAntiStructure
+	Inherits@GAINSEXPERIENCE: ^GainsExperience
+	Inherits@AUTODAMAGE: ^KilledWithoutAirfield
+	Buildable:
+		Queue: Aircraft, MWFAir
+		BuildAtProductionType: Plane
+		BuildPaletteOrder: 7
+		Prerequisites: ~afld, ncom, ~aircraft.nod, ~player.nod, tech.stolen, ~techlevel.high
+		Description: Stealthed Ground-Attack Bomber plane.\nCannot attack air units.\n  Strong vs Buildings, Vehicles\n  Weak vs Anti-Air, Aircraft
+	Valued:
+		Cost: 2400
+	Tooltip:
+		Name: Stealth Bomber
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 8000
+	RevealsShroud:
+		MinRange: 9c0
+		Range: 11c0
+		Type: GroundPosition
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 9c0
+		Type: GroundPosition
+	Armament@PRIMARY:
+		Weapon: HonestJohn.bomber
+		LocalOffset: 300,0,0
+		PauseOnCondition: !ammo
+	AmmoPool@PRIMARY:
+		Armaments: primary
+		Ammo: 1
+		PipType: Red
+		ReloadDelay: 120
+		AmmoCondition: ammo
+	AttackAircraft:
+		FacingTolerance: 20
+		PersistentTargeting: False
+		OpportunityFire: False
+	Rearmable:
+		RearmActors: afld, afld.ukraine, carr.new.deployed
+	Aircraft:
+		CruiseAltitude: 2560
+		InitialFacing: 192
+		TurnSpeed: 4
+		Speed: 178
+		RepulsionSpeed: 40
+		MaximumPitch: 56
+	AutoTarget:
+		InitialStance: HoldFire
+		InitialStanceAI: HoldFire
+	Selectable:
+		Bounds: 36,28,0,2
+		DecorationBounds: 40,29,0,1
+	SelectionDecorations:
+	SmokeTrailWhenDamaged:
+		Offset: -853,0,171
+		Interval: 2
+	ProducibleWithLevel:
+		Prerequisites: aircraft.upgraded
+	Cloak:
+		InitialDelay: 150
+		CloakDelay: 150
+		CloakSound: appear1.aud
+		UncloakSound: appear1.aud
+		IsPlayerPalette: true
+		PauseOnCondition: cloak-force-disabled || !airborne
+	GrantConditionOnDamageState@UNCLOAK:
+		Condition: cloak-force-disabled
+		ValidDamageStates: Critical
+	SpawnActorOnDeath:
+		Actor: SFIG.Husk
+		RequiresCondition: airborne && !empdisable
+	SpawnActorOnDeath@EMP:
+		Actor: SFIG.Husk.EMP
+		RequiresCondition: airborne && empdisable
+
+UAV:
+	Inherits: ^NeutralPlane
+	-Selectable:
+	-Voiced:
+	-EjectOnDeath:
+	-ActorLostNotification:
+	Tooltip:
+		Name: Recon Drone
+	Health:
+		HP: 22500
+	Armor:
+		Type: Heavy
+	Aircraft:
+		CruiseAltitude: 2560
+		TurnSpeed: 7
+		Speed: 149
+		Repulsable: False
+		MaximumPitch: 56
+	AttackBomber:
+	SelectionDecorations:
+		RenderSelectionBars: False
+	SmokeTrailWhenDamaged:
+		Offset: -1c43,0,0
+		Interval: 2
+	DetectCloaked:
+		CloakTypes: Cloak
+	RevealsShroud:
+		Range: 15c768
+		Type: CenterPosition
+	RejectsOrders:
+	Interactable:
+	GivesExperience:
+		Experience: 1000
+	Targetable@AIRBORNE:
+		RequiresCondition: airborne
+		TargetTypes: Air
+	SpawnActorOnDeath:
+		Actor: UAV.Husk
+		RequiresCondition: airborne && !empdisable
+	SpawnActorOnDeath@EMP:
+		Actor: UAV.Husk.EMP
+		RequiresCondition: airborne && empdisable
+	Contrail@1:
+		Offset: -465,683,0
+		TrailLength: 6
+		TrailWidth: 48
+		UsePlayerColor: false
+	Contrail@2:
+		Offset: -465,-683,0
+		TrailLength: 6
+		TrailWidth: 48
+		UsePlayerColor: false
+
+F18:
+	Inherits: MIG
+	Buildable:
+		BuildPaletteOrder: 4
+		Prerequisites: ~afld, techcenter, ~aircraft.gdi, ~techlevel.high
+		Description: Fast Multi-Role Plane.\n  Strong vs Buildings, Vehicles\n  Weak vs Infantry, Aircraft
+	Valued:
+		Cost: 2000
+	Tooltip:
+		Name: F-18 Hornet
+	Aircraft:
+		Speed: 267
+	AttackAircraft:
+		Armaments: primary, secondary, tertiary, fourth, fifth
+		FacingTolerance: 20
+	Armament@SECONDARY:
+		Name: secondary
+		Weapon: MaverickAA
+		PauseOnCondition: !ammo
+	Armament@TERTIARY:
+		Name: tertiary
+		Weapon: BombingRun.ag
+		LocalOffset: 300,0,0
+		PauseOnCondition: !ammobomb
+	Armament@FOURTH:
+		Name: fourth
+		Weapon: ChainGun.Yak.AA.Left
+		LocalOffset: 256,-213,0
+		MuzzleSequence: muzzle
+		PauseOnCondition: !ammogun
+	Armament@FIFTH:
+		Name: fifth
+		Weapon: ChainGun.Yak.AA.Right
+		LocalOffset: 256,213,0
+		MuzzleSequence: muzzle
+		FireDelay: 1
+		PauseOnCondition: !ammogun
+	WithMuzzleOverlay:
+	AmmoPool:
+		Armaments: primary, secondary
+		PipType: Red
+	AmmoPool@GUNS:
+		Armaments: fourth, fifth
+		Ammo: 32
+		PipCount: 4
+		ReloadDelay: 11
+		PipType: Green
+		AmmoCondition: ammogun
+	AmmoPool@BOMBS:
+		Armaments: tertiary
+		Ammo: 6
+		PipCount: 3
+		PipType: Yellow
+		AmmoCondition: ammobomb
+	Rearmable:
+		RearmActors: afld, afld.ukraine, carr.new.deployed
+	SpawnActorOnDeath:
+		Actor: F18.Husk
+		RequiresCondition: airborne && !empdisable
+	SpawnActorOnDeath@EMP:
+		Actor: F18.Husk.EMP
+		RequiresCondition: airborne && empdisable
+
+F22:
+	Inherits: MIG
+	Buildable:
+		BuildPaletteOrder: 4
+		Prerequisites: ~afld, tmpl, ~aircraft.nod, ~techlevel.high
+		Description: Fast Multi-Role Plane.\n  Strong vs Buildings, Vehicles\n  Weak vs Infantry, Aircraft
+	Valued:
+		Cost: 2000
+	Tooltip:
+		Name: F-22 Raptor
+	Aircraft:
+		Speed: 267
+	AttackAircraft:
+		Armaments: primary, secondary, tertiary, fourth, fifth
+		FacingTolerance: 20
+	Armament@SECONDARY:
+		Name: secondary
+		Weapon: MaverickAA
+		PauseOnCondition: !ammo
+	Armament@TERTIARY:
+		Name: tertiary
+		Weapon: BombingRun.ag
+		LocalOffset: 300,0,0
+		PauseOnCondition: !ammobomb
+	Armament@FOURTH:
+		Name: fourth
+		Weapon: ChainGun.Yak.AA.Left
+		LocalOffset: 256,-213,0
+		MuzzleSequence: muzzle
+		PauseOnCondition: !ammogun
+	Armament@FIFTH:
+		Name: fifth
+		Weapon: ChainGun.Yak.AA.Right
+		LocalOffset: 256,213,0
+		MuzzleSequence: muzzle
+		FireDelay: 1
+		PauseOnCondition: !ammogun
+	WithMuzzleOverlay:
+	AmmoPool:
+		Armaments: primary, secondary
+		PipType: Red
+	AmmoPool@GUNS:
+		Armaments: fourth, fifth
+		Ammo: 32
+		PipCount: 4
+		ReloadDelay: 11
+		PipType: Green
+		AmmoCondition: ammogun
+	AmmoPool@BOMBS:
+		Armaments: tertiary
+		Ammo: 5
+		PipType: Yellow
+		AmmoCondition: ammobomb
+	Rearmable:
+		RearmActors: afld, afld.ukraine, carr.new.deployed
+
+	SpawnActorOnDeath:
+		Actor: F22.Husk
+		RequiresCondition: airborne && !empdisable
+	SpawnActorOnDeath@EMP:
+		Actor: F22.Husk.EMP
+		RequiresCondition: airborne && empdisable
+
+B2.Bomber:
+	Inherits: B52.Bomber
+	-RenderSprites:
+	Tooltip:
+		Name: B-2 Stealth Bomber
+	Health:
+		HP: 15000
+	Armament:
+		Weapon: InfernoBomb
+	AmmoPool:
+		Ammo: 1
+	Cloak:
+		InitialDelay: 90
+		CloakDelay: 90
+		CloakSound: appear1.aud
+		UncloakSound: appear1.aud
+		IsPlayerPalette: true
+		PauseOnCondition: cloak-force-disabled || !airborne
+	GrantConditionOnDamageState@UNCLOAK:
+		Condition: cloak-force-disabled
+		ValidDamageStates: Critical
+	Contrail@1:
+		Offset: -432,560,0
+	Contrail@2:
+		Offset: -432,-560,0
+	SmokeTrailWhenDamaged@0:
+		Offset: -432,560,0
+		Interval: 2
+	SmokeTrailWhenDamaged@1:
+		Offset: -432,-560,0
+		Interval: 2
+	RenderSprites:
+		Image: b2
+	SpawnActorOnDeath:
+		Actor: B2.Husk
+		RequiresCondition: airborne && !empdisable
+	SpawnActorOnDeath@EMP:
+		Actor: B2.Husk.EMP
+		RequiresCondition: airborne && empdisable
+
+HUNT:
+	Inherits@2: ^ExistsInWorld
+	Valued:
+		Cost: 1000
+	Tooltip:
+		Name: Hunter-Seeker UAV
+	Health:
+		HP: 20000
+	Armor:
+		Type: Light
+	Aircraft:
+		TurnSpeed: 16
+		Speed: 355
+		CruiseAltitude: 256
+		CanHover: True
+		CruisingCondition: cruising
+		VTOL: true
+		AirborneCondition: airborne
+	AttackAircraft:
+		Armaments: primary
+		FacingTolerance: 128
+		OpportunityFire: false
+	AttackBomber:
+	Armament@PRIMARY:
+		Weapon: KamikazeTargeting.hunter
+	GrantConditionOnAttack:
+		Condition: triggered
+	KillsSelf:
+		RequiresCondition: triggered
+	Targetable:
+		TargetTypes: Ground, Vehicle
+	HiddenUnderFog:
+		Type: CenterPosition
+	BodyOrientation:
+		UseClassicPerspectiveFudge: False
+	RenderSprites:
+		Image: huntseek
+	WithFacingSpriteBody:
+	Hovers@CRUISING:
+		RequiresCondition: cruising
+	QuantizeFacingsFromSequence:
+	DrawLineToTarget:
+	AppearsOnRadar:
+		UseLocation: true
+	Interactable:
+	SelectionDecorations:
+	HitShape:
+	MapEditorData:
+		Categories: System
+	SpawnActorOnDeath:
+		Actor: HUNT.Husk
+		RequiresCondition: airborne
+	RejectsOrders:
+	Interactable:
+	Explodes:
+		Weapon: UnitExplode
+		RequiresCondition: !airborne

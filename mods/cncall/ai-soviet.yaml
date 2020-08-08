@@ -1,0 +1,325 @@
+Player:
+	SupportPowerBotModule@soviet:
+		RequiresCondition: enable-ai-player && player.soviet
+		Decisions:
+			UseSpyPlane:
+				OrderName: SovietSpyPlane
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 5c0
+			UseParatroopers:
+				OrderName: SovietParatroopers
+				MinimumAttractiveness: 5
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 8c0
+				Consideration@2:
+					Against: Enemy
+					Types: Water
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 8c0
+			UseFastParatroopers:
+				OrderName: SovietFastParatroopers
+				MinimumAttractiveness: 5
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 8c0
+				Consideration@2:
+					Against: Enemy
+					Types: Water
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 8c0
+			UseShocktroopers:
+				OrderName: ShockParadrop
+				MinimumAttractiveness: 5
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 8c0
+				Consideration@2:
+					Against: Enemy
+					Types: Water
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 8c0
+			UseParagrenadiers:
+				OrderName: GrenParadrop
+				MinimumAttractiveness: 5
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 8c0
+				Consideration@2:
+					Against: Enemy
+					Types: Water
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 8c0
+			UseParabombs:
+				OrderName: SovietParabombs
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 5c0
+			UseNuclear:
+				OrderName: NukeMissile
+				MinimumAttractiveness: 3000
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 5c0
+				Consideration@2:
+					Against: Ally
+					Types: Air, Ground, Water
+					Attractiveness: -10
+					TargetMetric: Value
+					CheckRadius: 7c0
+			UseInvulnerability:
+				OrderName: IronCurtainPower
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Ally
+					Types: ICTarget
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 1c0
+			UseFieldRepairs:
+				OrderName: FieldRepairPower
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Ally
+					Types: ICTarget
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 2c0
+			CrateParabombs:
+				OrderName: CrateParabombs
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 5c0
+			CrateNuke:
+				OrderName: CrateNuke
+				MinimumAttractiveness: 3000
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 5c0
+				Consideration@2:
+					Against: Ally
+					Types: Air, Ground, Water
+					Attractiveness: -10
+					TargetMetric: Value
+					CheckRadius: 7c0
+	BaseBuilderBotModule@soviet:
+		RequiresCondition: enable-ai-player && player.soviet
+		MinimumExcessPower: 60
+		MaximumExcessPower: 160
+		ExcessPowerIncrement: 40
+		ExcessPowerIncreaseThreshold: 4
+		CheckForWaterRadius: 8
+		ConstructionYardTypes: fact
+		RefineryTypes: proc
+		PowerTypes: powr,apwr
+		BarracksTypes: barr
+		VehiclesFactoryTypes: weap
+		ProductionTypes: barr,weap,afld,hpad
+		NavalProductionTypes: spen
+		SiloTypes: silo
+		PlaceDefenseTowardsEnemyChance: 75
+		MaxBaseRadius: 26
+		BuildingDelays:
+			spen: 4500
+			tsla: 3000
+			sam: 6000
+			hsam: 9000
+			stek: 7500
+			stek.russia: 7500
+			stek.ukraine: 7500
+			stek.belarus: 7500
+		BuildingLimits:
+			proc: 4
+			barr: 2
+			weap: 3
+			fix: 1
+			spen: 1
+			dome.soviet: 1
+			afld: 4
+			hpad: 2
+			stek: 1
+			stek.russia: 1
+			stek.ukraine: 1
+			stek.belarus: 1
+			iron: 1
+			mslo: 1
+			pbox.static: 2
+			ftur: 6
+			tsla: 4
+			sam: 4
+			hsam: 2
+			fact: 3
+		BuildingFractions:
+			proc: 15
+			barr: 2
+			weap: 6
+			fix: 1
+			spen: 1
+			dome.soviet: 1
+			afld: 4
+			hpad: 1
+			stek: 1
+			stek.russia: 1
+			stek.ukraine: 1
+			stek.belarus: 1
+			mslo: 1
+			iron: 1
+			pbox.static: 1
+			ftur: 10
+			tsla: 5
+			sam: 3
+			hsam: 1
+	CaptureManagerBotModule@thf:
+		RequiresCondition: enable-ai-player && player.soviet
+		CapturingActorTypes: thf
+		CapturableActorTypes: harv,harv.crate,harv.soviet,harv.soviet.crate,mcv,v2rl,v2rl.ukraine,arty,arty.france,4tnk,ttnk,ctnk,mrj,5tnk,prsm,4tnk.gdi.rail,mwav,disr,icbm,mrls,ssm,arty.nod,mcv.cnc,harv.cnc
+		CheckCaptureTargetsForVisibility: true
+		MaximumCaptureTargetOptions: 15
+	SquadManagerBotModule@soviet:
+		RequiresCondition: enable-ai-player && player.soviet
+		SquadSize: 12
+		SquadSizeRandomBonus: 6
+		RushInterval: 400
+		AttackScanRadius: 16
+		ExcludeFromSquadsTypes: harv.soviet, harv.soviet.crate, mcv, mcv.ai, dog, ss, ss.ukraine, ss.ag, msub, msub.aa, fsub, nsub, yak.ai, yak.belarus.ai, mig, e6, thf, hind, ftrk.scout
+		ConstructionYardTypes: fact
+	SquadManagerBotModule@soviet.sea:
+		RequiresCondition: enable-ai-player && player.soviet && !global-disablenavy
+		SquadSize: 4
+		SquadSizeRandomBonus: 4
+		RushInterval: 400
+		AttackScanRadius: 24
+		ExcludeFromSquadsTypes: harv.soviet, harv.soviet.crate, mcv, mcv.ai, dog, e1, e2, e3, e4, volk, shok, ftrk, apc.soviet, 3tnk.1b, 3tnk.1b.russia, 3tnk.1b.ukraine, 3tnk.1b.belarus, 3tnk, 3tnk.russia, 3tnk.ukraine, 3tnk.belarus, 4tnk, v2rl, v2rl.ukraine, ttnk, yak.ai, yak.belarus.ai, mig, e6, thf, hind, ftrk.scout, 5tnk, snip
+		NavalUnitsTypes: ss,ss.ukraine,ss.ag,msub,msub.aa,fsub,nsub
+		ConstructionYardTypes: fact
+		NavalProductionTypes: spen
+	SquadManagerBotModule@soviet.airplane:
+		RequiresCondition: enable-ai-player && player.soviet
+		SquadSize: 1
+		SquadSizeRandomBonus: 1
+		RushInterval: 400
+		AttackScanRadius: 48
+		ExcludeFromSquadsTypes: harv.soviet, harv.soviet.crate, mcv, mcv.ai, dog, e1, e2, e3, e4, volk, shok, ftrk, apc.soviet, 3tnk.1b, 3tnk.1b.russia, 3tnk.1b.ukraine, 3tnk.1b.belarus, 3tnk, 3tnk.russia, 3tnk.ukraine, 3tnk.belarus, 4tnk, v2rl, v2rl.ukraine, ttnk, ss, ss.ukraine, ss.ag, msub, msub.aa, fsub, nsub, e6, thf, hind, ftrk.scout, 5tnk, snip
+		ConstructionYardTypes: fact
+	SquadManagerBotModule@soviet.helicopter:
+		RequiresCondition: enable-ai-player && player.soviet
+		SquadSize: 2
+		SquadSizeRandomBonus: 2
+		RushInterval: 400
+		AttackScanRadius: 48
+		ExcludeFromSquadsTypes: harv.soviet, harv.soviet.crate, mcv, mcv.ai, dog, e1, e2, e3, e4, volk, shok, ftrk, apc.soviet, 3tnk.1b, 3tnk.1b.russia, 3tnk.1b.ukraine, 3tnk.1b.belarus, 3tnk, 3tnk.russia, 3tnk.ukraine, 3tnk.belarus, 4tnk, v2rl, v2rl.ukraine, ttnk, ss, ss.ukraine, ss.ag, msub, msub.aa, fsub, nsub, e6, thf, yak.ai, yak.belarus.ai, mig, ftrk.scout, 5tnk, snip
+		ConstructionYardTypes: fact
+	UnitBuilderBotModule@soviet:
+		RequiresCondition: enable-ai-player && player.soviet
+		UnitQueues: Vehicle, Infantry
+		UnitDelays:
+			mcv.ai: 13500
+		UnitsToBuild:
+			e1: 65
+			e2: 15
+			e3: 30
+			e4: 15
+			dog: 15
+			shok: 15
+			harv.soviet: 15
+			ftrk: 30
+			apc.soviet: 15
+			3tnk.1b: 45
+			3tnk.1b.russia: 45
+			3tnk.1b.ukraine: 45
+			3tnk.1b.belarus: 45			
+			3tnk: 35
+			3tnk.russia: 35
+			3tnk.ukraine: 35
+			3tnk.belarus: 35
+			4tnk: 25
+			v2rl: 40
+			v2rl.ukraine: 40
+			ttnk: 25
+			volk: 1
+			e6: 2
+			thf: 2
+			snip: 2
+			mcv.ai: 1
+		UnitLimits:
+			dog: 4
+			harv.soviet: 8
+			ftrk: 6
+			volk: 1
+			e6: 2
+			thf: 2
+			snip: 2
+			mcv.ai: 1
+	UnitBuilderBotModule@soviet.sea:
+		RequiresCondition: enable-ai-player && player.soviet && !global-disablenavy
+		IdleBaseUnitsMaximum: 6
+		UnitQueues: Ship
+		UnitsToBuild:
+			ss: 30
+			ss.ukraine: 30
+			ss.ag: 20
+			msub: 20
+			msub.aa: 20
+			nsub: 1
+		UnitLimits:
+			ss: 4
+			ss.ukraine: 4
+			ss.ag: 6
+			msub: 4
+			msub.aa: 2
+			nsub: 1
+	UnitBuilderBotModule@soviet.air:
+		RequiresCondition: enable-ai-player && player.soviet
+		IdleBaseUnitsMaximum: 0
+		UnitQueues: Aircraft
+		UnitsToBuild:
+			yak.ai: 60
+			yak.belarus.ai: 60
+			mig: 40
+		UnitLimits:
+			yak.ai: 6
+			yak.belarus.ai: 6
+			mig: 4
+	UnitBuilderBotModule@soviet.helicopter:
+		RequiresCondition: enable-ai-player && player.soviet
+		IdleBaseUnitsMaximum: 2
+		UnitQueues: Aircraft
+		UnitsToBuild:
+			hind: 100
+		UnitLimits:
+			hind: 2

@@ -1,0 +1,264 @@
+Player:
+	SupportPowerBotModule@GDI:
+		RequiresCondition: enable-ai-player && player.gdi || player.futurecorps
+		Decisions:
+			UseReconDrone:
+				OrderName: ReconDrone
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 5c0
+			UseParatroopers:
+				OrderName: CnCParatroopers
+				MinimumAttractiveness: 5
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 8c0
+				Consideration@2:
+					Against: Enemy
+					Types: Water
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 8c0
+			UseAirstrike:
+				OrderName: AirstrikeA10
+				MinimumAttractiveness: 2000
+				Consideration@1:
+					Against: Enemy
+					Types: Vehicle, Infantry
+					Attractiveness: 3
+					TargetMetric: Value
+					CheckRadius: 2c0
+				Consideration@2:
+					Against: Ally
+					Types: Ground, Water
+					Attractiveness: -20
+					TargetMetric: Value
+					CheckRadius: 2c0
+				Consideration@3:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 2c0
+			UseIonCannon:
+				OrderName: IonCannonAI
+				MinimumAttractiveness: 1000
+				FineScanRadius: 2
+				Consideration@1:
+					Against: Enemy
+					Types: Air, Tank, Vehicle, Infantry, Water
+					Attractiveness: 2
+					TargetMetric: Value
+					CheckRadius: 2c0
+				Consideration@2:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 2c0
+				Consideration@3:
+					Against: Ally
+					Types: Ground, Water
+					Attractiveness: -10
+					TargetMetric: Value
+					CheckRadius: 3c0
+			UseEMPMissile:
+				OrderName: EMPMissile
+				MinimumAttractiveness: 3000
+				Consideration@1:
+					Against: Enemy
+					Types: Defense
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 5c0
+				Consideration@2:
+					Against: Ally
+					Types: Air, Ground, Water
+					Attractiveness: -10
+					TargetMetric: Value
+					CheckRadius: 7c0
+			UseFieldRepairs:
+				OrderName: FieldRepairPower
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Ally
+					Types: ICTarget
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 2c0
+	BaseBuilderBotModule@GDI:
+		RequiresCondition: enable-ai-player && player.gdi || player.futurecorps
+		MinimumExcessPower: 60
+		MaximumExcessPower: 160
+		ExcessPowerIncrement: 40
+		ExcessPowerIncreaseThreshold: 4
+		CheckForWaterRadius: 8
+		ConstructionYardTypes: fact.cnc
+		RefineryTypes: proc.cnc
+		PowerTypes: powr.cnc,apwr.cnc
+		BarracksTypes: pyle
+		VehiclesFactoryTypes: weap.gdi
+		ProductionTypes: pyle,weap.gdi,hpad,afld
+		NavalProductionTypes: syrd.gdi
+		SiloTypes: silo.cnc
+		PlaceDefenseTowardsEnemyChance: 75
+		MaxBaseRadius: 26
+		BuildingDelays:
+			syrd.gdi: 4500
+			tech: 7500
+		BuildingLimits:
+			proc.cnc: 4
+			pyle: 2
+			hq.gdi: 1
+			weap.gdi: 3
+			syrd.gdi: 1
+			hpad: 4
+			tech: 1
+			fix.cnc: 1
+			empb: 1
+			gun.gdi: 5
+			gtwr: 5
+			fact.cnc: 3
+			afld: 2
+			eye: 1
+			atwr: 3
+		BuildingFractions:
+			proc.cnc: 15
+			pyle: 2
+			hq.gdi: 1
+			weap.gdi: 6
+			syrd.gdi: 1
+			hpad: 4
+			tech: 1
+			fix.cnc: 1
+			empb: 1
+			gun.gdi: 5
+			gtwr: 5
+			afld: 1
+			eye: 1
+			atwr: 3
+	SquadManagerBotModule@GDI:
+		RequiresCondition: enable-ai-player && player.gdi || player.futurecorps
+		SquadSize: 8
+		SquadSizeRandomBonus: 8
+		RushInterval: 400
+		AttackScanRadius: 16
+		ExcludeFromSquadsTypes: harv.cnc, mcv.cnc, mcv.cnc.ai, pbt, gdidd, gdica, gdipt, orca, mh60, e6, f18, a10, hmmv.scout
+		ConstructionYardTypes: fact.cnc
+	SquadManagerBotModule@GDI.sea:
+		RequiresCondition: enable-ai-player && player.gdi || player.futurecorps && !global-disablenavy
+		SquadSize: 4
+		SquadSizeRandomBonus: 4
+		RushInterval: 400
+		AttackScanRadius: 24
+		ExcludeFromSquadsTypes: harv.cnc, mcv.cnc, mcv.cnc.ai, e1.cnc, e1.grenadier, e2.cnc, e3.cnc, hmmv, smch, gapc, 2tnk.gdi, 2tnk.gdi.rail, 4tnk.gdi.rail, lmch, jugg, mrls, mrls.hover, gdirmbo, orca, mh60, e6, f18, disr, mhq, medi.cnc, hmmv.scout, mnly.support, mrpg, snip.gdi, jump, a10, aav
+		NavalUnitsTypes: pbt,gdipt,gdidd,gdica
+		ConstructionYardTypes: fact.cnc
+		NavalProductionTypes: syrd.gdi
+	SquadManagerBotModule@GDI.airplane:
+		RequiresCondition: enable-ai-player && player.gdi || player.futurecorps 
+		SquadSize: 1
+		SquadSizeRandomBonus: 1
+		RushInterval: 400
+		AttackScanRadius: 48
+		ExcludeFromSquadsTypes: harv.cnc, mcv.cnc, mcv.cnc.ai, e1.cnc, e1.grenadier, e2.cnc, e3.cnc, hmmv, smch, gapc, 2tnk.gdi, 2tnk.gdi.rail, 4tnk.gdi.rail, lmch, jugg, mrls, mrls.hover, gdirmbo, orca, mh60, e6, disr, mhq, medi.cnc, hmmv.scout, mnly.support, mrpg, snip.gdi, jump, gdipt, gdidd, gdica, pbt, aav
+		ConstructionYardTypes: fact.cnc
+	SquadManagerBotModule@GDI.helicopter:
+		RequiresCondition: enable-ai-player && player.gdi || player.futurecorps 
+		SquadSize: 2
+		SquadSizeRandomBonus: 2
+		RushInterval: 400
+		AttackScanRadius: 48
+		ExcludeFromSquadsTypes: harv.cnc, mcv.cnc, mcv.cnc.ai, e1.cnc, e1.grenadier, e2.cnc, e3.cnc, hmmv, smch, gapc, 2tnk.gdi, 2tnk.gdi.rail, 4tnk.gdi.rail, lmch, jugg, mrls, mrls.hover, gdirmbo, e6, f18, disr, mhq, medi.cnc, hmmv.scout, mnly.support, mrpg, snip.gdi, jump, a10, gdipt, gdidd, gdica, pbt, aav
+		ConstructionYardTypes: fact.cnc
+	UnitBuilderBotModule@GDI:
+		RequiresCondition: enable-ai-player && player.gdi || player.futurecorps 
+		UnitQueues: Vehicle, Infantry
+		UnitDelays:
+			mcv.cnc.ai: 13500
+		UnitsToBuild:
+			e1.cnc: 65
+			e1.grenadier: 45
+			e2.cnc: 15
+			e3.cnc: 30
+			harv.cnc: 15
+			hmmv: 20
+			smch: 15
+			gapc: 30
+			aav: 20
+			mrpg: 20
+			2tnk.gdi: 60
+			2tnk.gdi.rail: 40
+			4tnk.gdi.rail: 40
+			lmch: 60
+			jugg: 15
+			mrls: 20
+			mrls.hover: 20
+			disr: 15
+			gdirmbo: 1
+			e6: 2
+			jump: 5
+			snip.gdi: 5
+			mcv.cnc.ai: 1
+			mhq: 1
+			medi.cnc: 2
+		UnitLimits:
+			harv.cnc: 8
+			hmmv: 4
+			mrpg: 2
+			4tnk.gdi.rail: 3
+			disr: 2
+			jugg: 2
+			lmch: 2
+			gdirmbo: 1
+			e6: 2
+			jump: 3
+			snip.gdi: 2
+			mcv.cnc.ai: 1
+			mhq: 1
+			medi.cnc: 3
+			mrls.hover: 4
+			aav: 3
+	UnitBuilderBotModule@GDI.sea:
+		RequiresCondition: enable-ai-player && player.gdi || player.futurecorps  && !global-disablenavy
+		IdleBaseUnitsMaximum: 6
+		UnitQueues: Ship
+		UnitsToBuild:
+			pbt: 50
+			gdidd: 20
+			gdica: 30
+			gdipt: 20
+		UnitLimits:
+			pbt: 6
+			gdidd: 3
+			gdica: 4
+			gdipt: 2
+	UnitBuilderBotModule@GDI.airplane:
+		RequiresCondition: enable-ai-player && player.gdi || player.futurecorps 
+		IdleBaseUnitsMaximum: 0
+		UnitQueues: Aircraft
+		UnitDelays:
+			f18: 7500
+		UnitsToBuild:
+			f18: 90
+			a10: 10
+		UnitLimits:
+			f18: 2
+			a10: 1
+	UnitBuilderBotModule@GDI.helicopter:
+		RequiresCondition: enable-ai-player && player.gdi || player.futurecorps 
+		IdleBaseUnitsMaximum: 2
+		UnitQueues: Aircraft
+		UnitsToBuild:
+			mh60: 40
+			orca: 60
+		UnitLimits:
+			mh60: 4
+			orca: 6

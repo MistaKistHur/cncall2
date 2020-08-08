@@ -1,0 +1,621 @@
+^BaseWorld:
+	Inherits: ^Palettes
+	AlwaysVisible:
+	ActorMap:
+	ScreenMap:
+	Selection:
+	MusicPlaylist:
+		VictoryMusic: score
+		DefeatMusic: map
+	TerrainGeometryOverlay:
+	DebugVisualizations:
+	Locomotor@FOOT:
+		Name: foot
+		Crushes: mine, crate
+		SharesCell: true
+		TerrainSpeeds:
+			Clear: 90
+			Rough: 80
+			Road: 100
+			Bridge: 100
+			Ore: 80
+				PathingCost: 300
+			Gems: 80
+				PathingCost: 300
+			Scraps: 80
+			Beach: 80
+			Shallow: 80
+	Locomotor@FOOT_AMPHIBIOUS:
+		Name: foot-amphibious
+		Crushes: mine, crate
+		SharesCell: true
+		TerrainSpeeds:
+			Clear: 90
+			Rough: 80
+			Road: 100
+			Bridge: 100
+			Ore: 80
+			Gems: 80
+				PathingCost: 300
+			Scraps: 80
+				PathingCost: 300
+			Beach: 80
+			Shallow: 80
+			Water: 80
+			River: 80
+	Locomotor@CHEM:
+		Name: chem
+		Crushes: mine, crate
+		SharesCell: true
+		TerrainSpeeds:
+			Clear: 90
+			Rough: 80
+			Road: 100
+			Bridge: 100
+			Ore: 80
+			Gems: 80
+			Scraps: 80
+			Beach: 80
+			Shallow: 80
+	Locomotor@WHEELED:
+		Name: wheeled
+		Crushes: mine, crate
+		TerrainSpeeds:
+			Clear: 80
+			Rough: 40
+			Road: 100
+			Bridge: 100
+			Ore: 70
+			Gems: 70
+			Scraps: 70
+			Beach: 40
+			Shallow: 40
+	Locomotor@HEAVYWHEELED:
+		Name: heavywheeled
+		Crushes: wall, mine, crate, infantry
+		TerrainSpeeds:
+			Clear: 80
+			Rough: 40
+			Road: 100
+			Bridge: 100
+			Ore: 70
+			Gems: 70
+			Scraps: 70
+			Beach: 40
+			Shallow: 40
+	Locomotor@LIGHTTRACKED:
+		Name: lighttracked
+		Crushes: wall, mine, crate
+		TerrainSpeeds:
+			Clear: 80
+			Rough: 70
+			Road: 100
+			Bridge: 100
+			Ore: 70
+			Gems: 70
+			Scraps: 70
+			Beach: 70
+			Shallow: 70
+	Locomotor@TRACKED:
+		Name: tracked
+		Crushes: wall, infantry, mine, crate
+		TerrainSpeeds:
+			Clear: 80
+			Rough: 70
+			Road: 100
+			Bridge: 100
+			Ore: 70
+			Gems: 70
+			Scraps: 70
+			Beach: 70
+			Shallow: 70
+	Locomotor@HEAVYTRACKED:
+		Name: heavytracked
+		Crushes: wall, infantry, mine, crate, heavywall
+		TerrainSpeeds:
+			Clear: 80
+			Rough: 70
+			Road: 100
+			Bridge: 100
+			Ore: 70
+			Gems: 70
+			Scraps: 70
+			Beach: 70
+			Shallow: 70
+	Locomotor@TRACKED_AMPHIBIOUS:
+		Name: tracked-amphibious
+		Crushes: infantry, mine, crate
+		TerrainSpeeds:
+			Clear: 80
+			Rough: 70
+			Road: 100
+			Bridge: 100
+			Ore: 70
+			Gems: 70
+			Scraps: 70
+			Beach: 70
+			Shallow: 70
+			Water: 50
+			River: 30
+	Locomotor@NAVAL:
+		Name: naval
+		Crushes: mine, crate
+		TerrainSpeeds:
+			Water: 100
+			Shallow: 70
+	Locomotor@LANDINGCRAFT:
+		Name: lcraft
+		Crushes: mine, crate
+		TerrainSpeeds:
+			Water: 100
+			Beach: 70
+			Shallow: 70
+	Locomotor@AMPHIBIOUS:
+		Name: amphibious
+		Crushes: infantry, mine, crate
+		TerrainSpeeds:
+			Clear: 80
+			Rough: 70
+			Road: 90
+			Bridge: 60
+			Ore: 50
+			Gems: 50
+			Scraps: 50
+			Beach: 80
+			Shallow: 80
+			Water: 90
+			River: 70
+	Locomotor@IMMOBILE:
+		Name: immobile
+		TerrainSpeeds:
+	JumpjetLocomotor@JUMPJET:
+		Name: jumpjet
+		Crushes: crate
+		SharesCell: true
+		JumpjetTransitionCost: 100
+		TerrainSpeeds:
+			Clear: 90
+			Rough: 80
+			Road: 100
+			Bridge: 100
+			Beach: 90
+			Ore: 90
+				PathingCost: 300
+			Gems: 90
+				PathingCost: 300
+			Scraps: 90
+			Shallow: 90
+			Jumpjet: 110
+	JumpjetLocomotor@REPULSOR:
+		Name: repulsor
+		Crushes: infantry, wall, crate
+		JumpjetTransitionCost: 100
+		TerrainSpeeds:
+			Clear: 90
+			Rough: 80
+			Road: 100
+			Bridge: 100
+			Beach: 90
+			Ore: 90
+			Gems: 90
+			Scraps: 90
+			Shallow: 90
+			Water: 90
+			Jumpjet: 100
+	TerrainRenderer:
+	ShroudRenderer:
+		FogVariants: shroud
+		Index: 255, 16, 32, 48, 64, 80, 96, 112, 128, 144, 160, 176, 192, 208, 224, 240, 20, 40, 56, 65, 97, 130, 148, 194, 24, 33, 66, 132, 28, 41, 67, 134, 1, 2, 4, 8, 3, 6, 12, 9, 7, 14, 13, 11, 5, 10, 15, 255
+		UseExtendedIndex: true
+	Faction@random:
+		Name: Any
+		InternalName: Random
+		RandomFactionMembers: allies, soviet, gdi, nod
+		Side: Random
+		Description: Random Side\nA random side will be chosen when the game starts.
+	Faction@randomallies:
+		Name: Allies
+		InternalName: RandomAllies
+		RandomFactionMembers: england, france, germany
+		Side: Random
+		Description: Random Allied Country\nA random Allied country will be chosen when the game starts.
+	Faction@randomsoviet:
+		Name: Soviet
+		InternalName: RandomSoviet
+		RandomFactionMembers: russia, ukraine, belarus
+		Side: Random
+		Description: Random Soviet Country\nA random Soviet country will be chosen when the game starts.
+	Faction@0:
+		Name: Allies
+		InternalName: allies
+		Side: Allies
+		Description: Allies\nThe Allies is an military alliance of European nations, that hastily united against the imminent Soviet threat.\nUnder the leadership of the prominent nations of Europe, such as Britain, Germany, France, Italy, Spain and Greece\nthe Alliance finds support worldwide, chiefly being backed by the USA and regional allies such as Turkey.\nThey have divergent tactical options, possess a strong Navy and have access to many powerful technologies\nsuch as time travel, invisibility or prismatic laser weaponry, most are products of Prof. Einstein's genius.
+	Faction@1:
+		Name: Britain
+		InternalName: england
+		Side: Allies
+		Description: Britain\nSpecialization: Intelligence\nThe forces of Britain uphold their long tradition in Espionage.\nFaction Variations:\n    - Tanks* deal more damage but are costlier to build.\n*Those Tanks being the Light and Medium Tanks.\n+10% damage dealt at the cost of being +50$ more expensive.\nThis bonus does not affect secondary weaponry.\n    - Sight and Detection +50% bonus for Radar Domes, at increased cost.\nVeterancy Bonus:\n    - Rifle Infantry and Jeep as Veteran.\nUnique Support Power:\n    - Intel Drop (Tech Center)\nA B-52 drops one Veteran Spy anywhere on the map.\nSpecial Units:\n    - Spy (Infantry)\nCapable agent that opens up wonderful possibilities.\n    - Radar Jammer (Vehicle)\nThis vehicle is capable of jamming enemy missiles and radar.\n    - Aircraft Carrier (Naval)\nCapable of deploying into Airfield at sea,\nProducing, Repairing and Resupplying Aircrafts.
+	Faction@2:
+		Name: France
+		InternalName: france
+		Side: Allies
+		Description: France\nSpecialization: Deception\nThe forces of France are capable of deceiving their enemies in many ways.\nFaction Variations:\n    - Tanks* fire faster but deal less damage.\n*Those Tanks being the Light and Medium Tanks.\n+10% faster rate of fire, deals -250/-500 damage per shot on affected Tanks.\nThis bonus does not affect secondary weaponry.\n    - Can build Fake structures.\nThis selection of fake structures look precisely\n as an real building to the enemy.\nVeterancy Bonus:\n    - Artillery gets built as Veteran.\nUnique Support Powers:\n    - Decoy Army (Tech Center)\nDelivers an group of Fake units at your primary War Factory.\nThose remote-controlled units armed with dummy weaponry\nwill look identical to the opponent.\nSpecial Units:\n    - Medic (Infantry)\nInfantry capable of healing others during combat.\n    - Phase Transport (Vehicle)\nTransport that is cloaked when out of combat.\n    - Fake Vehicles\nCapable of producing fake doubles of MCV, Supply Truck and MGG.
+	Faction@3:
+		Name: Germany
+		InternalName: germany
+		Side: Allies
+		Description: Germany\nSpecialization: Technology\nThe forces of Germany take pride in displaying their scientific progress on the battlefield.\nFaction Variations:\n    - Tanks* are more durable but move slower.\n*Those Tanks being the Light and Medium Tanks.\nTanks have their Health increased by 10%, they move marginally slower in return.\n    - Gun Turrets have +1 Range and consume -10 less power.\nVeterancy Bonus:\n    - APC and Destroyer gets built as Veteran.\nUnique Support Powers:\n    - Paratanks (Tech Center)\nA B-52 paradrops an Veteran squad of two Light and a Medium Tank.\nSpecial Units:\n    - Machine Gunner (Infantry)\nInfantry armed with an modified version of the M60 Machinegun.\n    - Chrono Tank (Vehicle)\nThis tank armed with rocket pods is capable of Teleportation.\n    - Support Minelayer & Repair Ship (Vehicle & Naval)\nUnarmed units capable of laying ground/sea mines and Repairing units.
+	Faction@4:
+		Name: Soviet
+		InternalName: soviet
+		Side: Soviet
+		Description: Soviet\nThe Soviet empire consist of the combined forces of the USSR. Under the leadership of Stalin they march forth to conquer Europe,\ntheir intention: to realize the comrade premier's dream of uniting the continent under communist Socialism at any cost.\nThey use strong armoured divisions, napalm weaponry, tesla technology and strength in numbers to overwhelm opposition.
+	Faction@5:
+		Name: Russia
+		InternalName: russia
+		Side: Soviet
+		Description: Russia\nSpecialization: Tesla Weaponry\nThe forces of Russia utilize the power of Tesla technology.\nFaction Variations:\n    - Buildings* are cheaper to build but explode sooner.\n*Defenses are not included.\n10% cheaper to build at the expanse of collapsing sooner\nat threshold of 10% Hitpoints remaining.\n    - A-Bomb gets prepared faster.\nNuke recharges in 7:30 instead 9:00.\nThe timers given are for 'Normal' speed.\nVeterancy Bonus:\n    - Both variants of Heavy Tank gets built as Veteran.\nUnique Support Power:\n    - Storm Troopers (Tech Center)\nA Badger paradrops three Veteran Shock Troopers anywhere on the map.\nSpecial Units:\n    - Shock Trooper & Tesla Tank (Infantry & Vehicle)\nUnits armed with fearsome portable tesla weaponry.\n    - Demolition Truck (Vehicle)\nAn truck with a desperate driver, loaded with Nuclear explosives\n    - Nuclear Submarine (Naval)\nAn submarine capable of launching nuclear warheads.
+	Faction@6:
+		Name: Ukraine
+		InternalName: ukraine
+		Side: Soviet
+		Description: Ukraine\nSpecialization: Demolitions\nThe forces of Ukraine specialize in blowing their opponents to smithereens.\nFaction Variations:\n    - Tanks* move faster but are built slower.\n*Those Tanks being both types of Heavy Tanks.\nBuildDurationModifier is 70, speed marginally faster.\n    - All Aircraft move faster, Airfields cost more.\nMovespeed increased by 20%, Airfields cost 550.\nThe bonus affects Badger Planes too.\nVeterancy Bonus:\n    - V2 Launcher and Submarine gets built as Veteran.\nUnique Support Power:\n    - Paragrenadiers (Tech Center)\nA Badger paradrops four Veteran Grenadiers anywhere on the map.\nSpecial Units:\n    - Flamethrower & Flame Sub (Infantry & Naval)\nThose units are capable of using Flame weaponry.\n    - Mammoth Tank (Vehicle)\nLarge heavy tank with superior firepower.\n    - Badger Bomber (Aircraft)\nBadger variant modified to carry triple amount of Parabombs.
+	Faction@7:
+		Name: Belarus
+		InternalName: belarus
+		Side: Soviet
+		Description: Belarus\nSpecialization: Secret Weapons\nThe forces of Belarus have ingenious inventions at their disposal.\nFaction Variations:\n    - Tanks* are cheaper to build but have less health.\n*Those Tanks being both types of Heavy Tanks.\n10% cheaper to build at the cost of having 10% less Hitpoints.\n    - Paratroopers available twice as frequent.\nVeterancy Bonus:\n    - Yak Plane and Flak Truck gets built as Veteran.\nUnique Support Power:\n    - Paramines (Tech Center)\nA Badger paradrops one Minelayer anywhere on the map.\nSpecial Units:\n    - Sniper (Infantry)\nSharpshooter infantry that can kill most Infantry in one shot.\n    - MAD Tank (Vehicle)\nDevice capable of emitting seismic waves when deployed that damage structures.\n    - Nuclear Bomber (Aircraft)\nUnits capable of delivering tactical Nuclear warheads.
+	Faction@GDI:
+		Name: GDI
+		InternalName: gdi
+		Side: GDI
+		Description: Global Defense Initiative\nThe GDI is an international military branch of the United Nations that are tasked\nwith keeping the world peace. Commanding the combined forces of the world's\nmost powerful nations, the GDI posseses an unmatched arsenal of weaponry.
+	Faction@FutureCorps:
+		Name: Future C.
+		InternalName: ubergdi
+		Side: GDI
+		Description: Future Corps\nThe Future Corps are the hi-tech branch of the GDI tasked with developing, researching\nand field-testing new technologies based on the knowledge obtained through Tiberium.\nThey field the expensive yet durable arsenal of the Future, featuring mechanical walkers,\nHover repulsor technology, advanced Avionics and Power armored Infantry.
+	Faction@SOCOM:
+		Name: SOCOM
+		InternalName: socom
+		Side: GDI
+		Description: Special Operations Command\nThe SOCOM is the special operations branch of the GDI tasked with carrying out tasks of a more secretive nature.\nTBD
+		Selectable: False
+	Faction@Taskforce:
+		Name: Task F.
+		InternalName: taskforce
+		Side: GDI
+		Description: Task Force\nAn typical task force of the GDI is adequately equipped to deal with threats in their area of deployment.\nTBD
+		Selectable: False
+	Faction@Nod:
+		Name: Nod
+		InternalName: nod
+		Side: Nod
+		Description: Brotherhood of Nod\nThe Brotherhood is a fanatical religious cult centered around their leader Kane\nand the alien substance Tiberium. They utilize stealth technology, propaganda\nand guerilla tactics to defeat those who oppose their goal of world domination.
+	Faction@Blackhand:
+		Name: Black H.
+		InternalName: bossnod
+		Side: Nod
+		Description: Black Hand\nThe fanatically loyal Black Hand consists of hand-picked members, whose Commanders form the Inner Circle around Kane himself.\nThough mostly an enigma to those outside of the Broterhood, as they get rarely deployed to the field in force to carry out Kane's will,\ntheir battlefield presence marks dire news to all combatants involved, as they will ruthlessly exterminate the enemies of Nod,\neven if that means depopulating whole regions, utilizing terrifying WMDs, or having to turn on their own Brothers.\nThe Black Hand utilize many mysterious, barely understood technologies that are rumoured to have not originated on Earth,\ndubbed the "Technology of Peace" those designs are coveted as sacred and most advanced are utilized only by the Black Hand.
+	Faction@Cabal:
+		Name: Cabal L.
+		InternalName: cabal
+		Side: Nod
+		Description: Cabal Legion\nThis legion of cybernetically assisted bio augmented lifeforms is a cybernetic task-force that is operating\nunder the central authority and command of an Brotherhood of Nod developed super-ai named only as 'Cabal Prime'.\nTBD
+		Selectable: False
+	Faction@Rebels:
+		Name: Rebels
+		InternalName: rebels
+		Side: Nod
+		Description: Insurrectionists\nA Nod affiliated guerilla force of fanatical rebels that cause trouble across the globus in the name of Kane, mostly comprised of anarchists and ex-militants of other terrorist organisations brainwashed into joining the Nod.\nTargeting second and mostly third world countries to cause and outcarry an planned insurrection that would end with this country becoming openly affiliated with the brotherhood of Nod.\nThey receive their training and equipment through external means and from the Brotherhood only.\nTBD
+		Selectable: False
+	ResourceType@ore:
+		Type: Ore
+		Name: Tiberium
+		PipColor: Green
+		ResourceType: 1
+		TerrainType: Ore
+		Palette: greentiberium
+		Sequences: rti1,rti2,rti3,rti4,rti5,rti6,rti7,rti8,rti9,rti10,rti11,rti12
+		MaxDensity: 12
+		ValuePerUnit: 25
+		AllowedTerrainTypes: Clear,Road
+		AllowUnderActors: true
+	ResourceType@gem:
+		Type: Gems
+		Name: Tiberium
+		PipColor: Blue
+		ResourceType: 2
+		TerrainType: Gems
+		Palette: bluetiberium
+		Sequences: rti1,rti2,rti3,rti4,rti5,rti6,rti7,rti8,rti9,rti10,rti11,rti12
+		MaxDensity: 12
+		ValuePerUnit: 50
+		AllowedTerrainTypes: Clear,Road
+		AllowUnderActors: true
+	ResourceType@scrap:
+		Type: Scraps
+		Name: Scrap Metal
+		PipColor: Gray
+		ResourceType: 3
+		TerrainType: Scraps
+		Palette: player
+		Sequences: scrap01,scrap02,scrap03,scrap04,scrap05,scrap06,scrap07,scrap08,scrap09,scrap10,scrap11,scrap12,scrap13,scrap14,scrap15,scrap16,scrap17,scrap18,scrap19,scrap20
+		MaxDensity: 12
+		ValuePerUnit: 12
+		AllowedTerrainTypes: Clear,Road
+		AllowUnderActors: true
+	JumpjetActorLayer:
+		HeightOffset: 1c460
+
+World:
+	Inherits: ^BaseWorld
+	ChatCommands:
+	DevCommands:
+	DebugVisualizationCommands:
+	PlayerCommands:
+	HelpCommand:
+	ScreenShaker:
+	BuildingInfluence:
+	ProductionQueueFromSelection:
+		ProductionPaletteWidget: PRODUCTION_PALETTE
+	LegacyBridgeLayer:
+		Bridges: bridge1, bridge2, bridge3, bridge4, br1, br2, br3, sbridge1, sbridge2, sbridge3, sbridge4
+	CustomTerrainDebugOverlay:
+	CrateSpawner:
+		DeliveryAircraft: badr.crate
+		QuantizedFacings: 16
+		Minimum: 1
+		Maximum: 3
+		SpawnInterval: 3000
+		WaterChance: 20
+		InitialSpawnDelay: 1500
+		CheckboxDisplayOrder: 1
+	DomainIndex:
+	SmudgeLayer@SCORCH:
+		Type: Scorch
+		Sequence: scorches
+		SmokePercentage: 50
+	SmudgeLayer@CRATER:
+		Type: Crater
+		Sequence: craters
+	ResourceLayer:
+	ResourceClaimLayer:
+	WarheadDebugOverlay:
+	SpawnMapActors:
+	MapBuildRadius:
+		AllyBuildRadiusCheckboxDisplayOrder: 4
+		BuildRadiusCheckboxDisplayOrder: 5
+		BuildRadiusCheckboxEnabled: True
+	MapOptions:
+		ShortGameCheckboxDisplayOrder: 2
+		TechLevelDropdownDisplayOrder: 2
+		GameSpeedDropdownDisplayOrder: 3
+		GameSpeed: fast
+	CreateMPPlayers:
+	MPStartUnits@mcvonly:
+		Class: mcv
+		ClassName: MCV Only
+		Factions: allies, england, france, germany, soviet, russia, ukraine, belarus
+		BaseActor: mcv
+	MPStartUnits@mcvonly2:
+		Class: mcv
+		ClassName: MCV Only
+		Factions: gdi, ubergdi, socom, taskforce, nod, bossnod, cabal, rebels
+		BaseActor: mcv.cnc
+	MPStartUnits@deployedallies:
+		Class: none
+		ClassName: Conyard + Scout
+		Factions: allies, england, france, germany
+		BaseActor: fact
+		SupportActors: jeep.scout
+		InnerSupportRadius: 3
+		OuterSupportRadius: 5
+	MPStartUnits@deployedsoviet:
+		Class: none
+		ClassName: Conyard + Scout
+		Factions: soviet, russia, ukraine, belarus
+		BaseActor: fact
+		SupportActors: ftrk.scout
+		InnerSupportRadius: 3
+		OuterSupportRadius: 5
+	MPStartUnits@deployedgdi:
+		Class: none
+		ClassName: Conyard + Scout
+		Factions: gdi,ubergdi,socom,taskforce
+		BaseActor: fact.cnc
+		SupportActors: hmmv.scout
+		InnerSupportRadius: 3
+		OuterSupportRadius: 5
+	MPStartUnits@deployednod:
+		Class: none
+		ClassName: Conyard + Scout
+		Factions: nod,bossnod,cabal,rebels
+		BaseActor: fact.cnc
+		SupportActors: bggy.scout
+		InnerSupportRadius: 3
+		OuterSupportRadius: 5
+	MPStartUnits@lightalliesa:
+		Class: light
+		ClassName: Light Support
+		Factions: allies, england, france, germany
+		BaseActor: mcv
+		SupportActors: e1,e1,e1,e3,e3,jeep,1tnk
+		InnerSupportRadius: 3
+		OuterSupportRadius: 5
+	MPStartUnits@lightalliesb:
+		Class: light
+		ClassName: Light Support
+		Factions: allies, england, france, germany
+		BaseActor: mcv
+		SupportActors: e1,e1,e1,e3,e3,apc,jeep
+		InnerSupportRadius: 3
+		OuterSupportRadius: 5
+	MPStartUnits@lightsovieta:
+		Class: light
+		ClassName: Light Support
+		Factions: soviet, russia, ukraine, belarus
+		BaseActor: mcv
+		SupportActors: e1,e1,e1,e3,e3,apc.soviet,ftrk
+		InnerSupportRadius: 3
+		OuterSupportRadius: 5
+	MPStartUnits@lightsovietb:
+		Class: light
+		ClassName: Light Support
+		Factions: soviet, russia, ukraine, belarus
+		BaseActor: mcv
+		SupportActors: e1,e1,e1,e3,e3,ftrk,3tnk.1b
+		InnerSupportRadius: 3
+		OuterSupportRadius: 5
+	MPStartUnits@heavyalliesa:
+		Class: heavy
+		ClassName: Heavy Support
+		Factions: allies, england, france, germany
+		BaseActor: mcv
+		SupportActors: e1,e1,e1,e3,e3,jeep,1tnk,2tnk,1tnk,2tnk
+		InnerSupportRadius: 3
+		OuterSupportRadius: 5
+	MPStartUnits@heavyalliesb:
+		Class: heavy
+		ClassName: Heavy Support
+		Factions: allies, england, france, germany
+		BaseActor: mcv
+		SupportActors: e1,e1,e1,e3,e3,apc,jeep,2tnk,2tnk,1tnk
+		InnerSupportRadius: 3
+		OuterSupportRadius: 5
+	MPStartUnits@heavysovieta:
+		Class: heavy
+		ClassName: Heavy Support
+		Factions: soviet, russia, ukraine, belarus
+		BaseActor: mcv
+		SupportActors: e1,e1,e1,e3,e3,ftrk,ftrk,3tnk.1b,3tnk.1b
+		InnerSupportRadius: 3
+		OuterSupportRadius: 5
+	MPStartUnits@heavysovietb:
+		Class: heavy
+		ClassName: Heavy Support
+		Factions: soviet, russia, ukraine, belarus
+		BaseActor: mcv
+		SupportActors: e1,e1,e1,e3,e3,apc.soviet,ftrk,3tnk,3tnk
+		InnerSupportRadius: 3
+		OuterSupportRadius: 5
+	MPStartUnits@lightgdia:
+		Class: light
+		ClassName: Light Support
+		Factions: gdi,ubergdi,socom,taskforce
+		BaseActor: mcv.cnc
+		SupportActors: e1,e1,e1,e3,e3,gapc,hmmv
+		InnerSupportRadius: 3
+		OuterSupportRadius: 5
+	MPStartUnits@lightgdib:
+		Class: light
+		ClassName: Light Support
+		Factions: gdi,ubergdi,socom,taskforce
+		BaseActor: mcv.cnc
+		SupportActors: e1,e1,e1,e3,e3,hmmv,2tnk.gdi
+		InnerSupportRadius: 3
+		OuterSupportRadius: 5
+	MPStartUnits@lightnoda:
+		Class: light
+		ClassName: Light Support
+		Factions: nod,bossnod,cabal,rebels
+		BaseActor: mcv.cnc
+		SupportActors: e1,e1,e1,e3,e3,bggy,1tnk.nod
+		InnerSupportRadius: 3
+		OuterSupportRadius: 5
+	MPStartUnits@lightnodb:
+		Class: light
+		ClassName: Light Support
+		Factions: nod,bossnod,cabal,rebels
+		BaseActor: mcv.cnc
+		SupportActors: e1,e1,e1,e3,e3,napc,bggy
+		InnerSupportRadius: 3
+		OuterSupportRadius: 5
+	MPStartUnits@heavygdia:
+		Class: heavy
+		ClassName: Heavy Support
+		Factions: gdi,ubergdi,socom,taskforce
+		BaseActor: mcv.cnc
+		SupportActors: e1,e1,e1,e3,e3,hmmv,hmmv,2tnk.gdi,2tnk.gdi
+		InnerSupportRadius: 3
+		OuterSupportRadius: 5
+	MPStartUnits@heavygdib:
+		Class: heavy
+		ClassName: Heavy Support
+		Factions: gdi,ubergdi,socom,taskforce
+		BaseActor: mcv.cnc
+		SupportActors: e1,e1,e1,e3,e3,gapc,hmmv,2tnk.gdi,2tnk.gdi
+		InnerSupportRadius: 3
+		OuterSupportRadius: 5
+	MPStartUnits@heavynoda:
+		Class: heavy
+		ClassName: Heavy Support
+		Factions: nod,bossnod,cabal,rebels
+		BaseActor: mcv.cnc
+		SupportActors: e1,e1,e1,e3,e3,bggy,1tnk.nod,1tnk.nod,ftnk,1tnk.nod
+		InnerSupportRadius: 3
+		OuterSupportRadius: 5
+	MPStartUnits@heavynodb:
+		Class: heavy
+		ClassName: Heavy Support
+		Factions: nod,bossnod,cabal,rebels
+		BaseActor: mcv.cnc
+		SupportActors: e1,e1,e1,e3,e3,napc,bggy,1tnk.nod,1tnk.nod,1tnk.nod
+		InnerSupportRadius: 3
+		OuterSupportRadius: 5
+	MPStartUnits@cratehunters:
+		Class: mhq
+		ClassName: Crate Hunters
+		Factions: allies, england, france, germany, soviet, russia, ukraine, belarus, gdi, ubergdi, socom, taskforce, nod, bossnod, cabal, rebels
+		BaseActor: MHQ.Start
+	MPStartLocations:
+		SeparateTeamSpawnsCheckboxDisplayOrder: 6
+		SeparateTeamSpawnsCheckboxVisible: False
+		SeparateTeamSpawnsCheckboxLocked: True
+	SpawnMPUnits:
+		DropdownDisplayOrder: 1
+	PathFinder:
+	ValidateOrder:
+	DebugPauseState:
+	RadarPings:
+	StartGameNotification:
+	ObjectivesPanel:
+		PanelName: SKIRMISH_STATS
+	LoadWidgetAtGameStart:
+	MapCreeps:
+		CheckboxVisible: True
+		CheckboxLabel: Infestation
+		CheckboxDescription: Periodically will Visceroids emerge from Blossom Trees, that are hostile to all
+		CheckboxEnabled: False
+		CheckboxDisplayOrder: 11
+	ActorSpawnManager:
+		Minimum: 0
+		Maximum: 16
+		SpawnInterval: 5000
+		Actors: Vice
+		Owner: Creeps
+		Types: mine,gmine
+	LuaScript:
+		Scripts: cossackscript.lua
+	TimeLimitManager:
+		TimeLimitWarnings:
+			40: FourtyMinutesRemaining
+			30: ThirtyMinutesRemaining
+			20: TwentyMinutesRemaining
+			10: TenMinutesRemaining
+			5: WarningFiveMinutesRemaining
+			4: WarningFourMinutesRemaining
+			3: WarningThreeMinutesRemaining
+			2: WarningTwoMinutesRemaining
+			1: WarningOneMinuteRemaining
+	ResourceRenderer:
+		RenderTypes: Ore, Gems, Scraps
+
+EditorWorld:
+	Inherits: ^BaseWorld
+	EditorActorLayer:
+	EditorCursorLayer:
+	EditorResourceLayer:
+	EditorSelectionLayer:
+	LoadWidgetAtGameStart:
+	EditorActionManager:

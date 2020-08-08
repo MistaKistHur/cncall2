@@ -1,0 +1,646 @@
+
+E1.cnc:
+	Inherits: E1
+	Buildable:
+		Prerequisites: ~barracks, ~!infantry.allies, ~!infantry.soviet, ~!player.futurecorps, ~techlevel.infonly
+		Icon: cncicon
+	RenderSprites:
+		Image: e1
+	Cloneable:
+		Types: CloneSoldier
+	-MapEditorData:
+
+E2.cnc:
+	Inherits: E2
+	Buildable:
+		Prerequisites: ~barracks, ~infantry.gdi, ~!player.futurecorps, ~techlevel.infonly
+		Icon: cncicon
+	RenderSprites:
+		Image: e2
+	Cloneable:
+		Types: CloneSoldier
+	-MapEditorData:
+
+E3.cnc:
+	Inherits: E3
+	Buildable:
+		Prerequisites: ~barracks, ~!infantry.allies, ~!infantry.soviet, ~techlevel.infonly
+		Icon: cncicon
+	RenderSprites:
+		Image: e3
+	Cloneable:
+		Types: CloneSoldier
+	-MapEditorData:
+
+TERR:
+	Inherits: ^Soldier
+	Inherits@AUTOTARGET: ^AutoTargetGround
+	-TakeCover:
+	Tooltip:
+		Name: Fanatic
+	Valued:
+		Cost: 175
+	Health:
+		HP: 6000
+	Mobile:
+		Speed: 71
+	Buildable:
+		Queue: Infantry
+		BuildAtProductionType: Soldier
+		BuildPaletteOrder: 3
+		Prerequisites: ~hand, ~infantry.nod, ~techlevel.infonly
+		Description: Suicide bomber Infantry.\nAlways explodes on Death.\n  Strong versus Light Vehicles, Infantry\n  Weak vs everything else
+	Armament:
+		Weapon: KamikazeTargeting
+	AttackLeap:
+		Speed: 142
+		Voice: Action
+		PauseOnCondition: attacking 		
+	Explodes:
+		Weapon: UnitExplodeSmall.suicide
+		EmptyWeapon: UnitExplodeSmall.suicide
+		DamageSource: Killer
+		Chance: 100
+	WithInfantryBody:
+		IdleSequences: stand
+		MoveSequence: walk
+		StandSequences: stand
+		DefaultAttackSequence: shoot
+		RequiresCondition: !run
+	WithInfantryBody@RUN:
+		MoveSequence: run
+		RequiresCondition: run
+	WithInfantryBody@PARACHUTE:
+		StandSequences: parachute
+		RequiresCondition: parachute
+	RenderSprites:
+		Image: terr
+	GrantConditionWhileAiming:
+		Condition: run
+	SpeedMultiplier:
+		Modifier: 125
+		RequiresCondition: run
+	Cloneable:
+		Types: CloneSoldier
+	GrantConditionOnAttack:
+		Condition: triggered
+	GrantConditionOnDeploy:
+		DeployedCondition: triggered
+		Voice: Action
+	KillsSelf:
+		RequiresCondition: triggered
+	DeliversCash:
+		Payload: 43
+		Type: InfantryRefund
+
+MEDI.cnc:
+	Inherits: MEDI
+	Buildable:
+		BuildPaletteOrder: 6
+		Prerequisites: gdihosp, ~infantry.gdi, ~techlevel.medium
+		Icon: cncicon
+	RenderSprites:
+		Image: medi
+	-MapEditorData:
+
+SPY.CNC:
+	Inherits: SPY
+	Buildable:
+		BuildPaletteOrder: 4
+		Description: Agent of the Intelligence Service.\nCan detect cloaked units and spies.\n  Special Ability: Hijacking\nCan steal enemy Vehicles when not disguised.\n  Special Ability: Espionage\nEnters enemy production structures for Rank bonus.\nEnters enemy Refineries to steal Credits.\nEnters enemy Power Plants to disable them.\nEnters enemy Radar to reset exploration.\nEnters enemy Tech Centers to upgrade Air Strike.\n  Special Ability: Disguise\nCan disguise as enemy Infantry.\nLoses disguise when attacking.\n  Strong vs Infantry\n  Weak vs Vehicles, Aircraft
+		Prerequisites: dome, ~infantry.gdi, ~techlevel.medium	
+	RenderSprites:
+		Image: spy
+	-MapEditorData:
+
+E5:
+	Inherits: ^Soldier
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Inherits@GAINSEXPERIENCE: ^GainsExperience
+	Inherits@ROT: ^RottingInfantry
+	-DamagedByTerrain@TIBERIUM:
+	-GrantConditionOnTerrain@HAZMAT:
+	-GrantConditionOnPrerequisite@HAZMAT:
+	-GrantConditionOnPrerequisite@HAZMAT2:
+	-GrantCondition@HAZMAT:
+	-WithDecoration@HAZMAT:
+	-SpawnActorOnDeath@TIBERIUM:
+	-SelfHealing@CHEMWEAPON:
+	-ExternalCondition@CHEMWEAPON:
+	-WithColoredOverlay@CHEMWEAPON:
+	-Targetable@CHEMWEAPON:
+	Buildable:
+		Queue: Infantry
+		BuildAtProductionType: Soldier
+		BuildPaletteOrder: 6
+		Prerequisites: nodbio, ~infantry.nod, ~!player.blackhand, ~techlevel.high
+		Description: Close range, anti-everything Infantry.\nWeapon poisons Infantry for 10 seconds.\n  Immune to Tiberium.\n  Strong vs all Ground units and Structures.\n  Weak vs Anti-Infantry Defenses, Aircraft.
+	Valued:
+		Cost: 600
+	Tooltip:
+		Name: Chemical Trooper
+	Health:
+		HP: 9000
+	WithDeathAnimation:
+	Passenger:
+		PipType: Red
+	Armament@PRIMARY:
+		Weapon: Chemspray
+		LocalOffset: 341,0,256
+		FireDelay: 3
+		MuzzleSequence: muzzle
+		MuzzlePalette: desert
+	Armament@GARRISONED:
+		Name: garrisoned
+		Weapon: Chemspray
+		MuzzleSequence: muzzle
+		MuzzlePalette: desert
+	TakeCover:
+		ProneOffset: 160,0,-288
+	Mobile:
+		Speed: 64
+		Locomotor: chem
+		PauseOnCondition: dont-move
+	AttackFrontal:
+	GrantConditionOnAttack:
+		Condition: dont-move
+		RevokeDelay: 12
+		RevokeOnNewTarget: False
+		RevokeAll: True
+	WithInfantryBody:
+		DefaultAttackSequence: shoot
+	WithInfantryBody@PARACHUTE:
+		StandSequences: parachute
+		RequiresCondition: parachute
+	WithMuzzleOverlay:
+	Explodes:
+		Weapon: UnitExplodeChemSmall
+		EmptyWeapon: UnitExplodeChemSmall
+		Chance: 30
+	ProducibleWithLevel:
+		Prerequisites: barracks.upgraded
+	RenderSprites:
+		Image: e5
+	DeliversCash:
+		Payload: 150
+		Type: InfantryRefund
+	Targetable:
+		RequiresCondition: !parachute
+		TargetTypes: Ground, Infantry, Disguise, Chem
+
+MORT:
+	Inherits: ^Soldier
+	Inherits@EXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	-DamagedByTerrain@TIBERIUM:
+	-GrantConditionOnTerrain@HAZMAT:
+	-GrantConditionOnPrerequisite@HAZMAT:
+	-GrantConditionOnPrerequisite@HAZMAT2:
+	-GrantCondition@HAZMAT:
+	-WithDecoration@HAZMAT:
+	-SpawnActorOnDeath@TIBERIUM:
+	-SelfHealing@CHEMWEAPON:
+	-ExternalCondition@CHEMWEAPON:
+	-WithColoredOverlay@CHEMWEAPON:
+	-Targetable@CHEMWEAPON:
+	Buildable:
+		Queue: Infantry
+		BuildPaletteOrder: 9
+		BuildAtProductionType: Soldier
+		Prerequisites: ~hand, nodbio, ~infantry.nod, ~!player.blackhand, ~techlevel.medium
+		Description: Infantry armed with a Mortar gun\nthat shoots Chemical rounds.\nWeapon can spawn Visceroid,\n15% chance killing Infantry units.\n  Immune to Tiberium.\n  Strong vs Buildings, Infantry\n  Weak vs Vehicles, Aircraft
+	Valued:
+		Cost: 600
+	Mobile:
+		Speed: 50
+	Tooltip:
+		Name: Chemical Mortar
+	Health:
+		HP: 5250
+	Armament@PRIMARY:
+		Weapon: MortarChem
+		LocalOffset: 0,0,155
+		FireDelay: 15
+	Armament@GARRISONED:
+		Name: garrisoned
+		Weapon: MortarChem
+		FireDelay: 15
+	AttackFrontal:
+	WithInfantryBody:
+		DefaultAttackSequence: throw
+	Explodes:
+		Weapon: UnitExplodeChemSmall
+		EmptyWeapon: UnitExplodeChemSmall
+		Chance: 50
+	Passenger:
+		PipType: Red
+	ProducibleWithLevel:
+		Prerequisites: barracks.upgraded
+	RenderRangeCircle:
+	DeliversCash:
+		Payload: 150
+		Type: InfantryRefund
+	Targetable:
+		RequiresCondition: !parachute
+		TargetTypes: Ground, Infantry, Disguise, Chem
+
+GDIRMBO:
+	Inherits: ^Soldier
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Inherits@ROT: ^RottingInfantry
+	Valued:
+		Cost: 1200
+	Tooltip:
+		Name: Commando
+	Buildable:
+		Queue: Infantry
+		BuildAtProductionType: Soldier
+		BuildPaletteOrder: 8
+		BuildLimit: 1
+		Prerequisites: techcenter, ~infantry.gdi, ~techlevel.high
+		Description: Elite commando infantry.\nArmed with assault rifle and C4.\nMaximum 1 can be trained.\n  Special Ability: Camouflage\nCloaks when standing still.\n  Strong vs Infantry, Buildings\n  Weak vs Vehicles, Aircraft
+	Mobile:
+		Speed: 71
+		Voice: Move
+	Guard:
+		Voice: Move
+	Health:
+		HP: 10000
+	Passenger:
+		PipType: Red
+		Voice: Move
+	RevealsShroud:
+		Range: 6c0
+	Demolition:
+		DetonationDelay: 45
+		Voice: Demolish
+	Armament:
+		Weapon: Vulcan
+	Armament@GARRISONED:
+		Name: garrisoned
+		Weapon: Vulcan
+		MuzzleSequence: garrison-muzzle
+	AttackFrontal:
+		Voice: Attack
+	AttackMove:
+		Voice: Attack
+	WithDeathAnimation:
+	WithInfantryBody:
+		DefaultAttackSequence: shoot
+		IdleSequences: idle1,idle2
+		StandSequences: stand
+	ExternalCondition@PRODUCED:
+		Condition: produced
+	VoiceAnnouncement:
+		RequiresCondition: produced
+		Voice: Build
+	AnnounceOnKill:
+	Voiced:
+		VoiceSet: CommandoVoice
+	ProducibleWithLevel:
+		Prerequisites: barracks.upgraded
+	RenderSprites:
+		Image: gdirmbo
+	DeliversCash:
+		Payload: 300
+		Type: InfantryRefund
+	GpsDot:
+		String: Commando
+
+NODRMBO:
+	Inherits: ^Soldier
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Inherits@ROT: ^RottingInfantry
+	Valued:
+		Cost: 1500
+	Tooltip:
+		Name: Stealth Commando
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Buildable:
+		Queue: Infantry
+		BuildAtProductionType: Soldier
+		BuildPaletteOrder: 8
+		BuildLimit: 1
+		Prerequisites: tmpl, ~infantry.nod, ~techlevel.high
+		Description: Elite commando infantry.\nArmed with silenced sniper and C4.\nMaximum 1 can be trained.\nSpecial ability: Phase Cloaking\nInvisible when out of combat.\n  Strong vs Infantry, Buildings\n  Weak vs Vehicles, Aircraft
+	Mobile:
+		Speed: 71
+		Voice: Move
+	Guard:
+		Voice: Move
+	Health:
+		HP: 15000
+	Passenger:
+		PipType: Red
+		Voice: Move
+	RevealsShroud:
+		Range: 6c0
+	AutoTarget:
+		ScanRadius: 8
+	Demolition:
+		DetonationDelay: 45
+		Voice: Demolish
+	Armament:
+		Weapon: SilencedPPK.rmbo
+	Armament@GARRISONED:
+		Name: garrisoned
+		Weapon: SilencedPPK.rmbo
+		MuzzleSequence: garrison-muzzle
+	AttackFrontal:
+		Voice: Attack
+	AttackMove:
+		Voice: Attack
+	WithInfantryBody:
+		DefaultAttackSequence: shoot
+		IdleSequences: idle1,idle2,idle3
+	ExternalCondition@PRODUCED:
+		Condition: produced
+	VoiceAnnouncement:
+		RequiresCondition: produced
+		Voice: Build
+	AnnounceOnKill:
+	Voiced:
+		VoiceSet: CommandoVoice
+	ProducibleWithLevel:
+		Prerequisites: barracks.upgraded
+	Cloak:
+		InitialDelay: 75
+		CloakDelay: 75
+		CloakSound: appear1.aud
+		UncloakSound: appear1.aud
+		IsPlayerPalette: true
+		PauseOnCondition: cloak-force-disabled
+	GrantConditionOnDamageState@UNCLOAK:
+		Condition: cloak-force-disabled
+		ValidDamageStates: Critical
+	RenderSprites:
+		Image: nodrmbo
+	DeliversCash:
+		Payload: 375
+		Type: InfantryRefund
+	GpsDot:
+		String: Commando
+
+INFL:
+	Inherits: SPY
+	-DisguiseTooltip:
+	-Disguise:
+	-WithDisguisingInfantryBody:
+	-WithDecoration@disguise:
+	-Captures@VEHICLE:
+	Buildable:
+		Queue: Infantry
+		BuildAtProductionType: Spy
+		BuildPaletteOrder: 4
+		Prerequisites: ncom, ~infantry.nod, ~!player.blackhand, ~techlevel.high
+		Description: Agent of the Black Hand.\nCan detect cloaked units and spies.\n  Special Ability: Hijacking\nSteals enemy vehicles.\n  Special Ability: Infiltration\nEnters enemy production structures to show Info. (NYI)\nEnters enemy Refineries to steal Credits.\nEnters enemy Power Plants to Demolish them.\nEnters enemy Radar to reset exploration.\nEnters enemy Tech Centers to unlock Stealth Bomber.\nSpecial ability: Phase Cloaking\nInvisible when out of combat.\n  Strong vs Infantry\n  Weak vs everything Else
+	Tooltip:
+		Name: Infiltrator
+	WithInfantryBody:
+		DefaultAttackSequence: shoot
+		IdleSequences: idle1,idle2
+		StandSequences: stand
+	IgnoresDisguise:
+	Armament:
+		Weapon: PortaLaser
+		LocalOffset: 427,0,341
+	Cloak:
+		InitialDelay: 75
+		CloakDelay: 75
+		CloakSound: vanish1.aud
+		UncloakSound: appear1.aud
+		IsPlayerPalette: true
+		PauseOnCondition: cloak-force-disabled
+	GrantConditionOnDamageState@UNCLOAK:
+		Condition: cloak-force-disabled
+		ValidDamageStates: Critical
+	Voiced:
+		VoiceSet: ThiefVoice
+	RenderSprites:
+		Image: infl
+	Mobile:
+		Voice: Action
+	Passenger:
+		Voice: Action
+	AttackMove:
+		Voice: Action
+	DetectCloaked:
+		Range: 2c512
+	DeliversCash:
+		Payload: 118
+		Type: InfantryRefund
+	Passenger:
+		PipType: Red
+	Infiltrates:
+		Types: NodInfiltrate
+		Notification: BuildingInfiltrated
+		PlayerExperience: 50
+	Captures@INFILTRATE:
+		CaptureTypes: demolish-infiltrate
+		CaptureDelay: 45
+		SabotageThreshold: 1
+		SabotageHPRemoval: 100
+		PlayerExperience: 0
+		SabotageCursor: c4
+	Captures@VEHICLE:
+		CaptureDelay: 23
+		CaptureTypes: vehicle
+		PlayerExperience: 50
+
+SNIP.GDI:
+	Inherits: SNIP
+	-MustBeDestroyed:
+	-DeliversCash:
+	Buildable:
+		Prerequisites: eye, ~infantry.gdi, ~!player.futurecorps, ~techlevel.high
+		Description: Infantry armed with an Sniper rifle.\nNeeds to reload after every 5 shots.\n  Special Ability: Camouflage\nCloaks when standing still.\n  Strong vs Infantry\n  Weak vs everything Else
+	Valued:
+		Cost: 900
+	Passenger:
+		PipType: Red
+	RenderSprites:
+		Image: gdisnip
+	DeliversCash:
+		Payload: 225
+		Type: InfantryRefund
+
+CYBR:
+	Inherits: ^Cyborg
+	Inherits@EXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Valued:
+		Cost: 700
+	Tooltip:
+		Name: Cyborg
+	Buildable:
+		BuildPaletteOrder: 7
+		Queue: Infantry
+		BuildAtProductionType: Cyborg
+		Prerequisites: tmpl, ~infantry.nod, ~techlevel.high
+		Description: Cybernetic minigunner.\n Immune to Tiberium.\n Susceptible to EMP.\n Can be Repaired instead Healed.\n Cannot be crushed.\n  Strong vs Infantry\n  Weak vs Vehicles
+	Mobile:
+		Speed: 56
+		Voice: Move
+	Voiced:
+		VoiceSet: CyborgVoice
+	Armor:
+		Type: Light
+	Health:
+		HP: 17500
+	Armament@1:
+		Weapon: M60mg
+		PauseOnCondition: empdisable
+	Armament@GARRISONED:
+		Name: garrisoned
+		Weapon: M60mg
+		MuzzleSequence: garrison-muzzle
+	AttackFrontal:
+		Voice: Attack
+	SelectionDecorations:
+	Passenger:
+		PipType: Red
+		Weight: 2
+		Voice: Move
+	ProducibleWithLevel:
+		Prerequisites: barracks.upgraded
+	DeliversCash:
+		Payload: 175
+		Type: InfantryRefund
+
+#	like Terminator, basically.
+EXO:
+	Inherits: ^Soldier
+	Inherits@EXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	-Crushable:
+	-TakeCover:
+	-DamagedByTerrain@TIBERIUM:
+	-GrantConditionOnTerrain@HAZMAT:
+	-GrantConditionOnPrerequisite@HAZMAT:
+	-GrantConditionOnPrerequisite@HAZMAT2:
+	-GrantCondition@HAZMAT:
+	-WithDecoration@HAZMAT:
+	-SpawnActorOnDeath@TIBERIUM:
+	-Targetable@HEAL:
+	-SelfHealing@CHEMWEAPON:
+	-ExternalCondition@CHEMWEAPON:
+	-WithColoredOverlay@CHEMWEAPON:
+	-Targetable@CHEMWEAPON:
+	Buildable:
+		BuildPaletteOrder: 9
+		Queue: Infantry
+		BuildAtProductionType: Soldier
+		Prerequisites: ~barracks, gdihosp, eye, ~infantry.gdi, ~techlevel.high
+		Description: Power armored Infantry armed with Railgun.\nCannot be crushed.\nImmune to Tiberium.\n  Special ability: Chrono Teleport\nCan instantly reallocate to areas within range.\n  Strong vs Infantry, Buildings\n  Weak vs Vehicles, Aircraft
+	Tooltip:
+		Name: Exosuit Trooper
+	Valued:
+		Cost: 2100
+	Mobile:
+		Speed: 42
+		Locomotor: chem
+		Voice: Move
+	Health:
+		HP: 24000
+	Armor:
+		Type: Heavy
+	Armament@PRIMARY:
+		Weapon: Railgun.Light
+		LocalOffset: 420,220,280
+	Armament@GARRISONED:
+		Name: garrisoned
+		Weapon: Railgun.Light
+	AttackFrontal:
+	Explodes:
+		Weapon: UnitExplodeSmall
+		EmptyWeapon: UnitExplodeSmall
+		DamageSource: Killer
+	WithInfantryBody:
+		DefaultAttackSequence: shoot
+		RequiresCondition: !parachute
+	WithInfantryBody@PARACHUTE:
+		StandSequences: parachute
+		RequiresCondition: parachute
+	ProducibleWithLevel:
+		Prerequisites: infantry.upgraded
+	Passenger:
+		Weight: 2
+		PipType: Red
+		Voice: Move
+	Targetable:
+		TargetTypes: Ground, Cyborg
+	Voiced:
+		VoiceSet: MoebiusVoice
+	Selectable:
+		Bounds: 24,18,0,-6
+		DecorationBounds: 18,17,0,-6
+	PortableChrono:
+	RenderSprites:
+		Image: exo
+
+VICE:
+	Inherits@1: ^ExistsInWorld
+	Inherits@2: ^SpriteActor
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	RenderSprites:
+		PlayerPalette: playertd
+	Huntable:
+	Health:
+		HP: 11000
+	Armor:
+		Type: Light
+	RevealsShroud:
+		Range: 6c0
+	Mobile:
+		Speed: 71
+		Locomotor: chem
+	SelectionDecorations:
+	WithSpriteControlGroupDecoration:
+	Selectable:
+		Bounds: 24,24
+	Targetable:
+		TargetTypes: Ground, Infantry, Creep
+	AutoTarget:
+		ScanRadius: 5
+	AttackMove:
+	DrawLineToTarget:
+	HiddenUnderFog:
+	Buildable:
+		Queue: Infantry
+		BuildPaletteOrder: 95
+		Prerequisites: ~disabled
+		Description: Mutated abomination that spits liquid Tiberium.\n  Strong vs Infantry, Buildings\n  Weak vs Aircraft
+	Valued:
+		Cost: 1000
+	Tooltip:
+		Name: Visceroid
+	Armament:
+		Weapon: Chemspray
+		LocalOffset: 384,0,0
+		MuzzleSequence: muzzle
+		MuzzlePalette: desert
+	AttackFrontal:
+	BodyOrientation:
+		QuantizedFacings: 8
+	WithSpriteBody:
+	WithMuzzleOverlay:
+	Guard:
+	Guardable:
+	DamagedByTerrain:
+		Damage: -30
+		DamageInterval: 50
+		DamageTypes: FireDeath
+		Terrain: Ore, Gems
+	HitShape:
+		Type: Circle
+			Radius: 427
+	Tooltip:
+	ActorLostNotification:
+	Explodes:
+		Weapon: UnitExplodeChemSmall
+		EmptyWeapon: UnitExplodeChemSmall
+		Chance: 100
+	AttackWander:
+	RenderSprites:
+		Image: vice

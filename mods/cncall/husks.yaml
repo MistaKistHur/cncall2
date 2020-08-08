@@ -1,0 +1,1220 @@
+HARV.FullHusk:
+	Inherits: ^Husk
+	Tooltip:
+		Name: Husk (Ore Truck)
+	TransformOnCapture:
+		IntoActor: harv
+	InfiltrateForTransform:
+		IntoActor: harv
+	RenderSprites:
+		Image: hhusk
+
+HARV.EmptyHusk:
+	Inherits: ^Husk
+	Tooltip:
+		Name: Husk (Ore Truck)
+	TransformOnCapture:
+		IntoActor: harv
+	InfiltrateForTransform:
+		IntoActor: harv
+	RenderSprites:
+		Image: hhusk2
+
+HARV.Soviet.FullHusk:
+	Inherits: ^Husk
+	Tooltip:
+		Name: Husk (Armed Truck)
+	TransformOnCapture:
+		IntoActor: harv.soviet
+	InfiltrateForTransform:
+		IntoActor: harv.soviet
+	RenderSprites:
+		Image: hhusk.soviet
+
+HARV.Soviet.EmptyHusk:
+	Inherits: ^Husk
+	Tooltip:
+		Name: Husk (Armed Truck)
+	TransformOnCapture:
+		IntoActor: harv.soviet
+	InfiltrateForTransform:
+		IntoActor: harv.soviet
+	RenderSprites:
+		Image: hhusk2.soviet
+
+MCV.Husk:
+	Inherits: ^Husk
+	Tooltip:
+		Name: Husk (MCV)
+	TransformOnCapture:
+		IntoActor: mcv
+	InfiltrateForTransform:
+		IntoActor: mcv
+	RenderSprites:
+		Image: mcvhusk
+
+1TNK.Husk:
+	Inherits: ^Husk
+	Tooltip:
+		Name: Husk (Light Tank)
+	ThrowsParticle@turret:
+		Anim: turret
+	TransformOnCapture:
+		IntoActor: 1tnk
+	InfiltrateForTransform:
+		IntoActor: 1tnk
+	RenderSprites:
+		Image: 1tnk.destroyed
+
+1TNK.England.Husk:
+	Inherits: ^Husk
+	Tooltip:
+		Name: Husk (Light Tank)
+	ThrowsParticle@turret:
+		Anim: turret
+	TransformOnCapture:
+		IntoActor: 1tnk.England
+	InfiltrateForTransform:
+		IntoActor: 1tnk.England
+	RenderSprites:
+		Image: 1tnk.destroyed
+	-MapEditorData:
+
+1TNK.France.Husk:
+	Inherits: ^Husk
+	Tooltip:
+		Name: Husk (Light Tank)
+	ThrowsParticle@turret:
+		Anim: turret
+	TransformOnCapture:
+		IntoActor: 1tnk.France
+	InfiltrateForTransform:
+		IntoActor: 1tnk.France
+	RenderSprites:
+		Image: 1tnk.destroyed
+	-MapEditorData:
+
+1TNK.Germany.Husk:
+	Inherits: ^Husk
+	Tooltip:
+		Name: Husk (Light Tank)
+	ThrowsParticle@turret:
+		Anim: turret
+	TransformOnCapture:
+		IntoActor: 1tnk.Germany
+	InfiltrateForTransform:
+		IntoActor: 1tnk.Germany
+	RenderSprites:
+		Image: 1tnk.destroyed
+	-MapEditorData:
+
+2TNK.Husk:
+	Inherits: ^Husk
+	Tooltip:
+		Name: Husk (Medium Tank)
+	ThrowsParticle@turret:
+		Anim: turret
+	TransformOnCapture:
+		IntoActor: 2tnk
+	InfiltrateForTransform:
+		IntoActor: 2tnk
+	RenderSprites:
+		Image: 2tnk.destroyed
+
+2TNK.England.Husk:
+	Inherits: ^Husk
+	Tooltip:
+		Name: Husk (Medium Tank)
+	ThrowsParticle@turret:
+		Anim: turret
+	TransformOnCapture:
+		IntoActor: 2tnk.England
+	InfiltrateForTransform:
+		IntoActor: 2tnk.England
+	RenderSprites:
+		Image: 2tnk.destroyed
+	-MapEditorData:
+
+2TNK.France.Husk:
+	Inherits: ^Husk
+	Tooltip:
+		Name: Husk (Medium Tank)
+	ThrowsParticle@turret:
+		Anim: turret
+	TransformOnCapture:
+		IntoActor: 2tnk.France
+	InfiltrateForTransform:
+		IntoActor: 2tnk.France
+	RenderSprites:
+		Image: 2tnk.destroyed
+	-MapEditorData:
+
+2TNK.Germany.Husk:
+	Inherits: ^Husk
+	Tooltip:
+		Name: Husk (Medium Tank)
+	ThrowsParticle@turret:
+		Anim: turret
+	TransformOnCapture:
+		IntoActor: 2tnk.Germany
+	InfiltrateForTransform:
+		IntoActor: 2tnk.Germany
+	RenderSprites:
+		Image: 2tnk.destroyed
+	-MapEditorData:
+
+3TNK.1B.Husk:
+	Inherits: ^Husk
+	Tooltip:
+		Name: Husk (Heavy Tank 1-B)
+	ThrowsParticle@turret:
+		Anim: turret
+	TransformOnCapture:
+		IntoActor: 3tnk.1B
+	InfiltrateForTransform:
+		IntoActor: 3tnk.1B
+	RenderSprites:
+		Image: 3tnk.1b.destroyed
+
+3TNK.1B.Ukraine.Husk:
+	Inherits: ^Husk
+	Tooltip:
+		Name: Husk (Heavy Tank 1-B)
+	ThrowsParticle@turret:
+		Anim: turret
+	TransformOnCapture:
+		IntoActor: 3tnk.1B.Ukraine
+	InfiltrateForTransform:
+		IntoActor: 3tnk.1B.Ukraine
+	RenderSprites:
+		Image: 3tnk.1b.destroyed
+	-MapEditorData:
+
+3TNK.1B.Belarus.Husk:
+	Inherits: ^Husk
+	Tooltip:
+		Name: Husk (Heavy Tank 1-B)
+	ThrowsParticle@turret:
+		Anim: turret
+	TransformOnCapture:
+		IntoActor: 3tnk.1B.Belarus
+	InfiltrateForTransform:
+		IntoActor: 3tnk.1B.Belarus
+	RenderSprites:
+		Image: 3tnk.1b.destroyed
+	-MapEditorData:
+
+3TNK.Husk:
+	Inherits: ^Husk
+	Tooltip:
+		Name: Husk (Heavy Tank)
+	ThrowsParticle@turret:
+		Anim: turret
+	TransformOnCapture:
+		IntoActor: 3tnk
+	InfiltrateForTransform:
+		IntoActor: 3tnk
+	RenderSprites:
+		Image: 3tnk.destroyed
+
+3TNK.Ukraine.Husk:
+	Inherits: ^Husk
+	Tooltip:
+		Name: Husk (Heavy Tank)
+	ThrowsParticle@turret:
+		Anim: turret
+	TransformOnCapture:
+		IntoActor: 3tnk.Ukraine
+	InfiltrateForTransform:
+		IntoActor: 3tnk.Ukraine
+	RenderSprites:
+		Image: 3tnk.destroyed
+	-MapEditorData:
+
+3TNK.Belarus.Husk:
+	Inherits: ^Husk
+	Tooltip:
+		Name: Husk (Heavy Tank)
+	ThrowsParticle@turret:
+		Anim: turret
+	TransformOnCapture:
+		IntoActor: 3tnk.Belarus
+	InfiltrateForTransform:
+		IntoActor: 3tnk.Belarus
+	RenderSprites:
+		Image: 3tnk.destroyed
+	-MapEditorData:
+
+4TNK.Husk:
+	Inherits: ^Husk
+	Tooltip:
+		Name: Husk (Mammoth Tank)
+	ThrowsParticle@turret:
+		Anim: turret
+	TransformOnCapture:
+		IntoActor: 4tnk
+	InfiltrateForTransform:
+		IntoActor: 4tnk
+	RenderSprites:
+		Image: 4tnk.destroyed
+
+5TNK.Husk:
+	Inherits: ^Husk
+	Tooltip:
+		Name: Husk (Behemoth Tank)
+	ThrowsParticle@turret:
+		Anim: turret
+	TransformOnCapture:
+		IntoActor: 5tnk
+	InfiltrateForTransform:
+		IntoActor: 5tnk
+	RenderSprites:
+		Image: 5tnk.destroyed
+
+TNKD.Husk:
+	Inherits: ^Husk
+	Tooltip:
+		Name: Husk (Tank Destroyer)
+	TransformOnCapture:
+		IntoActor: tnkd
+	InfiltrateForTransform:
+		IntoActor: tnkd
+	RenderSprites:
+		Image: tnkd.destroyed
+
+MGG.Husk:
+	Inherits: ^Husk
+	Tooltip:
+		Name: Husk (Mobile Gap Generator)
+	ThrowsParticle@spinner:
+		Anim: spinner-idle
+		Offset: -299,0,171
+	TransformOnCapture:
+		IntoActor: mgg
+	InfiltrateForTransform:
+		IntoActor: mgg
+	RenderSprites:
+		Image: mgg.destroyed
+
+FACT.Husk:
+	Inherits: ^BuildingHusk
+	Interactable:
+		Bounds: 72,72
+	Building:
+		Footprint: xxX xxx XxX
+		Dimensions: 3,3
+		LocalCenterOffset: 0,-512,0
+	Tooltip:
+		Name: Construction Yard (Destroyed)
+
+POWR.Husk:
+	Inherits: ^BuildingHusk
+	Interactable:
+		Bounds: 48,48
+	Building:
+		Footprint: xx xx
+		Dimensions: 2,2
+		LocalCenterOffset: 0,-512,0
+	Tooltip:
+		Name: Power Plant (Destroyed)
+	RenderSprites:
+		Image: powr.husk
+		FactionImages:
+			allies: powrgrey.husk
+			england: powrgrey.husk
+			france: powrgrey.husk		
+			germany: powrgrey.husk
+
+APWR.Husk:
+	Inherits: ^BuildingHusk
+	Interactable:
+		Bounds: 72,48
+	Building:
+		Footprint: xxx Xxx
+		Dimensions: 3,2
+		LocalCenterOffset: 0,-512,0
+	Tooltip:
+		Name: Advanced Power Plant (Destroyed)
+	RenderSprites:
+		Image: apwr.husk
+		FactionImages:
+			allies: apwrgrey.husk
+			england: apwrgrey.husk
+			france: apwrgrey.husk		
+			germany: apwrgrey.husk
+
+TENT.Husk:
+	Inherits: ^BuildingHusk
+	Interactable:
+		Bounds: 48,48
+	Building:
+		Footprint: xx xx
+		Dimensions: 2,2
+	Tooltip:
+		Name: Barracks (Destroyed)
+
+BARR.Husk:
+	Inherits: ^BuildingHusk
+	Interactable:
+		Bounds: 48,48
+	Building:
+		Footprint: xx xx
+		Dimensions: 2,2
+	Tooltip:
+		Name: Barracks (Destroyed)
+
+KENN.Husk:
+	Inherits: ^BuildingHusk
+	Interactable:
+		Bounds: 24,24
+	Tooltip:
+		Name: Kennel (Destroyed)
+
+PROC.Husk:
+	Inherits: ^BuildingHusk
+	Interactable:
+		Bounds: 72,45,0,-14
+	Building:
+		Footprint: =Xx x== ===
+		Dimensions: 3,3
+		LocalCenterOffset: 0,0,0
+	Tooltip:
+		Name: Ore Refinery (Destroyed)
+
+SILO.Husk:
+	Inherits: ^BuildingHusk
+	Interactable:
+		Bounds: 24,24
+	Tooltip:
+		Name: Ore Silo (Destroyed)
+
+WEAP.Husk:
+	Inherits: ^BuildingHusk
+	Interactable:
+		Bounds: 72,48
+	Building:
+		Footprint: xxx xxx ===
+		Dimensions: 3,3
+		LocalCenterOffset: 0,-512,0
+	Tooltip:
+		Name: Weapons Factory (Destroyed)
+
+FIX.Husk:
+	Inherits: ^BuildingHusk
+	Interactable:
+		Bounds: 68,34,0,3
+	Building:
+		Footprint: =+= +++ =+=
+		Dimensions: 3,3
+	Tooltip:
+		Name: Service Depot (Destroyed)
+
+SYRD.Husk:
+	Inherits: ^BuildingHusk
+	Interactable:
+		Bounds: 72,48
+	Building:
+		Footprint: XXX xxx XXX
+		Dimensions: 3,3
+		TerrainTypes: Water
+	Tooltip:
+		Name: Ship Yard (Destroyed)
+
+SPEN.Husk:
+	Inherits: ^BuildingHusk
+	Interactable:
+		Bounds: 72,48
+	Building:
+		Footprint: XXX xxx XXX
+		Dimensions: 3,3
+		TerrainTypes: Water
+	Tooltip:
+		Name: Sub Pen (Destroyed)
+
+AFLD.Husk:
+	Inherits: ^BuildingHusk
+	Interactable:
+		Bounds: 72,48
+	Building:
+		Footprint: xxx xxx
+		Dimensions: 3,2
+	Tooltip:
+		Name: Airfield (Destroyed)
+	RenderSprites:
+		Image: afld.husk
+		FactionImages:
+			gdi: gdiafld.husk
+
+HPAD.Husk:
+	Inherits: ^BuildingHusk
+	Interactable:
+		Bounds: 48,48
+	Building:
+		Footprint: xx xx
+		Dimensions: 2,2
+		LocalCenterOffset: 0,-512,0
+	Tooltip:
+		Name: Helipad (Destroyed)
+
+DOME.Husk:
+	Inherits: ^BuildingHusk
+	Interactable:
+		Bounds: 48,48
+	Building:
+		Footprint: xx xx
+		Dimensions: 2,2
+		LocalCenterOffset: 0,-512,0
+	Tooltip:
+		Name: Radar Dome (Destroyed)
+
+ATEK.Husk:
+	Inherits: ^BuildingHusk
+	Interactable:
+		Bounds: 48,48
+	Building:
+		Footprint: xx xx
+		Dimensions: 2,2
+		LocalCenterOffset: 0,-512,0
+	Tooltip:
+		Name: Space Program (Destroyed)
+
+STEK.Husk:
+	Inherits: ^BuildingHusk
+	Interactable:
+		Bounds: 72,48
+	Building:
+		Footprint: XxX XxX
+		Dimensions: 3,2
+		LocalCenterOffset: 0,-512,0
+	Tooltip:
+		Name: Soviet Tech Center (Destroyed)
+
+ATEKNEW.Husk:
+	Inherits: ^BuildingHusk
+	Interactable:
+		Bounds: 72,48
+	Building:
+		Footprint: XxX XxX
+		Dimensions: 3,2
+		LocalCenterOffset: 0,-512,0
+	Tooltip:
+		Name: Allied Tech Center (Destroyed)
+
+GAP.Husk:
+	Inherits: ^BuildingHusk
+	Interactable:
+		Bounds: 24,24
+	Tooltip:
+		Name: Gap Generator (Destroyed)
+
+PDOX.Husk:
+	Inherits: ^BuildingHusk
+	Interactable:
+		Bounds: 48,48
+	Building:
+		Footprint: xx xx
+		Dimensions: 2,2
+	Tooltip:
+		Name: Chronosphere (Destroyed)
+
+IRON.Husk:
+	Inherits: ^BuildingHusk
+	Interactable:
+		Bounds: 48,28,0,2
+	Building:
+		Footprint: xx
+		Dimensions: 2,1
+	Tooltip:
+		Name: Iron Curtain (Destroyed)
+
+MSLO.Husk:
+	Inherits: ^BuildingHusk
+	Interactable:
+		Bounds: 48,24
+	Building:
+		Footprint: xx
+		Dimensions: 2,1
+	Tooltip:
+		Name: Missile Silo (Destroyed)
+
+PBOX.Husk:
+	Inherits: ^DefenseHusk
+	Interactable:
+		Bounds: 24,24
+	Tooltip:
+		Name: Pillbox (Destroyed)
+
+HBOX.Husk:
+	Inherits: ^DefenseHusk
+	Interactable:
+		Bounds: 24,24
+	Tooltip:
+		Name: Camo Pillbox (Destroyed)
+
+FTUR.Husk:
+	Inherits: ^DefenseHusk
+	Interactable:
+		Bounds: 24,24
+	Tooltip:
+		Name: Flame Turret (Destroyed)
+
+GUN.Husk:
+	Inherits: ^DefenseHusk
+	Turreted:
+		TurnSpeed: 12
+		InitialFacing: 56
+	-WithSpriteBody:
+	WithEmbeddedTurretSpriteBody:
+	Tooltip:
+		Name: Gun Turret (Destroyed)
+
+TSLA.Husk:
+	Inherits: ^DefenseHusk
+	Interactable:
+		Bounds: 24,24
+	Tooltip:
+		Name: Tesla Coil (Destroyed)
+
+AGUN.Husk:
+	Inherits: ^DefenseHusk
+	Turreted:
+		TurnSpeed: 15
+		InitialFacing: 224
+	-WithSpriteBody:
+	WithEmbeddedTurretSpriteBody:
+	Interactable:
+		Bounds: 24,24
+	Tooltip:
+		Name: AA Gun (Destroyed)
+
+SAM.Husk:
+	Inherits: ^DefenseHusk
+	Interactable:
+		Bounds: 24,24
+	Building:
+		Footprint: xx
+		Dimensions: 2,1
+	Tooltip:
+		Name: SAM Site (Destroyed)
+
+HSAM.Husk:
+	Inherits: ^DefenseHusk
+	Interactable:
+		Bounds: 24,24
+	Building:
+		Footprint: xx
+		Dimensions: 2,1
+	Tooltip:
+		Name: Camo SAM Site (Destroyed)
+
+OILB.Husk:
+	Inherits: ^TechBuildingHusk
+	Inherits@shape: ^2x2Shape
+	Interactable:
+		Bounds: 24,24
+	Building:
+		Footprint: xx xx
+		Dimensions: 2,2
+	Tooltip:
+		Name: Oil Derrick (Destroyed)
+	InfiltrateForTransform:
+		IntoActor: oilb
+		ForceHealthPercentage: 25
+
+MISS.Husk:
+	Inherits: ^TechBuildingHusk
+	Interactable:
+		Bounds: 72,48
+	Building:
+		Footprint: XxX XxX ===
+		Dimensions: 3,3
+		LocalCenterOffset: 0,-512,0
+	Tooltip:
+		Name: Communications Center (Destroyed)
+	InfiltrateForTransform:
+		IntoActor: miss
+
+HOSP.Husk:
+	Inherits: ^TechBuildingHusk
+	Interactable:
+		Bounds: 48,48
+	Building:
+		Footprint: xx xx
+		Dimensions: 2,2
+	Tooltip:
+		Name: Hospital (Destroyed)
+	InfiltrateForTransform:
+		IntoActor: hosp
+
+BIO.Husk:
+	Inherits: ^TechBuildingHusk
+	Interactable:
+		Bounds: 48,48
+	Building:
+		Footprint: xx xx
+		Dimensions: 2,2
+	Tooltip:
+		Name: Nuclear Reactor (Destroyed)
+	InfiltrateForTransform:
+		IntoActor: bio
+
+FCOM.Husk:
+	Inherits: ^TechBuildingHusk
+	Inherits@shape: ^2x2Shape
+	Interactable:
+		Bounds: 48,48
+	Building:
+		Footprint: xx xx ==
+		Dimensions: 2,3
+		LocalCenterOffset: 0,-512,0
+	Tooltip:
+		Name: Forward Command (Destroyed)
+	RenderSprites:
+		Image: acom.husk
+	InfiltrateForTransform:
+		IntoActor: fcom
+
+BADR.Husk:
+	Inherits: ^PlaneHusk
+	Tooltip:
+		Name: Badger
+	Aircraft:
+		TurnSpeed: 5
+		Speed: 149
+	SmokeTrailWhenDamaged@0:
+		Offset: -432,560,0
+		Interval: 2
+		MinDamage: Undamaged
+	SmokeTrailWhenDamaged@1:
+		Offset: -432,-560,0
+		Interval: 2
+		MinDamage: Undamaged
+	RenderSprites:
+		Image: badr
+	-RevealOnDeath:
+
+BADR.Husk.EMP:
+	Inherits: BADR.Husk
+	Inherits: ^EmpVisualEffect
+
+B52.Husk:
+	Inherits: ^PlaneHusk
+	Tooltip:
+		Name: B-52
+	Aircraft:
+		TurnSpeed: 5
+		Speed: 149
+	SmokeTrailWhenDamaged@0:
+		Offset: -432,560,0
+		Interval: 2
+		MinDamage: Undamaged
+	SmokeTrailWhenDamaged@1:
+		Offset: -432,-560,0
+		Interval: 2
+		MinDamage: Undamaged
+	RenderSprites:
+		Image: ally-bdgr
+	-RevealOnDeath:
+
+B52.Husk.EMP:
+	Inherits: B52.Husk
+	Inherits: ^EmpVisualEffect
+
+TRAN.Husk.EMP:
+	Inherits: TRAN.Husk
+	Inherits: ^EmpVisualEffect
+
+TRAN.Soviet.Husk:
+	Inherits: TRAN.Husk
+	Tooltip:
+		Name: Yak 24
+
+TRAN.Soviet.Husk.EMP:
+	Inherits: TRAN.Soviet.Husk
+	Inherits: ^EmpVisualEffect
+
+YAK.Husk:
+	Inherits: ^PlaneHusk
+	Tooltip:
+		Name: Yak Attack Plane
+	Contrail:
+		Offset: -853,0,0
+		UsePlayerColor: false
+	Aircraft:
+		TurnSpeed: 5
+		Speed: 149
+	SmokeTrailWhenDamaged:
+		Offset: -853,0,0
+		Interval: 2
+		MinDamage: Undamaged
+	RevealsShroud:
+		MinRange: 9c0
+		Range: 11c0
+		Type: GroundPosition
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 9c0
+		Type: GroundPosition
+	RenderSprites:
+		Image: yak
+
+YAK.Husk.EMP:
+	Inherits: YAK.Husk
+	Inherits: ^EmpVisualEffect
+
+SPIT.Husk:
+	Inherits: ^PlaneHusk
+	Tooltip:
+		Name: Spitfire Attack Bomber
+	Contrail:
+		UsePlayerColor: false
+		TrailLength: 8
+		TrailWidth: 48
+		Offset: -853,0,0
+	Aircraft:
+		TurnSpeed: 5
+		Speed: 149
+	SmokeTrailWhenDamaged:
+		Offset: -853,0,0
+		Interval: 2
+		MinDamage: Undamaged
+	RevealsShroud:
+		MinRange: 9c0
+		Range: 11c0
+		Type: GroundPosition
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 9c0
+		Type: GroundPosition
+	RenderSprites:
+		Image: ally-yak
+
+SPIT.Husk.EMP:
+	Inherits: SPIT.Husk
+	Inherits: ^EmpVisualEffect
+
+MIG.Husk:
+	Inherits: ^PlaneHusk
+	Tooltip:
+		Name: MiG Attack Plane
+	Contrail@1:
+		Offset: -598,-683,0
+		TrailLength: 6
+		TrailWidth: 48
+		UsePlayerColor: false
+	Contrail@2:
+		Offset: -598,683,0
+		TrailLength: 6
+		TrailWidth: 48
+		UsePlayerColor: false
+	Aircraft:
+		TurnSpeed: 5
+		Speed: 186
+	SmokeTrailWhenDamaged:
+		Offset: -853,0,171
+		Interval: 2
+		MinDamage: Undamaged
+	RevealsShroud:
+		MinRange: 11c0
+		Range: 13c0
+		Type: GroundPosition
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 11c0
+		Type: GroundPosition
+	RenderSprites:
+		Image: mig
+
+MIG.Husk.EMP:
+	Inherits: MIG.Husk
+	Inherits: ^EmpVisualEffect
+
+TORN.Husk:
+	Inherits: ^PlaneHusk
+	Tooltip:
+		Name: Tornado Interceptor
+	Contrail@1:
+		Offset: -598,-683,0
+		TrailLength: 6
+		TrailWidth: 48
+		UsePlayerColor: false
+	Contrail@2:
+		Offset: -598,683,0
+		TrailLength: 6
+		TrailWidth: 48
+		UsePlayerColor: false
+	Aircraft:
+		TurnSpeed: 5
+		Speed: 186
+	SmokeTrailWhenDamaged:
+		Offset: -853,0,171
+		Interval: 2
+		MinDamage: Undamaged
+	RevealsShroud:
+		MinRange: 11c0
+		Range: 13c0
+		Type: GroundPosition
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 11c0
+		Type: GroundPosition
+	RenderSprites:
+		Image: ally-mig
+
+TORN.Husk.EMP:
+	Inherits: TORN.Husk
+	Inherits: ^EmpVisualEffect
+
+U2.Husk:
+	Inherits: ^PlaneHusk
+	Tooltip:
+		Name: Husk (Spy Plane)
+	Aircraft:
+		TurnSpeed: 7
+		Speed: 373
+	Contrail@1:
+		Offset: -725,683,0
+	Contrail@2:
+		Offset: -725,-683,0
+	SmokeTrailWhenDamaged:
+		Offset: -1c43,0,0
+		Interval: 2
+		MinDamage: Undamaged
+	RenderSprites:
+		Image: u2
+
+U2.Husk.EMP:
+	Inherits: U2.Husk
+	Inherits: ^EmpVisualEffect
+
+NEBR.Husk:
+	Inherits: ^PlaneHusk
+	Tooltip:
+		Name: Nuclear Bomber
+	Contrail@1:
+		Offset: -598,-683,0
+		TrailLength: 6
+		TrailWidth: 48
+		UsePlayerColor: false
+	Contrail@2:
+		Offset: -598,683,0
+		TrailLength: 6
+		TrailWidth: 48
+		UsePlayerColor: false
+	Aircraft:
+		TurnSpeed: 5
+		Speed: 186
+	SmokeTrailWhenDamaged:
+		Offset: -853,0,171
+		Interval: 2
+		MinDamage: Undamaged
+	RevealsShroud:
+		MinRange: 11c0
+		Range: 13c0
+		Type: GroundPosition
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 11c0
+		Type: GroundPosition
+	RenderSprites:
+		Image: nebr
+
+NEBR.Husk.EMP:
+	Inherits: NEBR.Husk
+	Inherits: ^EmpVisualEffect
+
+TRAN.Husk:
+	Inherits: ^HelicopterHusk
+	Tooltip:
+		Name: Chinook
+	Aircraft:
+		TurnSpeed: 4
+		Speed: 149
+	WithIdleOverlay@PRIMARY:
+		Offset: -597,0,341
+		Sequence: rotor
+	WithIdleOverlay@SECONDARY:
+		Offset: 597,0,213
+		Sequence: rotor2
+	RevealsShroud:
+		MinRange: 6c0
+		Range: 8c0
+		Type: GroundPosition
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 6c0
+		Type: GroundPosition
+	RenderSprites:
+		Image: tran
+
+TRAN.Husk1:
+	Inherits: ^Husk
+	-Capturable:
+	-TransformOnCapture:
+	-InfiltrateForTransform:
+	Tooltip:
+		Name: Husk (Chinook)
+	RenderSprites:
+		Image: tran1husk
+
+TRAN.Husk2:
+	Inherits: ^Husk
+	-Capturable:
+	-TransformOnCapture:
+	-InfiltrateForTransform:
+	Tooltip:
+		Name: Husk (Chinook)
+	RenderSprites:
+		Image: tran2husk
+
+IROQ.Husk:
+	Inherits: ^HelicopterHusk
+	Tooltip:
+		Name: Iroqouis
+	Aircraft:
+		TurnSpeed: 4
+		Speed: 112
+	WithIdleOverlay:
+		Sequence: rotor
+	SmokeTrailWhenDamaged:
+		Offset: -427,0,0
+		MinDamage: Undamaged
+	RevealsShroud:
+		Range: 10c0
+		Type: GroundPosition
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 8c0
+		Type: GroundPosition
+	RenderSprites:
+		Image: iroq
+
+IROQ.Husk.EMP:
+	Inherits: IROQ.Husk
+	Inherits: ^EmpVisualEffect
+
+HELI.Husk:
+	Inherits: ^HelicopterHusk
+	Tooltip:
+		Name: Apache
+	Aircraft:
+		TurnSpeed: 4
+		Speed: 149
+	WithIdleOverlay:
+		Offset: 0,0,85
+		Sequence: rotor
+	SmokeTrailWhenDamaged:
+		Offset: -427,0,0
+		MinDamage: Undamaged
+	RevealsShroud:
+		MinRange: 10c0
+		Range: 12c0
+		Type: GroundPosition
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 10c0
+		Type: GroundPosition
+	RenderSprites:
+		Image: heli
+
+HELI.Husk.EMP:
+	Inherits: HELI.Husk
+	Inherits: ^EmpVisualEffect
+
+HIND.Husk:
+	Inherits: ^HelicopterHusk
+	Tooltip:
+		Name: Hind
+	Aircraft:
+		TurnSpeed: 4
+		Speed: 112
+	WithIdleOverlay:
+		Sequence: rotor
+	SmokeTrailWhenDamaged:
+		Offset: -427,0,0
+		MinDamage: Undamaged
+	RevealsShroud:
+		MinRange: 8c0
+		Range: 10c0
+		Type: GroundPosition
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 8c0
+		Type: GroundPosition
+	RenderSprites:
+		Image: hind
+
+HIND.Husk.EMP:
+	Inherits: HIND.Husk
+	Inherits: ^EmpVisualEffect
+
+T01.Husk:
+	Inherits: ^TreeHusk
+	Building:
+		Footprint: __ x_
+		Dimensions: 2,2
+	MapEditorData:
+		ExcludeTilesets: DESERT, INTERIOR
+
+T02.Husk:
+	Inherits: ^TreeHusk
+	Building:
+		Footprint: __ x_
+		Dimensions: 2,2
+	MapEditorData:
+		ExcludeTilesets: DESERT, INTERIOR
+
+T03.Husk:
+	Inherits: ^TreeHusk
+	Building:
+		Footprint: __ x_
+		Dimensions: 2,2
+	MapEditorData:
+		ExcludeTilesets: DESERT, INTERIOR
+
+T04.Husk:
+	Inherits: ^TreeHusk
+	Building:
+		Footprint: __ x_
+		Dimensions: 2,2
+	MapEditorData:
+		ExcludeTilesets: TEMPERAT, SNOW, INTERIOR
+
+T05.Husk:
+	Inherits: ^TreeHusk
+	Building:
+		Footprint: __ x_
+		Dimensions: 2,2
+	MapEditorData:
+		ExcludeTilesets: DESERT, INTERIOR
+
+T06.Husk:
+	Inherits: ^TreeHusk
+	Building:
+		Footprint: __ x_
+		Dimensions: 2,2
+	MapEditorData:
+		ExcludeTilesets: DESERT, INTERIOR
+
+T07.Husk:
+	Inherits: ^TreeHusk
+	Building:
+		Footprint: __ x_
+		Dimensions: 2,2
+	MapEditorData:
+		ExcludeTilesets: DESERT, INTERIOR
+
+T08.Husk:
+	Inherits: ^TreeHusk
+	Building:
+		Footprint: x_
+		Dimensions: 2,1
+
+T09.Husk:
+	Inherits: ^TreeHusk
+	MapEditorData:
+		ExcludeTilesets: TEMPERAT, SNOW, INTERIOR
+
+T10.Husk:
+	Inherits: ^TreeHusk
+	Building:
+		Footprint: __ xx
+		Dimensions: 2,2
+	MapEditorData:
+		ExcludeTilesets: DESERT, INTERIOR
+
+T11.Husk:
+	Inherits: ^TreeHusk
+	Building:
+		Footprint: __ xx
+		Dimensions: 2,2
+	MapEditorData:
+		ExcludeTilesets: DESERT, INTERIOR
+
+T12.Husk:
+	Inherits: ^TreeHusk
+	Building:
+		Footprint: __ x_
+		Dimensions: 2,2
+	MapEditorData:
+		ExcludeTilesets: DESERT, INTERIOR
+
+T13.Husk:
+	Inherits: ^TreeHusk
+	Building:
+		Footprint: __ x_
+		Dimensions: 2,2
+	MapEditorData:
+		ExcludeTilesets: DESERT, INTERIOR
+
+T14.Husk:
+	Inherits: ^TreeHusk
+	Building:
+		Footprint: ___ xx_
+		Dimensions: 3,2
+	MapEditorData:
+		ExcludeTilesets: DESERT, INTERIOR
+
+T15.Husk:
+	Inherits: ^TreeHusk
+	Building:
+		Footprint: ___ xx_
+		Dimensions: 3,2
+	MapEditorData:
+		ExcludeTilesets: DESERT, INTERIOR
+
+T16.Husk:
+	Inherits: ^TreeHusk
+	Building:
+		Footprint: __ x_
+		Dimensions: 2,2
+	MapEditorData:
+		ExcludeTilesets: DESERT, INTERIOR
+
+T17.Husk:
+	Inherits: ^TreeHusk
+	Building:
+		Footprint: __ x_
+		Dimensions: 2,2
+	MapEditorData:
+		ExcludeTilesets: DESERT, INTERIOR
+
+TC01.Husk:
+	Inherits: ^TreeHusk
+	Building:
+		Footprint: ___ xx_
+		Dimensions: 3,2
+	MapEditorData:
+		ExcludeTilesets: INTERIOR
+
+TC02.Husk:
+	Inherits: ^TreeHusk
+	Building:
+		Footprint: _x_ xx_
+		Dimensions: 3,2
+	MapEditorData:
+		ExcludeTilesets: DESERT, INTERIOR
+
+TC03.Husk:
+	Inherits: ^TreeHusk
+	Building:
+		Footprint: xx_ xx_
+		Dimensions: 3,2
+	MapEditorData:
+		ExcludeTilesets: DESERT, INTERIOR
+
+TC04.Husk:
+	Inherits: ^TreeHusk
+	Building:
+		Footprint: ____ xxx_ x___
+		Dimensions: 4,3
+	MapEditorData:
+		ExcludeTilesets: DESERT, INTERIOR
+
+TC05.Husk:
+	Inherits: ^TreeHusk
+	Building:
+		Footprint: __x_ xxx_ _xx_
+		Dimensions: 4,3
+	MapEditorData:
+		ExcludeTilesets: DESERT, INTERIOR

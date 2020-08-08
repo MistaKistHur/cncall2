@@ -1,0 +1,1239 @@
+
+#	TODO
+#	get Composite Towers for Future Corps
+#	get Mammoth MK II as Mastadon 
+#	to replace ICBM Launcher on Future Corps
+#	find Infantry to replace Grenadier on FutureC.
+#	Cyborg Commando for Blackhand
+#	Jetpack Commando for Future Corps
+#	ideas to further differentiate Navy of the two
+#	sudden EMP Submarine for Blackhand ?
+
+E1.Grenadier:
+	Inherits: E1
+	-Cloneable:
+	-DeliversCash:
+	Buildable:
+		BuildPaletteOrder: 1
+		BuildAtProductionType: Soldier
+		Prerequisites: ~barracks, ~!infantry.allies, ~!infantry.soviet, ~player.futurecorps, ~techlevel.infonly
+		Description: Well-trained General-purpose infantry.\nUses Machinegun and throws Grenades.\n  Strong vs Infantry\n  Weak vs Vehicles, Aircraft
+	Tooltip:
+		Name: Assault Infantry
+	Valued:
+		Cost: 250
+	Health:
+		HP: 5000
+	Mobile:
+		Speed: 64
+	AmmoPool:
+		Ammo: 2
+		PipCount: 0
+		AmmoCondition: ammo
+	Armament@PRIMARY:
+		PauseOnCondition: !ammo
+	Armament@Secondary:
+		Name: secondary
+		Weapon: Grenade
+		LocalOffset: 0,0,555
+		FireDelay: 15
+		PauseOnCondition: !ammo
+	ReloadAmmoPool:
+		PauseOnCondition: ammo
+		Delay: 4
+		Count: 1
+		ResetOnFire: False
+	AttackFrontal:
+	WithInfantryBody:
+		DefaultAttackSequence: shoot
+		AttackSequences:
+			primary: shoot
+			secondary: throw
+		StandSequences: stand
+	DeliversCash:
+		Payload: 62
+		Type: InfantryRefund
+	RenderSprites:
+		Image: e1gren
+
+JUMP:
+	Inherits: ^Soldier
+	Inherits@EXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	-Crushable:
+	-TakeCover:
+	-WithInfantryBody:
+	-Targetable:
+	-Targetable@HEAL:
+	-Parachutable:
+	-WithParachute:
+	Buildable:
+		Queue: Infantry
+		BuildAtProductionType: Soldier
+		BuildPaletteOrder: 7
+		Prerequisites: eye, ~infantry.gdi, ~player.futurecorps, ~techlevel.high
+		Description: Airborne soldier armed with a minigun.\n  Strong vs Infantry, Light vehicles\n  Weak vs Armor, Anti-Air
+	Valued:
+		Cost: 600
+	Tooltip:
+		Name: Jumpjet Infantry
+	Mobile:
+		Speed: 71
+		Locomotor: jumpjet
+	Health:
+		HP: 12000
+	Armor:
+		Type: Light
+	Passenger:
+		PipType: Green
+		Weight: 2
+	RevealsShroud:
+		Range: 6c0
+	Armament:
+		Weapon: ChainGun
+	AttackFrontal:
+	WithInfantryBody:
+		RequiresCondition: !airborne
+		StandSequences: stand
+		DefaultAttackSequence: shoot
+	WithInfantryBody@flying:
+		RequiresCondition: airborne
+		DefaultAttackSequence: flying-shoot
+		StandSequences: flying
+		MoveSequence: flying-run
+	Hovers:
+		RequiresCondition: airborne
+	DamagedByTerrain@TIBERIUM:
+		RequiresCondition: !airborne
+	ProducibleWithLevel:
+		Prerequisites: barracks.upgraded
+	Targetable:
+		TargetTypes: Ground, Infantry, Disguise
+		RequiresCondition: !airborne
+	Targetable@HEAL:
+		RequiresCondition: !airborne && damaged
+		TargetTypes: Heal
+	Targetable@AIRBORNE:
+		TargetTypes: Air
+		RequiresCondition: airborne
+	WithShadow@airborne:
+		RequiresCondition: airborne
+	GrantConditionOnJumpjetLayer:
+		Condition: airborne
+	Explodes:
+		Weapon: UnitExplodeSmall
+		EmptyWeapon: UnitExplodeSmall
+		Chance: 100
+	DeliversCash:
+		Payload: 150
+		Type: InfantryRefund
+
+E4.Nod:
+	Inherits: E4
+	Buildable:
+		Prerequisites: ~barracks, dome, ~infantry.nod, ~player.blackhand, ~techlevel.medium
+		BuildPaletteOrder: 6
+	RenderSprites:
+		Image: E4
+	-MapEditorData:
+
+LCG:
+	Inherits: ^Soldier
+	Inherits@EXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	-Crushable:
+	-TakeCover:
+	-DamagedByTerrain@TIBERIUM:
+	-GrantConditionOnTerrain@HAZMAT:
+	-GrantConditionOnPrerequisite@HAZMAT:
+	-GrantConditionOnPrerequisite@HAZMAT2:
+	-GrantCondition@HAZMAT:
+	-WithDecoration@HAZMAT:
+	-SpawnActorOnDeath@TIBERIUM:
+	-Targetable@HEAL:
+	Buildable:
+		Queue: Infantry
+		BuildAtProductionType: Cyborg
+		BuildPaletteOrder: 9
+		Prerequisites: ~hand, shrn, ~infantry.nod, ~player.blackhand, ~techlevel.high
+		Description: Power armored Infantry armed with Laser Chaingun.\n Immune to Tiberium.\n  Special ability: Durability\nCannot be crushed unless its Mammoth Tank\n  Strong vs everything on Ground\n  Weak vs anything Else
+	Tooltip:
+		Name: Laser Trooper
+	Valued:
+		Cost: 1800
+	Mobile:
+		Speed: 42
+		Locomotor: chem
+		Voice: Move
+	Health:
+		HP: 12000
+	Armor:
+		Type: Heavy
+	Armament@PRIMARY:
+		Weapon: LaserChainGun
+		LocalOffset: 320,0,220
+		PauseOnCondition: !ammo
+	Armament@GARRISONED:
+		Name: garrisoned
+		Weapon: LaserChainGun
+	AmmoPool:
+		Armaments: primary
+		Ammo: 12
+		PipCount: 4
+		AmmoCondition: ammo
+	ReloadAmmoPool:
+		Delay: 250
+		Count: 12
+		RequiresCondition: !ammo
+	WithDecoration@ammoreplenish:
+		RequiresSelection: false
+		Image: pips
+		Sequence: tag-reload-small
+		ReferencePoint: Top
+		ZOffset: 256
+		RequiresCondition: !ammo
+	AttackFrontal:
+	Explodes:
+		Weapon: UnitExplodeSmall
+		EmptyWeapon: UnitExplodeSmall
+		DamageSource: Killer
+	WithInfantryBody:
+		DefaultAttackSequence: shoot
+		IdleSequences: idle1
+		RequiresCondition: !parachute
+	WithInfantryBody@PARACHUTE:
+		StandSequences: parachute
+		RequiresCondition: parachute
+	ProducibleWithLevel:
+		Prerequisites: infantry.upgraded
+	Passenger:
+		Weight: 2
+		PipType: Red
+		Voice: Move
+	Targetable:
+		TargetTypes: Ground, Cyborg
+	Targetable@REPAIR:
+		RequiresCondition: !parachute && damaged
+		TargetTypes: Repair
+	Voiced:
+		VoiceSet: SlavikVoice
+	DeliversCash:
+		Payload: 400
+		Type: InfantryRefund
+	RenderSprites:
+		Image: lcg
+
+INFL.Blackhand:
+	Inherits: INFL
+	Buildable:
+		Prerequisites: shrn, ~infantry.nod, ~player.blackhand, ~techlevel.high
+		Description: Agent of the Black Hand.\nCan detect cloaked units and spies.\n  Special Ability: Hijacking\nSteals enemy vehicles.\n  Special Ability: Infiltration\nEnters enemy production structures to show Info. (NYI)\nEnters enemy Refineries to steal Credits.\nEnters enemy Power Plants to Demolish them.\nEnters enemy Radar to reset exploration.\nEnters enemy Tech Centers to unlock Inferno Bomb.\nSpecial ability: Phase Cloaking\nInvisible when out of combat.\n  Strong vs Infantry\n  Weak vs everything Else	
+	RenderSprites:
+		Image: infl
+	-MapEditorData:
+
+#	differences to normal JEEP
+#	has 2x weapon, cost more
+#	slower moves and turns
+SMCH:
+	Inherits: JEEP
+	-Cargo:
+	-Armament:
+	Buildable:
+		Prerequisites: ~vehicles.gdi, ~player.futurecorps, ~techlevel.low
+		Description: Durable scout Vehicle.\nDetects cloaked units in close radius.\n  Immune to Mind-control\n  Strong vs Infantry\n  Weak vs Vehicles, Aircraft
+	Tooltip:
+		Name: Robot Tank
+	Valued:
+		Cost: 600
+	Mobile:
+		Locomotor: lighttracked
+		PauseOnCondition: !(!empdisable && !being-captured)
+	Health:
+		HP: 15000
+	Mobile:
+		Speed: 96
+		TurnSpeed: 5
+	Turreted:
+		TurnSpeed: 7
+	AttackTurreted:
+		#	FacingTolerance: 128
+	Armament@1:
+		Weapon: M60mg
+		LocalOffset: 178,220,106
+		MuzzleSequence: muzzle
+		PauseOnCondition: empdisable
+	Armament@2:
+		Weapon: M60mg
+		LocalOffset: 178,-220,106
+		MuzzleSequence: muzzle
+		PauseOnCondition: empdisable
+	RenderSprites:
+		Image: smch
+	Voiced:
+		VoiceSet: RoboticVoice
+	WithShadow:
+		Offset: 43, 128, 0
+		ZOffset: -129
+	Targetable@MCIMMUNE:
+		TargetTypes: IsRobot
+	GpsDot:
+		String: SmallMech
+
+#	differences to normal JEEP
+#	has 2x weapon, cost more
+#	slower moves and turns
+#	can be ordered to emp blast
+ATTBGGY:
+	Inherits: ^Vehicle
+	Inherits@GAINSEXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetGroundAntiInf
+	Valued:
+		Cost: 500
+	Tooltip:
+		Name: Attack Buggy
+	Buildable:
+		Queue: Vehicle, MWFVehicle
+		BuildPaletteOrder: 2
+		Prerequisites: ~vehicles.nod, ~player.blackhand, ~techlevel.low
+		Description: Durable scout and anti-infantry vehicle.\nCan be overloaded to discharge EMP blast\nconsuming the Unit in the process.\n  Can crush infantry.\n  Strong vs Infantry\n  Weak vs Tanks
+	Mobile:
+		Locomotor: heavywheeled
+		TurnSpeed: 10
+		Speed: 156
+		PauseOnCondition: !(!empdisable && !being-captured && !empused)
+	Health:
+		HP: 18000
+	Armor:
+		Type: Light
+	RevealsShroud:
+		MinRange: 4c0
+		Range: 8c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 4c0
+	Armament@PRIMARY:
+		Weapon: M60mg
+		LocalOffset: -65,85,63
+		MuzzleSequence: muzzle
+		PauseOnCondition: !(!empdisable && !empused)
+	Armament@SECONDARY:
+		Weapon: M60mg
+		LocalOffset: -65,-85,63
+		MuzzleSequence: muzzle
+		PauseOnCondition: !(!empdisable && !empused)
+	AttackFrontal:
+		PauseOnCondition: !(!empdisable && !empused)
+	WithMuzzleOverlay:
+	ProducibleWithLevel:
+		Prerequisites: vehicles.upgraded
+	Carryable:
+		LocalOffset: 0,0,100
+	Explodes:
+		RequiresCondition: !armingcoil
+	Explodes@EMPCoil:
+		Weapon: EMPExplode
+		EmptyWeapon: EMPExplode
+		RequiresCondition: armingcoil
+	GrantConditionOnDeploy@EMPCoil:
+		DeployedCondition: empused
+		PauseOnCondition: empused
+	WithIdleOverlay@EMPCoil:
+		Sequence: emp-overlay
+		RequiresCondition: empused
+	KillsSelf@EMPCoil:
+		Delay: 75
+		RequiresCondition: empused
+		GrantsCondition: armingcoil
+
+#	differences to regular APC
+#	has ballistic weapon, turreted
+#	is amphibian, cost more
+AAV:
+	Inherits: APC
+	-Passenger:
+	-Carryable:
+	-AttackFrontal:
+	-Armament:
+	-Tooltip@sidebar:
+	-Tooltip@ingame:
+	Buildable:
+		Queue: Vehicle, MWFVehicle
+		BuildPaletteOrder: 3
+		Prerequisites: barracks, ~vehicles.gdi, ~player.futurecorps, ~techlevel.low
+		Description: Armored infantry transport.\nCan transport up to 3 Infantry.\n  Special ability: Amphibian\nCan swim through sea and river.\n  Strong vs Infantry, Vehicles\n  Weak vs Tanks, Aircraft
+	Valued:
+		Cost: 750
+	Tooltip@sidebar:
+		Name: Amphibious Assault Vehicle
+		RequiresCondition: !produced
+	Tooltip@ingame:
+		Name: AAV
+		RequiresCondition: produced
+	ExternalCondition@PRODUCED:
+		Condition: produced
+	Mobile:
+		Speed: 128
+		Locomotor: tracked-amphibious
+		PauseOnCondition: !(!empdisable && !notmobile && !being-captured)
+	GrantConditionOnTerrain@SEA:
+		TerrainTypes: Water, River
+		Condition: floating
+	Targetable:
+		RequiresCondition: !floating
+	Targetable@SEA:
+		TargetTypes: Ground, Water, Ship, Repair, Tank, SeaDetonateAttack
+		RequiresCondition: floating
+	Armor:
+		Type: Heavy
+	Turreted:
+		TurnSpeed: 7
+		Offset: 90,90,90
+	Armament:
+		Weapon: APCGun
+		LocalOffset: 568,0,90
+		Recoil: 24
+		RecoilRecovery: 9
+		MuzzleSequence: muzzle
+		PauseOnCondition: empdisable
+	AttackTurreted:
+		PauseOnCondition: empdisable
+	WithMuzzleOverlay:
+	WithSpriteTurret:
+	Cargo:
+		Types: Infantry
+		MaxWeight: 3
+		PipCount: 3
+	WithFacingSpriteBody:
+		RequiresCondition: !floating
+	WithFacingSpriteBody@SEA:
+		Name: floating
+		Sequence: idle-float
+		RequiresCondition: floating
+
+#	differences to regular APC
+#	cloaked, moves slower
+#	cost more, leaves husk on death
+SAPC:
+	Inherits: APC
+	-Tooltip@sidebar:
+	-Tooltip@ingame:
+	-ExternalCondition@PRODUCED:
+	-MustBeDestroyed:
+	Buildable:
+		Prerequisites: barracks, ~vehicles.nod, ~player.blackhand, ~techlevel.low
+		Description: Cloaked infantry transport.\nCan transport up to 5 Infantry.\n  Unarmed
+	Valued:
+		Cost: 750
+	Tooltip:
+		Name: Stealth APC
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Armor:
+		Type: Light
+	Mobile:
+		Speed: 96
+		Locomotor: heavywheeled
+	Cloak:
+		InitialDelay: 150
+		CloakDelay: 150
+		UncloakOn: Attack, Unload, Dock, Damage, Heal
+		PauseOnCondition: cloak-force-disabled && empdisable
+		RequiresCondition: !notmobile
+	GrantConditionOnDamageState@UNCLOAK:
+		Condition: cloak-force-disabled
+		ValidDamageStates: Critical
+	Passenger:
+		PipType: Blue
+	#	was supposed to act like Reckoner,
+	#	not possible with the current Traits.
+	#	SpawnActorOnDeath:
+	#	Actor: SAPC.Husk
+
+FTNK.Blackhand:
+	Inherits: FTNK
+	-AttackFrontal:
+	Valued:
+		Cost: 700
+	Buildable:
+		Queue: Vehicle, MWFVehicle
+		BuildPaletteOrder: 5
+		Prerequisites: fix, ~vehicles.nod, ~player.blackhand, ~techlevel.medium
+		Description: Heavily armored flame-throwing vehicle.\n  Can attack Turreted.\n  Strong vs Infantry, Buildings and Vehicles\n  Weak vs Tanks
+		Icon: ftnkicon
+	Turreted:
+		TurnSpeed: 3
+	AttackTurreted:
+		PauseOnCondition: empdisable
+	Armament:
+		MuzzleSequence: flamer-muzzle
+	WithSpriteTurret:
+		Sequence: flamer
+	RenderSprites:
+		Image: 1tnk.nod
+
+MRLS.Hover:
+	Inherits: ^Vehicle
+	Inherits@EXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetGroundAntiTankandAir
+	RenderSprites:
+		Image: hvrmrls
+	Valued:
+		Cost: 1000
+	Tooltip:
+		Name: Hover MRLS
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Buildable:
+		Queue: Vehicle, MWFVehicle
+		BuildPaletteOrder: 6
+		Prerequisites: dome, ~vehicles.gdi, ~player.futurecorps, ~techlevel.medium
+		Description: Anti-gravity Repulsor chassis outfitted\nwith multi-purpose rocketlaunchers.\n  Strong vs Buildings and Vehicles\n Weak vs Tanks and Ships
+	Mobile:
+		Speed: 113
+		Locomotor: repulsor
+	LeavesTrails:
+		Image: twake
+		Palette: effect
+		TerrainTypes: Water
+		TrailWhileStationary: true
+		StationaryInterval: 18
+		MovingInterval: 6
+		RequiresCondition: !airborne
+	Health:
+		HP: 16000
+	Armor:
+		Type: Light
+	RevealsShroud:
+		MinRange: 4c0
+		Range: 6c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 4c0
+	Turreted:
+		TurnSpeed: 10
+		Offset: -200,0,0
+	Hovers:
+		BobDistance: -35
+		RequiresCondition: !empdisable
+	GrantConditionOnTerrain:
+		TerrainTypes: Water
+		Condition: onwater
+	KillsSelf@SINK:
+		RequiresCondition: onwater && empdisable && !airborne
+	WithShadow:
+		Offset: 43, 128, 0
+		ZOffset: -129
+	Targetable:
+		RequiresCondition: !parachute && !airborne
+		TargetTypes: Ground, Vehicle
+	Targetable@REPAIR:
+		RequiresCondition: !parachute && damaged && !airborne
+		TargetTypes: Repair
+	Targetable@AIRBORNE:
+		TargetTypes: Air
+		RequiresCondition: airborne
+	GrantConditionOnJumpjetLayer:
+		Condition: airborne
+	Armament@PRIMARY:
+		Weapon: 227mm.2shot
+		LocalOffset: 213,128,0, 213,-128,0
+		LocalYaw: 100, -100
+		PauseOnCondition: !ammo && empdisable
+	Armament@SECONDARY:
+		Name: secondary
+		Weapon: 227mm.2shot.aa
+		LocalOffset: 213,128,0, 213,-128,0
+		LocalYaw: 100, -100
+		PauseOnCondition: !ammo && empdisable
+	AmmoPool:
+		Armaments: primary, secondary
+		Ammo: 2
+		PipCount: 0
+		AmmoCondition: ammo	
+	ReloadAmmoPool:
+		Count: 2
+		Delay: 60
+		PauseOnCondition: ammo
+	AutoTarget:
+		ScanRadius: 10
+	AttackTurreted:
+		TargetFrozenActors: True
+		ForceFireIgnoresActors: false
+		OpportunityFire: False
+		PauseOnCondition: empdisable
+	WithSpriteTurret:
+	Explodes:
+		Weapon: ArtilleryExplode
+		LoadedChance: 50
+	ProducibleWithLevel:
+		Prerequisites: vehicles.upgraded
+	RenderRangeCircle:
+	GpsDot:
+		String: Repulsor
+
+#	is amphibian
+#	may fare worse on land, movetype needs fine-tuning
+SSM.Hover:
+	Inherits: SSM
+	-Tooltip@sidebar:
+	-Tooltip@ingame:
+	-ExternalCondition@PRODUCED:
+	-Turreted:
+	-WithSpriteTurret:
+	-WithSpriteTurret@OneMissile:
+	-WithSpriteTurret@NoMissiles:
+	-Passenger:
+	Buildable:
+		Prerequisites: nodbio, ~vehicles.nod, ~player.blackhand,  ~techlevel.high
+		Description: Long-range rocket artillery.\n  Special ability: Amphibian\nCan swim through sea and river.\nHas very weak Armor.\n  Strong vs Everything at range\n  Weak vs Close ranged attacks
+	Tooltip:
+		Name: Hover SSM
+	Valued:
+		Cost: 1600
+	Mobile:
+		Locomotor: amphibious
+		PauseOnCondition: empdisable && being-captured
+	GrantConditionOnTerrain@SEA:
+		TerrainTypes: Water, River
+		Condition: floating
+	Targetable:
+		RequiresCondition: !floating
+	Targetable@SEA:
+		TargetTypes: Ground, Water, Ship, Repair, Tank, SeaDetonateAttack
+		RequiresCondition: floating
+	RenderSprites:
+		Image: hvrssm
+	WithFacingSpriteBody:
+		RequiresCondition: ammo > 1
+	WithFacingSpriteBody@OneMissile:
+		Name: onemissile
+		RequiresCondition: ammo == 1
+		Sequence: rockets1
+	WithFacingSpriteBody@NoMissiles:
+		Name: nomissile
+		RequiresCondition: !ammo
+		Sequence: rockets0
+	GpsDot:
+		String: Hovercraft
+
+SRTY:
+	Inherits: ARTY
+	-MustBeDestroyed:
+	Buildable:
+		Prerequisites: dome, ~vehicles.nod, ~player.blackhand, ~techlevel.medium
+		Description: Long-range artillery.\nSpecial ability: Phase Cloaking\nInvisible when out of combat.\n  Strong vs Infantry, Buildings\n  Weak vs Vehicles, Aircraft
+	Valued:
+		Cost: 975
+	Tooltip:
+		Name: Stealth Artillery
+	Mobile:
+		TurnSpeed: 3
+		Speed: 72
+	Health:
+		HP: 12500
+	Armament:
+		LocalOffset: 586,0,468
+	Cloak:
+		InitialDelay: 150
+		CloakDelay: 150
+		UncloakOn: Attack, Unload, Dock, Damage, Heal
+		PauseOnCondition: cloak-force-disabled && empdisable
+	GrantConditionOnDamageState@UNCLOAK:
+		Condition: cloak-force-disabled
+		ValidDamageStates: Critical
+	Selectable:
+		DecorationBounds: 28,28
+
+MWAV.Laser:
+	Inherits: MWAV
+	Inherits@IDISABLE: ^DisableOnLowPower
+	-SpawnActorOnDeath:
+	-ReloadArmamentsBar:
+	Buildable:
+		Prerequisites: shrn, ~vehicles.nod, ~player.blackhand, ~techlevel.high
+		Description: Tank with an Laser Gun, that drains Power\nand can get disabled when on Low Power.\n  Strong vs Vehicles, Ships\n  Weak vs Infantry, Aircraft
+		Icon: lasticon
+	Valued:
+		Cost: 1950
+	Mobile:
+		PauseOnCondition: !(!being-captured && !empdisable && !lowpower)
+	Tooltip:
+		Name: Laser Tank
+	Armament:
+		Weapon: LaserGun
+		LocalOffset: 412,0,262
+		PauseOnCondition: !(!empdisable && !lowpower)
+	AttackTurreted:
+		PauseOnCondition: !(!empdisable && !lowpower)
+	Turreted:
+		TurnSpeed: 5
+		Offset: 20,0,90
+	Power:
+		Amount: -20
+	WithMuzzleOverlay:
+	WithSpriteTurret:
+		Sequence: lastur
+	RenderSprites:
+		Image: mwav
+	SpawnActorOnDeath:
+		Actor: last.husk
+		OwnerType: InternalName
+
+MSAM.Nod:
+	Inherits: MRLS
+	-Tooltip@sidebar:
+	-Tooltip@ingame:
+	-ExternalCondition@PRODUCED:
+	-Armament@PRIMARY:
+	-Armament@SECONDARY:
+	-GrantConditionOnDeploy:
+	-AttackTurreted:
+	-WithTurretAimAnimation:
+	-WithDecoration@VolleyOn:
+	-WithDecoration@VolleyOff:
+	Buildable:
+		BuildPaletteOrder: 9
+		Prerequisites: dome, ~vehicles.nod, ~player.blackhand, ~techlevel.medium
+		Description: Powerful anti-air unit.\n  Can attack Aircraft only.\n  Strong vs Aircraft\n  Weak vs anything Else
+		Icon: msamicon
+	Tooltip:
+		Name: Mobile SAM
+	Valued:
+		Cost: 1200
+	Turreted:
+		TurnSpeed: 7
+	Armament@PRIMARY:
+		Weapon: 227mm.2shot.aa
+		LocalOffset: 213,128,0, 213,-128,0
+		PauseOnCondition: empdisable
+	AttackTurreted:
+		PauseOnCondition: empdisable
+	WithSpriteTurret:
+		Sequence: msamnod
+	RenderSprites:
+		Image: mrls
+	Armament@AI:
+		Weapon: ai.targeting.helper
+		LocalOffset: 0,0,0
+		RequiresCondition: enable-helper
+		PauseOnCondition: empdisable
+	GrantConditionOnBotOwner@aiplayer:
+		Condition: enable-helper
+		Bots: normal
+
+#	todo, tweak further to become Mammoth equivelant
+LMCH:
+	Inherits: ^TrackedVehicle
+	Inherits@GAINSEXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetGroundAntiTankandAir
+	Buildable:
+		Queue: Vehicle
+		BuildPaletteOrder: 8
+		Prerequisites: fix, techcenter, ~vehicles.gdi, ~player.futurecorps, ~techlevel.high
+		Description: Tough combat battle-mech.\nHas minimum firing radius of 1 cell.\n  Can attack Aircraft.\n  Strong vs Infantry, Tanks\n  Weak vs attacks at Close range
+	Valued:
+		Cost: 2600
+	Selectable:
+		Bounds: 30,40,0,0
+	Tooltip:
+		Name: Titan
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 100000
+	Armor:
+		Type: Heavy
+	Mobile:
+		Locomotor: heavytracked
+		Speed: 50
+	Passenger:
+		PipType: Red
+		Weight: 4
+	QuantizeFacingsFromSequence:
+		Sequence: stand
+	WithFacingSpriteBody:
+		Sequence: stand
+	WithMoveAnimation:
+		MoveSequence: run
+	WithSpriteTurret:
+	RevealsShroud:
+		MinRange: 4c0
+		Range: 6c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 4c0
+	Armament@PRIMARY:
+		Weapon: TitanGun
+		LocalOffset: 830,260,100
+		Recoil: 171
+		RecoilRecovery: 30
+		MuzzleSequence: muzzle
+	Armament@SECONDARY:
+		Name: secondary
+		Weapon: TitanTusk
+		LocalOffset: -85,-384,340
+		LocalYaw: -100,100
+		Recoil: 43
+		MuzzleSequence: muzzle
+	Turreted:
+		TurnSpeed: 3
+		Offset: 0,0,0
+	AttackTurreted:
+		PauseOnCondition: empdisable
+		Armaments: primary, secondary, tertiary
+	WithMuzzleOverlay:
+	Explodes:
+		Weapon: ArtilleryExplode
+		LoadedChance: 100
+	SelfHealing@DEFAULT:
+		PercentageStep: 1
+		Delay: 25
+		HealIfBelow: 51
+		DamageCooldown: 150
+	ProducibleWithLevel:
+		Prerequisites: vehicles.upgraded
+	GpsDot:
+		String: Mech
+	RenderSprites:
+		Image: titan
+
+JUGG:
+	Inherits: LMCH
+	Inherits@AUTOTARGET: ^AutoTargetGroundAntiStructure
+	-Armament@SECONDARY:
+	-SelfHealing@DEFAULT:
+	RenderSprites:
+		Image: jugg
+	Tooltip:
+		Name: Juggernaut
+	Buildable:
+		BuildPaletteOrder: 12
+		Prerequisites: techcenter, eye, ~vehicles.gdi, ~player.futurecorps, ~techlevel.high
+		Description: Tough artillery battle-mech.\n  Strong vs Infantry, Structures\n  Weak vs Aircraft
+	Valued:
+		Cost: 1800
+	Armament@PRIMARY:
+		Weapon: JuggernautGun
+		LocalOffset: 830,0,500, 830,100,500, 830,-100,500
+	AttackTurreted:
+		TargetFrozenActors: True
+		ForceFireIgnoresActors: True
+	Turreted:
+		Offset: -20,0,20
+	Health:
+		HP: 50000
+	RenderRangeCircle:
+
+SCRB:
+	Inherits: ^Ship
+	Inherits@EXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetNavalAssaultMove
+	-GpsDot:
+	Buildable:
+		Queue: Ship
+		BuildAtProductionType: Boat
+		BuildPaletteOrder: 2
+		Prerequisites: ~spen, proc, ~ships.nod, ~player.blackhand, ~techlevel.low
+		Description: Fast scout ship armed with dual Machineguns.\nDoes not appear on enemy radar or GPS.\n  Strong vs Infantry\n  Weak vs Ships, Vehicles
+	Valued:
+		Cost: 450
+	Tooltip:
+		Name: Scarab Speedboat
+	Health:
+		HP: 18000
+	Armor:
+		Type: Light
+	Mobile:
+		TurnSpeed: 7
+		Speed: 128
+	RevealsShroud:
+		MinRange: 4c0
+		Range: 5c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 4c0
+	Armament@PRIMARY:
+		Weapon: M60mg
+		LocalOffset: 201,85,183
+		MuzzleSequence: muzzle
+		PauseOnCondition: empdisable
+	Armament@SECONDARY:
+		Weapon: M60mg
+		LocalOffset: 201,-85,183
+		MuzzleSequence: muzzle
+		PauseOnCondition: empdisable
+	AttackFrontal:
+		PauseOnCondition: empdisable
+	WithMuzzleOverlay:
+	WithMoveAnimation:
+		MoveSequence: move
+	SelectionDecorations:
+	Selectable:
+		DecorationBounds: 36,36
+	AppearsOnRadar:
+		ValidStances: Ally
+
+LCRV:
+	Inherits: ^Ship
+	Inherits@EXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetNavalAssaultMove
+	Buildable:
+		Queue: Ship
+		BuildAtProductionType: Boat
+		BuildPaletteOrder: 3
+		Prerequisites: ~spen, shrn, ~ships.nod, ~player.blackhand, ~techlevel.high
+		Description: Main battle ship of Nod armed with\nArtillery turret and obelisk Laser.\nNeeds to redirect all power to Laser\nin order to fire it, becoming immobile.\n  Strong vs anything on Ground\n  Weak vs Aircraft, Artillery
+	Valued:
+		Cost: 1850
+	Tooltip:
+		Name: Laser Corvette
+	Health:
+		HP: 35000
+	Armor:
+		Type: Heavy
+	Mobile:
+		TurnSpeed: 4
+		Speed: 68
+		RequiresCondition: !empdisable && !deployed
+	RevealsShroud:
+		MinRange: 5c0
+		Range: 6c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 5c0
+	Turreted:
+		TurnSpeed: 7
+		Offset: 746,0,278
+	Armament@PRIMARY:
+		Name: primary
+		Weapon: 155mm.nod
+		LocalOffset: 600,0,128
+		MuzzleSequence: muzzle
+		PauseOnCondition: empdisable && deployed
+	Armament@SECONDARY:
+		Name: secondary
+		Weapon: Laser
+		LocalOffset: -654,0,340
+		PauseOnCondition: empdisable && !deployed
+	AttackTurreted:
+		Armaments: primary
+		PauseOnCondition: empdisable || deployed
+		RequiresCondition: !deployed
+	AttackCharges:
+		Armaments: secondary
+		RequiresCondition: deployed
+		PauseOnCondition: empdisable || !deployed
+		ChargeLevel: 100
+		ChargingCondition: charging
+	AmbientSound:
+		RequiresCondition: charging
+		SoundFiles: obelpowr.aud
+		Interval: 30, 40
+	SelectionDecorations:
+	WithSpriteTurret:
+	WithMuzzleOverlay:
+	Selectable:
+		DecorationBounds: 38,38
+	WithMoveAnimation:
+		MoveSequence: move
+	GrantConditionOnDeploy:
+		DeployedCondition: deployed
+		SkipMakeAnimation: true
+	WithChargeOverlay:
+	WithDecoration@deployed:
+		RequiresSelection: true
+		Image: pips
+		Sequence: tag-deployed
+		ReferencePoint: Top
+		ZOffset: 256
+		RequiresCondition: deployed
+	HitShape:
+		TargetableOffsets: 448,0,0, -448,0,0
+		Type: Capsule
+			Radius: 320
+			PointA: 0, -448
+			PointB: 0, 448
+	#	so this caused the crash on build...
+	#	RenderRangeCircle:
+
+ORCB:
+	Inherits: ^Helicopter
+	Inherits@AUTOTARGET: ^AutoTargetGroundAntiTank
+	Inherits@EXPERIENCE: ^GainsExperience
+	Buildable:
+		Queue: Aircraft
+		BuildAtProductionType: Helicopter
+		BuildPaletteOrder: 5
+		Prerequisites: ~hpad, tech, ~aircraft.gdi, ~player.futurecorps, ~techlevel.high
+		Description: VTOL bomber-craft armed with EMP bombs.\n  Strong vs Buildings, Vehicles\n  Weak vs Aircraft
+	Valued:
+		Cost: 1650
+	Tooltip:
+		Name: Orca Bomber
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 26000
+	RevealsShroud:
+		Range: 10c0
+		MinRange: 8c0
+		Type: GroundPosition
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 8c0
+		Type: GroundPosition
+	Armament:
+		Weapon: OrcaBomb
+		LocalOffset: 2,-256,-43, 2,256,-43
+		PauseOnCondition: !ammo
+	AttackAircraft:
+		FacingTolerance: 20
+		PersistentTargeting: false
+		OpportunityFire: false
+	Aircraft:
+		CruiseAltitude: 2560
+		AltitudeVelocity: 0c120
+		TurnSpeed: 4
+		Speed: 180
+		RepulsionSpeed: 40
+		MaximumPitch: 56
+		TakeoffSounds: orcaup1.aud
+		LandingSounds: orcadwn1.aud
+		CanHover: False
+		CanSlide: False
+	AutoTarget:
+		InitialStance: HoldFire
+		InitialStanceAI: HoldFire
+	AmmoPool:
+		Ammo: 8
+		PipCount: 4
+		AmmoCondition: ammo
+	Selectable:
+		Bounds: 36,28,0,2
+		DecorationBounds: 40,29,0,1
+	SmokeTrailWhenDamaged:
+		Offset: -853,0,171
+		Interval: 2
+	WithMoveAnimation:
+		MoveSequence: move
+	ProducibleWithLevel:
+		Prerequisites: aircraft.upgraded
+	Rearmable:
+		RearmActors: hpad, carr.deployed
+	RenderSprites:
+		Image: orcb
+	SpawnActorOnDeath:
+		Actor: ORCB.Husk
+		RequiresCondition: airborne && !empdisable
+	SpawnActorOnDeath@EMP:
+		Actor: ORCB.Husk.EMP
+		RequiresCondition: airborne && empdisable
+	GpsDot:
+		String: EMP
+
+SCRN:
+	Inherits: ^Helicopter
+	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
+	Inherits@EXPERIENCE: ^GainsExperience
+	Buildable:
+		Queue: Aircraft
+		BuildAtProductionType: Plane
+		BuildPaletteOrder: 5
+		Prerequisites: ~afld, nodbio, ~aircraft.nod, ~player.blackhand, ~techlevel.high
+		Description: Fast VTOL attack craft armed\nwith powerful plasma cannons.\nHas 50% chance to deflects incoming missiles.\n  Strong vs Tanks, Aircraft\n  Weak vs Infantry
+	Valued:
+		Cost: 2400
+	Tooltip:
+		Name: Banshee
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 24000
+	RevealsShroud:
+		Range: 12c0
+		MinRange: 10c0
+		Type: GroundPosition
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 10c0
+		Type: GroundPosition
+	Armament@PRIMARY:
+		Weapon: ScrinTorp
+		LocalOffset: 0,213,-85, 0,-213,-85
+		PauseOnCondition: !ammo
+	Armament@SECONDARY:
+		Weapon: ScrinTorpAA
+		LocalOffset: 0,213,-85, 0,-213,-85
+		PauseOnCondition: !ammo
+	AttackAircraft:
+		FacingTolerance: 20
+		Voice: Attack
+		PersistentTargeting: false
+		OpportunityFire: False
+	Aircraft:
+		CruiseAltitude: 2560
+		TurnSpeed: 5
+		Speed: 225
+		RepulsionSpeed: 40
+		MaximumPitch: 56
+		CanHover: False
+		TakeoffSounds: dropup1.aud
+		LandingSounds: dropdwn1.aud
+		IdealSeparation: 1c682
+		Voice: Move
+		CanSlide: False
+		AltitudeVelocity: 0c150
+		VTOL: False
+	AutoTarget:
+		InitialStance: HoldFire
+		InitialStanceAI: HoldFire
+	AmmoPool:
+		Ammo: 9
+		PipCount: 3
+		ReloadDelay: 25
+		AmmoCondition: ammo
+	Contrail@1:
+		Offset: -300,-143,0
+		Color: 00FF0080
+		UsePlayerColor: false
+		ZOffset: -512 
+	Contrail@2:
+		Offset: -300,143,0
+		Color: 00FF0080
+		UsePlayerColor: false 
+		ZOffset: -512 
+	SmokeTrailWhenDamaged:
+		Offset: -427,0,0
+	Selectable:
+		DecorationBounds: 36,28
+	Voiced:
+		VoiceSet: ScrinVoice
+	ProducibleWithLevel:
+		Prerequisites: aircraft.upgraded
+	Rearmable:
+		RearmActors: afld, afld.ukraine, carr.new.deployed
+	Repairable:
+		RepairActors: afld, afld.ukraine, carr.new.deployed
+	RenderSprites:
+		Image: scrn
+	JamsMissiles:
+		Range: 1c512
+		DeflectionStances: Neutral, Enemy
+		Chance: 50
+	SpawnActorOnDeath:
+		Actor: SCRN.Husk
+		RequiresCondition: airborne && !empdisable
+	SpawnActorOnDeath@EMP:
+		Actor: SCRN.Husk.EMP
+		RequiresCondition: airborne && empdisable
+	GpsDot:
+		String: Spacecraft
+
+SHRN:
+	Inherits: ^ScienceBuilding
+	Inherits@IDISABLE: ^DisableOnLowPowerOrPowerDown
+	Inherits@shape: ^2x2Shape
+	Selectable:
+		Bounds: 48,48
+	Valued:
+		Cost: 1400
+	Tooltip:
+		Name: Shrine of Blackhand
+	Buildable:
+		Queue: Building
+		BuildPaletteOrder: 9
+		Prerequisites: tmpl, dome, ~structures.nod, ~player.blackhand, ~techlevel.high
+		BuildLimit: 1
+		Description: Shrine of the Blackhand.\nMaximum one can be built.\n  Requires Power to operate.\n  Passive Ability: Jamming\nJams enemy Radar in wide radius around itself.\n  Special Ability: Demoralize\nUses propaganda to break morale of enemy units.\nAffected units have their Rate of Fire reduced to 25% of their base rate.
+	Armor:
+		Type: Wood
+	SelectionDecorations:
+	WithSpriteBody:
+		PauseOnCondition: disabled
+	Health:
+		HP: 50000
+	RevealsShroud:
+		Range: 5c0
+		RequiresCondition: !disabled
+		RevealGeneratedShroud: False
+	RevealsShroud@Offline:
+		Range: 2c0
+		RequiresCondition: disabled
+	RevealsShroud@GAPGEN:
+		Range: 4c0
+		RequiresCondition: !disabled
+	WithBuildingBib:
+	Power:
+		Amount: -100
+	MustBeDestroyed:
+		RequiredForShortGame: false
+	Building:
+		Footprint: xx xx
+		Dimensions: 2,2
+	ProvidesPrerequisite@buildingname:
+	WithIdleOverlay@ORB:
+		Sequence: idle-orb
+		PauseOnCondition: disabled
+		RequiresCondition: !build-incomplete
+	GrantExternalConditionPower@Demoralize:
+		OrderName: Demoralize
+		PauseOnCondition:  disabled || lowpower
+		Prerequisites: ~techlevel.unrestricted
+		Icon: demoralize
+		ChargeInterval: 6000
+		Range: 1
+		Description: Demoralize
+		LongDesc: Use Propaganda to break morale of enemy units.\nAffected units have their Rate of Fire reduced\nto 25% of their base rate for 20 seconds.
+		Duration: 500
+		OnFireSound:
+		SelectTargetSpeechNotification: SelectTarget
+		InsufficientPowerSpeechNotification: InsufficientPower
+		Condition: demoralized
+		ValidStances: enemy
+		Cursor: skull-target
+		SupportPowerPaletteOrder: 7
+	SupportPowerChargeBar:
+	#	Cloak@STEALTHSELF:
+	#	InitialDelay: 150
+	#	CloakDelay: 150
+	#	IsPlayerPalette: true
+	#	UncloakOn: Damage, Infiltrate, Demolish
+	#	PauseOnCondition: cloak-force-disabled && empdisable && disabled
+	#	GrantConditionOnDamageState@UNCLOAK:
+	#	Condition: cloak-force-disabled
+	#	ValidDamageStates: Critical	
+	ProximityExternalCondition@JAMMER:
+		Range: 26c0
+		ValidStances: Enemy, Neutral
+		Condition: jammed
+	WithRangeCircle@JAMMER:
+		Type: jammer
+		Range: 26c0
+		Color: 0000FF80
+	AirstrikePower@InfernoBomb:
+		OrderName: InfernoBomb
+		Prerequisites: ~tech.stolen
+		#	Prerequisites: ~techlevel.unrestricted
+		PauseOnCondition: lowpower
+		Icon: infbomb
+		ChargeInterval: 9000
+		SquadSize: 1
+		SquadOffset: 0,1792,0
+		QuantizedFacings: 8
+		Description: Inferno Bomb
+		LongDesc: A B-2 Bomber drops a Inferno bomb on your target.\nThe Inferno Bomb is most effective against Structures.
+		CameraActor: camera.paradrop
+		CameraRemoveDelay: 150
+		SelectTargetSpeechNotification: SelectTarget
+		UnitType: b2.bomber
+		DisplayBeacon: True
+		BeaconPoster: airstrike
+		DisplayRadarPing: True
+		ArrowSequence: arrow
+		ClockSequence: clock
+		CircleSequence: circles
+		UseDirectionalTarget: True
+		DirectionArrowAnimation: paradirection
+		Cursor: airstrike
+		SupportPowerPaletteOrder: 9

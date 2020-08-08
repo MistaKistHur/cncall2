@@ -1,0 +1,316 @@
+Player:
+	SupportPowerBotModule@nod:
+		RequiresCondition: enable-ai-player && player.nod
+		Decisions:
+			UseParatroopers:
+				OrderName: CnCParatroopers
+				MinimumAttractiveness: 5
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 8c0
+				Consideration@2:
+					Against: Enemy
+					Types: Water
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 8c0
+			UseRadarScan:
+				OrderName: RadarScan
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 5c0
+			UseNuclear:
+				OrderName: NodNukeMissile
+				MinimumAttractiveness: 3000
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 5c0
+				Consideration@2:
+					Against: Ally
+					Types: Air, Ground, Water
+					Attractiveness: -10
+					TargetMetric: Value
+					CheckRadius: 7c0
+			UseChemicalStrike:
+				OrderName: ChemicalStrike
+				MinimumAttractiveness: 1500
+				Consideration@1:
+					Against: Enemy
+					Types: Vehicle
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 3c0
+				Consideration@2:
+					Against: Ally
+					Types: Air, Ground, Water
+					Attractiveness: -10
+					TargetMetric: Value
+					CheckRadius: 7c0
+			UseBlackout:
+				OrderName: Blackout
+				MinimumAttractiveness: 1000
+				FineScanRadius: 2
+				Consideration@1:
+					Against: Enemy
+					Types: Radar
+					Attractiveness: 2
+					TargetMetric: Value
+					CheckRadius: 2c0
+			UseDemoralize:
+				OrderName: Demoralize
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Enemy
+					Types: ICTarget
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 2c0
+			UseFieldRepairs:
+				OrderName: FieldRepairPower
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Ally
+					Types: ICTarget
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 2c0
+			CrateParabombs:
+				OrderName: CrateParabombs
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 5c0
+			CrateNuke:
+				OrderName: CrateNuke
+				MinimumAttractiveness: 3000
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 5c0
+				Consideration@2:
+					Against: Ally
+					Types: Air, Ground, Water
+					Attractiveness: -10
+					TargetMetric: Value
+					CheckRadius: 7c0
+			UseFakeNuke:
+				OrderName: NodNukeMissileFake
+				MinimumAttractiveness: 3000
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 5c0
+				Consideration@2:
+					Against: Ally
+					Types: Air, Ground, Water
+					Attractiveness: -10
+					TargetMetric: Value
+					CheckRadius: 7c0
+	BaseBuilderBotModule@nod:
+		RequiresCondition: enable-ai-player && player.nod || player.blackhand
+		MinimumExcessPower: 60
+		MaximumExcessPower: 160
+		ExcessPowerIncrement: 40
+		ExcessPowerIncreaseThreshold: 4
+		CheckForWaterRadius: 8
+		ConstructionYardTypes: fact.cnc
+		RefineryTypes: proc.cnc
+		PowerTypes: powr.cnc,apwr.cnc
+		BarracksTypes: hand
+		VehiclesFactoryTypes: weap.nod
+		ProductionTypes: hand,weap.nod,hpad,afld
+		NavalProductionTypes: spen.nod
+		SiloTypes: silo.cnc
+		PlaceDefenseTowardsEnemyChance: 75
+		MaxBaseRadius: 26
+		BuildingDelays:
+			spen.nod: 4500
+			hsam.nod: 6000
+			tmpl: 7500
+		BuildingLimits:
+			proc.cnc: 4
+			hand: 2
+			hq.nod: 1
+			weap.nod: 3
+			fix.cnc: 1
+			spen.nod: 1
+			afld: 2
+			hpad: 4
+			tmpl: 1
+			mslo.nod: 1
+			hsam.nod: 6
+			gtwr: 3
+			ltur: 6
+			obel: 4
+			fact.cnc: 3
+			ncom: 1
+			shrn: 1
+			nodbio: 1
+			tmpl.fake: 1
+		BuildingFractions:
+			proc.cnc: 15
+			hand: 2
+			hq.nod: 1
+			weap.nod: 6
+			fix.cnc: 1
+			spen.nod: 1
+			afld: 1
+			hpad: 4
+			gtwr: 3
+			ltur: 7
+			hsam.nod: 5
+			obel: 2
+			tmpl: 1
+			mslo.nod: 1
+			ncom: 1
+			shrn: 1
+			nodbio: 1
+			tmpl.fake: 1
+	SquadManagerBotModule@nod:
+		RequiresCondition: enable-ai-player && player.nod || player.blackhand
+		SquadSize: 8
+		SquadSizeRandomBonus: 8
+		RushInterval: 400
+		AttackScanRadius: 16
+		ExcludeFromSquadsTypes: harv.cnc, mcv.cnc, mcv.cnc.ai, sb, lsrs, asub, bsub, cata, heli.nod.ai, rh66, e6, f22, sfig, bggy.scout, scrb, lcrv, scrn
+		ConstructionYardTypes: fact
+	SquadManagerBotModule@nod.sea:
+		RequiresCondition: enable-ai-player && player.nod || player.blackhand && !global-disablenavy
+		SquadSize: 4
+		SquadSizeRandomBonus: 4
+		RushInterval: 400
+		AttackScanRadius: 24
+		ExcludeFromSquadsTypes: harv.cnc, mcv.cnc, mcv.cnc.ai, dog, e1.cnc, e2.cnc, e3.cnc, bggy, napc, 1tnk.nod, ftnk, arty.nod, stnk.nod, bike, mwav, ssm, nodrmbo, heli.nod.ai, rh66, e6, f22, sfig, bggy.scout, cybr, lcg, e4.nod, attbggy, srty, mwav.laser, ssm.hover, ftnk.blackhand, scrn, msam.nod
+		NavalUnitsTypes: sb,lsrs,asub,bsub,cata,scrb,lcrv
+		ConstructionYardTypes: fact.cnc
+		NavalProductionTypes: spen.nod
+	SquadManagerBotModule@nod.airplane:
+		RequiresCondition: enable-ai-player && player.nod || player.blackhand
+		SquadSize: 1
+		SquadSizeRandomBonus: 1
+		RushInterval: 400
+		AttackScanRadius: 48
+		ExcludeFromSquadsTypes: harv.cnc, mcv.cnc, mcv.cnc.ai, dog, e1.cnc, e2.cnc, e3.cnc, bggy, napc, 1tnk.nod, ftnk, arty.nod, stnk.nod, bike, mwav, ssm, nodrmbo, e6, heli.nod.ai, rh66, bggy.scout, cybr, lcg, e4.nod, attbggy, srty, mwav.laser, ssm.hover, ftnk.blackhand, msam.nod
+		ConstructionYardTypes: fact.cnc
+	SquadManagerBotModule@nod.helicopter:
+		RequiresCondition: enable-ai-player && player.nod || player.blackhand
+		SquadSize: 2
+		SquadSizeRandomBonus: 2
+		RushInterval: 400
+		AttackScanRadius: 48
+		ExcludeFromSquadsTypes: harv.cnc, mcv.cnc, mcv.cnc.ai, dog, e1.cnc, e2.cnc, e3.cnc, bggy, napc, 1tnk.nod, ftnk, arty.nod, stnk.nod, bike, mwav, ssm, nodrmbo, e6, f22, sfig, bggy.scout, cybr, lcg, e4.nod, attbggy, srty, mwav.laser, ssm.hover, ftnk.blackhand, scrn, msam.nod
+		ConstructionYardTypes: fact.cnc
+	UnitBuilderBotModule@nod:
+		RequiresCondition: enable-ai-player && player.nod || player.blackhand
+		UnitQueues: Vehicle, Infantry
+		UnitDelays:
+			mcv.cnc.ai: 13500
+		UnitsToBuild:
+			e1.cnc: 40
+			terr: 15
+			e3.cnc: 45
+			e4.nod: 20
+			e5: 15
+			mort: 15
+			harv.cnc: 15
+			bggy: 20
+			attbggy: 20
+			bike: 20
+			napc: 10
+			1tnk.nod: 70
+			ftnk: 20
+			ftnk.blackhand: 20
+			arty.nod: 30
+			srty: 20
+			stnk.nod: 30
+			mwav: 10
+			mwav.laser: 10
+			ssm: 10
+			ssm.hover: 10
+			mcv.cnc.ai: 1
+			nodrmbo: 1
+			e6: 2
+			cybr: 5
+			lcg: 5
+			msam.nod: 1
+		UnitLimits:
+			terr: 3
+			e5: 3
+			mort: 3
+			harv.cnc: 8
+			bggy: 4
+			attbggy: 4
+			bike: 6
+			napc: 1
+			ftnk: 4
+			stnk.nod: 4
+			mwav: 1
+			mwav.laser: 2
+			ssm: 2
+			ssm.hover: 2
+			srty: 4
+			mcv.cnc.ai: 1
+			nodrmbo: 1
+			e6: 2
+			cybr: 5
+			lcg: 3
+			msam.nod: 1
+	UnitBuilderBotModule@nod.sea:
+		RequiresCondition: enable-ai-player && player.nod || player.blackhand && !global-disablenavy
+		IdleBaseUnitsMaximum: 6
+		UnitQueues: Ship
+		UnitsToBuild:
+			sb: 40
+			lsrs: 30
+			asub: 20
+			bsub: 10
+			cata: 5
+			lcrv: 20
+			scrb: 30
+		UnitLimits:
+			sb: 8
+			scrb: 6
+			lsrs: 5
+			lcrv: 3
+			asub: 3
+			bsub: 1
+			cata: 1
+	UnitBuilderBotModule@nod.airplane:
+		RequiresCondition: enable-ai-player && player.nod || player.blackhand
+		IdleBaseUnitsMaximum: 0
+		UnitQueues: Aircraft
+		UnitDelays:
+			scrn: 7500
+		UnitsToBuild:
+			f22: 90
+			scrn: 30
+		UnitLimits:
+			f22: 4
+			scrn: 30
+	UnitBuilderBotModule@nod.helicopter:
+		RequiresCondition: enable-ai-player && player.nod || player.blackhand
+		IdleBaseUnitsMaximum: 2
+		UnitQueues: Aircraft
+		UnitsToBuild:
+			rh66: 20
+			heli.nod.ai: 80
+		UnitLimits:
+			rh66: 2
+			heli.nod.ai: 6

@@ -1,0 +1,852 @@
+HARV.CNC.Husk.empty:
+	Inherits: ^Husk
+	Tooltip:
+		Name: Husk (Harvester)
+	TransformOnCapture:
+		IntoActor: harv.cnc
+	InfiltrateForTransform:
+		IntoActor: harv.cnc
+	RenderSprites:
+		Image: cncharv.husk
+
+HARV.CNC.Husk.full:
+	Inherits: HARV.CNC.Husk.empty
+
+MCV.CNC.Husk:
+	Inherits: ^Husk
+	Tooltip:
+		Name: Husk (MCV)
+	TransformOnCapture:
+		IntoActor: mcv.cnc
+	InfiltrateForTransform:
+		IntoActor: mcv.cnc
+	RenderSprites:
+		Image: cncmcv.husk
+
+MWF.Husk:
+	Inherits: ^Husk
+	Tooltip:
+		Name: Husk (MWF)
+	TransformOnCapture:
+		IntoActor: mwf
+	InfiltrateForTransform:
+		IntoActor: mwf
+	RenderSprites:
+		Image: mwf.husk
+
+MRPG.Husk:
+	Inherits: ^Husk
+	Tooltip:
+		Name: Husk (Disc Launcher)
+	TransformOnCapture:
+		IntoActor: mrpg
+	InfiltrateForTransform:
+		IntoActor: mrpg
+	RenderSprites:
+		Image: mrpg.husk
+
+1TNK.NOD.Husk:
+	Inherits: ^Husk
+	Tooltip:
+		Name: Husk (Light Tank)
+	ThrowsParticle@turret:
+		Anim: turret
+	TransformOnCapture:
+		IntoActor: 1tnk.nod
+	InfiltrateForTransform:
+		IntoActor: 1tnk.nod
+	RenderSprites:
+		Image: 1tnk.nod.husk
+		
+2TNK.GDI.Husk:
+	Inherits: ^Husk
+	Tooltip:
+		Name: Husk (Medium Tank)
+	ThrowsParticle@turret:
+		Anim: turret
+	TransformOnCapture:
+		IntoActor: 2tnk.gdi
+	InfiltrateForTransform:
+		IntoActor: 2tnk.gdi
+	RenderSprites:
+		Image: 2tnk.gdi.husk
+
+2TNK.GDI.Rail.Husk:
+	Inherits: ^Husk
+	Tooltip:
+		Name: Husk (Railgun Medium)
+	ThrowsParticle@turret:
+		Anim: turret
+	TransformOnCapture:
+		IntoActor: 2tnk.gdi.rail
+	InfiltrateForTransform:
+		IntoActor: 2tnk.gdi.rail
+	RenderSprites:
+		Image: 2tnk.gdi.rail.husk
+
+4TNK.GDI.Husk:
+	Inherits: ^Husk
+	Tooltip:
+		Name: Husk (GDI Mammoth)
+	ThrowsParticle@turret:
+		Anim: turret
+	TransformOnCapture:
+		IntoActor: 4tnk.gdi
+	InfiltrateForTransform:
+		IntoActor: 4tnk.gdi
+	RenderSprites:
+		Image: 4tnk.gdi.husk
+
+4TNK.GDI.Rail.Husk:
+	Inherits: ^Husk
+	Tooltip:
+		Name: Husk (Railgun Mammoth)
+	ThrowsParticle@turret:
+		Anim: turret
+	TransformOnCapture:
+		IntoActor: 4tnk.gdi.rail
+	InfiltrateForTransform:
+		IntoActor: 4tnk.gdi.rail
+	RenderSprites:
+		Image: 4tnk.gdi.rail.husk
+
+MWAV.Husk:
+	Inherits: ^Husk
+	Tooltip:
+		Name: Husk (Microwave Tank)
+	ThrowsParticle@turret:
+		Anim: turret
+	TransformOnCapture:
+		IntoActor: mwav
+	InfiltrateForTransform:
+		IntoActor: mwav
+	RenderSprites:
+		Image: mwav.husk
+
+LAST.Husk:
+	Inherits: ^Husk
+	Tooltip:
+		Name: Husk (Laser Tank)
+	ThrowsParticle@turret:
+		Anim: turret
+	TransformOnCapture:
+		IntoActor: mwav.laser
+	InfiltrateForTransform:
+		IntoActor: mwav.laser
+	RenderSprites:
+		Image: last.husk
+
+DISR.Husk:
+	Inherits: ^Husk
+	Tooltip:
+		Name: Husk (Sonic Tank)
+	ThrowsParticle@turret:
+		Anim: turret
+	TransformOnCapture:
+		IntoActor: disr
+	InfiltrateForTransform:
+		IntoActor: disr
+	RenderSprites:
+		Image: disr.husk
+
+ORCA.Husk:
+	Inherits: ^HelicopterHusk
+	Tooltip:
+		Name: Orca
+	Aircraft:
+		TurnSpeed: 4
+		Speed: 186
+	RevealsShroud:
+		Range: 10c0
+		Type: GroundPosition
+	RenderSprites:
+		Image: orca
+
+ORCA.Husk.EMP:
+	Inherits: ORCA.Husk
+	Inherits: ^EmpVisualEffect
+
+MH60.Husk:
+	Inherits: ^HelicopterHusk
+	Tooltip:
+		Name: Black Hawk
+	Aircraft:
+		TurnSpeed: 4
+		Speed: 112
+	WithIdleOverlay:
+		Sequence: rotor
+	SmokeTrailWhenDamaged:
+		Offset: -427,0,0
+		MinDamage: Undamaged
+	RevealsShroud:
+		MinRange: 8c0
+		Range: 10c0
+		Type: GroundPosition
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 8c0
+		Type: GroundPosition
+	RenderSprites:
+		Image: MH60
+
+MH60.Husk.EMP:
+	Inherits: MH60.Husk
+	Inherits: ^EmpVisualEffect
+
+RH66.Husk:
+	Inherits: ^HelicopterHusk
+	Tooltip:
+		Name: Comanche
+	Aircraft:
+		TurnSpeed: 4
+		Speed: 186
+	SmokeTrailWhenDamaged:
+		Offset: -427,0,0
+		MinDamage: Undamaged
+	RevealsShroud:
+		Range: 10c0
+		Type: GroundPosition
+	RenderSprites:
+		Image: rh66
+
+RH66.Husk.EMP:
+	Inherits: RH66.Husk
+	Inherits: ^EmpVisualEffect
+
+HUNT.Husk:
+	Inherits: ^PlaneHusk
+	-FallsToEarth:
+	Tooltip:
+		Name: Hunter-Seeker Drone
+	Aircraft:
+		TurnSpeed: 16
+		Speed: 355
+	FallsToEarth:
+		Moves: True
+		Velocity: 86
+		Explosion: UnitExplodeHunter
+		MaximumSpinSpeed: 0
+	RevealsShroud:
+		MinRange: 9c0
+		Range: 11c0
+		Type: GroundPosition
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 9c0
+		Type: GroundPosition
+	RenderSprites:
+		Image: huntseek
+
+OCAR.Husk:
+	Inherits: ^HelicopterHusk
+	Tooltip:
+		Name: Orca Carryall
+	Aircraft:
+		TurnSpeed: 4
+		Speed: 166
+	SmokeTrailWhenDamaged:
+		Offset: -427,0,0
+		MinDamage: Undamaged
+	RevealsShroud:
+		Range: 10c0
+		Type: CenterPosition
+	RenderSprites:
+		Image: ocar
+
+OCAR.Husk.EMP:
+	Inherits: OCAR.Husk
+	Inherits: ^EmpVisualEffect
+
+CNCV22.Husk:
+	Inherits: ^HelicopterHusk
+	Tooltip:
+		Name: V-22 Carryall
+	Aircraft:
+		TurnSpeed: 5
+		Speed: 140
+	RevealsShroud:
+		Range: 10c0
+		Type: CenterPosition
+	WithIdleOverlay@ROTOR1:
+		Offset: 0,847,50
+		Sequence: rotor
+	WithIdleOverlay@ROTOR2:
+		Offset: 0,-847,50
+		Sequence: rotor2
+	RenderSprites:
+		Image: cncv22
+	FallsToEarth:
+		Velocity: 0c100
+
+CNCV22.Husk.EMP:
+	Inherits: CNCV22.Husk
+	Inherits: ^EmpVisualEffect
+
+C17.Husk:
+	Inherits: ^PlaneHusk
+	Tooltip:
+		Name: C-17 Cargo Plane
+	Aircraft:
+		TurnSpeed: 5
+		Speed: 149
+	SmokeTrailWhenDamaged@0:
+		Offset: -432,560,0
+		Interval: 2
+		MinDamage: Undamaged
+	SmokeTrailWhenDamaged@1:
+		Offset: -432,-560,0
+		Interval: 2
+		MinDamage: Undamaged
+	RenderSprites:
+		Image: c17
+	-RevealOnDeath:
+
+C17.Husk.EMP:
+	Inherits: C17.Husk
+	Inherits: ^EmpVisualEffect
+
+B2.Husk:
+	Inherits: ^PlaneHusk
+	-RevealOnDeath:
+	Tooltip:
+		Name: B-2 (Destroyed)
+	Aircraft:
+		TurnSpeed: 5
+		Speed: 149
+	SmokeTrailWhenDamaged@0:
+		Offset: -432,560,0
+		Interval: 2
+		MinDamage: Undamaged
+	SmokeTrailWhenDamaged@1:
+		Offset: -432,-560,0
+		Interval: 2
+		MinDamage: Undamaged
+	RenderSprites:
+		Image: b2
+
+B2.Husk.EMP:
+	Inherits: B2.Husk
+	Inherits: ^EmpVisualEffect
+
+F18.Husk:
+	Inherits: MIG.Husk
+	Tooltip:
+		Name: F-18 Hornet
+	RenderSprites:
+		Image: f18
+
+F18.Husk.EMP:
+	Inherits: F18.Husk
+	Inherits: ^EmpVisualEffect
+
+F22.Husk:
+	Inherits: MIG.Husk
+	Tooltip:
+		Name: F-22 Raptor
+	RenderSprites:
+		Image: f22
+
+F22.Husk.EMP:
+	Inherits: F22.Husk
+	Inherits: ^EmpVisualEffect
+
+A10.Husk:
+	Inherits: ^PlaneHusk
+	Tooltip:
+		Name: A-10 Bomber Plane
+	Aircraft:
+		TurnSpeed: 4
+		Speed: 190
+	Contrail@1:
+		Offset: -640,171,0
+		TrailLength: 8
+		TrailWidth: 48
+		UsePlayerColor: false
+	Contrail@2:
+		Offset: -640,-171,0
+		TrailLength: 8
+		TrailWidth: 48
+		UsePlayerColor: false
+	SmokeTrailWhenDamaged:
+		Offset: -853,0,171
+		Interval: 2
+		MinDamage: Undamaged
+	RenderSprites:
+		Image: a10
+
+A10.Husk.EMP:
+	Inherits: A10.Husk
+	Inherits: ^EmpVisualEffect
+
+SFIG.Husk:
+	Inherits: ^PlaneHusk
+	Tooltip:
+		Name: Stealth Bomber Plane
+	Aircraft:
+		TurnSpeed: 5
+		Speed: 186
+	SmokeTrailWhenDamaged:
+		Offset: -853,0,171
+		Interval: 2
+		MinDamage: Undamaged
+	RevealsShroud:
+		Range: 13c0
+		Type: GroundPosition
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 11c0
+		Type: GroundPosition
+	RenderSprites:
+		Image: sfig
+
+SFIG.Husk.EMP:
+	Inherits: SFIG.Husk
+	Inherits: ^EmpVisualEffect
+
+UAV.Husk:
+	Inherits: ^PlaneHusk
+	Tooltip:
+		Name: Recon Drone
+	Aircraft:
+		TurnSpeed: 7
+		Speed: 123
+	Contrail@1:
+		Offset: -465,683,0
+		TrailLength: 6
+		TrailWidth: 48
+		UsePlayerColor: false
+	Contrail@2:
+		Offset: -465,-683,0
+		TrailLength: 6
+		TrailWidth: 48
+		UsePlayerColor: false
+	SmokeTrailWhenDamaged:
+		Offset: -1c43,0,0
+		Interval: 2
+		MinDamage: Undamaged
+	RenderSprites:
+		Image: uav
+
+UAV.Husk.EMP:
+	Inherits: UAV.Husk
+	Inherits: ^EmpVisualEffect
+
+ORCB.Husk:
+	Inherits: ^PlaneHusk
+	Tooltip:
+		Name: Orca Bomber (Destroyed)
+	Aircraft:
+		TurnSpeed: 4
+		Speed: 155
+	SmokeTrailWhenDamaged:
+		Offset: -427,0,0
+		MinDamage: Undamaged
+	RevealsShroud:
+		Range: 12c0
+		Type: CenterPosition
+	RenderSprites:
+		Image: orcb
+
+ORCB.Husk.EMP:
+	Inherits: ORCB.Husk
+	Inherits: ^EmpVisualEffect
+
+SCRN.Husk:
+	Inherits: ^PlaneHusk
+	Tooltip:
+		Name: Banshee (Destroyed)
+	Aircraft:
+		TurnSpeed: 4
+		Speed: 200
+	SmokeTrailWhenDamaged:
+		Offset: -427,0,0
+		MinDamage: Undamaged
+	Contrail@1:
+		Offset: -300,-183,0
+		Color: 00FF0080
+		UsePlayerColor: false 
+	Contrail@2:
+		Offset: -300,183,0
+		Color: 00FF0080
+		UsePlayerColor: false 
+	RevealsShroud:
+		Range: 12c0
+		Type: CenterPosition
+	RenderSprites:
+		Image: scrn
+
+SCRN.Husk.EMP:
+	Inherits: SCRN.Husk
+	Inherits: ^EmpVisualEffect
+
+FACT.CNC.Husk:
+	Inherits: ^BuildingHusk
+	Interactable:
+		Bounds: 72,48
+	Building:
+		Footprint: xxx xxx ===
+		Dimensions: 3,3
+		LocalCenterOffset: 0,-512,0
+	Tooltip:
+		Name: Construction Yard (Destroyed)
+	RenderSprites:
+		Image: cncfact.husk
+		FactionImages:
+			gdi: gdifact.husk
+			ubergdi: gdifact.husk
+			nod: nodfact.husk
+			bossnod: nodfact.husk
+
+POWR.CNC.Husk:
+	Inherits: ^BuildingHusk
+	Interactable:
+		Bounds: 48,48
+	Building:
+		Footprint: xx xx
+		Dimensions: 2,2
+		LocalCenterOffset: 0,-512,0
+	Tooltip:
+		Name: Power Plant (Destroyed)
+	RenderSprites:
+		Image: gdipowr.husk
+		FactionImages:
+			nod: nodpowr.husk
+			bossnod: nodpowr.husk
+
+APWR.CNC.Husk:
+	Inherits: ^BuildingHusk
+	Interactable:
+		Bounds: 48,48
+	Building:
+		Footprint: xx xx
+		Dimensions: 2,2
+		LocalCenterOffset: 0,-512,0
+	Tooltip:
+		Name: Advanced Power Plant (Destroyed)
+	RenderSprites:
+		Image: gdiapwr.husk
+		FactionImages:
+			nod: nodapwr.husk
+			bossnod: nodapwr.husk
+
+PROC.CNC.Husk:
+	Inherits: ^BuildingHusk
+	Interactable:
+		Bounds: 72,56
+	Building:
+		Footprint: xxx xxx ===
+		Dimensions: 3,3
+		LocalCenterOffset: 0,-512,0
+	Tooltip:
+		Name: Tiberium Refinery (Destroyed)
+	RenderSprites:
+		Image: gdiproc.husk
+		FactionImages:
+			nod: nodproc.husk
+			bossnod: nodproc.husk
+
+SILO.CNC.Husk:
+	Inherits: ^BuildingHusk
+	Interactable:
+		Bounds: 48,24
+	Building:
+		Footprint: xx
+		Dimensions: 2,1
+	Tooltip:
+		Name: Tiberium Silo (Destroyed)
+	RenderSprites:
+		Image: gdisilo.husk
+		FactionImages:
+			nod: nodsilo.husk
+			bossnod: nodsilo.husk
+
+PYLE.Husk:
+	Inherits: ^BuildingHusk
+	Interactable:
+		Bounds: 48,48
+	Building:
+		Footprint: xx xx
+		Dimensions: 2,2
+	Tooltip:
+		Name: GDI Barracks (Destroyed)
+	RenderSprites:
+		Image: pyle.husk
+
+HAND.Husk:
+	Inherits: ^BuildingHusk
+	Interactable:
+		Bounds: 48,48
+	Building:
+		Footprint: xx xx
+		Dimensions: 2,2
+	Tooltip:
+		Name: Hand of Nod (Destroyed)
+	RenderSprites:
+		Image: hand.husk
+
+GDIWEAP.Husk:
+	Inherits: ^BuildingHusk
+	Interactable:
+		Bounds: 72,48
+	Building:
+		Footprint: xxx === ===
+		Dimensions: 3,3
+		LocalCenterOffset: 0,-512,0
+	Tooltip:
+		Name: GDI War Factory (Destroyed)
+	RenderSprites:
+		Image: gdiweap.husk
+
+NODWEAP.Husk:
+	Inherits: ^BuildingHusk
+	Interactable:
+		Bounds: 72,48
+	Building:
+		Footprint: xxx === ===
+		Dimensions: 3,3
+		LocalCenterOffset: 0,-512,0
+	Tooltip:
+		Name: Nod War Factory (Destroyed)
+	RenderSprites:
+		Image: nodweap.husk
+
+MINIWEAP.Husk:
+	Inherits: ^BuildingHusk
+	Interactable:
+		Bounds: 72,48
+	Building:
+		Footprint: ___ xxx
+		Dimensions: 3,2
+		LocalCenterOffset: 0,-512,0
+	Tooltip:
+		Name: Mobile War Factory (Destroyed)
+	RenderSprites:
+		Image: miniweap.husk
+
+STRP.Husk:
+	Inherits: ^BuildingHusk
+	Interactable:
+		Bounds: 72,48
+	Building:
+		Footprint: XXXX xxxx ====
+		Dimensions: 4,3
+		LocalCenterOffset: 0,-512,0
+	Tooltip:
+		Name: Airstrip (Destroyed)
+	TransformOnCapture:
+		IntoActor: strp
+	InfiltrateForTransform:
+		IntoActor: strp
+	RenderSprites:
+		Image: strp.husk
+
+FIX.CNC.Husk:
+	Inherits: ^BuildingHusk
+	Interactable:
+		Bounds: 68,34
+	Building:
+		Footprint: === xxx ===
+		Dimensions: 3,3
+	Tooltip:
+		Name: Service Depot (Destroyed)
+	RenderSprites:
+		Image: cncfix.husk
+
+HQ.Husk:
+	Inherits: ^BuildingHusk
+	Interactable:
+		Bounds: 48,40
+	Building:
+		Footprint: Xx xx
+		Dimensions: 2,2
+		LocalCenterOffset: 0,-512,0
+	Tooltip:
+		Name: Communications Center (Destroyed)
+	RenderSprites:
+		Image: hq.husk
+
+HQ.GDI.Husk:
+	Inherits: ^BuildingHusk
+	Interactable:
+		Bounds: 48,40
+	Building:
+		Footprint: Xx xx
+		Dimensions: 2,2
+		LocalCenterOffset: 0,-512,0
+	Tooltip:
+		Name: Communications Center (Destroyed)
+	RenderSprites:
+		Image: gdihq.husk
+
+HQ.NOD.Husk:
+	Inherits: ^BuildingHusk
+	Interactable:
+		Bounds: 48,40
+	Building:
+		Footprint: Xx xx
+		Dimensions: 2,2
+		LocalCenterOffset: 0,-512,0
+	Tooltip:
+		Name: Communications Center (Destroyed)
+	RenderSprites:
+		Image: nodhq.husk
+
+EYE.Husk:
+	Inherits: ^BuildingHusk
+	Interactable:
+		Bounds: 48,40
+	Building:
+		Footprint: Xx xx
+		Dimensions: 2,2
+		LocalCenterOffset: 0,-512,0
+	Tooltip:
+		Name: Advanced Communications Center (Destroyed)
+	RenderSprites:
+		Image: eye.husk
+
+NCOM.Husk:
+	Inherits: ^BuildingHusk
+	Interactable:
+		Bounds: 48,40
+	Building:
+		Footprint: Xx xx
+		Dimensions: 2,2
+		LocalCenterOffset: 0,-512,0
+	Tooltip:
+		Name: Intelligence Center (Destroyed)
+	RenderSprites:
+		Image: ncom.husk
+
+TECH.Husk:
+	Inherits: ^BuildingHusk
+	Interactable:
+		Bounds: 72,48
+	Building:
+		Footprint: XxX XxX
+		Dimensions: 3,2
+		LocalCenterOffset: 0,-512,0
+	Tooltip:
+		Name: GDI Tech Center (Destroyed)
+	RenderSprites:
+		Image: miss.husk
+
+TMPL.Husk:
+	Inherits: ^BuildingHusk
+	Interactable:
+		Bounds: 72,48
+	Building:
+		Footprint: xxx xxx
+		Dimensions: 3,2
+		LocalCenterOffset: 0,-512,0
+	Tooltip:
+		Name: Temple of Nod (Destroyed)
+	RenderSprites:
+		Image: tmpl.husk
+
+GTWR.Husk:
+	Inherits: ^BuildingHusk
+	Interactable:
+		Bounds: 24,24
+	Tooltip:
+		Name: Guard Tower (Destroyed)
+	RenderSprites:
+		Image: gtwr.husk
+
+LTUR.Husk:
+	Inherits: ^BuildingHusk
+	Interactable:
+		Bounds: 24,24
+	Turreted:
+		TurnSpeed: 12
+		InitialFacing: 56
+	Tooltip:
+		Name: Laser Turret (Destroyed)
+	RenderSprites:
+		Image: ltur.husk
+
+ATWR.Husk:
+	Inherits: ^BuildingHusk
+	Interactable:
+		Bounds: 24,24
+	Tooltip:
+		Name: Advanced Guard Tower (Destroyed)
+	RenderSprites:
+		Image: atwr.husk
+
+OBEL.Husk:
+	Inherits: ^BuildingHusk
+	Interactable:
+		Bounds: 24,24
+	Tooltip:
+		Name: Obelisk (Destroyed)
+	RenderSprites:
+		Image: obel.husk
+
+NODBIO.Husk:
+	Inherits: ^BuildingHusk
+	Interactable:
+		Bounds: 48,48
+	Building:
+		Footprint: xx xx
+		Dimensions: 2,2
+	Tooltip:
+		Name: Biochemical Lab (Destroyed)
+	RenderSprites:
+		Image: nodbio.husk
+
+GDIHOSP.Husk:
+	Inherits: ^BuildingHusk
+	Interactable:
+		Bounds: 48,48
+	Building:
+		Footprint: xx xx
+		Dimensions: 2,2
+	Tooltip:
+		Name: Hospital (Destroyed)
+	RenderSprites:
+		Image: hosp.husk
+
+EMPB.Husk:
+	Inherits: ^BuildingHusk
+	Interactable:
+		Bounds: 48,24
+	Building:
+		Footprint: xx
+		Dimensions: 2,1
+		LocalCenterOffset: 0,-512,0
+	Tooltip:
+		Name: EMP Missile Launcher (Destroyed)
+
+MSLO.Nod.Husk:
+	Inherits: ^BuildingHusk
+	Interactable:
+		Bounds: 48,24
+	Building:
+		Footprint: xx
+		Dimensions: 2,1
+		LocalCenterOffset: 0,-256,0
+	Tooltip:
+		Name: Missile Silo (Destroyed)
+	RenderSprites:
+		Image: nodmslo.husk
+
+FRSTGEN.Husk:
+	Inherits: ^BuildingHusk
+	Interactable:
+		Bounds: 48,28,0,2
+	Building:
+		Footprint: xx
+		Dimensions: 2,1
+	Tooltip:
+		Name: Firestorm Generator (Destroyed)
+
+SGEN.Husk:
+	Inherits: ^BuildingHusk
+	Interactable:
+		Bounds: 72,48
+	Building:
+		Footprint: xxx xxx
+		Dimensions: 3,2
+		LocalCenterOffset: 0,0,0
+	Tooltip:
+		Name: Stealth Generator (Destroyed)

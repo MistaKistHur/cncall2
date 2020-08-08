@@ -1,0 +1,892 @@
+MINV:
+	Inherits: ^Mine
+	RenderSprites:
+		Image: minv
+		FactionImages:
+			soviet: minp
+			russia: minp
+			ukraine: minp
+			belarus: minp
+	Explodes:
+		Weapon: ATMine
+
+# Only kept for backwards-compatibility with existing and imported maps, use MINV instead
+MINP:
+	Inherits: MINV
+	Explodes:
+		Weapon: APMine
+
+CRATE:
+	Inherits: ^Crate
+	GiveCashCrateAction:
+		Amount: 1000
+		SelectionShares: 50
+		UseCashTick: true
+	LevelUpCrateAction@normal:
+		SelectionShares: 40
+	LevelUpCrateAction@superlevel:
+		Levels: 4
+		SelectionShares: 1
+	ExplodeCrateAction@fire:
+		Weapon: CrateNapalm
+		SelectionShares: 5
+	ExplodeCrateAction@boom:
+		Weapon: CrateExplosion
+		SelectionShares: 5
+	ExplodeCrateAction@ore:
+		Weapon: OreExplosion
+		SelectionShares: 3
+	ExplodeCrateAction@nuke:
+		Weapon: MiniNuke
+		SelectionShares: 1
+	HideMapCrateAction:
+		SelectionShares: 5
+		Sequence: hide-map
+	HealUnitsCrateAction:
+		Sound: heal2.aud
+		SelectionShares: 2
+		Sequence: heal
+	RevealMapCrateAction:
+		SelectionShares: 1
+		Sequence: reveal-map
+	DuplicateUnitCrateAction:
+		SelectionShares: 10
+		MaxAmount: 5
+		MinAmount: 1
+		MaxDuplicateValue: 1500
+	GiveMcvCrateAction@ra:
+		SelectionShares: 0
+		NoBaseSelectionShares: 100
+		Units: mcv
+		ValidFactions: allies, england, france, germany, soviet, russia, ukraine, belarus
+	GiveMcvCrateAction@cnc:
+		SelectionShares: 0
+		NoBaseSelectionShares: 100
+		Units: mcv.cnc
+		ValidFactions: gdi, ubergdi, nod, bossnod
+	GiveUnitCrateAction@harv:
+		SelectionShares: 5
+		Units: harv.crate
+		ValidFactions: allies, england, france, germany
+		TimeDelay: 7500
+	GiveUnitCrateAction@harvsoviet:
+		SelectionShares: 5
+		Units: harv.soviet.crate
+		ValidFactions: soviet, russia, ukraine, belarus
+		TimeDelay: 7500
+	GiveUnitCrateAction@harvcnc:
+		SelectionShares: 5
+		Units: harv.cnc
+		ValidFactions: gdi, ubergdi, nod, bossnod
+		TimeDelay: 7500
+	GiveUnitCrateAction@jeep:
+		SelectionShares: 6
+		Units: jeep
+		ValidFactions: allies, england, france, germany
+		Prerequisites: techlevel.low
+	GiveUnitCrateAction@ftrk:
+		SelectionShares: 6
+		Units: ftrk
+		ValidFactions: soviet, russia, ukraine, belarus
+		Prerequisites: techlevel.low
+	GiveUnitCrateAction@hmmv:
+		SelectionShares: 6
+		Units: hmmv
+		ValidFactions: gdi, ubergdi
+		Prerequisites: techlevel.low
+	GiveUnitCrateAction@bggy:
+		SelectionShares: 6
+		Units: bggy
+		ValidFactions: nod, bossnod
+		Prerequisites: techlevel.low
+	GiveUnitCrateAction@1tnk:
+		SelectionShares: 6
+		Units: 1tnk
+		ValidFactions: allies, england, france, germany
+		Prerequisites: techlevel.low
+	GiveUnitCrateAction@3tnk1b:
+		SelectionShares: 6
+		Units: 3tnk.1b
+		ValidFactions: soviet, russia, ukraine, belarus
+		Prerequisites: techlevel.low
+	GiveUnitCrateAction@mrpg:
+		SelectionShares: 6
+		Units: mrpg
+		ValidFactions: gdi, ubergdi
+		Prerequisites: techlevel.low
+	GiveUnitCrateAction@ltnk:
+		SelectionShares: 6
+		Units: 1tnk.nod
+		ValidFactions: nod, bossnod
+		Prerequisites: techlevel.low
+	GiveUnitCrateAction@apc:
+		SelectionShares: 6
+		Units: apc.crate
+		ValidFactions: allies, england, france, germany
+		Prerequisites: techlevel.low
+	GiveUnitCrateAction@apc.soviet:
+		SelectionShares: 6
+		Units: apc.soviet
+		ValidFactions: soviet, russia, ukraine, belarus
+		Prerequisites: techlevel.low
+	GiveUnitCrateAction@gapc:
+		SelectionShares: 6
+		Units: gapc
+		ValidFactions: gdi, ubergdi
+		Prerequisites: techlevel.low
+	GiveUnitCrateAction@napc:
+		SelectionShares: 6
+		Units: napc
+		ValidFactions: nod, bossnod
+		Prerequisites: techlevel.low
+	GiveUnitCrateAction@arty:
+		SelectionShares: 5
+		Units: arty
+		ValidFactions: allies, england, france, germany
+		Prerequisites: techlevel.medium, dome
+	GiveUnitCrateAction@v2rl:
+		SelectionShares: 5
+		Units: v2rl
+		ValidFactions: soviet, russia, ukraine, belarus
+		Prerequisites: techlevel.medium, dome
+	GiveUnitCrateAction@mrls:
+		SelectionShares: 5
+		Units: mrls
+		ValidFactions: gdi, ubergdi
+		Prerequisites: techlevel.medium, dome
+	GiveUnitCrateAction@howi:
+		SelectionShares: 5
+		Units: arty.nod
+		ValidFactions: nod, bossnod
+		Prerequisites: techlevel.medium, dome
+	GiveUnitCrateAction@2tnk:
+		SelectionShares: 4
+		Units: 2tnk
+		ValidFactions: allies, england, france, germany
+		Prerequisites: techlevel.medium, fix
+	GiveUnitCrateAction@3tnk:
+		SelectionShares: 4
+		Units: 3tnk
+		ValidFactions: soviet, russia, ukraine, belarus
+		Prerequisites: techlevel.medium, fix
+	GiveUnitCrateAction@2tnk.gdi:
+		SelectionShares: 4
+		Units: 2tnk.gdi
+		ValidFactions: gdi, ubergdi
+		Prerequisites: techlevel.medium, fix
+	GiveUnitCrateAction@ftnk:
+		SelectionShares: 4
+		Units: ftnk
+		ValidFactions: nod, bossnod
+		Prerequisites: techlevel.medium, fix
+	GiveUnitCrateAction@msam:
+		SelectionShares: 6
+		Units: msam
+		ValidFactions: allies, england, france, germany
+		Prerequisites: techlevel.high, dome
+	GiveUnitCrateAction@bikes:
+		SelectionShares: 3
+		Units: bike,bike
+		ValidFactions: nod
+		Prerequisites: techlevel.medium, dome
+	GiveUnitCrateAction@ctnk:
+		SelectionShares: 2
+		Units: ctnk
+		ValidFactions: allies, england, france, germany
+		Prerequisites: techlevel.high, techcenter
+	GiveUnitCrateAction@4tnk:
+		SelectionShares: 2
+		Units: 4tnk
+		ValidFactions: soviet, russia, ukraine, belarus
+		Prerequisites: techlevel.high, techcenter, fix
+	GiveUnitCrateAction@4tnk.gdi:
+		SelectionShares: 2
+		Units: 4tnk.gdi.rail
+		ValidFactions: gdi
+		Prerequisites: techlevel.high, techcenter, fix
+	GiveUnitCrateAction@ssm:
+		SelectionShares: 2
+		Units: ssm
+		ValidFactions: nod
+		Prerequisites: techlevel.high, techcenter, dome	
+	GiveUnitCrateAction@mrj:
+		SelectionShares: 2
+		Units: mrj.crate
+		Prerequisites: techcenter, techlevel.high
+	GiveUnitCrateAction@disr:
+		SelectionShares: 1
+		Units: disr
+		ValidFactions: gdi, ubergdi
+		Prerequisites: techcenter, techlevel.high
+	GiveUnitCrateAction@mwav:
+		SelectionShares: 1
+		Units: mwav
+		ValidFactions: nod, bossnod
+		Prerequisites: techcenter, techlevel.high
+	GiveUnitCrateAction@supertank:
+		SelectionShares: 1
+		Units: 5tnk
+		Prerequisites: techcenter
+	GiveUnitCrateAction@visceroid:
+		Units: vice
+		Owner: Creeps
+		SelectionShares: 3
+	GiveUnitCrateAction@squadlight:
+		SelectionShares: 10
+		Units: e1,e1,e1,e3,e3
+		ValidFactions: allies, england, france, germany, soviet, russia, ukraine, belarus, gdi, ubergdi, nod, bossnod
+	GiveUnitCrateAction@squadlightallies:
+		SelectionShares: 8
+		Units: e1,e1,e1,e3,e3,medi,jeep
+		ValidFactions: allies, england, france, germany
+		TimeDelay: 2250
+	GiveUnitCrateAction@squadlightsoviet:
+		SelectionShares: 9
+		Units: e1,e1,e1,e3,e3,e4,ftrk
+		ValidFactions: soviet, russia, ukraine, belarus
+		TimeDelay: 2250
+	GiveUnitCrateAction@squadlightgdi:
+		SelectionShares: 9
+		Units: e1,e1,e2,e2,e3,medi,mrpg
+		ValidFactions: gdi
+		TimeDelay: 2250
+	GiveUnitCrateAction@squadlightnod:
+		SelectionShares: 9
+		Units: e1,e1,e1,e3,e3,bggy,bggy
+		ValidFactions: nod
+		TimeDelay: 2250
+	GiveUnitCrateAction@squadheavyalliesa:
+		SelectionShares: 7
+		Units: e1,e1,e1,e1,e3,e3,e3,e6,medi
+		ValidFactions: allies, england, france, germany
+		TimeDelay: 4500
+	GiveUnitCrateAction@squadheavyalliesb:
+		SelectionShares: 6
+		Units: e1,e1,e1,medi,e3,e3,1tnk,2tnk,1tnk
+		ValidFactions: allies, england, france, germany
+		TimeDelay: 4500
+	GiveUnitCrateAction@squadheavysovieta:
+		SelectionShares: 7
+		Units: e1,e1,e4,e4,e3,e3,e3,e6
+		ValidFactions: soviet, russia, ukraine, belarus
+		TimeDelay: 4500
+	GiveUnitCrateAction@squadheavysovietb:
+		SelectionShares: 6
+		Units: e1,e1,e1,e4,e3,e3,ftrk,ftrk,3tnk
+		ValidFactions: soviet, russia, ukraine, belarus
+		TimeDelay: 4500
+	GiveUnitCrateAction@squadheavygdia:
+		SelectionShares: 7
+		Units: e1,e1,e1,e2,e3,e3,e2,e6,medi
+		ValidFactions: gdi
+		TimeDelay: 4500
+	GiveUnitCrateAction@squadheavygdib:
+		SelectionShares: 6
+		Units: e1,e1,e1,medi,e3,e3,hmmv,hmmv,2tnk.gdi
+		ValidFactions: gdi
+		TimeDelay: 4500
+	GiveUnitCrateAction@squadheavynoda:
+		SelectionShares: 7
+		Units: e1,e1,e1,e5,e5,e3,e3,e3,e6
+		ValidFactions: nod
+		TimeDelay: 4500
+	GiveUnitCrateAction@squadheavynodb:
+		SelectionShares: 6
+		Units: e1,e1,e1,e5,e3,e3,1tnk.nod,ftnk,1tnk.nod
+		ValidFactions: nod
+		TimeDelay: 4500
+	GiveUnitCrateAction@horde:
+		SelectionShares: 3
+		Units: tecn,tecn,tecn,tecn,tecn,tecn,tecn,tecn
+	SupportPowerCrateAction@pbombs:
+		Proxy: crate.parabombs
+		SelectionShares: 1
+		TimeDelay: 7500
+		Sequence: parabombs
+	SupportPowerCrateAction@nuke:
+		Proxy: crate.nuke
+		SelectionShares: 1
+		TimeDelay: 13500
+		Sequence: nuke
+	SupportPowerCrateAction@chrono:
+		Proxy: crate.chrono
+		SelectionShares: 1
+		TimeDelay: 3000
+		Sequence: chrono
+	SupportPowerCrateAction@ion:
+		Proxy: crate.ion
+		SelectionShares: 1
+		TimeDelay: 6750
+		Sequence: nuke
+	SupportPowerCrateAction@airstrike:
+		Proxy: crate.airstrike
+		SelectionShares: 1
+		TimeDelay: 7500
+		Sequence: parabombs
+	GrantExternalConditionCrateAction@invuln:
+		Range: 1c512
+		MaxExtraCollectors: 9
+		SelectionShares: 5
+		Sequence: invuln
+		Sound: ironcur9.aud
+		Condition: invulnerability
+		Duration: 400
+	GrantExternalConditionCrateAction@armor:
+		Range: 1c512
+		SelectionShares: 5
+		MaxExtraCollectors: 9
+		Sequence: armor
+		Sound: cannon1.aud
+		Condition: armor.crate
+		Duration: 400
+	GrantExternalConditionCrateAction@firepower:
+		Range: 1c512
+		SelectionShares: 5
+		MaxExtraCollectors: 9
+		Sequence: fpower
+		Sound: firebl3.aud
+		Condition: frenzyison
+		Duration: 400
+	GrantExternalConditionCrateAction@speed:
+		Range: 1c512
+		SelectionShares: 5
+		MaxExtraCollectors: 9
+		Sequence: speed
+		Sound: missile1.aud
+		Condition: speed.crate
+		Duration: 400
+	GrantExternalConditionCrateAction@cloak:
+		Range: 1c512
+		SelectionShares: 5
+		MaxExtraCollectors: 9	
+		Sequence: stealth
+		Sound: appear1.aud
+		Condition: invis.crate
+		Duration: 400
+	GrantExternalConditionCrateAction@emp:
+		Range: 1c512
+		SelectionShares: 5
+		MaxExtraCollectors: 9	
+		Sequence: hide-map
+		Sound: tesla1.aud
+		Condition: empdisable
+		Duration: 400
+
+MONEYCRATE:
+	Inherits: ^Crate
+	Tooltip:
+		Name: Money Crate
+	GiveCashCrateAction:
+		Amount: 500
+		SelectionShares: 1
+		UseCashTick: true
+	RenderSprites:
+		Image: wcrate
+
+HEALCRATE:
+	Inherits: ^Crate
+	Tooltip:
+		Name: Heal Crate
+	HealUnitsCrateAction:
+		Sound: heal2.aud
+		SelectionShares: 1
+		Sequence: heal
+
+WCRATE:
+	Inherits: ^Crate
+	Tooltip:
+		Name: Wooden Crate
+	RenderSprites:
+		Image: wcrate
+
+SCRATE:
+	Inherits: ^Crate
+	Tooltip:
+		Name: Steel Crate
+
+crate.parabombs:
+	AlwaysVisible:
+	AirstrikePower@ParabombsOneShot:
+		OrderName: CrateParabombs
+		Icon: parabombs
+		Description: Parabombs (Single Use)
+		LongDesc: A squad of Badgers drop parachuted\nbombs on your target.
+		SelectTargetSpeechNotification: SelectTarget
+		CameraActor: camera
+		CameraRemoveDelay: 150
+		UnitType: badr.bomber
+		QuantizedFacings: 8
+		DisplayBeacon: true
+		BeaconPoster: pbmbicon
+		SquadSize: 3
+		SquadOffset: 1792,1792,0
+		ArrowSequence: arrow
+		ClockSequence: clock
+		CircleSequence: circles
+		Cursor: airstrike
+		UseDirectionalTarget: True
+		DirectionArrowAnimation: paradirection
+		SupportPowerPaletteOrder: 3
+		ChargeInterval: 0
+		OneShot: true
+
+crate.airstrike:
+	AlwaysVisible:
+	AirstrikePower@AirstrikeOneShot:
+		OrderName: CrateAirstrike
+		Icon: airstrike
+		SquadSize: 3
+		QuantizedFacings: 8
+		Description: Air Strike (Single Use)
+		LongDesc: Deploy an aerial napalm strike.\nBurns buildings and infantry along a line.
+		SelectTargetSpeechNotification: SelectTarget
+		UnitType: a10.bomber
+		DisplayBeacon: True
+		BeaconPoster: airstrike
+		DisplayRadarPing: True
+		CameraActor: camera.paradrop
+		ArrowSequence: arrow
+		ClockSequence: clock
+		CircleSequence: circles
+		UseDirectionalTarget: True
+		DirectionArrowAnimation: paradirection
+		Cursor: airstrike
+		SupportPowerPaletteOrder: 3
+		ChargeInterval: 0
+		OneShot: true
+
+crate.nuke:
+	AlwaysVisible:
+	NukePower@NukeMissileOneShot:
+		OrderName: CrateNuke
+		Cursor: nuke
+		Icon: abomb
+		ChargeInterval: 0
+		Description: Atom Bomb (Single Use)
+		LongDesc: Launches a devastating atomic bomb at target location
+		BeginChargeSpeechNotification: AbombPrepping
+		EndChargeSpeechNotification: AbombReady
+		SelectTargetSpeechNotification: SelectTarget
+		InsufficientPowerSpeechNotification: InsufficientPower
+		IncomingSpeechNotification: AbombLaunchDetected
+		SkipAscent: True
+		MissileWeapon: atomic
+		MissileDelay: 5
+		SpawnOffset: 1c0,427,0
+		DisplayTimerStances: Ally, Neutral, Enemy
+		DisplayBeacon: True
+		DisplayRadarPing: True
+		BeaconPoster: atomicon
+		FlashType: Nuke
+		CameraRange: 10c0
+		ArrowSequence: arrow
+		ClockSequence: clock
+		CircleSequence: circles
+		SupportPowerPaletteOrder: 1
+		OneShot: true
+
+crate.ion:
+	AlwaysVisible:
+	IonCannonPower@IonCannonOneShot:
+		OrderName: CrateIon
+		Icon: ioncannon
+		ChargeInterval: 0
+		Description: Ion Cannon (Single Use)
+		LongDesc: Initiate an Ion Cannon strike.\nApplies instant damage to an small area.
+		OnFireSound: ion1.aud
+		Cursor: ioncannon
+		SelectTargetSpeechNotification: SelectTarget 
+		DisplayRadarPing: True
+		CameraActor: camera.paradrop
+		SupportPowerPaletteOrder: 1
+		OneShot: true
+
+crate.chrono:
+	AlwaysVisible:
+	ChronoshiftPower@ChronoshiftOneShot:
+		OrderName: CrateChrono
+		Icon: chrono
+		ChargeInterval: 0
+		Description: Chronoshift (Single Use)
+		LongDesc: Teleports a small group of units\nacross the map for 20 seconds.
+		SelectTargetSpeechNotification: SelectTarget
+		InsufficientPowerSpeechNotification: InsufficientPower
+		BeginChargeSpeechNotification: ChronosphereCharging
+		EndChargeSpeechNotification: ChronosphereReady
+		Duration: 400
+		KillCargo: true
+		DisplayRadarPing: True
+		SupportPowerPaletteOrder: 2
+		OneShot: true
+
+CAMERA:
+	Interactable:
+	EditorOnlyTooltip:
+		Name: (reveals area to owner)
+	AlwaysVisible:
+	Immobile:
+		OccupiesSpace: false
+	RevealsShroud:
+		Range: 10c0
+		Type: CenterPosition
+	BodyOrientation:
+		QuantizedFacings: 1
+	WithSpriteBody:
+	RenderSpritesEditorOnly:
+		Image: camera
+	MapEditorData:
+		Categories: System
+
+camera.paradrop:
+	Inherits: CAMERA
+	EditorOnlyTooltip:
+		Name: (support power proxy camera)
+	RevealsShroud:
+		Range: 6c0
+
+camera.paradrop.detector:
+	Inherits: camera.paradrop
+	DetectCloaked:
+		Range: 6c0
+		CloakTypes: Cloak, Thief
+
+camera.spyplane:
+	Inherits: CAMERA
+	EditorOnlyTooltip:
+		Name: (support power proxy camera)
+
+camera.minimum:
+	Inherits: CAMERA
+	EditorOnlyTooltip:
+		Name: (support power proxy camera)
+	RevealsShroud:
+		Range: 1c0
+
+SONAR:
+	Inherits: camera.spyplane
+	EditorOnlyTooltip:
+		Name: (support power proxy camera)
+	-RevealsShroud:
+	DetectCloaked:
+		CloakTypes: Underwater
+		Range: 10c0
+
+FLARE:
+	Immobile:
+		OccupiesSpace: false
+	RevealsShroud:
+		Range: 3c0
+		Type: CenterPosition
+	RenderSprites:
+		Image: smokland
+	WithSpriteBody:
+		StartSequence: open
+	BodyOrientation:
+		QuantizedFacings: 1
+	HiddenUnderFog:
+		Type: CenterPosition
+	Interactable:
+	Tooltip:
+		Name: Flare
+		ShowOwnerRow: false
+	MapEditorData:
+		Categories: Decoration
+
+MINE:
+	Inherits@1: ^SpriteActor
+	ConditionManager:
+	Interactable:
+	HiddenUnderShroud:
+	Tooltip:
+		Name: Ore Mine
+	RenderSprites:
+		Palette: terrain
+	WithSpriteBody:
+	Building:
+		Footprint: x
+		Dimensions: 1,1
+	AppearsOnRadar:
+	RadarColorFromTerrain:
+		Terrain: Ore
+	AppearsOnMapPreview:
+		Terrain: Ore
+	SeedsResource:
+		Interval: 63
+	MapEditorData:
+		Categories: Resource spawn
+	RequiresSpecificOwners:
+		ValidOwnerNames: Neutral
+	ActorSpawner:
+
+GMINE:
+	Inherits@1: ^SpriteActor
+	ConditionManager:
+	Interactable:
+	HiddenUnderShroud:
+	Tooltip:
+		Name: Gem Mine
+	RenderSprites:
+		Palette: player
+	WithSpriteBody:
+	Building:
+		Footprint: x
+		Dimensions: 1,1
+	AppearsOnRadar:
+	RadarColorFromTerrain:
+		Terrain: Gems
+	AppearsOnMapPreview:
+		Terrain: Gems
+	SeedsResource:
+		ResourceType: Gems
+		Interval: 63
+	MapEditorData:
+		Categories: Resource spawn
+	RequiresSpecificOwners:
+		ValidOwnerNames: Neutral
+	ActorSpawner:
+
+RAILMINE:
+	Inherits@1: ^SpriteActor
+	Interactable:
+	HiddenUnderShroud:
+	Tooltip:
+		Name: Abandoned Mine
+	RenderSprites:
+		Palette: player
+	WithSpriteBody:
+	Building:
+		Footprint: xx
+		Dimensions: 2,1
+	MapEditorData:
+		ExcludeTilesets: INTERIOR
+		Categories: Civilian building
+	RequiresSpecificOwners:
+		ValidOwnerNames: Neutral
+
+DRILLMINE:
+	Inherits@1: ^SpriteActor
+	ConditionManager:
+	Interactable:
+	HiddenUnderShroud:
+		AlwaysVisibleStances: Ally, Neutral, Enemy
+	Tooltip:
+		Name: Ore Drill
+	WithSpriteBody:
+	Building:
+		Footprint: x
+		Dimensions: 1,1
+	AppearsOnRadar:
+	RadarColorFromTerrain:
+		Terrain: Ore
+	SeedsResource:
+		Interval: 50
+	WithIdleAnimation:
+		Interval: 175
+	RenderSprites:
+		Palette: player
+	MapEditorData:
+		Categories: Resource spawn
+	RequiresSpecificOwners:
+		ValidOwnerNames: Neutral
+
+QUEE:
+	Inherits@1: ^SpriteActor
+	Inherits@shape: ^2x1Shape
+	Interactable:
+	HiddenUnderShroud:
+	Tooltip:
+		Name: Queen Ant
+	Building:
+		Footprint: xx
+		Dimensions: 2,1
+	WithSpriteBody:
+	AppearsOnRadar:
+	MapEditorData:
+		RequireTilesets: INTERIOR
+		Categories: Critter
+
+LAR1:
+	Inherits@1: ^SpriteActor
+	Inherits@shape: ^1x1Shape
+	Interactable:
+	HiddenUnderShroud:
+	Tooltip:
+		Name: Ant Larva
+	Building:
+		Footprint: x
+		Dimensions: 1,1
+	RenderSprites:
+		Palette: terrain
+	WithSpriteBody:
+	AppearsOnRadar:
+	MapEditorData:
+		RequireTilesets: INTERIOR
+		Categories: Critter
+
+LAR2:
+	Inherits@1: LAR1
+	Tooltip:
+		Name: Ant Larvae
+
+powerproxy.parabombs:
+	AlwaysVisible:
+	AirstrikePower:
+		Icon: parabombs
+		Description: Parabombs (Single Use)
+		LongDesc: A Badger drops a load of parachuted bombs on your target.
+		OneShot: true
+		AllowMultiple: true
+		UnitType: badr.bomber
+		SelectTargetSpeechNotification: SelectTarget
+		QuantizedFacings: 8
+		DisplayBeacon: True
+		BeaconPoster: pbmbicon
+		CameraActor: camera
+		CameraRemoveDelay: 150
+		ArrowSequence: arrow
+		ClockSequence: clock
+		CircleSequence: circles
+
+powerproxy.sonarpulse:
+	AlwaysVisible:
+	SpawnActorPower:
+		Icon: sonar
+		Description: Sonar Pulse
+		LongDesc: Reveals all submarines in the vicinity for a \nshort time.
+		ChargeInterval: 750
+		EndChargeSpeechNotification: SonarPulseReady
+		SelectTargetSpeechNotification: SelectTarget
+		Actor: sonar
+		LifeTime: 250
+		DeploySound: sonpulse.aud
+		EffectImage: moveflsh
+		EffectPalette: moveflash
+		SupportPowerPaletteOrder: 80
+
+powerproxy.paratroopers:
+	AlwaysVisible:
+	ParatroopersPower:
+		Icon: paratroopers
+		Description: Paratroopers
+		LongDesc: A Badger drops a squad of infantry\nanywhere on the map.
+		DropItems: E1,E1,E1,E3,E3
+		SelectTargetSpeechNotification: SelectTarget
+		AllowImpassableCells: false
+		QuantizedFacings: 8
+		CameraActor: camera.paradrop
+		DisplayBeacon: true
+		BeaconPoster: pinficon
+		ArrowSequence: arrow
+		ClockSequence: clock
+		CircleSequence: circles
+
+barracks.upgraded:
+	AlwaysVisible:
+	ProvidesPrerequisite:
+
+vehicles.upgraded:
+	AlwaysVisible:
+	ProvidesPrerequisite:
+
+aircraft.upgraded:
+	AlwaysVisible:
+	ProvidesPrerequisite:
+
+tech.stolen:
+	AlwaysVisible:
+	ProvidesPrerequisite:
+	Interactable:
+	Tooltip:
+		Name: enemy Tech Center infiltrated
+	Buildable:
+		Description: Tech Unit
+
+mpspawn:
+	Interactable:
+	EditorOnlyTooltip:
+		Name: (multiplayer player starting point)
+	AlwaysVisible:
+	Immobile:
+		OccupiesSpace: false
+	WithSpriteBody:
+	RenderSpritesEditorOnly:
+	BodyOrientation:
+		QuantizedFacings: 1
+	MapEditorData:
+		Categories: System
+	RequiresSpecificOwners:
+		ValidOwnerNames: Neutral
+
+waypoint:
+	Interactable:
+	EditorOnlyTooltip:
+		Name: (waypoint for scripted behavior)
+	AlwaysVisible:
+	Immobile:
+		OccupiesSpace: false
+	WithSpriteBody:
+	RenderSpritesEditorOnly:
+	BodyOrientation:
+		QuantizedFacings: 1
+	MapEditorData:
+		Categories: System
+
+fact.colorpicker:
+	Inherits: FACT
+	-Buildable:
+	-MapEditorData:
+	RenderSprites:
+		Image: fact
+		Palette: colorpicker
+
+CTFLAG:
+	Inherits: ^TechBuilding
+	Building:
+		Footprint: x
+		Dimensions: 1,1
+	Tooltip:
+		Name: Flag
+	WithBuildingBib:
+		HasMinibib: true
+	-HitShape:
+	-Health:
+	-Explodes:
+	-Selectable:
+	-SelectionDecorations:
+	-Targetable:
+	MapEditorData:
+		Categories: Decoration
+	Interactable:
+
+dummy.qtnk:
+	Interactable:
+	EditorOnlyTooltip:
+		Name: (dummy to workaround QTNK)
+	AlwaysVisible:
+	Immobile:
+		OccupiesSpace: false
+	RevealsShroud:
+		Range: 1c0
+		Type: CenterPosition
+	KillsSelf:
+		Delay: 144
+	BodyOrientation:
+		QuantizedFacings: 1
+	WithSpriteBody:
+	RenderSpritesEditorOnly:
+		Image: camera
+
+dummy.firestorm:
+	Inherits: CAMERA
+	Buildable:
+		Queue: Dummy
+	EditorOnlyTooltip:
+		Name: (Firestorm sp proxy)
+	-RevealsShroud:
+	ProvidesPrerequisite@firestorm:
+		Prerequisite: firestorm
+	KillsSelf@firestorm:
+		Delay: 2250
+		RemoveInstead: true
+	Tooltip:
+		Name: Firestorm Internal Works
