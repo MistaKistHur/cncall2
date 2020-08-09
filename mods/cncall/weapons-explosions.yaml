@@ -437,7 +437,7 @@ EMPExplode:
 	-Warhead@2Eff:
 	-Warhead@Smu:
 	Warhead@EMP: GrantExternalCondition
-		Range: 1c256
+		Range: 1c768
 		Duration: 250
 		Condition: empdisable
 		ValidTargets: Ground, Vehicle

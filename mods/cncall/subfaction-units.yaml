@@ -438,8 +438,7 @@ SAPC:
 		InitialDelay: 150
 		CloakDelay: 150
 		UncloakOn: Attack, Unload, Dock, Damage, Heal
-		PauseOnCondition: cloak-force-disabled && empdisable && intransit
-		RequiresCondition: !notmobile
+		RequiresCondition: !notmobile && !cloak-force-disabled && !empdisable && !unit.sellable && !intransit
 	GrantConditionOnDamageState@UNCLOAK:
 		Condition: cloak-force-disabled
 		ValidDamageStates: Critical
@@ -635,12 +634,16 @@ SRTY:
 	Health:
 		HP: 12500
 	Armament:
-		LocalOffset: 586,0,468
+		Weapon: 155mm.stealth
+		LocalOffset: 586,0,512
 	Cloak:
 		InitialDelay: 150
 		CloakDelay: 150
+		CloakSound: appear1.aud
+		UncloakSound: appear1.aud
+		IsPlayerPalette: true
 		UncloakOn: Attack, Unload, Dock, Damage, Heal
-		PauseOnCondition: cloak-force-disabled && empdisable
+		RequiresCondition: !cloak-force-disabled && !empdisable && !unit.sellable
 	GrantConditionOnDamageState@UNCLOAK:
 		Condition: cloak-force-disabled
 		ValidDamageStates: Critical

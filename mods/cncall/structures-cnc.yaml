@@ -292,6 +292,9 @@ HAND:
 	-ProvidesPrerequisite@russia:
 	-ProvidesPrerequisite@ukraine:
 	-ProvidesPrerequisite@belarus:
+	-Exit@1:
+	-Exit@2:
+	-Selectable:
 	ProvidesPrerequisite@nod:
 		Factions: nod, bossnod
 		Prerequisite: infantry.nod
@@ -306,8 +309,6 @@ HAND:
 	Tooltip:
 		Name: Hand of Nod
 	RallyPoint:
-	-Exit@1:
-	-Exit@2:
 	Exit@1:
 		RequiresCondition: !being-captured
 		SpawnOffset: -1026,380,0
@@ -318,7 +319,6 @@ HAND:
 		SpawnOffset: 298,1024,0
 		ExitCell: 1,2
 		ProductionTypes: Infantry, Soldier
-	-Selectable:
 	Selectable:
 		Bounds: 48,48
 		DecorationBounds: 48,68,0,-10
@@ -1420,6 +1420,7 @@ EMPB:
 	Inherits: ^Defense
 	Inherits@IDISABLE: ^DisableOnLowPowerOrPowerDown
 	Inherits@shape: ^2x1Shape
+	-ActorPreviewPlaceBuildingPreview:
 	-WithSpriteBody:
 	Buildable:
 		Queue: Defense
@@ -1504,6 +1505,9 @@ EMPB:
 		TerrainTypes: Clear,Road
 	GpsDot:
 		String: EMP
+	SequencePlaceBuildingPreview:
+		Sequence: place
+		SequencePalette: placebuilding
 
 FRSTGEN:
 	Inherits: ^ScienceBuilding

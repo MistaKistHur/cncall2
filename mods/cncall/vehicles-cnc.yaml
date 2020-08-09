@@ -1011,7 +1011,7 @@ STNK.Nod:
 		UncloakSound: appear1.aud
 		UncloakOn: Attack, Dock, Damage, Heal
 		IsPlayerPalette: true
-		PauseOnCondition: cloak-force-disabled && empdisable && intransit
+		RequiresCondition: !cloak-force-disabled && !empdisable && !intransit && !unit.sellable
 	RenderSprites:
 		Image: nodstnk
 	Carryable:
