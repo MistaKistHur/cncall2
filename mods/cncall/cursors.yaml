@@ -232,16 +232,23 @@ Cursors:
 		ioncannon:
 			Start: 0
 			Length: 16
-	mouse_missing.shp: cursor
-		empstrike:
-			Start: 0
-			Length: 1
-		airdrop:
-			Start: 0
-			Length: 1
+	cursorairstrike.shp: cursor
 		airstrike:
 			Start: 0
-			Length: 1
+			Length: 4
+			Tick: 90
+		airstrike-minimap:
+			Start: 4
+			Length: 4
+	cursoremp.shp: cursor	
+		empstrike:
+			Start: 0
+			Length: 7
+	cursorparadrop.shp: cursor
+		airdrop:
+			Start: 0
+			Length: 4
+			Tick: 120
 	sonarbox.shp: cursor
 		sonar-target:
 			Start: 6
