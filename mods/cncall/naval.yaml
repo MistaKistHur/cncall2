@@ -682,18 +682,22 @@ CARR.New.Deployed:
 SS:
 	Inherits: ^Submarine
 	Inherits@AUTOTARGET: ^AutoTargetNavalAssaultMove
+	-Cloak:
 	Buildable:
 		Queue: Ship
 		BuildAtProductionType: Submarine
 		BuildPaletteOrder: 2
 		Prerequisites: ~spen, proc, ~ships.soviet, ~!player.ukraine, ~techlevel.low
-		Description: Submerged anti-ship unit\narmed with torpedoes.\nCan detect other submarines.\n  Strong vs Naval units\n  Weak vs Ground units, Aircraft\n  Special Ability: Submerge\nCan dive underwater to become invisible\nmove unseen and avoid damage of most weapons.\nCan be manually ordered to surface for Repairs.\nMovespeed increase by 20% when on surface\nunless the Submarine is heavily damaged.
+		Description: Submerged anti-ship unit armed with Torpedoes\nand Grenadelauncher against Coastal targets.\nCan detect other submarines.\n  Strong vs Infantry, Naval units\n  Weak vs Ground units, Aircraft\n  Special Ability: Submerge\nCan dive underwater to become invisible\nmove unseen and avoid damage of most weapons.\nCan be manually ordered to surface for Repairs.\nMovespeed increase by 20% when on surface\nunless the Submarine is heavily damaged.
 	Valued:
 		Cost: 775
 	Tooltip:
 		Name: Submarine
 	UpdatesPlayerStatistics:
 		AddToArmyValue: true
+	Selectable:
+		DecorationBounds: 38,38
+	SelectionDecorations:
 	Health:
 		HP: 25000
 	Armor:
@@ -706,9 +710,17 @@ SS:
 		LocalOffset: 0,-171,0, 0,171,0
 		FireDelay: 2
 		PauseOnCondition: empdisable
-	AttackFrontal:
+	Armament@SECONDARY:
+		Name: secondary
+		Turret: secondary
+		Weapon: GrenadeLauncher
+		LocalOffset: 132,0,96
+		MuzzleSequence: muzzle
 		PauseOnCondition: empdisable
-	SelectionDecorations:
+	AttackFrontal:
+		Armaments: primary, secondary
+		PauseOnCondition: empdisable
+	WithMuzzleOverlay:
 	AutoTarget:
 		InitialStance: Defend
 		InitialStanceAI: ReturnFire
@@ -716,8 +728,6 @@ SS:
 		ValidTargets: Water, Underwater
 	AutoTargetPriority@ATTACKANYTHING:
 		ValidTargets: Water, Underwater
-	Selectable:
-		DecorationBounds: 38,38
 	RenderSprites:
 		Image: ss
 	HitShape:
@@ -726,39 +736,6 @@ SS:
 			Radius: 256
 			PointA: 0, -448
 			PointB: 0, 448
-
-SS.AG:
-	Inherits: SS
-	Valued:
-		Cost: 950
-	Buildable:
-		Queue: Ship
-		BuildAtProductionType: Submarine
-		BuildPaletteOrder: 5
-		Prerequisites: ~spen, stek, ~ships.soviet, ~techlevel.high
-		Description: Submerged multi-role unit\narmed with Torpedoes\nand Grenadelauncher.\nCan detect other submarines.\n  Strong vs Infantry, Buildings\n  Weak vs Tanks, Aircraft\n  Special Ability: Submerge\nCan dive underwater to become invisible\nmove unseen and avoid damage of most weapons.\nCan be manually ordered to surface for Repairs.\nMovespeed increase by 20% when on surface\nunless the Submarine is heavily damaged.
-	Tooltip:
-		Name: Attack Submarine
-	Health:
-		HP: 32500
-	Mobile:
-		TurnSpeed: 3
-		Speed: 56
-	Armament@SECONDARY:
-		Name: secondary
-		Weapon: GrenadeLauncher.sub
-		LocalOffset: 612,0,192
-		MuzzleSequence: muzzle
-		PauseOnCondition: empdisable
-	AttackFrontal:
-		Armaments: primary, secondary
-	WithMuzzleOverlay:
-	WithMoveAnimation:
-		MoveSequence: move
-		RequiresCondition: !underwater
-	RenderSprites:
-		Image: ADVSUB
-	-Cloak:
 	Cloak:
 		CloakTypes: Underwater
 		InitialDelay: 0
@@ -775,12 +752,13 @@ SS.AG:
 		Condition: is-shooting
 		ArmamentNames: secondary
 		RevokeDelay: 75
-	HitShape:
-		TargetableOffsets: 576,0,0, -576,0,0
-		Type: Capsule
-			Radius: 341
-			PointA: 0, -576
-			PointB: 0, 576
+	Turreted@SECONDARY:
+		Turret: secondary
+		TurnSpeed: 4
+		Offset: 648,0,-50
+	WithSpriteTurret:
+		Turret: secondary
+		RequiresCondition: !underwater
 
 MSUB:
 	Inherits: ^Submarine
@@ -858,7 +836,7 @@ MSUB.AA:
 	Tooltip:
 		Name: SAM Submarine
 	Valued:
-		Cost: 1250
+		Cost: 950
 	Health:
 		HP: 25000
 	Mobile:
@@ -899,7 +877,7 @@ NSUB:
 	Buildable:
 		Queue: Ship
 		BuildAtProductionType: Submarine
-		BuildPaletteOrder: 7
+		BuildPaletteOrder: 5
 		BuildLimit: 1
 		Prerequisites: ~spen, stek, ~ships.soviet, ~soviet.or.russia, ~techlevel.high
 		Description: Submerged anti-ground/anti-naval\nunit armed with nuclear warhead.\nCan detect other submarines.\nMaximum 1 can be built.\n  Special Ability: Submerge\nCan dive underwater to become invisible\nmove unseen and avoid damage of most weapons.\nCan be manually ordered to surface for Repairs.\nMovespeed increase by 20% when on surface\nunless the Submarine is heavily damaged.

@@ -340,8 +340,8 @@ Grenade:
 		Versus:
 			None: 60
 			Wood: 100
-			Light: 25
-			Heavy: 25
+			Light: 35
+			Heavy: 35
 			Concrete: 100
 	Warhead@3Eff: CreateEffect
 		Explosions: med_explosion
@@ -351,6 +351,7 @@ Grenade:
 
 GrenadeLauncher:
 	Inherits: Grenade
+	ReloadDelay: 75
 	Range: 6c512
 	Projectile:
 		LaunchAngle: 42
@@ -359,14 +360,6 @@ GrenadeLauncher:
 		ContrailDelay: 0
 		ContrailWidth: 0c064
 	Report: aacanon3.aud
-
-GrenadeLauncher.sub:
-	Inherits: GrenadeLauncher
-	Range: 7c256
-	Warhead@1Dam: SpreadDamage
-		Versus:
-			Light: 50
-			Heavy: 50
 
 DepthCharge:
 	Inherits: ^Artillery

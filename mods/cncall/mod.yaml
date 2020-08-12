@@ -1,7 +1,7 @@
 
 Metadata:
 	Title: CnC All
-	Version: v1.0e
+	Version: v.10e-hotfix
 	Website: https://www.openra.net
 	WebIcon32: https://www.openra.net/images/icons/ra_32x32.png
 
@@ -55,8 +55,8 @@ Packages:
 
 MapFolders:
 	cncall|maps: System
-	~^maps/cncall: User
-	~^maps/ra/release-20200503: User
+	~^maps/v.10e-hotfix: User
+	~^maps/ra/v.10e-hotfix: User
 
 Rules:
 	cncall|misc.yaml

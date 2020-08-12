@@ -499,19 +499,13 @@ ss:
     Inherits: emp-overlay
 	idle:
 		Facings: 16
-	icon: ssicon
-
-advsub:
-    Inherits: emp-overlay
-	idle:
-		Facings: 16
-	move:
-		Start: 16
-		Length: 8
-		Facings: 16
+	turret: jeep
+		Start: 32
+		Facings: 32
+		UseClassicFacingFudge: True
 	muzzle: gunfire2
 		Length: 2
-	icon: gsubicon
+	icon: ssicon
 
 msub:
     Inherits: emp-overlay

@@ -722,3 +722,48 @@ TitanTusk:
 		RangeLimit: 10c512
 	Warhead@1Dam: SpreadDamage
 		Damage: 7500
+
+ClusterRocket:
+	Inherits: ^SubMissileDefault
+	Report: rocket1TD.aud
+	-Burst:
+	ReloadDelay: 190
+	Range: 12c0
+	Projectile: Missile
+		Speed: 162
+		LaunchAngle: 240
+		MinimumLaunchAngle: 180
+		MaximumLaunchAngle: 240
+		CruiseAltitude: 2862
+		AllowSnapping: false
+		VerticalRateOfTurn: 16
+		Blockable: false
+		Shadow: True
+		AirburstAltitude: 1c256
+		RangeLimit: 13c0
+	Warhead@1Dam: SpreadDamage
+		Spread: 1
+		Damage: 1
+		Falloff: 0, 0, 0, 0, 0, 0, 0
+		Versus:
+			None: 0
+			Wood: 0
+			Light: 0
+			Heavy: 0
+			Concrete: 0
+		DamageTypes: SmallExplosionDeath
+	Warhead@3Eff: CreateEffect
+		Explosions: med_explosion_air
+		ImpactSounds: mineblo1.aud
+	-Warhead@4EffWater: CreateEffect
+	Warhead@Burst: FireCluster
+		Weapon: NapalmFX
+		RandomClusterCount: -1
+		Dimensions: 3,3
+		Footprint: _X_ XXX _X_
+		ValidTargets: Ground, Water
+	#	Warhead@3Eff: CreateEffect
+	#	Explosions: medium_chem
+	#	ExplosionPalette: desert
+	#	ImpactSounds: firebl3.aud
+	#	ImpactActors: false

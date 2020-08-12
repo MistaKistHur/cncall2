@@ -394,6 +394,43 @@ FlakFX:
 		ImpactSounds: aacanon3.aud
 		ValidTargets: Air
 
+NapalmFX:
+	ValidTargets: Ground, Water, Trees
+	ReloadDelay: 20
+	Range: 0c938
+	Projectile: Bullet
+		Speed: 85
+		LaunchAngle: 0, 32
+		Inaccuracy: 0c938
+		Image: DRAGON
+		Shadow: True
+		Blockable: false
+		BounceCount: 0
+	Warhead@1Dam: SpreadDamage
+		Spread: 426
+		Damage: 2000
+		ValidTargets: Ground, Trees
+		InvalidTargets: Air
+		Versus:
+			None: 90
+			Wood: 75
+			Light: 60
+			Heavy: 25
+			Concrete: 75
+		DamageTypes: Prone50Percent, TriggerProne, FireDeath
+	Warhead@2Eff: CreateEffect
+		Explosions: small_napalm
+		ImpactSounds: firebl3.aud
+		ValidTargets: Ground, Air, Ship, Trees
+	Warhead@3EffWater: CreateEffect
+		Explosions: large_splash
+		ImpactSounds: splashl1.aud, splashl2.aud
+		ValidTargets: Water, Underwater
+		InvalidTargets: Ship, Structure, Bridge
+	Warhead@4Smu: LeaveSmudge
+		SmudgeType: Scorch
+		InvalidTargets: Structure, Wall, Trees
+
 UnitExplodeChemSmall:
 	Warhead@1Dam: SpreadDamage
 		Spread: 426
