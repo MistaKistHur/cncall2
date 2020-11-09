@@ -1234,7 +1234,6 @@
 
 ^Building:
 	Inherits: ^BasicBuilding
-	Inherits@AI: ^ProductionAIBoost
 	Inherits@ScrapMetal: ^GlobalScraps
 	Inherits@EMPMechanic: ^BuildingAffectedByEMP
 	Inherits@StealthGen: ^AffectedByStealthGen
@@ -1309,6 +1308,7 @@
 
 ^Defense:
 	Inherits: ^Building
+	Inherits@AI: ^ProductionAIBoost
 	Inherits@selection: ^SelectableCombatBuilding
 	-GivesBuildableArea:
 	-AcceptsDeliveredCash:

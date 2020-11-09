@@ -457,7 +457,7 @@ MortarChem:
 			Light: 60
 			Heavy: 45
 			Concrete: 100
-		DamageTypes: Prone50Percent, TriggerProne, TiberiumDeath
+		DamageTypes: Prone50Percent, TriggerProne, FireDeath
 	Warhead@2Smu: LeaveSmudge
 		SmudgeType: Scorch
 		InvalidTargets: Vehicle, Tank, Structure, Wall, Husk, Trees
@@ -471,6 +471,12 @@ MortarChem:
 		ImpactSounds: splash9.aud
 		ValidTargets: Water, Underwater
 		InvalidTargets: Ship, Structure, Bridge
+	Warhead@Chem: GrantExternalCondition
+		Range: 0c768
+		Duration: 125
+		Condition: hitbychem
+		ValidTargets: Infantry
+		InvalidTargets: Cyborg, Chem, HasPoison
 
 APCGun:
 	ReloadDelay: 21

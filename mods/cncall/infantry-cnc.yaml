@@ -208,7 +208,7 @@ MORT:
 		BuildPaletteOrder: 9
 		BuildAtProductionType: Soldier
 		Prerequisites: ~hand, nodbio, ~infantry.nod, ~!player.blackhand, ~techlevel.medium
-		Description: Infantry armed with a Mortar gun\nthat shoots Chemical rounds.\nWeapon can spawn Visceroid,\n15% chance killing Infantry units.\n  Immune to Tiberium.\n  Strong vs Buildings, Infantry\n  Weak vs Vehicles, Aircraft
+		Description: Infantry armed with a Mortar gun\nthat shoots Chemical rounds.\nWeapon poisons Infantry for 10 seconds.\n  Immune to Tiberium.\n  Strong vs Buildings, Infantry\n  Weak vs Vehicles, Aircraft
 	Valued:
 		Cost: 600
 	Mobile:

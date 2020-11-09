@@ -35,10 +35,10 @@
 			Road: 100
 			Bridge: 100
 			Ore: 80
+				PathingCost: 300
 			Gems: 80
 				PathingCost: 300
 			Scraps: 80
-				PathingCost: 300
 			Beach: 80
 			Shallow: 80
 			Water: 80
@@ -234,7 +234,7 @@
 		Name: Britain
 		InternalName: england
 		Side: Allies
-		Description: Britain\nSpecialization: Intelligence\nThe forces of Britain uphold their long tradition in Espionage.\nFaction Variations:\n    - Tanks* deal more damage but are costlier to build.\n*Those Tanks being the Light and Medium Tanks.\n+10% damage dealt at the cost of being +50$ more expensive.\nThis bonus does not affect secondary weaponry.\n    - Sight and Detection +50% bonus for Radar Domes, at increased cost.\nVeterancy Bonus:\n    - Rifle Infantry and Jeep as Veteran.\nUnique Support Power:\n    - Intel Drop (Tech Center)\nA B-52 drops one Veteran Spy anywhere on the map.\nSpecial Units:\n    - Spy (Infantry)\nCapable agent that opens up wonderful possibilities.\n    - Radar Jammer (Vehicle)\nThis vehicle is capable of jamming enemy missiles and radar.\n    - Aircraft Carrier (Naval)\nCapable of deploying into Airfield at sea,\nProducing, Repairing and Resupplying Aircrafts.
+		Description: Britain\nSpecialization: Intelligence\nThe forces of Britain uphold their long tradition in Espionage.\nFaction Variations:\n    - Tanks* deal more damage but are costlier to build.\n*Those Tanks being the Light and Medium Tanks.\n+10% damage dealt at the cost of being +50$ more expensive.\nThis bonus does not affect secondary weaponry.\n    - Sight and Detection +50% bonus for Radar Domes, at increased cost.\nVeterancy Bonus:\n    - Rifle Infantry and Jeep as Veteran.\nUnique Support Power:\n    - Intel Drop (Tech Center)\nA B-52 drops one Veteran Spy anywhere on the map.\nSpecial Units:\n    - Spy (Infantry)\nCapable agent that opens up wonderful possibilities.\n    - Radar Jammer (Vehicle)\nThis vehicle is capable of jamming enemy missiles and radar.\n    - Tank Destroyer (Vehicle)\nSelf-propelled anti-tank Gun platform.
 	Faction@2:
 		Name: France
 		InternalName: france

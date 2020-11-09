@@ -359,7 +359,7 @@ WEAP.GDI:
 			BottomRight: 1536, 1024
 	Buildable:
 		BuildPaletteOrder: 4
-		Prerequisites: ~structures.gdi, ~techlevel.low
+		Prerequisites: anypower, ~structures.gdi, ~techlevel.low
 	Building:
 		Footprint: xxx ++= ===
 		Dimensions: 3,3
@@ -424,7 +424,7 @@ WEAP.NOD:
 	-Exit@2:
 	-SpawnActorOnDeath:
 	Buildable:
-		Prerequisites: ~structures.nod, ~techlevel.low
+		Prerequisites: anypower, ~structures.nod, ~techlevel.low
 	Building:
 		Footprint: xxx =++ ===
 		Dimensions: 3,3
@@ -561,7 +561,7 @@ STRP:
 	Buildable:
 		BuildPaletteOrder: 11
 		#	Prerequisites: weap, dome, ~structures.nod, ~techlevel.medium
-		Prerequisites: NOT YET IMPLEMENTED, ~structures.nod
+		Prerequisites: ~NYI, ~structures.nod
 		Queue: Building
 		Description: Provides a dropzone for Mercenary reinforcements, at a price.
 	Building:
@@ -616,7 +616,7 @@ SYRD.GDI:
 	Inherits: SYRD
 	Buildable:
 		BuildPaletteOrder: 3
-		Prerequisites: ~structures.gdi, ~techlevel.low, ~!global-disablenavy
+		Prerequisites: anypower, ~structures.gdi, ~techlevel.low, ~!global-disablenavy
 		Description: Produces and repairs\nShips and Transports.\nNearby Navy can be sold for half their value.\n (their value scaling with health)\n  Special Ability: Sonar Pulse\nReveals all submarines in target\narea for a short time.
 	Tooltip:
 		Name: GDI Naval Yard
@@ -635,7 +635,7 @@ SPEN.NOD:
 	Inherits: SPEN
 	Buildable:
 		BuildPaletteOrder: 3
-		Prerequisites: ~structures.nod, ~techlevel.low, ~!global-disablenavy
+		Prerequisites: anypower, ~structures.nod, ~techlevel.low, ~!global-disablenavy
 		Description: Produces and repairs\nShips and Submarines.\nNearby Navy can be sold for half their value.\n (their value scaling with health)\n  Special Ability: Sonar Pulse\nReveals all submarines in target\narea for a short time.
 	Tooltip:
 		Name: Nod Naval Yard
@@ -1874,6 +1874,14 @@ Rocketpod.plug:
 	Plug:
 		Type: rpod
 
+GUN.nod:
+	Inherits: GUN
+	Buildable:
+		BuildPaletteOrder: 4
+		Prerequisites: weap, ~structures.nod, ~!player.blackhand, ~techlevel.medium
+	RenderSprites:
+		Image: gun
+
 ATWR:
 	Inherits: GTWR
 	Inherits@AUTOTARGET: ^AutoTargetGroundAntiTankandAirDefense
@@ -1994,7 +2002,7 @@ LTUR:
 	-SpawnActorOnDeath:
 	Buildable:
 		BuildPaletteOrder: 4
-		Prerequisites: weap, ~structures.nod, ~techlevel.low
+		Prerequisites: weap, ~structures.nod, ~player.blackhand, ~techlevel.medium
 		Description: Anti-everything base defense.\n  Can detect cloaked units.\n  Requires power to operate.\n  Strong vs Infantry, Light armor\n  Weak vs Tanks, Aircraft
 	Tooltip:
 		Name: Laser Turret
@@ -2199,3 +2207,11 @@ GMINE:
 	RenderSprites:
 		Image: gmine2
 		Palette: tibtreefix
+
+NYI:
+	AlwaysVisible:
+	Interactable:
+	Tooltip:
+		Name: Not Yet Implemented
+	Buildable:
+		Description: Not Yet Implemented

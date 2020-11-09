@@ -135,8 +135,8 @@ Player:
 			agun: 6
 			gun: 6
 			gun.germany: 6
-			pbox.static: 8
-			hbox.static: 4
+			pbox: 8
+			hbox: 4
 			gap: 4
 			fact: 3
 			afld: 2
@@ -170,13 +170,13 @@ Player:
 		CapturableActorTypes: 2tnk.husk,2tnk.england.husk,2tnk.france.husk,2tnk.germany.husk,3tnk.husk,3tnk.ukraine.husk,3tnk.belarus.husk,4tnk.husk,harv.fullhusk,harv.emptyhusk,harv.soviet.fullhusk,harv.soviet.emptyhusk,harv.cnc.fullhusk,harv.cnc.emptyhusk,1tnk.nod.husk,2tnk.gdi.husk,4tnk.gdi.rail.husk,mwav.husk,disr.husk
 		CheckCaptureTargetsForVisibility: true
 		MaximumCaptureTargetOptions: 15
-	SquadManagerBotModule@allies:
+	SquadManagerBotModule@allies.land:
 		RequiresCondition: enable-ai-player && player.allies
 		SquadSize: 8
 		SquadSizeRandomBonus: 8
 		RushInterval: 400
 		AttackScanRadius: 16
-		ExcludeFromSquadsTypes: harv, harv.crate, mcv, mcv.ai, dog, pt, dd, dd.germany, ca, heli, iroq.ai, e6, mech, spit, jeep.scout
+		ExcludeFromSquadsTypes: harv, harv.crate, mcv, mcv.ai, jeep.scout, dog, e6, mech, pt, dd, dd.germany, ca, heli, iroq.ai, spit
 		ConstructionYardTypes: fact
 	SquadManagerBotModule@allies.sea:
 		RequiresCondition: enable-ai-player && player.allies && !global-disablenavy
@@ -184,25 +184,17 @@ Player:
 		SquadSizeRandomBonus: 4
 		RushInterval: 400
 		AttackScanRadius: 24
-		ExcludeFromSquadsTypes: harv, harv.crate, mcv, mcv.ai, dog, e1, e1.england, e2, e2.france, e3, jeep, jeep.england, apc, apc.germany, 1tnk, 1tnk.england, 1tnk.france, 1tnk.germany, 2tnk, 2tnk.england, 2tnk.france, 2tnk.germany, arty, arty.france, msam, e7, heli, iroq.ai, e6, mech, spit, mrj, stnk, ctnk, medi, jeep.scout, prsm, mgi, mnly.support.allies
+		ExcludeFromSquadsTypes: harv, harv.crate, mcv, mcv.ai, mnly.support.allies, dog, e1, e1.england, e2, e2.france, e3, e6, e7, mgi, medi, mech, jeep, jeep.england, jeep.scout, apc, apc.germany, 1tnk, 1tnk.england, 1tnk.france, 1tnk.germany, 2tnk, 2tnk.england, 2tnk.france, 2tnk.germany, arty, arty.france, msam, mrj, stnk, ctnk, prsm, heli, iroq.ai, spit
 		NavalUnitsTypes: pt,dd,dd.germany,ca
 		ConstructionYardTypes: fact
 		NavalProductionTypes: syrd
-	SquadManagerBotModule@allies.airplane:
+	SquadManagerBotModule@allies.air:
 		RequiresCondition: enable-ai-player && player.allies
 		SquadSize: 1
-		SquadSizeRandomBonus: 1
-		RushInterval: 400
-		AttackScanRadius: 48
-		ExcludeFromSquadsTypes: harv, harv.crate, mcv, mcv.ai, dog, e1, e1.england, e2.france, e3, jeep, jeep.england, apc, apc.germany, 1tnk, 1tnk.england, 1tnk.france, 1tnk.germany, 2tnk, 2tnk.england, 2tnk.france, 2tnk.germany, arty, arty.france, msam, e7, pt, dd, dd.germany, ca, e6, mech, mrj, stnk, ctnk, medi, iroq.ai, heli, jeep.scout, prsm, mgi, mnly.support.allies
-		ConstructionYardTypes: fact
-	SquadManagerBotModule@allies.helicopter:
-		RequiresCondition: enable-ai-player && player.allies
-		SquadSize: 2
 		SquadSizeRandomBonus: 2
 		RushInterval: 400
 		AttackScanRadius: 48
-		ExcludeFromSquadsTypes: harv, harv.crate, mcv, mcv.ai, dog, e1, e1.england, e2, e2.france, e3, jeep, jeep.england, apc, apc.germany, 1tnk, 1tnk.england, 1tnk.france, 1tnk.germany, 2tnk, 2tnk.england, 2tnk.france, 2tnk.germany, arty, arty.france, msam, e7, pt, dd, dd.germany, ca, e6, mech, mrj, stnk, ctnk, medi, spit, jeep.scout, prsm, mgi, mnly.support.allies
+		ExcludeFromSquadsTypes: harv, harv.crate, mcv, mcv.ai, mnly.support.allies, dog, e1, e1.england, e2, e2.france, e3, e6, e7, mgi, medi, mech, jeep, jeep.england, jeep.scout, apc, apc.germany, 1tnk, 1tnk.england, 1tnk.france, 1tnk.germany, 2tnk, 2tnk.england, 2tnk.france, 2tnk.germany, arty, arty.france, msam, mrj, stnk, ctnk, prsm, pt, dd, dd.germany, ca
 		ConstructionYardTypes: fact
 	UnitBuilderBotModule@allies:
 		RequiresCondition: enable-ai-player && player.allies
@@ -215,13 +207,16 @@ Player:
 			e2: 15
 			e2.france: 15
 			e3: 30
+			e6: 2
+			e7: 1
 			dog: 15
+			medi: 2
+			mech: 2
 			harv: 15
 			jeep: 20
 			jeep.england: 20
 			apc: 30
 			apc.germany: 30
-			stnk: 10
 			1tnk: 40
 			1tnk.england: 40
 			1tnk.france: 40
@@ -232,29 +227,28 @@ Player:
 			2tnk.germany: 50
 			arty: 15
 			arty.france: 15
+			mrj: 1
+			tnkd: 10
+			stnk: 10
 			ctnk: 10
 			msam: 1
-			e7: 1
-			e6: 2
-			mech: 2
 			mcv.ai: 1
-			mrj: 1
-			medi: 2
 			mnly.support.allies: 1
 		UnitLimits:
 			dog: 4
+			e6: 2
+			e7: 1
+			medi: 3
+			mech: 2
 			harv: 8
 			jeep: 4
 			jeep.england: 4
-			e7: 1
-			e6: 2
-			mech: 2
 			mcv.ai: 1
+			mrj: 1
+			tnkd: 4
 			stnk: 3
 			ctnk: 5
 			msam: 2
-			mrj: 1
-			medi: 3
 	UnitBuilderBotModule@allies.sea:
 		RequiresCondition: enable-ai-player && player.allies && !global-disablenavy
 		IdleBaseUnitsMaximum: 6
@@ -269,23 +263,17 @@ Player:
 			dd: 6
 			dd.germany: 6
 			ca: 4
-	UnitBuilderBotModule@allies.airplane:
+	UnitBuilderBotModule@allies.air:
 		RequiresCondition: enable-ai-player && player.allies
 		IdleBaseUnitsMaximum: 0
 		UnitQueues: Aircraft
 		UnitDelays:
 			spit: 7500
 		UnitsToBuild:
-			spit: 100
-		UnitLimits:
-			spit: 2
-	UnitBuilderBotModule@allies.helicopter:
-		RequiresCondition: enable-ai-player && player.allies
-		IdleBaseUnitsMaximum: 2
-		UnitQueues: Aircraft
-		UnitsToBuild:
 			iroq.ai: 40
 			heli: 60
+			spit: 100
 		UnitLimits:
 			iroq.ai: 4
-			heli: 6
+			heli: 6		
+			spit: 2

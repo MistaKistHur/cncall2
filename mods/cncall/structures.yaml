@@ -850,7 +850,7 @@ WEAP:
 	Buildable:
 		Queue: Building
 		BuildPaletteOrder: 5
-		Prerequisites: ~!structures.gdi, ~!structures.nod, ~techlevel.low
+		Prerequisites: anypower, ~!structures.gdi, ~!structures.nod, ~techlevel.low
 		Description: Produces Vehicle units.\nCan be Infiltrated by an Spy resulting\nin Veterancy for enemy Vehicles.\nCan be Infiltrated by an Saboteur\nresulting in its destruction.
 	Valued:
 		Cost: 2000
@@ -1046,7 +1046,7 @@ FIX:
 	GrantExternalConditionPower@FieldRepairs:
 		PauseOnCondition: disabled || lowpower
 		OrderName: FieldRepairPower
-		Prerequisites: techlevel.unrestricted
+		Prerequisites: techlevel.unrestricted, ~!techlevel.nofieldrepair
 		Icon: fieldrepair
 		ChargeInterval: 6000
 		Range: 1
@@ -1658,7 +1658,7 @@ AFLD:
 	Buildable:
 		Queue: Building
 		BuildPaletteOrder: 7
-		Prerequisites: ~techlevel.medium
+		Prerequisites: proc, ~techlevel.medium
 		Description: Produces, repairs and reloads Airplanes.\nCan be Infiltrated by an Spy resulting\nin Veterancy for enemy Aircraft.\nCan be Infiltrated by an Saboteur\nresulting in its Destruction.\n  Special Ability: Paratroopers\nA Plane drops a squad of\nVeteran infantry anywhere on the map.
 	Valued:
 		Cost: 750
@@ -1960,6 +1960,9 @@ AFLD:
 	GrantConditionOnPrerequisite@FREEAIRCRAFT:
 		Prerequisites: global-freeaircraft
 		Condition: gratisair
+	ProductionCostMultiplier@FREEAIRCRAFT:
+		Multiplier: 150
+		Prerequisites: global-freeaircraft
 	GrantConditionOnPrerequisite@AIRESTRICTOR:
 		Prerequisites: aitoodumb
 		Condition: aitoodumb
@@ -2178,6 +2181,9 @@ HPAD:
 	GrantConditionOnPrerequisite@FREEAIRCRAFT:
 		Prerequisites: global-freeaircraft
 		Condition: gratisair
+	ProductionCostMultiplier@FREEAIRCRAFT:
+		Multiplier: 150
+		Prerequisites: global-freeaircraft
 	GrantConditionOnPrerequisite@AIRESTRICTOR:
 		Prerequisites: aitoodumb
 		Condition: aitoodumb
@@ -2207,7 +2213,7 @@ SYRD:
 	Buildable:
 		Queue: Building
 		BuildPaletteOrder: 3
-		Prerequisites: ~structures.allies, ~techlevel.low, ~!global-disablenavy
+		Prerequisites: anypower, ~structures.allies, ~techlevel.low, ~!global-disablenavy
 		Description: Produces and repairs\nShips and Transports.\nNearby Navy can be sold for half their value.\n (their value scaling with health)\n  Special Ability: Sonar Pulse\nReveals all submarines in target\narea for a short time.
 	Valued:
 		Cost: 750
@@ -2368,7 +2374,7 @@ SPEN:
 	Buildable:
 		Queue: Building
 		BuildPaletteOrder: 3
-		Prerequisites: ~structures.soviet, ~techlevel.low, ~!global-disablenavy
+		Prerequisites: anypower, ~structures.soviet, ~techlevel.low, ~!global-disablenavy
 		Description: Produces and repairs\nSubmarines and Transports.\nNearby Navy can be sold for half their value.\n (their value scaling with health)\n  Special Ability: Sonar Pulse\nReveals all submarines in target\narea for a short time.
 	Tooltip:
 		Name: Sub Pen

@@ -152,6 +152,13 @@ BarrelExplode:
 		Size: 2
 		Delay: 5
 
+BarrelChemExplode:
+	Inherits: BarrelExplode
+	Warhead@1Dam: SpreadDamage
+		DamageTypes: Prone50Percent, TriggerProne, TiberiumDeath, Incendiary
+	Warhead@2Eff: CreateEffect
+		Explosions: large_chem
+		
 ATMine:
 	Warhead@1Dam: SpreadDamage
 		Spread: 256

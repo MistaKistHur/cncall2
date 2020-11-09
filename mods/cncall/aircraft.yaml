@@ -607,7 +607,7 @@ HELI:
 	Tooltip:
 		Name: Apache
 	Valued:
-		Cost: 1600
+		Cost: 1500
 	UpdatesPlayerStatistics:
 		AddToArmyValue: true
 	SelectionDecorations:

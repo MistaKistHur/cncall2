@@ -236,6 +236,24 @@ Chemspray:
 		ValidTargets: Infantry
 		InvalidTargets: Cyborg, Chem, HasPoison
 
+Chemspray.dual:
+	Inherits: Flamespray.dual
+	ReloadDelay: 75
+	Warhead@1Dam: SpreadDamage
+		Damage: 6750
+		InvalidTargets: Wall, Chem
+		DamageTypes: Prone50Percent, TriggerProne, TiberiumDeath
+	Warhead@2Smu: LeaveSmudge
+		SmudgeType: Scorch
+		InvalidTargets: Structure, Wall
+	-Warhead@Flames:
+	Warhead@Chem: GrantExternalCondition
+		Range: 0c768
+		Duration: 125
+		Condition: hitbychem
+		ValidTargets: Infantry
+		InvalidTargets: Cyborg, Chem, HasPoison	
+
 ^TeslaWeapon:
 	ReloadDelay: 3
 	Range: 8c0
@@ -465,12 +483,12 @@ BombingRun.ag:
 		Shadow: true
 	Warhead@1Dam: SpreadDamage
 		Spread: 512
-		Damage: 8000
+		Damage: 9000
 		Versus:
-			None: 100
-			Wood: 100
-			Light: 100
-			Heavy: 100
+			None: 90
+			Wood: 75
+			Light: 60
+			Heavy: 25
 			Concrete: 100
 		DamageTypes: Prone100Percent, TriggerProne, ExplosionDeath
 	Warhead@2Eff: CreateEffect

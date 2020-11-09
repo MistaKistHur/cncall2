@@ -158,6 +158,7 @@ Player:
 			hsam.nod: 6
 			gtwr: 3
 			ltur: 6
+			gun.nod: 6
 			obel: 4
 			fact.cnc: 3
 			ncom: 1
@@ -174,7 +175,8 @@ Player:
 			afld: 1
 			hpad: 4
 			gtwr: 3
-			ltur: 7
+			ltur: 6
+			gun.nod: 6
 			hsam.nod: 5
 			obel: 2
 			tmpl: 1
@@ -183,13 +185,22 @@ Player:
 			shrn: 1
 			nodbio: 1
 			tmpl.fake: 1
-	SquadManagerBotModule@nod:
+	SquadManagerBotModule@nod.land:
 		RequiresCondition: enable-ai-player && player.nod || player.blackhand
 		SquadSize: 8
 		SquadSizeRandomBonus: 8
 		RushInterval: 400
 		AttackScanRadius: 16
-		ExcludeFromSquadsTypes: harv.cnc, mcv.cnc, mcv.cnc.ai, sb, lsrs, asub, bsub, cata, heli.nod.ai, rh66, e6, f22, sfig, bggy.scout, scrb, lcrv, scrn
+		ExcludeFromSquadsTypes: harv.cnc, mcv.cnc, mcv.cnc.ai, dog, e6, bggy.scout, bike, heli.nod.ai, rh66, f22, sfig, scrn, sb, lsrs, asub, bsub, cata, scrb, lcrv
+		ConstructionYardTypes: fact
+	SquadManagerBotModule@nod.bike:
+		RequiresCondition: enable-ai-player && player.nod || player.blackhand
+		SquadSize: 4
+		SquadSizeRandomBonus: 2
+		RushInterval: 400
+		AttackScanRadius: 16
+		# everything except bike
+		ExcludeFromSquadsTypes: harv.cnc, mcv.cnc, mcv.cnc.ai, dog, e1.cnc, terr, e3.cnc, e4.nod, e5, e6, nodrmbo, mort, cybr, lcg, bggy, bggy.scout, attbggy, napc, 1tnk.nod, ftnk, ctnk.nod, arty.nod, srty, stnk.nod, mwav, ltnk, ssm, ssm.hover, msam.nod, heli.nod.ai, rh66, f22, sfig, scrn, sb, lsrs, asub, bsub, cata, scrb, lcrv
 		ConstructionYardTypes: fact
 	SquadManagerBotModule@nod.sea:
 		RequiresCondition: enable-ai-player && player.nod || player.blackhand && !global-disablenavy
@@ -197,7 +208,7 @@ Player:
 		SquadSizeRandomBonus: 4
 		RushInterval: 400
 		AttackScanRadius: 24
-		ExcludeFromSquadsTypes: harv.cnc, mcv.cnc, mcv.cnc.ai, dog, e1.cnc, e2.cnc, e3.cnc, bggy, napc, 1tnk.nod, ftnk, arty.nod, stnk.nod, bike, mwav, ssm, nodrmbo, heli.nod.ai, rh66, e6, f22, sfig, bggy.scout, cybr, lcg, e4.nod, attbggy, srty, mwav.laser, ssm.hover, ftnk.blackhand, scrn, msam.nod
+		ExcludeFromSquadsTypes: harv.cnc, mcv.cnc, mcv.cnc.ai, dog, e1.cnc, terr, e3.cnc, e4.nod, e5, e6, nodrmbo, mort, cybr, lcg, bggy, bggy.scout, attbggy, bike, napc, 1tnk.nod, ftnk, ctnk.nod, arty.nod, srty, stnk.nod, mwav, ltnk, ssm, ssm.hover, msam.nod, heli.nod.ai, rh66, f22, sfig, scrn
 		NavalUnitsTypes: sb,lsrs,asub,bsub,cata,scrb,lcrv
 		ConstructionYardTypes: fact.cnc
 		NavalProductionTypes: spen.nod
@@ -207,7 +218,7 @@ Player:
 		SquadSizeRandomBonus: 1
 		RushInterval: 400
 		AttackScanRadius: 48
-		ExcludeFromSquadsTypes: harv.cnc, mcv.cnc, mcv.cnc.ai, dog, e1.cnc, e2.cnc, e3.cnc, bggy, napc, 1tnk.nod, ftnk, arty.nod, stnk.nod, bike, mwav, ssm, nodrmbo, e6, heli.nod.ai, rh66, bggy.scout, cybr, lcg, e4.nod, attbggy, srty, mwav.laser, ssm.hover, ftnk.blackhand, msam.nod
+		ExcludeFromSquadsTypes: harv.cnc, mcv.cnc, mcv.cnc.ai, dog, e1.cnc, terr, e3.cnc, e4.nod, e5, e6, nodrmbo, mort, cybr, lcg, bggy, bggy.scout, attbggy, bike, napc, 1tnk.nod, ftnk, ctnk.nod, arty.nod, srty, stnk.nod, mwav, ltnk, ssm, ssm.hover, msam.nod, heli.nod.ai, rh66
 		ConstructionYardTypes: fact.cnc
 	SquadManagerBotModule@nod.helicopter:
 		RequiresCondition: enable-ai-player && player.nod || player.blackhand
@@ -215,9 +226,9 @@ Player:
 		SquadSizeRandomBonus: 2
 		RushInterval: 400
 		AttackScanRadius: 48
-		ExcludeFromSquadsTypes: harv.cnc, mcv.cnc, mcv.cnc.ai, dog, e1.cnc, e2.cnc, e3.cnc, bggy, napc, 1tnk.nod, ftnk, arty.nod, stnk.nod, bike, mwav, ssm, nodrmbo, e6, f22, sfig, bggy.scout, cybr, lcg, e4.nod, attbggy, srty, mwav.laser, ssm.hover, ftnk.blackhand, scrn, msam.nod
+		ExcludeFromSquadsTypes: harv.cnc, mcv.cnc, mcv.cnc.ai, dog, e1.cnc, terr, e3.cnc, e4.nod, e5, e6, nodrmbo, mort, cybr, lcg, bggy, bggy.scout, attbggy, bike, napc, 1tnk.nod, ftnk, ctnk.nod, arty.nod, srty, stnk.nod, mwav, ltnk, ssm, ssm.hover, msam.nod, f22, sfig, scrn
 		ConstructionYardTypes: fact.cnc
-	UnitBuilderBotModule@nod:
+	UnitBuilderBotModule@nod.land:
 		RequiresCondition: enable-ai-player && player.nod || player.blackhand
 		UnitQueues: Vehicle, Infantry
 		UnitDelays:
@@ -228,7 +239,11 @@ Player:
 			e3.cnc: 45
 			e4.nod: 20
 			e5: 15
+			e6: 2
+			nodrmbo: 1
 			mort: 15
+			cybr: 5
+			lcg: 5
 			harv.cnc: 15
 			bggy: 20
 			attbggy: 20
@@ -236,20 +251,16 @@ Player:
 			napc: 10
 			1tnk.nod: 70
 			ftnk: 20
-			ftnk.blackhand: 20
+			ctnk.nod: 20
 			arty.nod: 30
 			srty: 20
 			stnk.nod: 30
 			mwav: 10
-			mwav.laser: 10
+			ltnk: 10
 			ssm: 10
 			ssm.hover: 10
-			mcv.cnc.ai: 1
-			nodrmbo: 1
-			e6: 2
-			cybr: 5
-			lcg: 5
 			msam.nod: 1
+			mcv.cnc.ai: 1
 		UnitLimits:
 			terr: 3
 			e5: 3
@@ -262,7 +273,7 @@ Player:
 			ftnk: 4
 			stnk.nod: 4
 			mwav: 1
-			mwav.laser: 2
+			ltnk: 2
 			ssm: 2
 			ssm.hover: 2
 			srty: 4

@@ -446,32 +446,33 @@ SAPC:
 		PipType: Blue
 	Carryable:
 		CarriedCondition: intransit
-	#	was supposed to act like Reckoner,
-	#	not possible with the current Traits.
-	#	SpawnActorOnDeath:
-	#	Actor: SAPC.Husk
 
-FTNK.Blackhand:
+CTNK.Nod:
 	Inherits: FTNK
-	-AttackFrontal:
 	Valued:
-		Cost: 700
+		Cost: 1300
 	Buildable:
-		Queue: Vehicle, MWFVehicle
+		Queue: Vehicle
 		BuildPaletteOrder: 5
-		Prerequisites: fix, ~vehicles.nod, ~player.blackhand, ~techlevel.medium
-		Description: Heavily armored flame-throwing vehicle.\n  Can attack Turreted.\n  Strong vs Infantry, Buildings and Vehicles\n  Weak vs Tanks
-		Icon: ftnkicon
-	Turreted:
+		Prerequisites: fix, nodbio, ~vehicles.nod, ~player.blackhand, ~techlevel.high
+		Description: Heavily armored chemicals-spraying vehicle.\nWeapon has 15% chance to spawn\na Visceroid when killing Infantry units.\n  Strong vs Infantry, Buildings and Vehicles\n  Weak vs Tanks
+	Tooltip:
+		Name: Chemical Tank
+	Mobile:
 		TurnSpeed: 3
-	AttackTurreted:
-		PauseOnCondition: empdisable
+		Speed: 56
+		Locomotor: heavytracked
+	Health:
+		HP: 61250
 	Armament:
-		MuzzleSequence: flamer-muzzle
-	WithSpriteTurret:
-		Sequence: flamer
-	RenderSprites:
-		Image: 1tnk.nod
+		Weapon: Chemspray.dual
+		LocalOffset: 768,128,42, 768,-128,42
+		MuzzlePalette: desert
+	Explodes:
+		Weapon: BarrelChemExplode
+		EmptyWeapon: BarrelChemExplode
+	Passenger:
+		PipType: Red
 
 MRLS.Hover:
 	Inherits: ^Vehicle
@@ -650,7 +651,7 @@ SRTY:
 	Selectable:
 		DecorationBounds: 28,28
 
-MWAV.Laser:
+LTNK:
 	Inherits: MWAV
 	Inherits@IDISABLE: ^DisableOnLowPower
 	-SpawnActorOnDeath:
@@ -697,6 +698,7 @@ MSAM.Nod:
 	-WithTurretAimAnimation:
 	-WithDecoration@VolleyOn:
 	-WithDecoration@VolleyOff:
+	-Carryable:
 	Buildable:
 		BuildPaletteOrder: 9
 		Prerequisites: dome, ~vehicles.nod, ~player.blackhand, ~techlevel.medium

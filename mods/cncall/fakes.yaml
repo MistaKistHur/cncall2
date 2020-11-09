@@ -297,7 +297,7 @@ WEAF:
 		Bounds: 72,48
 	Buildable:
 		BuildPaletteOrder: 5
-		Prerequisites: proc, ~allies.or.france, ~techlevel.low
+		Prerequisites: anypower, ~allies.or.france, ~techlevel.low
 		Queue: Fakestructure
 		Description: Looks like a Weapons Factory.
 		Icon: fake-icon
@@ -379,7 +379,7 @@ SYRF:
 	Buildable:
 		BuildPaletteOrder: 3
 		Queue: Fakestructure
-		Prerequisites: proc, ~allies.or.france, ~techlevel.low, ~!global-disablenavy
+		Prerequisites: anypower, ~allies.or.france, ~techlevel.low, ~!global-disablenavy
 		Description: Looks like a Naval Yard.
 		Icon: fake-icon
 	Tooltip:

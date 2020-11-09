@@ -683,7 +683,7 @@ APC.soviet:
 4TNK:
 	Inherits: ^TrackedVehicle
 	Inherits@GAINSEXPERIENCE: ^GainsExperience
-	Inherits@AUTOTARGET: ^AutoTargetGroundAntiTank
+	Inherits@AUTOTARGET: ^AutoTargetGroundAntiTankandAir
 	Buildable:
 		Queue: Vehicle
 		BuildPaletteOrder: 8
@@ -704,7 +704,7 @@ APC.soviet:
 	Armor:
 		Type: Heavy
 	Mobile:
-		Speed: 50
+		Speed: 56
 		Locomotor: heavytracked
 	RevealsShroud:
 		MinRange: 4c0

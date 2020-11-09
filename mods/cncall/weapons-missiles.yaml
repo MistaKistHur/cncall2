@@ -731,7 +731,7 @@ ClusterRocket:
 	Range: 12c0
 	Projectile: Missile
 		Speed: 162
-		LaunchAngle: 240
+		#	LaunchAngle: 240
 		MinimumLaunchAngle: 180
 		MaximumLaunchAngle: 240
 		CruiseAltitude: 2862
@@ -755,15 +755,9 @@ ClusterRocket:
 	Warhead@3Eff: CreateEffect
 		Explosions: med_explosion_air
 		ImpactSounds: mineblo1.aud
-	-Warhead@4EffWater: CreateEffect
 	Warhead@Burst: FireCluster
 		Weapon: NapalmFX
 		RandomClusterCount: -1
 		Dimensions: 3,3
 		Footprint: _X_ XXX _X_
 		ValidTargets: Ground, Water
-	#	Warhead@3Eff: CreateEffect
-	#	Explosions: medium_chem
-	#	ExplosionPalette: desert
-	#	ImpactSounds: firebl3.aud
-	#	ImpactActors: false

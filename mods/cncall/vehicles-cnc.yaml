@@ -597,7 +597,8 @@ FTNK:
 		Prerequisites: fix, ~vehicles.nod, ~!player.blackhand, ~techlevel.medium
 		Description: Heavily armored flame-throwing vehicle\n Strong vs Infantry, Buildings and Vehicles\n Weak vs Tanks
 	Mobile:
-		Speed: 80
+		TurnSpeed: 3
+		Speed: 71
 		PauseOnCondition: dont-move || empdisable || being-captured
 	Health:
 		HP: 35000 
@@ -626,8 +627,6 @@ FTNK:
 		RevokeDelay: 12
 		RevokeOnNewTarget: False
 		RevokeAll: True
-	Carryable:
-		LocalOffset: 0,0,100
 
 MRLS:
 	Inherits: ^TrackedVehicle

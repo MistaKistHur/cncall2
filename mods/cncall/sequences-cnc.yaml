@@ -136,41 +136,9 @@ mrpg.husk:
 	turret: ltnk-tur
 		Facings: 32
 		UseClassicFacingFudge: True
-	flamer: ftnk-tur
-		Facings: 32
-		UseClassicFacingFudge: True
 	muzzle: gunfire2
 		Length: *
-	flamer-muzzle:
-		Combine:
-			flame-n:
-				Length: *
-				Offset: 3,6
-			flame-nw:
-				Length: *
-				Offset: 8,7
-			flame-w:
-				Length: *
-				Offset: 8,2
-			flame-sw:
-				Length: *
-				Offset: 7,-2
-			flame-s:
-				Length: *
-				Offset: 3,-2
-			flame-se:
-				Length: *
-				Offset: -5,-2
-			flame-e:
-				Length: *
-				Offset: -7,2
-			flame-ne:
-				Length: *
-				Offset: -7,8
-		Facings: 8
-		Length: 13		
 	icon: 1tnkicon
-	ftnkicon: ftnkicon
 
 1tnk.nod.husk:
 	idle: 1tnk
@@ -269,6 +237,47 @@ ftnk:
 
 ftnk.husk:
 	idle: ftnk
+		Facings: 32
+		UseClassicFacingFudge: True
+		ZOffset: -512
+
+ctnk.nod:
+	Inherits: emp-overlay
+	idle: ctnknod
+		Facings: 32
+		UseClassicFacingFudge: True
+	muzzle:
+		Combine:
+			chem-n:
+				Length: *
+				Offset: 3,6
+			chem-nw:
+				Length: *
+				Offset: 8,7
+			chem-w:
+				Length: *
+				Offset: 8,2
+			chem-sw:
+				Length: *
+				Offset: 7,-2
+			chem-s:
+				Length: *
+				Offset: 3,-2
+			chem-se:
+				Length: *
+				Offset: -5,-2
+			chem-e:
+				Length: *
+				Offset: -7,2
+			chem-ne:
+				Length: *
+				Offset: -7,8
+		Facings: 8
+		Length: 13
+	icon: ctnknodicon
+
+ctnk.nod.husk:
+	idle: ctnknod
 		Facings: 32
 		UseClassicFacingFudge: True
 		ZOffset: -512

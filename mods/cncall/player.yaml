@@ -151,6 +151,10 @@ Player:
 		Name: Unrestricted
 		Prerequisites: techlevel.infonly, techlevel.low, techlevel.medium, techlevel.high, techlevel.unrestricted
 		Id: unrestricted
+	ProvidesTechPrerequisite@nofieldrepair:
+		Name: No Field Repair
+		Prerequisites: techlevel.infonly, techlevel.low, techlevel.medium, techlevel.high, techlevel.unrestricted, techlevel.nofieldrepair
+		Id: nofieldrepair
 	GrantConditionOnPrerequisiteManager:
 	EnemyWatcher:
 	VeteranProductionIconOverlay:
@@ -256,9 +260,6 @@ Player:
 	ProvidesPrerequisite@sovietorbelarus:
 		Factions: soviet, belarus
 		Prerequisite: soviet.or.belarus
-	ProvidesPrerequisite@alliesorenglandorgdi:
-		Factions: allies, england, gdi, ubergdi
-		Prerequisite: can.has.carrier
 	ProvidesPrerequisite@englandorfrance:
 		Factions: england, france
 		Prerequisite: england.or.france
