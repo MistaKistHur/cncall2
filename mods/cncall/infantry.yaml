@@ -632,6 +632,8 @@ VOLK:
 	Tooltip:
 		Name: Volkov
 	Mobile:
+		Speed: 62
+		Voice: Move
 		Locomotor: chem
 	Health:
 		HP: 12000
@@ -642,9 +644,6 @@ VOLK:
 	Demolition:
 		DetonationDelay: 45
 		Voice: Demolish
-	Mobile:
-		Speed: 62
-		Voice: Move
 	Guard:
 		Voice: Move
 	Passenger:
@@ -957,29 +956,11 @@ DOG:
 		Type: InfantryRefund
 		Voice: Move
 
+#	only for map compatibility purposes
 Zombie:
-	Inherits: ^Soldier
-	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
-	Valued:
-		Cost: 100
-	Tooltip:
-		Name: Zombie
-	UpdatesPlayerStatistics:
-		AddToArmyValue: true
-	Health:
-		HP: 25000
-	Mobile:
-		Speed: 42
-	AutoTarget:
-		ScanRadius: 5
-	WithInfantryBody:
-		DefaultAttackSequence: bite
-		IdleSequences: idle1
-	Armament:
-		Weapon: claw
-	Voiced:
-		VoiceSet: AntVoice
-	-TakeCover:
+	Inherits: TECN
+	RenderSprites:
+		Image: TECN
 
 Ant:
 	Inherits: ^Infantry

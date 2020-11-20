@@ -4,10 +4,13 @@
 #	get Mammoth MK II as Mastadon 
 #	to replace ICBM Launcher on Future Corps
 #	find Infantry to replace Grenadier on FutureC.
-#	Cyborg Commando for Blackhand
 #	Jetpack Commando for Future Corps
 #	ideas to further differentiate Navy of the two
-#	sudden EMP Submarine for Blackhand ?
+#	convert Inq's Microwave into Plasma Tank
+#	replace weird blue ion laser with proper Microwave
+#	try sonic based Microwave
+#	tow humvee, Ion Cannon painter Mammoth for socom, transfer Aurora for socom
+#	rocketpod medium for taskforce
 
 E1.Grenadier:
 	Inherits: E1
@@ -26,6 +29,9 @@ E1.Grenadier:
 		HP: 5000
 	Mobile:
 		Speed: 64
+		Voice: Move
+	Guard:
+		Voice: Move
 	AmmoPool:
 		Ammo: 2
 		PipCount: 0
@@ -44,6 +50,9 @@ E1.Grenadier:
 		Count: 1
 		ResetOnFire: False
 	AttackFrontal:
+		Voice: Attack
+	AttackMove:
+		Voice: Attack
 	WithInfantryBody:
 		DefaultAttackSequence: shoot
 		AttackSequences:
@@ -55,6 +64,14 @@ E1.Grenadier:
 		Type: InfantryRefund
 	RenderSprites:
 		Image: e1gren
+	ExternalCondition@PRODUCED:
+		Condition: produced
+	VoiceAnnouncement:
+		RequiresCondition: produced
+		Voice: Build
+	AnnounceOnKill:
+	Voiced:
+		VoiceSet: gdisoldier
 
 JUMP:
 	Inherits: ^Soldier
@@ -67,6 +84,8 @@ JUMP:
 	-Targetable@HEAL:
 	-Parachutable:
 	-WithParachute:
+	-Passenger:
+	-GainsExperienceMultiplier@NOPASSENGERXP:
 	Buildable:
 		Queue: Infantry
 		BuildAtProductionType: Soldier
@@ -80,18 +99,21 @@ JUMP:
 	Mobile:
 		Speed: 71
 		Locomotor: jumpjet
+		Voice: Move
+	Guard:
+		Voice: Move
 	Health:
 		HP: 12000
 	Armor:
 		Type: Light
-	Passenger:
-		PipType: Green
-		Weight: 2
 	RevealsShroud:
 		Range: 6c0
 	Armament:
 		Weapon: ChainGun
 	AttackFrontal:
+		Voice: Attack
+	AttackMove:
+		Voice: Attack
 	WithInfantryBody:
 		RequiresCondition: !airborne
 		StandSequences: stand
@@ -114,7 +136,7 @@ JUMP:
 		RequiresCondition: !airborne && damaged
 		TargetTypes: Heal
 	Targetable@AIRBORNE:
-		TargetTypes: Air
+		TargetTypes: Air, Helicopter
 		RequiresCondition: airborne
 	WithShadow@airborne:
 		RequiresCondition: airborne
@@ -127,14 +149,36 @@ JUMP:
 	DeliversCash:
 		Payload: 150
 		Type: InfantryRefund
+	Voiced:
+		VoiceSet: GunnerVoice
+	ExternalCondition@PRODUCED:
+		Condition: produced
+	VoiceAnnouncement:
+		RequiresCondition: produced
+		Voice: Build
+	AnnounceOnKill:
 
 E4.Nod:
 	Inherits: E4
 	Buildable:
-		Prerequisites: ~barracks, dome, ~infantry.nod, ~player.blackhand, ~techlevel.medium
+		Prerequisites: ~barracks, dome, ~infantry.nod, ~!player.nod, ~!player.cabal, ~techlevel.medium
 		BuildPaletteOrder: 6
 	RenderSprites:
 		Image: E4
+	-MapEditorData:
+
+CYBR.Vet:
+	Inherits: CYBR
+	Buildable:
+		Prerequisites: tmpl, ~infantry.nod, ~player.cabal, ~techlevel.high
+		BuildPaletteOrder: 6
+	ProducibleWithLevel:
+		Prerequisites: techlevel.infonly
+		InitialLevels: 1
+	UpdatesPlayerStatistics:
+		OverrideActor: cybr
+	RenderSprites:
+		Image: cybr
 	-MapEditorData:
 
 LCG:
@@ -216,21 +260,126 @@ LCG:
 		RequiresCondition: !parachute && damaged
 		TargetTypes: Repair
 	Voiced:
-		VoiceSet: SlavikVoice
+		VoiceSet: LCGVoice
 	DeliversCash:
 		Payload: 400
 		Type: InfantryRefund
 	RenderSprites:
 		Image: lcg
+	ExternalCondition@PRODUCED:
+		Condition: produced
+	VoiceAnnouncement:
+		RequiresCondition: produced
+		Voice: Build
+		ValidStances: Ally 
+	AnnounceOnKill:
 
 INFL.Blackhand:
 	Inherits: INFL
 	Buildable:
 		Prerequisites: shrn, ~infantry.nod, ~player.blackhand, ~techlevel.high
-		Description: Agent of the Black Hand.\nCan detect cloaked units and spies.\n  Special Ability: Hijacking\nSteals enemy vehicles.\n  Special Ability: Infiltration\nEnters enemy production structures to show Info. (NYI)\nEnters enemy Refineries to steal Credits.\nEnters enemy Power Plants to Demolish them.\nEnters enemy Radar to reset exploration.\nEnters enemy Tech Centers to unlock Inferno Bomb.\nSpecial ability: Phase Cloaking\nInvisible when out of combat.\n  Strong vs Infantry\n  Weak vs everything Else	
+		Description: Agent of the Black Hand.\nCan detect cloaked units and spies.\n  Special Ability: Infiltration\nEnters enemy production structures to show Info. (NYI)\nEnters enemy Refineries to steal Credits.\nEnters enemy Power Plants to Demolish them.\nEnters enemy Radar to reset exploration.\nEnters enemy Tech Centers to unlock Inferno Bomb.\nSpecial ability: Phase Cloaking\nInvisible when out of combat.\n  Strong vs Infantry\n  Weak vs everything Else	
 	RenderSprites:
 		Image: infl
 	-MapEditorData:
+
+E7.Nod:
+	Inherits: E7
+	-GrantConditionOnTerrain:
+	-WithInfantryBody:
+	-WithInfantryBody@SEA:
+	-WithDeathAnimation:
+	-WithDeathAnimation@ROT:
+	-Targetable@SEA:
+	WithInfantryBody:
+		DefaultAttackSequence: shoot
+		StandSequences: stand
+	WithDeathAnimation:
+		DeathTypes:
+			DefaultDeath: 1
+			BulletDeath: 2
+			SmallExplosionDeath: 3
+			ExplosionDeath: 4
+			FireDeath: 5
+			ElectricityDeath: 6
+			TiberiumDeath: 7
+		CrushedSequence: die-crushed
+	WithDeathAnimation@ROT:
+		DeathSequence: rot
+		DeathTypes:
+			DefaultDeath: 1
+			BulletDeath: 2
+			SmallExplosionDeath: 3
+			ExplosionDeath: 4
+	Buildable:
+		Prerequisites: tmpl, ~infantry.nod, ~player.rebels, ~techlevel.high
+		Description: Elite commando infantry.\nArmed with pair of pistols and C4.\nMaximum 1 can be trained.\n  Special ability: Leadership Aura\nBoosts Infantry in vicinity, increasing their health, speed, damage for +5% per Level.\n  Strong vs Infantry, Buildings\n  Weak vs Vehicles, Aircraft
+	Tooltip:
+		Name: Rebel Commando
+	Mobile:
+		Locomotor: foot
+	Voiced:
+		VoiceSet: MendozaVoice
+	RenderSprites:
+		Image: e7nod
+	Targetable:
+		RequiresCondition: !parachute
+		TargetTypes: Ground, Infantry, Disguise
+
+GNRL.Nod:
+	Inherits: VOLK
+	Buildable:
+		Prerequisites: tmpl, ~infantry.nod, ~player.cabal, ~techlevel.high
+		Description: Cybernetic commando infantry.\nArmed with Fireball launcher and C4.\nMaximum 1 can be trained.\n  Special ability: Durability\nCannot be crushed unless its Mammoth Tank\n  Strong vs Infantry, Buildings\n  Weak vs Vehicles, Aircraft
+	Tooltip:
+		Name: Cyborg Commando
+	Voiced:
+		VoiceSet: CyborgCommandoVoice
+	Armament:
+		Weapon: FireballLauncher.Single
+		LocalOffset: 500,0,300
+	Armament@GARRISONED:
+		Weapon: FireballLauncher.Single
+	RenderSprites:
+		Image: gnrlnod
+
+HARV.cnc.stealth:
+	Inherits: HARV.cnc
+	-Tooltip@sidebar:
+	-Tooltip@ingame:
+	-ExternalCondition@PRODUCED:
+	-SpawnActorOnDeath:
+	-HarvesterHuskModifier:
+	Buildable:
+		Prerequisites: proc, ~!vehicles.allies, ~!vehicles.soviet, ~player.cabal, ~techlevel.infonly
+		Description: Collects Tiberium for processing.\nSpecial ability: Phase Cloaking\nInvisible when out of combat.\n  Unarmed
+		Icon: iconcloak
+	Tooltip:
+		Name: Stealth Harvester
+	SpawnActorOnDeath:
+		Actor: harv.cnc.stealth.husk.empty
+		OwnerType: InternalName
+	HarvesterHuskModifier:
+		FullHuskActor: harv.cnc.stealth.husk.full
+		FullnessThreshold: 50
+	Cloak:
+		InitialDelay: 150
+		CloakDelay: 150
+		CloakSound: appear1.aud
+		UncloakSound: appear1.aud
+		UncloakOn: Attack, Dock, Damage, Heal
+		IsPlayerPalette: true
+		RequiresCondition: !cloak-force-disabled && !empdisable && !unit.sellable && !docked
+	GrantConditionOnDamageState@UNCLOAK:
+		Condition: cloak-force-disabled
+		ValidDamageStates: Critical
+	RenderSprites:
+		Image: gdiharv
+		FactionImages:
+			nod: nodharv
+			bossnod: nodharv
+			cabal: nodharv
+			rebels: nodharv
 
 #	differences to normal JEEP
 #	has 2x weapon, cost more
@@ -279,6 +428,33 @@ SMCH:
 		TargetTypes: IsRobot
 	GpsDot:
 		String: SmallMech
+
+HMMV.tow:
+	Inherits: HMMV
+	Buildable:
+		Queue: Vehicle, MWFVehicle
+		BuildPaletteOrder: 2
+		Prerequisites: ~vehicles.gdi, ~player.socom, ~techlevel.low
+		Description: Fast scout & anti-infantry vehicle.\nCan carry one infantry.\n  Strong vs Infantry, Light Vehicles\n  Weak vs Tanks, Aircraft
+	Tooltip:
+		Name: TOW Humvee
+	Valued:
+		Cost: 600
+	Armament@SECONDARY:
+		Name: secondary
+		Weapon: Dragon.Ltnk
+		LocalOffset: 100,90,90
+		LocalYaw: -100, 100
+		Recoil: 0
+		PauseOnCondition: empdisable
+	#	Turreted@TOW:
+	#	Turret: secondary
+	#	TurnSpeed: 10
+	#	Offset: -85,-55,94		
+	WithSpriteTurret@TOW:
+		Sequence: turret-tow
+	RenderSprites:
+		Image: hmmv
 
 #	differences to normal JEEP
 #	has 2x weapon, cost more
@@ -411,6 +587,32 @@ AAV:
 		Sequence: idle-float
 		RequiresCondition: floating
 
+GAPC.gatt:
+	Inherits: GAPC
+	Buildable:
+		Prerequisites: barracks, ~vehicles.gdi, ~player.taskforce, ~techlevel.low
+		Icon: gatticon
+	Valued:
+		Cost: 700
+	Tooltip:
+		Name: Gattling APC
+	Turreted:
+		Offset: 0,0,150
+	Armament@PRIMARY:
+		Weapon: Chaingun
+		LocalOffset: 321,0,85
+		Recoil: 0
+	Armament@SECONDARY:
+		Weapon: Chaingun.AA
+		LocalOffset: 220,0,350
+		Recoil: 0
+	WithSpriteTurret:
+		Sequence: turret-gatt-ag
+	WithSpriteTurret@AIR:
+		Sequence: turret-gatt-aa
+	RenderSprites:
+		Image: gapc
+
 #	differences to regular APC
 #	cloaked, moves slower
 #	cost more
@@ -422,7 +624,7 @@ SAPC:
 	-MustBeDestroyed:
 	Buildable:
 		Prerequisites: barracks, ~vehicles.nod, ~player.blackhand, ~techlevel.low
-		Description: Cloaked infantry transport.\nCan transport up to 5 Infantry.\n  Unarmed
+		Description: Cloaked infantry transport.\nCan transport up to 3 Infantry.\n  Unarmed
 	Valued:
 		Cost: 750
 	Tooltip:
@@ -444,8 +646,118 @@ SAPC:
 		ValidDamageStates: Critical
 	Passenger:
 		PipType: Blue
+	Cargo:
+		MaxWeight: 3
+		PipCount: 3
 	Carryable:
 		CarriedCondition: intransit
+	Voiced:
+		VoiceSet: SAPCVoice
+
+NAPC.Armed:
+	Inherits: NAPC
+	-ProximityExternalCondition@barracksheal:
+	-WithRangeCircle:
+	-WithIdleOverlay@MEDIC:
+	-Turreted@AI:
+	-Armament@AI:
+	-GrantConditionOnBotOwner@aiplayer:
+	-AttackTurreted:
+	Buildable:
+		Prerequisites: barracks, ~vehicles.nod, ~player.rebels, ~techlevel.low
+		Description: Fast infantry transport with MG.\nCan transport up to 5 Infantry.\n  Strong vs Infantry, Light Vehicles\nWeak vs Tanks, Defenses 
+		Icon: iconalt
+	Tooltip:
+		Name: Armed Light APC		
+	Armament:
+		Weapon: M60mg
+		LocalOffset: 150,0,100
+		MuzzleSequence: muzzle
+		PauseOnCondition: empdisable
+	AttackTurreted:
+		PauseOnCondition: empdisable
+	Turreted:
+		TurnSpeed: 5
+		Offset: 176,0,16
+	WithSpriteTurret:
+	WithMuzzleOverlay:
+	RenderSprites:
+		Image: napc
+
+#	Mini Tank
+MTNK:
+	Inherits: SMCH
+	-Armament@1:
+	-Armament@2:
+	-DetectCloaked:
+	-RenderDetectionCircle:
+	Tooltip:
+		Name: Micro Tank
+	Buildable:
+		BuildPaletteOrder: 4
+		Prerequisites: proc, ~vehicles.nod, ~player.cabal, ~techlevel.low
+		Description: Drone battle tank.\n  Immune to Mind-control\n  Strong vs Vehicles\n  Weak vs Infantry, Defenses, Aircraft
+		Icon: tankicon
+	Health:
+		HP: 17500
+	RevealsShroud:
+		MinRange: 3c0
+		Range: 5c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 3c0
+	Armament@Cannon:
+		Weapon: 70mm
+		Recoil: 128
+		RecoilRecovery: 26
+		LocalOffset: 768,0,90
+		MuzzleSequence: cannon-muzzle
+	WithSpriteTurret:
+		Sequence: cannon-turret
+	RenderSprites:
+		Image: smch
+
+2TNK.gdi.rail:
+	Inherits: 2TNK.gdi
+	-WithMuzzleOverlay:
+	Buildable:
+		Prerequisites: fix, ~vehicles.gdi, ~player.futurecorps, ~techlevel.medium
+		Description: Main Battle Tank, armed with Railgun.\n  Strong vs Vehicles, Infantry\n  Weak vs Ships, Aircraft
+	Tooltip:
+		Name: Railgun Medium
+	Valued:
+		Cost: 1000
+	Armament@PRIMARY:
+		Weapon: Railgun
+		LocalOffset: 768,0,90
+		Recoil: 170
+		RecoilRecovery: 42
+		PauseOnCondition: empdisable
+	SpawnActorOnDeath:
+		Actor: 2tnk.gdi.rail.husk
+		OwnerType: InternalName
+
+2tnk.gdi.rpod:
+	Inherits: 2TNK.gdi
+	Buildable:
+		Prerequisites: fix, ~vehicles.gdi, ~player.taskforce, ~techlevel.medium
+		Description: Main Battle Tank with rocket pod.\n  Strong vs Vehicles, Infantry\n  Weak vs Ships, Aircraft
+	Tooltip:
+		Name: Rocketpod Medium
+	Valued:
+		Cost: 1200
+	Armament@TERTIARY:
+		Name: tertiary
+		Weapon: Dragon.Ltnk
+		LocalOffset: 100,90,90
+		LocalYaw: -100, 100
+		Recoil: 10
+		PauseOnCondition: empdisable
+	AttackTurreted:
+		Armaments: primary, secondary, tertiary
+	SpawnActorOnDeath:
+		Actor: 2tnk.gdi.rpod.husk
+		OwnerType: InternalName
 
 CTNK.Nod:
 	Inherits: FTNK
@@ -455,7 +767,7 @@ CTNK.Nod:
 		Queue: Vehicle
 		BuildPaletteOrder: 5
 		Prerequisites: fix, nodbio, ~vehicles.nod, ~player.blackhand, ~techlevel.high
-		Description: Heavily armored chemicals-spraying vehicle.\nWeapon has 15% chance to spawn\na Visceroid when killing Infantry units.\n  Strong vs Infantry, Buildings and Vehicles\n  Weak vs Tanks
+		Description: Heavily armored chemicals-spraying vehicle.\nWeapon has 15% chance to spawn\nVisceroid when killing Infantry units.\n  Strong vs Infantry, Buildings and Vehicles\n  Weak vs Tanks
 	Tooltip:
 		Name: Chemical Tank
 	Mobile:
@@ -492,6 +804,7 @@ MRLS.Hover:
 		Prerequisites: dome, ~vehicles.gdi, ~player.futurecorps, ~techlevel.medium
 		Description: Anti-gravity Repulsor chassis outfitted\nwith multi-purpose rocketlaunchers.\n  Strong vs Buildings and Vehicles\n Weak vs Tanks and Ships
 	Mobile:
+		TurnSpeed: 5
 		Speed: 113
 		Locomotor: repulsor
 	LeavesTrails:
@@ -503,7 +816,7 @@ MRLS.Hover:
 		MovingInterval: 6
 		RequiresCondition: !airborne
 	Health:
-		HP: 16000
+		HP: 18000
 	Armor:
 		Type: Light
 	RevealsShroud:
@@ -533,7 +846,7 @@ MRLS.Hover:
 		RequiresCondition: !parachute && damaged && !airborne
 		TargetTypes: Repair
 	Targetable@AIRBORNE:
-		TargetTypes: Air
+		TargetTypes: Air, Helicopter
 		RequiresCondition: airborne
 	GrantConditionOnJumpjetLayer:
 		Condition: airborne
@@ -573,6 +886,95 @@ MRLS.Hover:
 	RenderRangeCircle:
 	GpsDot:
 		String: Repulsor
+		
+#	Hover Tank
+HTNK:
+	Inherits: ^Vehicle
+	Inherits@EXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
+	RenderSprites:
+		Image: nodhvr
+	Valued:
+		Cost: 1200
+	Tooltip:
+		Name: Hover Tank
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Buildable:
+		Queue: Vehicle, MWFVehicle
+		BuildPaletteOrder: 12
+		Prerequisites: dome, fix, ~vehicles.nod, ~player.cabal, ~techlevel.medium
+		Description: Anti-gravity Repulsor chassis outfitted\nwith multi-purpose Laser.\n Strong vs Helicopters and Light Vehicles\n Weak vs Tanks and Ships
+	Mobile:
+		TurnSpeed: 5
+		Speed: 113
+		Locomotor: repulsor
+		Voice: Move
+	LeavesTrails:
+		Image: twake
+		Palette: effect
+		TerrainTypes: Water
+		TrailWhileStationary: true
+		StationaryInterval: 18
+		MovingInterval: 6
+		RequiresCondition: !airborne
+	Health:
+		HP: 18000
+	Armor:
+		Type: Light
+	RevealsShroud:
+		MinRange: 4c0
+		Range: 6c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 4c0
+	Turreted:
+		TurnSpeed: 10
+		Offset: -200,0,0
+	Hovers:
+		BobDistance: -35
+		RequiresCondition: !empdisable
+	GrantConditionOnTerrain:
+		TerrainTypes: Water
+		Condition: onwater
+	KillsSelf@SINK:
+		RequiresCondition: onwater && empdisable && !airborne
+	WithShadow:
+		Offset: 43, 128, 0
+		ZOffset: -129
+	Targetable:
+		RequiresCondition: !parachute && !airborne
+		TargetTypes: Ground, Vehicle
+	Targetable@REPAIR:
+		RequiresCondition: !parachute && damaged && !airborne
+		TargetTypes: Repair
+	Targetable@AIRBORNE:
+		TargetTypes: Air, Helicopter
+		RequiresCondition: airborne
+	GrantConditionOnJumpjetLayer:
+		Condition: airborne
+	Armament@PRIMARY:
+		Weapon: Hoverlaser
+		LocalOffset: 128,0,171
+		PauseOnCondition: empdisable
+		MuzzleSequence: muzzle
+	WithMuzzleOverlay:
+	AutoTarget:
+		ScanRadius: 10
+	AttackTurreted:
+		PauseOnCondition: empdisable
+	Explodes:
+		Weapon: UnitExplodeSmall
+	ProducibleWithLevel:
+		Prerequisites: vehicles.upgraded
+	RenderRangeCircle:
+	GpsDot:
+		String: Repulsor
+	SelectionDecorations:
+	Selectable:
+		Bounds: 32,32
+	Voiced:
+		VoiceSet: RoboticVoice
 
 #	is amphibian
 #	may fare worse on land, movetype needs fine-tuning
@@ -595,7 +997,7 @@ SSM.Hover:
 		Cost: 1600
 	Mobile:
 		Locomotor: amphibious
-		PauseOnCondition: empdisable && being-captured
+		PauseOnCondition: !(!empdisable && !being-captured)
 	GrantConditionOnTerrain@SEA:
 		TerrainTypes: Water, River
 		Condition: floating
@@ -618,6 +1020,44 @@ SSM.Hover:
 		Sequence: rockets0
 	GpsDot:
 		String: Hovercraft
+
+#	Nuclear SSM for Cabal
+SSM.Nuke:
+	Inherits: SSM
+	-Tooltip@sidebar:
+	-Tooltip@ingame:
+	-ExternalCondition@PRODUCED:
+	Buildable:
+		BuildLimit: 1
+		Prerequisites: tmpl, ~vehicles.nod, ~player.cabal, ~techlevel.high
+		Description: Long-range nuclear rocket artillery.\nHas very weak Armor.\n  Strong vs Everything at range\n  Weak vs Close ranged attacks
+		Icon: nuclearicon
+	Valued:
+		Cost: 2200
+	Tooltip:
+		Name: Nuclear SSM
+	Armament:
+		Weapon: HonestJohn.Nuclear
+	ReloadAmmoPool@1:
+		Delay: 360
+		Count: 2
+		RequiresCondition: !ammo
+	RenderSprites:
+		Image: SSM
+
+#	Napalm SSM for Rebels
+SSM.Napalm:
+	Inherits: SSM
+	Buildable:
+		Queue: Vehicle
+		BuildPaletteOrder: 14
+		Prerequisites: tmpl, ~vehicles.nod, ~player.rebels, ~techlevel.high
+		Description: Long-range rocket artillery.\nHas very weak Armor.\n  Strong vs Everything at range\n  Weak vs Close ranged attacks
+		Icon: vanillaicon
+	Armament:
+		Weapon: HonestJohn.Napalm
+	RenderSprites:
+		Image: ssm
 
 SRTY:
 	Inherits: ARTY
@@ -651,6 +1091,35 @@ SRTY:
 	Selectable:
 		DecorationBounds: 28,28
 
+4tnk.gdi.ion:
+	Inherits: 4TNK.gdi
+	-WithMuzzleOverlay:
+	Buildable:
+		Prerequisites: fix, eye, ~vehicles.gdi, ~player.socom, ~techlevel.high
+		BuildLimit: 3
+		Description: Big and slow tank, with anti-air capability.\nArmed with target designator for Ion cannon strikes.\nRequires Advanced Comm. Center to fire weapon.\nMaximum 3 can be built.\nCan crush concrete walls.\nSelf-repairs when below 50% of maximum Health.\n  Strong vs Vehicles, Infantry, Buildings\n  Weak vs Artillery
+		Icon: ionicon
+	Tooltip:
+		Name: Ion Mammoth
+	Valued:
+		Cost: 1800
+	Armament@PRIMARY:
+		Weapon: IonPainter
+		LocalOffset: 770,0,320
+		Recoil: 0
+		RecoilRecovery: 0
+		PauseOnCondition: !(!empdisable) && !haseye
+	GrantConditionOnPrerequisite@NOIONWITHOUTEYE:
+		Condition: haseye
+		Prerequisites: eye
+	SpawnActorOnDeath:
+		Actor: 4tnk.gdi.ion.husk
+		OwnerType: InternalName
+	WithSpriteTurret:
+		Sequence: ionturret
+	RenderSprites:
+		Image: 4tnk.gdi
+
 LTNK:
 	Inherits: MWAV
 	Inherits@IDISABLE: ^DisableOnLowPower
@@ -669,12 +1138,13 @@ LTNK:
 	Armament:
 		Weapon: LaserGun
 		LocalOffset: 412,0,262
+		MuzzleSequence: muzzle
 		PauseOnCondition: !(!empdisable && !lowpower)
 	AttackTurreted:
 		PauseOnCondition: !(!empdisable && !lowpower)
 	Turreted:
 		TurnSpeed: 5
-		Offset: 20,0,90
+		Offset: 20,0,86
 	Power:
 		Amount: -20
 	WithMuzzleOverlay:
@@ -683,8 +1153,56 @@ LTNK:
 	RenderSprites:
 		Image: mwav
 	SpawnActorOnDeath:
-		Actor: last.husk
+		Actor: ltnk.husk
 		OwnerType: InternalName
+
+#	Plasma Tank
+PTNK:
+	Inherits: ^TrackedVehicle
+	Inherits@AUTOTARGET: ^AutoTargetGround
+	Buildable:
+		Queue: Vehicle
+		BuildPaletteOrder: 15
+		Prerequisites: ncom, ~vehicles.nod, ~player.cabal, ~techlevel.high
+		Description: Prototype plasma cannon platform.\n  Special ability: Plasma Suffusion\nTargets hit by Plasma temporarily take\n20% more damage from all sources.\n  Strong vs Vehicles, Buildings\n  Weak vs Aircraft, Infantry
+	Valued:
+		Cost: 1350
+	Tooltip:
+		Name: Plasma Tank
+	Health:
+		HP: 42500
+	Armor:
+		Type: Heavy
+	Mobile:
+		Speed: 56
+		PauseOnCondition: !(!being-captured)
+	RevealsShroud:
+		MinRange: 4c0
+		Range: 6c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 4c0
+	SelectionDecorations:
+	Selectable:
+		DecorationBounds: 28,28
+	Passenger:
+		Weight: 4
+	Armament@PRIMARY:
+		Weapon: ScrinTorp.singular
+		LocalOffset: 500,0,140
+	Turreted:
+		TurnSpeed: 4
+		Offset: 0,0,0
+	AttackTurreted:
+		PauseOnCondition: empdisable
+	WithSpriteTurret:
+	SpawnActorOnDeath:
+		Actor: ptnk.husk
+		OwnerType: InternalName
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	GpsDot:
+		String: EMP
 
 MSAM.Nod:
 	Inherits: MRLS
@@ -1013,7 +1531,7 @@ ORCB:
 		InitialStance: HoldFire
 		InitialStanceAI: HoldFire
 	AmmoPool:
-		Ammo: 8
+		Ammo: 24
 		PipCount: 4
 		AmmoCondition: ammo
 	Selectable:
@@ -1048,7 +1566,7 @@ SCRN:
 		BuildAtProductionType: Plane
 		BuildPaletteOrder: 5
 		Prerequisites: ~afld, nodbio, ~aircraft.nod, ~player.blackhand, ~techlevel.high
-		Description: Fast VTOL attack craft armed\nwith powerful plasma cannons.\nHas 50% chance to deflects incoming missiles.\n  Strong vs Tanks, Aircraft\n  Weak vs Infantry
+		Description: Fast VTOL attack craft armed\nwith powerful plasma cannons.\n  Special ability: Plasma Suffusion\nTargets hit by Plasma temporarily take\n20% more damage from all sources.\nSpecial ability: Scrin Tech\nHas 40% chance to deflect incoming missiles.\n  Strong vs Tanks, Aircraft\n  Weak vs Infantry
 	Valued:
 		Cost: 2400
 	Tooltip:
@@ -1127,7 +1645,7 @@ SCRN:
 	JamsMissiles:
 		Range: 1c512
 		DeflectionStances: Neutral, Enemy
-		Chance: 50
+		Chance: 40
 	SpawnActorOnDeath:
 		Actor: SCRN.Husk
 		RequiresCondition: airborne && !empdisable
@@ -1136,6 +1654,105 @@ SCRN:
 		RequiresCondition: airborne && empdisable
 	GpsDot:
 		String: Spacecraft
+
+AURO:
+	Inherits: ^Plane
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Inherits@GAINSEXPERIENCE: ^GainsExperience
+	Inherits@AUTODAMAGE: ^KilledWithoutAirfield
+	Buildable:
+		Queue: Aircraft
+		BuildAtProductionType: Plane
+		BuildPaletteOrder: 5
+		Prerequisites: ~afld, ~aircraft.gdi, ~player.socom, ~techlevel.high
+		Description: Supersonic bomber armed with a Seismic bomb.\n  Special Ability: Afterburner\nSpeeds up 150% after dropping payload and takes 10% less damage.\n  Strong vs Buildings, Light Armor, Infantry\n  Weak vs Aircraft
+	Valued:
+		Cost: 2000
+	Tooltip:
+		Name: Aurora
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 14000
+	RevealsShroud:
+		Range: 11c0
+		MinRange: 9c0
+		Type: GroundPosition
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 9c0
+		Type: GroundPosition
+	Armament:
+		Weapon: JDAM
+		LocalOffset: 2,0,-43
+		PauseOnCondition: !ammo
+	AttackAircraft:
+		FacingTolerance: 128
+		PersistentTargeting: false
+		OpportunityFire: false
+		PauseOnCondition: empdisable
+		Voice: Attack
+	Aircraft:
+		CruiseAltitude: 2560
+		InitialFacing: 192
+		TurnSpeed: 4
+		Speed: 225
+		RepulsionSpeed: 40
+		MaximumPitch: 56
+		TakeoffSounds: cjetbana.aud
+		Voice: Move
+	AutoTarget:
+		InitialStance: HoldFire
+		InitialStanceAI: AttackAnything
+	AmmoPool:
+		Ammo: 1
+		PipCount: 1
+		PipType: Gray
+		ReloadDelay: 240
+		AmmoCondition: ammo
+	#	GrantConditionOnAttack@AFTERBURNER:
+	#	Condition: afterburner
+	#	ActiveSound: cjetband.aud
+	SpeedMultiplier@AFTERBURNER:
+		Modifier: 150
+		RequiresCondition: !ammo
+	DamageMultiplier@AFTERBURNER:
+		Modifier: 90
+		RequiresCondition: !ammo
+	Selectable:
+		Bounds: 36,28,0,2
+		DecorationBounds: 40,29,0,1
+	Contrail@AB1:
+		Offset: -400,-70,-50
+		UsePlayerColor: false
+		ZOffset: -512
+		Color: cc550080
+		TrailLength: 10
+	Contrail@AB2:
+		Offset: -400,70,-50
+		UsePlayerColor: false
+		ZOffset: -512
+		Color: cc550080
+		TrailLength: 10
+	Contrail@1:
+		Offset: -300,-800,-50
+	Contrail@2:
+		Offset: -300,800,-50
+	SpawnActorOnDeath:
+		Actor: AURO.Husk
+		RequiresCondition: ammo && !empdisable
+	SpawnActorOnDeath@EMP:
+		Actor: AURO.Husk.EMP
+		RequiresCondition: ammo && empdisable
+	SmokeTrailWhenDamaged:
+		Offset: -853,0,171
+		Interval: 2
+	ProducibleWithLevel:
+		Prerequisites: aircraft.upgraded
+	Rearmable:
+		RearmActors: afld, afld.ukraine, carr.new.deployed
+	Voiced:
+		VoiceSet: AuroraVoice
 
 SHRN:
 	Inherits: ^ScienceBuilding
@@ -1244,3 +1861,101 @@ SHRN:
 		DirectionArrowAnimation: paradirection
 		Cursor: airstrike
 		SupportPowerPaletteOrder: 9
+
+STRP.Rebels:
+	Inherits: STRP
+	-ProductionAirdrop:
+	Buildable:
+		BuildPaletteOrder: 4
+		Prerequisites: anypower, ~structures.nod, ~player.rebels, ~techlevel.low
+		Description: Provides a dropzone for Vehicle reinforcements.
+	ProductionAirdrop:
+		Produces: Vehicle
+		ReadyAudio: ReinforcementsArrived
+		ActorType: c17.delivery
+		PauseOnCondition: disabled || build-incomplete
+	ProductionBar:
+		ProductionType: Vehicle
+	GrantExternalConditionToProduced:
+		Condition: produced
+	ProvidesPrerequisite@TECHPREQ:
+		Prerequisite: afldorweap
+	ProvidesPrerequisite@COPY:
+		Prerequisite: weap
+	ProvidesPrerequisite@gdi:
+		Factions: gdi, ubergdi, socom, taskforce
+		Prerequisite: vehicles.gdi
+	ProvidesPrerequisite@gdistructure:
+		RequiresPrerequisites: structures.gdi
+		Prerequisite: vehicles.gdi
+	ProvidesPrerequisite@nod:
+		Factions: nod, bossnod, cabal, rebels
+		Prerequisite: vehicles.nod
+	ProvidesPrerequisite@nodstructure:
+		RequiresPrerequisites: structures.nod
+		Prerequisite: vehicles.nod
+	RenderSprites:
+		Image: strp
+
+OBEL.Cabal:
+	Inherits: OBEL
+	Buildable:
+		Queue: Defense
+		BuildPaletteOrder: 5
+		Prerequisites: tmpl, ~structures.nod, ~player.cabal, ~techlevel.high
+		Description: Advanced base defense with an Laser.\n  Can target Helicopters with\nan weaker Laser weapon\n  Strong vs all Ground units\n  Weak vs Airplanes, Artillery
+	Tooltip:
+		Name: Advanced Obelisk
+	Armament:
+		PauseOnCondition: disabled || empdisable || reload-air
+		ReloadingCondition: reload-ground
+	Armament@SECONDARY:
+		Name: secondary
+		Weapon: LaserAA
+		LocalOffset: 0,-85,1280
+		PauseOnCondition: disabled || empdisable || reload-ground
+		ReloadingCondition: reload-air
+	RenderSprites:
+		Image: obel
+
+AGUN.cnc:
+	Inherits: AGUN
+	Buildable:
+		Queue: Defense
+		BuildPaletteOrder: 6
+		Prerequisites: dome, ~structures.gdi, ~player.taskforce, ~techlevel.medium
+		Description: Anti-Air base defense.\n  Strong vs Aircraft\n  Weak vs Ground units
+	Valued:
+		Cost: 800
+	Tooltip:
+		Name: Anti-Air Gun
+	-Armament:
+	Armament@GAT0:
+		Weapon: Gatt.0
+		LocalOffset: 520,0,450
+		MuzzleSequence: muzzle
+		RequiresCondition: gattling == 0
+	Armament@GAT1:
+		Weapon: Gatt.1
+		LocalOffset: 520,0,450
+		MuzzleSequence: muzzle
+		RequiresCondition: gattling == 1
+	Armament@GAT2:
+		Weapon: Gatt.2
+		LocalOffset: 520,0,450
+		MuzzleSequence: muzzle
+		RequiresCondition: gattling == 2
+	Armament@GAT3:
+		Weapon: Gatt.3
+		LocalOffset: 520,0,450
+		MuzzleSequence: muzzle
+		RequiresCondition: gattling == 3
+	GrantConditionOnAttack:
+		Condition: gattling
+		RequiredShotsPerInstance: 1,7,14
+		MaximumInstances: 3
+		RevokeDelay: 40
+		RevokeOnNewTarget: False
+		RevokeAll: True
+	RenderSprites:
+		Image: cncagun

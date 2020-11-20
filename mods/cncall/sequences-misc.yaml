@@ -244,6 +244,11 @@ explosion:
 		BlendMode: Additive
 		Tick: 90
 		ZOffset: 2046
+	ionsplosion: ionsfx
+		Offset: 0, -78
+		ZOffset: 1023
+	fuelbomb: moab_splosion
+		Tick: 40
 
 emp-overlay:
 	emp-overlay: empfx01
@@ -989,3 +994,30 @@ paradirection:
 		X: -6
 		y: 5
 		Offset: -15, -15, 0
+
+mwarc:
+	idle: empfx02
+		Length: *
+		BlendMode: Additive
+		Offset: 0, 0
+		UseTilesetCode: false
+		ZOffset: 512
+	idle2: empfx02
+		Start: 8
+		Length: *
+		BlendMode: Additive
+		Offset: 0, 0
+		UseTilesetCode: false
+		ZOffset: 512
+	idle3: empfx02
+		Start: 16
+		Length: *
+		BlendMode: Additive
+		Offset: 0, 0
+		UseTilesetCode: false
+		ZOffset: 512
+
+moab_bomb:
+	idle: moab
+		Facings: 32
+		ZOffset: -1

@@ -123,7 +123,7 @@ RH66:
 		Queue: Aircraft
 		BuildPaletteOrder: 3
 		BuildAtProductionType: Helicopter
-		Prerequisites: ~hpad, tmpl, ~aircraft.nod, ~techlevel.high
+		Prerequisites: ~hpad, tmpl, ~aircraft.nod, ~!player.rebels, ~techlevel.high
 		Description: Fast and nimble, Helicopter that is armed\nwith air-to-ground Rockets and basic Gun.\nDoes not appear on enemy radar or GPS.\n  Special ability: Phase Cloaking\nInvisible when out of combat.\nReloads on its own.\nCannot attack Air units.\n  Strong vs Light Vehicles, Buildings\n  Weak vs Anti-Air, Detectors
 	Valued:
 		Cost: 1800
@@ -155,10 +155,25 @@ RH66:
 		PersistentTargeting: false
 		AttackType: Hover
 		OpportunityFire: false
+		Voice: Attack
+	AttackMove:
+		Voice: Attack
+	Voiced:
+		VoiceSet: SakuraVoice	
+	ExternalCondition@PRODUCED:
+		Condition: produced
+	VoiceAnnouncement:
+		RequiresCondition: produced
+		Voice: Build
 	Aircraft:
 		AltitudeVelocity: 0c100
 		TurnSpeed: 5
 		Speed: 150
+		Voice: Move
+	Guard:
+		Voice: Move
+	DeathSounds@SAKURA:
+		Voice: Die
 	Cloak:
 		InitialDelay: 150
 		CloakDelay: 150
@@ -209,6 +224,7 @@ RH66:
 	SpawnActorOnDeath@EMP:
 		Actor: RH66.Husk.EMP
 		RequiresCondition: airborne && empdisable
+	AnnounceOnKill:
 
 MH60:
 	Inherits: ^Helicopter
@@ -284,7 +300,7 @@ MH60:
 		AmmoCondition: ammo
 	ReloadAmmoPool:
 		Delay: 225
-		Count: 12
+		Count: 24
 		RequiresCondition: !ammo
 	WithDecoration@ammoreplenish:
 		RequiresSelection: false
@@ -419,6 +435,15 @@ C17:
 	GpsDot:
 		String: BigPlane
 
+C17.Delivery:
+	Inherits: C17
+	Aircraft:
+		Speed: 360
+		MaximumPitch: 36
+	DamageMultiplier@INVULNERABLE:
+		Modifier: 0
+	-MapEditorData:
+
 C17TRANSPORT:
 	Inherits: ^Plane
 	Inherits@AUTODAMAGE: ^KilledWithoutAirfield
@@ -518,7 +543,7 @@ A10:
 		Queue: Aircraft
 		BuildAtProductionType: Plane
 		BuildPaletteOrder: 5
-		Prerequisites: ~afld, eye, ~aircraft.gdi, ~!player.futurecorps, ~techlevel.high
+		Prerequisites: ~afld, eye, ~aircraft.gdi, ~!player.futurecorps, ~!player.socom, ~techlevel.high
 		Description: A-10 variant in Tankhunter configuration.\nCannot attack Air units\n  Strong vs Tanks, Infantry\n  Weak vs Aircraft, Defenses
 	Valued:
 		Cost: 2400
@@ -527,7 +552,7 @@ A10:
 	UpdatesPlayerStatistics:
 		AddToArmyValue: true
 	Health:
-		HP: 12500
+		HP: 16000
 	RevealsShroud:
 		MinRange: 9c0
 		Range: 11c0
@@ -719,6 +744,7 @@ SFIG:
 		FacingTolerance: 20
 		PersistentTargeting: False
 		OpportunityFire: False
+		Voice: Attack
 	Rearmable:
 		RearmActors: afld, afld.ukraine, carr.new.deployed
 	Aircraft:
@@ -728,6 +754,7 @@ SFIG:
 		Speed: 178
 		RepulsionSpeed: 40
 		MaximumPitch: 56
+		Voice: Move
 	AutoTarget:
 		InitialStance: HoldFire
 		InitialStanceAI: HoldFire
@@ -756,6 +783,8 @@ SFIG:
 	SpawnActorOnDeath@EMP:
 		Actor: SFIG.Husk.EMP
 		RequiresCondition: airborne && empdisable
+	Voiced:
+		VoiceSet: StealthFighterVoice
 
 UAV:
 	Inherits: ^NeutralPlane
@@ -877,7 +906,7 @@ F22:
 	Inherits: MIG
 	Buildable:
 		BuildPaletteOrder: 4
-		Prerequisites: ~afld, tmpl, ~aircraft.nod, ~techlevel.high
+		Prerequisites: ~afld, tmpl, ~aircraft.nod, ~!player.rebels, ~techlevel.high
 		Description: Fast Multi-Role Plane.\n  Strong vs Buildings, Vehicles\n  Weak vs Infantry, Aircraft
 	Valued:
 		Cost: 2000
@@ -885,9 +914,11 @@ F22:
 		Name: F-22 Raptor
 	Aircraft:
 		Speed: 267
+		Voice: Move
 	AttackAircraft:
 		Armaments: primary, secondary, tertiary, fourth, fifth
 		FacingTolerance: 20
+		Voice: Attack
 	Armament@SECONDARY:
 		Name: secondary
 		Weapon: MaverickAA
@@ -928,13 +959,14 @@ F22:
 		AmmoCondition: ammobomb
 	Rearmable:
 		RearmActors: afld, afld.ukraine, carr.new.deployed
-
 	SpawnActorOnDeath:
 		Actor: F22.Husk
 		RequiresCondition: airborne && !empdisable
 	SpawnActorOnDeath@EMP:
 		Actor: F22.Husk.EMP
 		RequiresCondition: airborne && empdisable
+	Voiced:
+		VoiceSet: RaptorVoice
 
 B2.Bomber:
 	Inherits: B52.Bomber

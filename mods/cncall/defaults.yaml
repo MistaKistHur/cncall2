@@ -448,6 +448,18 @@
 		RequiresCondition: hitbychem
 		TargetTypes: HasPoison
 
+^AffectedByPlasma:
+	DamageMultiplier@PLASMA:
+		Modifier: 120
+	ExternalCondition@PLASMA:
+		Condition: hitbyplasma
+	WithColoredOverlay@PLASMA:
+		RequiresCondition: hitbyplasma
+		Palette: plasma
+	Targetable@PLASMA:
+		RequiresCondition: hitbyplasma
+		TargetTypes: HasPlasma
+
 ^CivInfantry:
 	Inherits: ^Infantry
 	Selectable:
@@ -493,6 +505,8 @@
 	Inherits@MoraleMalus: ^AffectedByDemoralize
 	Inherits@Slowdown: ^SlowdownWhenDamagedInf
 	Inherits@PoisonMechanic: ^AffectedByChemicals
+	Inherits@PlasmaMechanic: ^AffectedByPlasma
+	Inherits@BOINK: ^BoinkSound
 	Huntable:
 	OwnerLostAction:
 		Action: Kill
@@ -538,7 +552,7 @@
 	Passenger:
 		CargoType: Infantry
 		CargoCondition: disable-experience
-	GainsExperienceMultiplier:
+	GainsExperienceMultiplier@NOPASSENGERXP:
 		Modifier: 0
 		RequiresCondition: disable-experience
 	HiddenUnderFog:
@@ -750,6 +764,9 @@
 	Inherits@FieldRepair: ^AffectedByFieldRepair
 	Inherits@MoraleMalus: ^AffectedByDemoralize
 	Inherits@Slowdown: ^SlowdownWhenDamaged
+	Inherits@PlasmaMechanic: ^AffectedByPlasma
+	Inherits@IonPainterMechanic: ^IonPainterMechanic
+	Inherits@BOINK: ^BoinkSound
 	Huntable:
 	OwnerLostAction:
 		Action: Kill
@@ -925,6 +942,8 @@
 	Inherits@FieldRepair: ^AffectedByFieldRepair
 	Inherits@MoraleMalus: ^AffectedByDemoralize
 	Inherits@Slowdown: ^SlowdownWhenDamaged
+	Inherits@PlasmaMechanic: ^AffectedByPlasma
+	Inherits@BOINK: ^BoinkSound
 	Huntable:
 	OwnerLostAction:
 		Action: Kill
@@ -1061,6 +1080,8 @@
 	Inherits@SpeedBonus: ^AffectedByUkraine
 	Inherits@Slowdown: ^SlowdownWhenDamaged
 	Inherits@EMPMechanic: ^AircraftAffectedByEMP
+	Inherits@PlasmaMechanic: ^AffectedByPlasma
+	Inherits@BOINK: ^BoinkSound
 	Huntable:
 	OwnerLostAction:
 		Action: Kill
@@ -1134,7 +1155,7 @@
 	Inherits@MoraleMalus: ^AffectedByDemoralize
 	-EjectOnDeath:
 	Repairable:
-		RepairActors: afld, afld.ukraine, carr.deployed
+		RepairActors: afld, afld.ukraine, carr.new.deployed
 	DeliversCash:
 		Payload: 0
 		Type: AircraftRefund
@@ -1161,6 +1182,8 @@
 		UseClassicFacingFudge: True
 	Repairable:
 		RepairActors: hpad, carr.deployed
+	Targetable@ISHELICOPTER:
+		TargetTypes: Helicopter
 
 ^KilledWithoutAirfield:
 	SelfHealing@PLANE:
@@ -1237,6 +1260,8 @@
 	Inherits@ScrapMetal: ^GlobalScraps
 	Inherits@EMPMechanic: ^BuildingAffectedByEMP
 	Inherits@StealthGen: ^AffectedByStealthGen
+	Inherits@PlasmaMechanic: ^AffectedByPlasma
+	Inherits@IonPainterMechanic: ^IonPainterMechanic
 	Huntable:
 	OwnerLostAction:
 		Action: Kill
@@ -2221,3 +2246,52 @@
 		Condition: ukraine.player
 		Factions: ukraine
 		ResetOnOwnerChange: True
+
+^BoinkSound:
+	DeathSounds@Boink:
+		Voice: Boink
+		VolumeMultiplier: 2
+		RequiresCondition: boink-boink
+	GrantConditionOnPrerequisite@Boink:
+		Condition: boink-boink
+		Prerequisites: global-boink
+
+^IonPainterMechanic:
+	WithColoredOverlay@IONSTRIKEOVERLAY:
+		RequiresCondition: ionpainted
+		Palette: targetpainted
+	TimedConditionBar@IONSTRIKEOVERLAY:
+		Condition: ionpainted
+		Color: 0000C3
+	ExternalCondition@IONSTRIKEOVERLAY:
+		Condition: ionpainted
+		TotalCap: 1
+	ExternalCondition@IONSTRIKE:
+		Condition: ionstrike
+		TotalCap: 69
+	Explodes@IONSTRIKE:
+		Weapon: IonCannonExplode
+		EmptyWeapon: IonCannonExplode
+		DamageSource: Killer
+		RequiresCondition: ionstrikeimminent
+	# kills itself immediately, need to die after 70 tick
+	# ok fixed
+	KillsSelf@IONSTRIKE:
+		RequiresCondition: ionstrike == 69
+		GrantsCondition: ionstrikeimminent
+	Targetable@ONEIONPER:
+		TargetTypes: GotIon
+		RequiresCondition: ionpainted
+
+^TestSoundTerrainTracks:
+	GrantConditionOnMovement@TRACKSTEST:
+		Condition: movingtracks 
+		ValidMovementTypes: Horizontal, Vertical
+	GrantConditionOnTerrain@TRACKSTEST:
+		Condition: ondirt
+		TerrainTypes: Clear
+	#	todo: procure the soundfile ^^
+	AmbientSound@TRACKSTEST:
+		SoundFiles: 
+		Interval: 25
+		RequiresCondition: movingtracks && ondirt

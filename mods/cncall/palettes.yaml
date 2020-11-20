@@ -37,6 +37,18 @@
 		Name: effect
 		Filename: temperat.pal
 		ShadowIndex: 4
+	PaletteFromPaletteWithAlpha@effect-alpha75:
+		Name: effect-alpha75
+		Alpha: 0.75
+		BasePalette: effect
+	PaletteFromPaletteWithAlpha@effect-alpha50:
+		Name: effect-alpha50
+		Alpha: 0.50
+		BasePalette: effect
+	PaletteFromPaletteWithAlpha@effect-alpha25:
+		Name: effect-alpha25
+		Alpha: 0.25
+		BasePalette: effect
 	PaletteFromFile@colorpicker:
 		Name: colorpicker
 		Filename: temperat.pal
@@ -157,6 +169,18 @@
 		R: 32
 		G: 7
 		B: 56
+		A: 128
+	PaletteFromRGBA@plasma:
+		Name: plasma
+		R: 128
+		G: 255
+		B: 128
+		A: 128
+	PaletteFromRGBA@painted:
+		Name: targetpainted
+		R: 0
+		G: 0
+		B: 195
 		A: 128
 	# remappable tiberium, cool idea
 	PaletteFromFile@tibtreefix:

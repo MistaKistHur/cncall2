@@ -12,6 +12,20 @@ HARV.CNC.Husk.empty:
 HARV.CNC.Husk.full:
 	Inherits: HARV.CNC.Husk.empty
 
+HARV.CNC.Stealth.Husk.empty:
+	Inherits: ^Husk
+	Tooltip:
+		Name: Husk (Stealth Harvester)
+	TransformOnCapture:
+		IntoActor: harv.cnc.stealth
+	InfiltrateForTransform:
+		IntoActor: harv.cnc.stealth
+	RenderSprites:
+		Image: cncharv.husk
+
+HARV.CNC.Stealth.Husk.full:
+	Inherits: HARV.CNC.Stealth.Husk.empty
+
 MCV.CNC.Husk:
 	Inherits: ^Husk
 	Tooltip:
@@ -84,6 +98,19 @@ MRPG.Husk:
 	RenderSprites:
 		Image: 2tnk.gdi.rail.husk
 
+2TNK.GDI.Rpod.Husk:
+	Inherits: ^Husk
+	Tooltip:
+		Name: Husk (Rocketpod Medium)
+	ThrowsParticle@turret:
+		Anim: turret
+	TransformOnCapture:
+		IntoActor: 2tnk.gdi.rpod
+	InfiltrateForTransform:
+		IntoActor: 2tnk.gdi.rpod
+	RenderSprites:
+		Image: 2tnk.gdi.rpod.husk
+
 4TNK.GDI.Husk:
 	Inherits: ^Husk
 	Tooltip:
@@ -110,6 +137,19 @@ MRPG.Husk:
 	RenderSprites:
 		Image: 4tnk.gdi.rail.husk
 
+4TNK.GDI.Ion.Husk:
+	Inherits: ^Husk
+	Tooltip:
+		Name: Husk (Ion Mammoth)
+	ThrowsParticle@turret:
+		Anim: turret
+	TransformOnCapture:
+		IntoActor: 4tnk.gdi.ion
+	InfiltrateForTransform:
+		IntoActor: 4tnk.gdi.ion
+	RenderSprites:
+		Image: 4tnk.gdi.ion.husk
+
 MWAV.Husk:
 	Inherits: ^Husk
 	Tooltip:
@@ -123,18 +163,31 @@ MWAV.Husk:
 	RenderSprites:
 		Image: mwav.husk
 
-LAST.Husk:
+LTNK.Husk:
 	Inherits: ^Husk
 	Tooltip:
 		Name: Husk (Laser Tank)
 	ThrowsParticle@turret:
 		Anim: turret
 	TransformOnCapture:
-		IntoActor: mwav.laser
+		IntoActor: ltnk
 	InfiltrateForTransform:
-		IntoActor: mwav.laser
+		IntoActor: ltnk
 	RenderSprites:
-		Image: last.husk
+		Image: ltnk.husk
+
+PTNK.Husk:
+	Inherits: ^Husk
+	Tooltip:
+		Name: Husk (Plasma Tank)
+	ThrowsParticle@turret:
+		Anim: turret
+	TransformOnCapture:
+		IntoActor: ptnk
+	InfiltrateForTransform:
+		IntoActor: ptnk
+	RenderSprites:
+		Image: mwav.husk
 
 DISR.Husk:
 	Inherits: ^Husk
@@ -850,3 +903,25 @@ SGEN.Husk:
 		LocalCenterOffset: 0,0,0
 	Tooltip:
 		Name: Stealth Generator (Destroyed)
+
+AURO.Husk:
+	Inherits: ^PlaneHusk
+	Tooltip:
+		Name: Aurora
+	Aircraft:
+		TurnSpeed: 7
+		Speed: 123
+	Contrail@1:
+		Offset: -300,-800,-50
+	Contrail@2:
+		Offset: -300,800,-50
+	SmokeTrailWhenDamaged:
+		Offset: -1c43,0,0
+		Interval: 2
+		MinDamage: Undamaged
+	RenderSprites:
+		Image: auro
+
+AURO.Husk.EMP:
+	Inherits: AURO.Husk
+	Inherits: ^EmpVisualEffect

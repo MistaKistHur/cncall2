@@ -158,7 +158,8 @@ BarrelChemExplode:
 		DamageTypes: Prone50Percent, TriggerProne, TiberiumDeath, Incendiary
 	Warhead@2Eff: CreateEffect
 		Explosions: large_chem
-		
+		ExplosionPalette: desert
+
 ATMine:
 	Warhead@1Dam: SpreadDamage
 		Spread: 256
@@ -509,3 +510,23 @@ UnitExplodeHunter:
 			Concrete: 100
 		DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath
 		ValidTargets: Harvester
+
+IonCannonExplode:
+	ValidTargets: Ground, Air, Trees
+	Warhead@1Dam_impact: SpreadDamage
+		Range: 0, 1c256
+		Damage: 5000
+		Falloff: 100, 50
+		ValidTargets: Ground, Air, Trees
+		AffectsParent: True
+		DamageTypes: Prone50Percent, TriggerProne, FireDeath, Incendiary
+	Warhead@2Smu_impact: LeaveSmudge
+		SmudgeType: Scorch
+		Size: 1
+		InvalidTargets: Vehicle, Structure, Wall, Husk, Trees, Creep
+	Warhead@3Res_area2: DestroyResource
+		Size: 1
+		Delay: 6
+	Warhead@4Eff: CreateEffect
+		Explosions: ionsplosion
+		ImpactSounds: ion1.aud

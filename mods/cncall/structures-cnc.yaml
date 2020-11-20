@@ -30,10 +30,10 @@ FACT.CNC:
 		Offset: 1,1
 		Facing: 96
 	ProvidesPrerequisite@gdi:
-		Factions: gdi, ubergdi
+		Factions: gdi, ubergdi, socom, taskforce
 		Prerequisite: structures.gdi
 	ProvidesPrerequisite@nod:
-		Factions: nod, bossnod
+		Factions: nod, bossnod, cabal, rebels
 		Prerequisite: structures.nod
 	Production:
 		Produces: Building,Defense
@@ -43,8 +43,12 @@ FACT.CNC:
 		FactionImages:
 			gdi: gdifact
 			ubergdi: gdifact
+			socom: gdifact
+			taskforce: gdifact
 			nod: nodfact
 			bossnod: nodfact
+			cabal: nodfact
+			rebels: nodfact
 	SpawnActorOnDeath:
 		Actor: fact.cnc.husk
 		OwnerType: InternalName
@@ -70,6 +74,8 @@ POWR.CNC:
 		FactionImages:
 			nod: nodpowr
 			bossnod: nodpowr
+			cabal: nodpowr
+			rebels: nodpowr
 	SpawnActorOnDeath:
 		Actor: powr.cnc.husk
 		OwnerType: InternalName	
@@ -98,6 +104,8 @@ APWR.CNC:
 		FactionImages:
 			nod: nodapwr
 			bossnod: nodapwr
+			cabal: nodapwr
+			rebels: nodapwr
 	SpawnActorOnDeath:
 		Actor: apwr.cnc.husk
 		OwnerType: InternalName	
@@ -155,26 +163,14 @@ PROC.CNC:
 	Selectable:
 		Bounds: 72,56
 		DecorationBounds: 73,72
-	#	FreeActorWithDelivery@gdi:
-	#	Actor: harv.cnc
-	#	DeliveryOffset: 1,2
-	#	DeliveringActor: orcacarr.delivery
-	#	Facing: 64
-	#	RequiresCondition: gdi.player
-	#	FreeActorWithDelivery@nod:
-	#	Actor: harv.cnc
-	#	DeliveryOffset: 1,2
-	#	DeliveringActor: v22.delivery
-	#	Facing: 64	
-	#	RequiresCondition: nod.player
 	FreeActor@TD:
-		Actor: harv.cnc
+		Actor: harv.cnc.crate
 		SpawnOffset: 1,2
 		Facing: 64	
 		RequiresCondition: !build-incomplete && td.player
 	GrantConditionOnFaction@TD:
 		Condition: td.player
-		Factions: gdi,nod,ubergdi,bossnod
+		Factions: gdi,ubergdi,socom,taskforce,nod,bossnod,cabal,rebels
 		ResetOnOwnerChange: True
 	WithResourceLevelOverlay:
 		RequiresCondition: !build-incomplete
@@ -183,6 +179,8 @@ PROC.CNC:
 		FactionImages:
 			nod: nodproc
 			bossnod: nodproc
+			cabal: nodproc
+			rebels: nodproc
 	WithIdleOverlay@CAULDRON:
 		RequiresCondition: !build-incomplete
 		Sequence: idle-cauldron
@@ -227,6 +225,8 @@ SILO.CNC:
 		FactionImages:
 			nod: nodsilo
 			bossnod: nodsilo
+			cabal: nodsilo
+			rebels: nodsilo
 	-SpawnActorOnDeath:
 	SpawnActorOnDeath:
 		Actor: silo.cnc.husk
@@ -246,7 +246,7 @@ PYLE:
 	-ProvidesPrerequisite@belarus:
 	ProvidesPrerequisite@buildingname:
 	ProvidesPrerequisite@gdi:
-		Factions: gdi, ubergdi
+		Factions: gdi, ubergdi, socom, taskforce
 		Prerequisite: infantry.gdi
 	ProvidesPrerequisite@gdistructure:
 		RequiresPrerequisites: structures.gdi
@@ -296,7 +296,7 @@ HAND:
 	-Exit@2:
 	-Selectable:
 	ProvidesPrerequisite@nod:
-		Factions: nod, bossnod
+		Factions: nod, bossnod, cabal, rebels
 		Prerequisite: infantry.nod
 	ProvidesPrerequisite@nodstructure:
 		RequiresPrerequisites: structures.nod
@@ -373,13 +373,13 @@ WEAP.GDI:
 		PauseOnCondition: disabled
 	RallyPoint:
 	ProvidesPrerequisite@gdi:
-		Factions: gdi, ubergdi
+		Factions: gdi, ubergdi, socom, taskforce
 		Prerequisite: vehicles.gdi
 	ProvidesPrerequisite@gdistructure:
 		RequiresPrerequisites: structures.gdi
 		Prerequisite: vehicles.gdi
 	ProvidesPrerequisite@nod:
-		Factions: nod, bossnod
+		Factions: nod, bossnod, cabal, rebels
 		Prerequisite: vehicles.nod
 	ProvidesPrerequisite@nodstructure:
 		RequiresPrerequisites: structures.nod
@@ -424,7 +424,7 @@ WEAP.NOD:
 	-Exit@2:
 	-SpawnActorOnDeath:
 	Buildable:
-		Prerequisites: anypower, ~structures.nod, ~techlevel.low
+		Prerequisites: anypower, ~structures.nod, ~!player.rebels, ~techlevel.low
 	Building:
 		Footprint: xxx =++ ===
 		Dimensions: 3,3
@@ -496,11 +496,11 @@ WEAP.MINI:
 		Prerequisite: vehicles.soviet
 		ResetOnOwnerChange: True
 	ProvidesPrerequisite@gdi:
-		Factions: gdi, ubergdi
+		Factions: gdi, ubergdi, socom, taskforce
 		Prerequisite: vehicles.gdi
 		ResetOnOwnerChange: True
 	ProvidesPrerequisite@nod:
-		Factions: nod, bossnod
+		Factions: nod, bossnod, cabal, rebels
 		Prerequisite: vehicles.nod
 		ResetOnOwnerChange: True
 	ProductionBar:
@@ -541,6 +541,8 @@ FIX.CNC:
 		FactionImages:
 			nod: nodfix
 			bossnod: nodfix
+			cabal: nodfix
+			rebels: nodfix
 	SpawnActorOnDeath:
 		Actor: fix.cnc.husk
 		OwnerType: InternalName
@@ -565,7 +567,7 @@ STRP:
 		Queue: Building
 		Description: Provides a dropzone for Mercenary reinforcements, at a price.
 	Building:
-		Footprint: XXXX xxxx ====
+		Footprint: XXX+ xxx+ ====
 		Dimensions: 4,3
 		LocalCenterOffset: 0,-512,0
 	Health:
@@ -623,7 +625,7 @@ SYRD.GDI:
 	ProvidesPrerequisite@COPY:
 		Prerequisite: syrd
 	ProvidesPrerequisite@gdi:
-		Factions: gdi, ubergdi
+		Factions: gdi, ubergdi, socom, taskforce
 		Prerequisite: ships.gdi	
 	ProvidesPrerequisite@gdistructure:
 		RequiresPrerequisites: structures.gdi
@@ -642,7 +644,7 @@ SPEN.NOD:
 	ProvidesPrerequisite@COPY:
 		Prerequisite: spen
 	ProvidesPrerequisite@nod:
-		Factions: nod, bossnod
+		Factions: nod, bossnod, cabal, rebels
 		Prerequisite: ships.nod	
 	ProvidesPrerequisite@nodstructure:
 		RequiresPrerequisites: structures.nod
@@ -893,6 +895,8 @@ HQ.NOD:
 		ReferencePoint: Top
 		ZOffset: 256
 		RequiresCondition: primary
+	GrantExternalConditionToProduced:
+		Condition: produced
 
 NCOM:
 	Inherits: DOME
@@ -1129,6 +1133,8 @@ TMPL:
 		ReferencePoint: Top
 		ZOffset: 256
 		RequiresCondition: cloning.on
+	GrantExternalConditionToProduced:
+		Condition: produced
 
 TMPF:
 	Inherits: ^FakeBuilding
@@ -1228,7 +1234,7 @@ NODBIO:
 		Queue: Building
 		BuildPaletteOrder: 15
 		BuildLimit: 1
-		Prerequisites: tmpl, ~structures.nod, ~techlevel.high
+		Prerequisites: tmpl, ~structures.nod, ~!player.rebels, ~techlevel.high
 		Description: Enables Chemical weaponry using Units.\nMaximum one can be built.\n  Requires Power to operate.\n  Special ability: Cloning Facility\nEnables cloning of basic Infantry at Temple of Nod.
 	Tooltip:
 		Name: Biochemical Lab
@@ -1865,7 +1871,7 @@ Rocketpod.plug:
 		Name: Rocket Pod
 	Buildable:
 		BuildPaletteOrder: 6
-		Prerequisites: dome, ~structures.gdi, ~techlevel.medium
+		Prerequisites: dome, ~structures.gdi, ~!player.taskforce, ~techlevel.medium
 		Queue: Defense
 		BuildDuration: 400
 		Description: Adds an secondary rocketpod to an Defense structure.\nEnables secondary AA-rockets when used on Guard Tower.\nEnables secondary Rocketlauncher when used on Gun Turret.
@@ -1878,7 +1884,7 @@ GUN.nod:
 	Inherits: GUN
 	Buildable:
 		BuildPaletteOrder: 4
-		Prerequisites: weap, ~structures.nod, ~!player.blackhand, ~techlevel.medium
+		Prerequisites: weap, ~structures.nod, ~!player.blackhand, ~!player.cabal, ~techlevel.medium
 	RenderSprites:
 		Image: gun
 
@@ -2002,7 +2008,7 @@ LTUR:
 	-SpawnActorOnDeath:
 	Buildable:
 		BuildPaletteOrder: 4
-		Prerequisites: weap, ~structures.nod, ~player.blackhand, ~techlevel.medium
+		Prerequisites: weap, ~structures.nod, ~!player.nod, ~!player.rebels, ~techlevel.medium
 		Description: Anti-everything base defense.\n  Can detect cloaked units.\n  Requires power to operate.\n  Strong vs Infantry, Light armor\n  Weak vs Tanks, Aircraft
 	Tooltip:
 		Name: Laser Turret
@@ -2025,13 +2031,6 @@ LTUR:
 
 OBEL:
 	Inherits: TSLA
-	Buildable:
-		Queue: Defense
-		BuildPaletteOrder: 5
-		Prerequisites: tmpl, ~structures.nod, ~techlevel.high
-		Description: Advanced base defense with an Laser.\n  Strong vs all Ground units\n  Weak vs Aircraft, Artillery
-	Tooltip:
-		Name: Obelisk of Light
 	-WithTeslaChargeAnimation:
 	-AttackTesla:
 	-Targetable@ChargeTargeting:
@@ -2042,6 +2041,16 @@ OBEL:
 	-GrantConditionOnPowerState@LOWPOWER:
 	-GrantCondition@IDISABLE:
 	-ToggleConditionOnOrder:
+	-Armament:
+	-ActorPreviewPlaceBuildingPreview:
+	-SpawnActorOnDeath:
+	Buildable:
+		Queue: Defense
+		BuildPaletteOrder: 5
+		Prerequisites: tmpl, ~structures.nod, ~!player.cabal, ~techlevel.high
+		Description: Advanced base defense with an Laser.\n  Strong vs all Ground units\n  Weak vs Aircraft, Artillery
+	Tooltip:
+		Name: Obelisk of Light
 	WithChargeOverlay:
 		RequiresCondition: !build-incomplete
 	GrantConditionOnPowerState@LOWPOWER:
@@ -2055,7 +2064,6 @@ OBEL:
 		EnabledSound: DisablePower
 		Condition: powerdown
 		OrderName: PowerDown
-	-Armament:
 	Armament:
 		Weapon: Laser
 		LocalOffset: 0,-85,1280
@@ -2069,13 +2077,11 @@ OBEL:
 		RequiresCondition: charging
 		SoundFiles: obelpowr.aud
 		Interval: 30, 40
-	-ActorPreviewPlaceBuildingPreview:
 	SequencePlaceBuildingPreview:
 		Sequence: place
 		SequencePalette: placebuilding
 	RenderSprites:
 		Image: obel
-	-SpawnActorOnDeath:
 	SpawnActorOnDeath:
 		Actor: obel.husk
 		OwnerType: InternalName

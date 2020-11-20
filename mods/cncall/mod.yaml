@@ -42,13 +42,27 @@ Packages:
     cncall|bits/naval
     cncall|bits/resources
     cncall|bits/sounds
+	cncall|bits/sounds/aurora
+	cncall|bits/sounds/chemtrooper
 	cncall|bits/sounds/cyborg
+	cncall|bits/sounds/cyborgcommando
+	cncall|bits/sounds/dead6gunner
+	cncall|bits/sounds/dead6sakura
+	cncall|bits/sounds/fanatic
+	cncall|bits/sounds/f22raptor
+	cncall|bits/sounds/gdisoldier
 	cncall|bits/sounds/genericTD
+	cncall|bits/sounds/mendoza
+	cncall|bits/sounds/mobius
 	cncall|bits/sounds/moebius
+	cncall|bits/sounds/nodlcg
+	cncall|bits/sounds/nodsbh
+	cncall|bits/sounds/nodsniper
 	cncall|bits/sounds/rambo
 	cncall|bits/sounds/robot
 	cncall|bits/sounds/scrin
 	cncall|bits/sounds/slavik
+	cncall|bits/sounds/stealthfighter
     cncall|bits/sounds/volkov
     cncall|bits/vehicle
     cncall|uibits

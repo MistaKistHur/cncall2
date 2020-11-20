@@ -495,6 +495,89 @@ HonestJohn:
 		ValidTargets: Water, Underwater
 		InvalidTargets: Ship, Structure, Bridge
 
+HonestJohn.Napalm:
+	Inherits: HonestJohn
+	Warhead@1Dam: SpreadDamage
+		Spread: 512
+		Damage: 8000
+		DamageTypes: Prone50Percent, TriggerProne, FireDeath, Incendiary
+	Warhead@3Eff: CreateEffect
+		Explosions: large_napalm
+		ExplosionPalette: effect
+
+HonestJohn.Nuclear:
+	Inherits: HonestJohn
+	#	Range: 15c0
+	-Warhead@1Dam: SpreadDamage
+	-Warhead@2Smu: LeaveSmudge
+	-Warhead@3Eff: CreateEffect
+	-Warhead@4EffWater: CreateEffect
+	Warhead@1Dam_Impact: SpreadDamage
+		Spread: 0c768
+		Damage: 10000
+		Falloff: 1000, 368, 135, 50, 18, 7, 0
+		ValidTargets: Air, Ground, Water, Bridge
+		Versus:
+			None: 100
+			Wood: 125
+			Light: 100
+			Heavy: 100
+			Concrete: 75
+		AffectsParent: true
+		DamageTypes: Prone50Percent, TriggerProne, FireDeath
+	Warhead@2Eff_Water: CreateEffect
+		Explosions: large_splash
+		ImpactSounds: h2obomb2.aud
+		ValidTargets: Water, Underwater
+		Delay: 1
+		ImpactActors: false
+	Warhead@3Eff_Impact: CreateEffect
+		Explosions: mininuke
+		ImpactSounds: kaboom1.aud
+		ValidTargets: Air, Ground, Water, Underwater, Bridge
+		Delay: 3
+		ImpactActors: false
+	Warhead@4Dam_Areanuke: SpreadDamage
+		Spread: 1c512
+		Damage: 5000
+		Falloff: 1000, 368, 135, 50, 18, 7, 0
+		Delay: 4
+		ValidTargets: Air, Ground, Water, Bridge
+		Versus:
+			None: 100
+			Wood: 125
+			Light: 100
+			Heavy: 100
+			Concrete: 75
+		AffectsParent: true
+		DamageTypes: Prone50Percent, TriggerProne, FireDeath
+	Warhead@5Eff_Areanuke: CreateEffect
+		ImpactSounds: kaboom22.aud
+		Delay: 7
+		ImpactActors: false
+	Warhead@6Smu_Areanuke: LeaveSmudge
+		SmudgeType: Scorch
+		InvalidTargets: Vehicle, Tank, Structure, Wall, Husk, Trees
+		Size: 1
+		Delay: 4
+	Warhead@7Dam_Areanuke: SpreadDamage
+		Spread: 2c384
+		Damage: 2500
+		Falloff: 1000, 368, 135, 50, 18, 7, 0
+		Delay: 8
+		ValidTargets: Air, Ground, Water, Bridge
+		Versus:
+			None: 100
+			Wood: 125
+			Light: 100
+			Heavy: 100
+			Concrete: 75
+		AffectsParent: true
+		DamageTypes: Prone50Percent, TriggerProne, FireDeath
+	Warhead@8Res_Areanuke: DestroyResource
+		Size: 2
+		Delay: 15
+
 HonestJohn.bomber:
 	Inherits: HonestJohn
 	ReloadDelay: 120

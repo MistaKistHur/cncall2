@@ -36,6 +36,8 @@ TERR:
 	Inherits: ^Soldier
 	Inherits@AUTOTARGET: ^AutoTargetGround
 	-TakeCover:
+	Voiced:
+		VoiceSet: FanaticVoice
 	Tooltip:
 		Name: Fanatic
 	Valued:
@@ -44,6 +46,7 @@ TERR:
 		HP: 6000
 	Mobile:
 		Speed: 71
+		Voice: Move
 	Buildable:
 		Queue: Infantry
 		BuildAtProductionType: Soldier
@@ -92,6 +95,16 @@ TERR:
 	DeliversCash:
 		Payload: 43
 		Type: InfantryRefund
+	Passenger:
+		Voice: Action
+	AttackMove:
+		Voice: Action
+	ExternalCondition@PRODUCED:
+		Condition: produced
+	VoiceAnnouncement:
+		RequiresCondition: produced
+		Voice: Build
+		ValidStances: Ally 
 
 MEDI.cnc:
 	Inherits: MEDI
@@ -133,7 +146,7 @@ E5:
 		Queue: Infantry
 		BuildAtProductionType: Soldier
 		BuildPaletteOrder: 6
-		Prerequisites: nodbio, ~infantry.nod, ~!player.blackhand, ~techlevel.high
+		Prerequisites: nodbio, ~infantry.nod, ~!player.blackhand, ~!player.rebels, ~techlevel.high
 		Description: Close range, anti-everything Infantry.\nWeapon poisons Infantry for 10 seconds.\n  Immune to Tiberium.\n  Strong vs all Ground units and Structures.\n  Weak vs Anti-Infantry Defenses, Aircraft.
 	Valued:
 		Cost: 600
@@ -144,6 +157,9 @@ E5:
 	WithDeathAnimation:
 	Passenger:
 		PipType: Red
+		Voice: Move
+	Guard:
+		Voice: Move
 	Armament@PRIMARY:
 		Weapon: Chemspray
 		LocalOffset: 341,0,256
@@ -161,7 +177,9 @@ E5:
 		Speed: 64
 		Locomotor: chem
 		PauseOnCondition: dont-move
+		Voice: Move
 	AttackFrontal:
+		Voice: Attack
 	GrantConditionOnAttack:
 		Condition: dont-move
 		RevokeDelay: 12
@@ -187,6 +205,19 @@ E5:
 	Targetable:
 		RequiresCondition: !parachute
 		TargetTypes: Ground, Infantry, Disguise, Chem
+	Voiced:
+		VoiceSet: ChemVoice
+	AttackFrontal:
+		Voice: Attack
+	AttackMove:
+		Voice: Attack
+	ExternalCondition@PRODUCED:
+		Condition: produced
+	VoiceAnnouncement:
+		RequiresCondition: produced
+		Voice: Build
+		ValidStances: Ally 
+	AnnounceOnKill:
 
 MORT:
 	Inherits: ^Soldier
@@ -207,12 +238,13 @@ MORT:
 		Queue: Infantry
 		BuildPaletteOrder: 9
 		BuildAtProductionType: Soldier
-		Prerequisites: ~hand, nodbio, ~infantry.nod, ~!player.blackhand, ~techlevel.medium
+		Prerequisites: ~hand, nodbio, ~infantry.nod, ~!player.blackhand, ~!player.rebels, ~techlevel.medium
 		Description: Infantry armed with a Mortar gun\nthat shoots Chemical rounds.\nWeapon poisons Infantry for 10 seconds.\n  Immune to Tiberium.\n  Strong vs Buildings, Infantry\n  Weak vs Vehicles, Aircraft
 	Valued:
 		Cost: 600
 	Mobile:
 		Speed: 50
+		Voice: Move
 	Tooltip:
 		Name: Chemical Mortar
 	Health:
@@ -226,6 +258,7 @@ MORT:
 		Weapon: MortarChem
 		FireDelay: 15
 	AttackFrontal:
+		Voice: Attack
 	WithInfantryBody:
 		DefaultAttackSequence: throw
 	Explodes:
@@ -234,6 +267,9 @@ MORT:
 		Chance: 50
 	Passenger:
 		PipType: Red
+		Voice: Move
+	Guard:
+		Voice: Move
 	ProducibleWithLevel:
 		Prerequisites: barracks.upgraded
 	RenderRangeCircle:
@@ -243,6 +279,19 @@ MORT:
 	Targetable:
 		RequiresCondition: !parachute
 		TargetTypes: Ground, Infantry, Disguise, Chem
+	Voiced:
+		VoiceSet: ChemVoice
+	AttackFrontal:
+		Voice: Attack
+	AttackMove:
+		Voice: Attack
+	ExternalCondition@PRODUCED:
+		Condition: produced
+	VoiceAnnouncement:
+		RequiresCondition: produced
+		Voice: Build
+		ValidStances: Ally 
+	AnnounceOnKill:
 
 GDIRMBO:
 	Inherits: ^Soldier
@@ -322,7 +371,7 @@ NODRMBO:
 		BuildAtProductionType: Soldier
 		BuildPaletteOrder: 8
 		BuildLimit: 1
-		Prerequisites: tmpl, ~infantry.nod, ~techlevel.high
+		Prerequisites: tmpl, ~infantry.nod, ~!player.cabal, ~!player.rebels, ~techlevel.high
 		Description: Elite commando infantry.\nArmed with silenced sniper and C4.\nMaximum 1 can be trained.\nSpecial ability: Phase Cloaking\nInvisible when out of combat.\n  Strong vs Infantry, Buildings\n  Weak vs Vehicles, Aircraft
 	Mobile:
 		Speed: 71
@@ -389,12 +438,13 @@ INFL:
 	-WithDisguisingInfantryBody:
 	-WithDecoration@disguise:
 	-Captures@VEHICLE:
+	-Infiltrates:
 	Buildable:
 		Queue: Infantry
 		BuildAtProductionType: Spy
 		BuildPaletteOrder: 4
 		Prerequisites: ncom, ~infantry.nod, ~!player.blackhand, ~techlevel.high
-		Description: Agent of the Black Hand.\nCan detect cloaked units and spies.\n  Special Ability: Hijacking\nSteals enemy vehicles.\n  Special Ability: Infiltration\nEnters enemy production structures to show Info. (NYI)\nEnters enemy Refineries to steal Credits.\nEnters enemy Power Plants to Demolish them.\nEnters enemy Radar to reset exploration.\nEnters enemy Tech Centers to unlock Stealth Bomber.\nSpecial ability: Phase Cloaking\nInvisible when out of combat.\n  Strong vs Infantry\n  Weak vs everything Else
+		Description: Agent of the Black Hand.\nCan detect cloaked units and spies.\n  Special Ability: Infiltration\nEnters enemy production structures to show Info. (NYI)\nEnters enemy Refineries to steal Credits.\nEnters enemy Power Plants to Demolish them.\nEnters enemy Radar to reset exploration.\nEnters enemy Tech Centers to unlock Stealth Bomber.\nSpecial ability: Phase Cloaking\nInvisible when out of combat.\n  Strong vs Infantry\n  Weak vs everything Else
 	Tooltip:
 		Name: Infiltrator
 	WithInfantryBody:
@@ -416,12 +466,13 @@ INFL:
 		Condition: cloak-force-disabled
 		ValidDamageStates: Critical
 	Voiced:
-		VoiceSet: ThiefVoice
+		VoiceSet: SBHVoice
 	RenderSprites:
 		Image: infl
 	Mobile:
-		Voice: Action
-	Passenger:
+		Voice: Move
+	Passenger:		
+		PipType: Gray
 		Voice: Action
 	AttackMove:
 		Voice: Action
@@ -430,23 +481,24 @@ INFL:
 	DeliversCash:
 		Payload: 118
 		Type: InfantryRefund
-	Passenger:
-		PipType: Red
 	Infiltrates:
 		Types: NodInfiltrate
 		Notification: BuildingInfiltrated
 		PlayerExperience: 50
-	Captures@INFILTRATE:
-		CaptureTypes: demolish-infiltrate
+	Captures@SBH:
+		CaptureTypes: sbh-demolish
 		CaptureDelay: 45
 		SabotageThreshold: 1
 		SabotageHPRemoval: 100
 		PlayerExperience: 0
 		SabotageCursor: c4
-	Captures@VEHICLE:
-		CaptureDelay: 23
-		CaptureTypes: vehicle
-		PlayerExperience: 50
+	ExternalCondition@PRODUCED:
+		Condition: produced
+	VoiceAnnouncement:
+		RequiresCondition: produced
+		Voice: Build
+		ValidStances: Ally 
+	AnnounceOnKill:
 
 SNIP.GDI:
 	Inherits: SNIP
@@ -477,7 +529,7 @@ CYBR:
 		BuildPaletteOrder: 7
 		Queue: Infantry
 		BuildAtProductionType: Cyborg
-		Prerequisites: tmpl, ~infantry.nod, ~techlevel.high
+		Prerequisites: tmpl, ~infantry.nod, ~!player.cabal, ~!player.rebels, ~techlevel.high
 		Description: Cybernetic minigunner.\n Immune to Tiberium.\n Susceptible to EMP.\n Can be Repaired instead Healed.\n Cannot be crushed.\n  Strong vs Infantry\n  Weak vs Vehicles
 	Mobile:
 		Speed: 56
@@ -571,13 +623,15 @@ EXO:
 	Targetable:
 		TargetTypes: Ground, Cyborg
 	Voiced:
-		VoiceSet: MoebiusVoice
+		VoiceSet: MobiusVoice
 	Selectable:
 		Bounds: 24,18,0,-6
 		DecorationBounds: 18,17,0,-6
 	PortableChrono:
+		Voice: Teleport
 	RenderSprites:
 		Image: exo
+	AnnounceOnKill:
 
 VICE:
 	Inherits@1: ^ExistsInWorld

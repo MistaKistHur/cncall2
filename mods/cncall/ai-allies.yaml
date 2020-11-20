@@ -184,7 +184,7 @@ Player:
 		SquadSizeRandomBonus: 4
 		RushInterval: 400
 		AttackScanRadius: 24
-		ExcludeFromSquadsTypes: harv, harv.crate, mcv, mcv.ai, mnly.support.allies, dog, e1, e1.england, e2, e2.france, e3, e6, e7, mgi, medi, mech, jeep, jeep.england, jeep.scout, apc, apc.germany, 1tnk, 1tnk.england, 1tnk.france, 1tnk.germany, 2tnk, 2tnk.england, 2tnk.france, 2tnk.germany, arty, arty.france, msam, mrj, stnk, ctnk, prsm, heli, iroq.ai, spit
+		ExcludeFromSquadsTypes: harv, harv.crate, mcv, mcv.ai, mnly.support.allies, dog, e1, e1.england, e2, e2.france, e3, e6, e7, mgi, medi, mech, jeep, jeep.england, jeep.scout, apc, apc.germany, apc.crate, 1tnk, 1tnk.england, 1tnk.france, 1tnk.germany, 2tnk, 2tnk.england, 2tnk.france, 2tnk.germany, arty, arty.france, msam, mrj, mrj.crate, stnk, ctnk, prsm, heli, iroq.ai, spit
 		NavalUnitsTypes: pt,dd,dd.germany,ca
 		ConstructionYardTypes: fact
 		NavalProductionTypes: syrd
@@ -194,7 +194,7 @@ Player:
 		SquadSizeRandomBonus: 2
 		RushInterval: 400
 		AttackScanRadius: 48
-		ExcludeFromSquadsTypes: harv, harv.crate, mcv, mcv.ai, mnly.support.allies, dog, e1, e1.england, e2, e2.france, e3, e6, e7, mgi, medi, mech, jeep, jeep.england, jeep.scout, apc, apc.germany, 1tnk, 1tnk.england, 1tnk.france, 1tnk.germany, 2tnk, 2tnk.england, 2tnk.france, 2tnk.germany, arty, arty.france, msam, mrj, stnk, ctnk, prsm, pt, dd, dd.germany, ca
+		ExcludeFromSquadsTypes: harv, harv.crate, mcv, mcv.ai, mnly.support.allies, dog, e1, e1.england, e2, e2.france, e3, e6, e7, mgi, medi, mech, jeep, jeep.england, jeep.scout, apc, apc.germany, apc.crate, 1tnk, 1tnk.england, 1tnk.france, 1tnk.germany, 2tnk, 2tnk.england, 2tnk.france, 2tnk.germany, arty, arty.france, msam, mrj, mrj.crate, stnk, ctnk, prsm, pt, dd, dd.germany, ca
 		ConstructionYardTypes: fact
 	UnitBuilderBotModule@allies:
 		RequiresCondition: enable-ai-player && player.allies

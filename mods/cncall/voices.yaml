@@ -22,7 +22,8 @@ GenericVoice:
 		Die: dedman1,dedman2,dedman3,dedman4,dedman5,dedman7,dedman8
 		Burned: dedman10
 		Zapped: dedman6
-	DisableVariants: Die, Burned, Zapped
+		Boink: boink
+	DisableVariants: Die, Burned, Zapped, Boink
 
 VehicleVoice:
 	Variants:
@@ -45,6 +46,8 @@ VehicleVoice:
 	Voices:
 		Select: vehic1,yessir1,report1,await1
 		Action: ackno,affirm1
+		Boink: boink
+	DisableVariants: Boink
 
 EngineerVoice:
 	Voices:
@@ -53,6 +56,8 @@ EngineerVoice:
 		Die: dedman1,dedman2,dedman3,dedman4,dedman5,dedman7,dedman8
 		Burned: dedman10
 		Zapped: dedman6
+		Boink: boink
+	DisableVariants: Boink
 
 MedicVoice:
 	Voices:
@@ -61,6 +66,8 @@ MedicVoice:
 		Die: dedman1,dedman2,dedman3,dedman4,dedman5,dedman7,dedman8
 		Burned: dedman10
 		Zapped: dedman6
+		Boink: boink
+	DisableVariants: Boink
 
 MechanicVoice:
 	Voices:
@@ -70,6 +77,8 @@ MechanicVoice:
 		Die: dedman1,dedman2,dedman3,dedman4,dedman5,dedman7,dedman8
 		Burned: dedman10
 		Zapped: dedman6
+		Boink: boink
+	DisableVariants: Boink
 
 ThiefVoice:
 	Voices:
@@ -79,6 +88,8 @@ ThiefVoice:
 		Burned: dedman10
 		Zapped: dedman6
 		Attack: candy,pickclean,fivefinger
+		Boink: boink
+	DisableVariants: Boink
 
 TanyaVoice:
 	Voices:
@@ -91,6 +102,8 @@ TanyaVoice:
 		Build: laugh1
 		Kill: gotit1,lefty1
 		Demolish: keepem1,tuffguy1
+		Boink: boink
+	DisableVariants: Boink
 
 VolkovVoice:
 	DefaultVariant: .aud
@@ -105,6 +118,8 @@ VolkovVoice:
 		Build: sv2ready
 		Kill: sv2ugotit,sv2noprob
 		Demolish: sv2ritaway,sv2overout
+		Boink: boink
+	DisableVariants: Boink
 
 DogVoice:
 	Voices:
@@ -114,6 +129,8 @@ DogVoice:
 		Die: dogw5,dogw7
 		Burned: dogw6
 		Zapped: dogw6
+		Boink: boink
+	DisableVariants: Boink
 
 SpyVoice:
 	Voices:
@@ -123,6 +140,8 @@ SpyVoice:
 		Die: dedman1,dedman2,dedman3,dedman4,dedman5,dedman7,dedman8
 		Burned: dedman10
 		Zapped: dedman6
+		Boink: boink
+	DisableVariants: Boink
 
 CivilianMaleVoice:
 	Voices:
@@ -131,6 +150,8 @@ CivilianMaleVoice:
 		Die: dedman1,dedman2,dedman3,dedman4,dedman5,dedman7,dedman8
 		Burned: dedman10
 		Zapped: dedman6
+		Boink: boink
+	DisableVariants: Boink
 
 CivilianFemaleVoice:
 	Voices:
@@ -139,6 +160,8 @@ CivilianFemaleVoice:
 		Die: dedman1,dedman2,dedman3,dedman4,dedman5,dedman7,dedman8
 		Burned: dedman10
 		Zapped: dedman6
+		Boink: boink
+	DisableVariants: Boink
 
 EinsteinVoice:
 	Voices:
@@ -147,6 +170,8 @@ EinsteinVoice:
 		Die: dedman1,dedman2,dedman3,dedman4,dedman5,dedman7,dedman8
 		Burned: dedman10
 		Zapped: dedman6
+		Boink: boink
+	DisableVariants: Boink
 
 ShokVoice:
 	Voices:
@@ -156,6 +181,8 @@ ShokVoice:
 		Die: dedman1,dedman2,dedman3,dedman4,dedman5,dedman7,dedman8
 		Burned: dedman10
 		Zapped: dedman6
+		Boink: boink
+	DisableVariants: Boink
 
 AntVoice:
 	Voices:
@@ -164,6 +191,8 @@ AntVoice:
 		Die: antdie
 		Burned: antdie
 		Zapped: antdie
+		Boink: boink
+	DisableVariants: Boink
 
 StavrosVoice:
 	Voices:
@@ -173,6 +202,8 @@ StavrosVoice:
 		Die: dedman1,dedman2,dedman3,dedman4,dedman5,dedman7,dedman8
 		Burned: dedman10
 		Zapped: dedman6
+		Boink: boink
+	DisableVariants: Boink
 
 CommandoVoice:
 	Voices:
@@ -187,6 +218,8 @@ CommandoVoice:
 		Poisoned: ramyell1
 		Build: rrokroll1
 		Kill: rkeepem1,rlaugh1,rlefty1,rtuffguy1
+		Boink: boink
+	DisableVariants: Boink
 
 CyborgVoice:
 	Voices:
@@ -198,7 +231,24 @@ CyborgVoice:
 		Burned: cyp-n108
 		Zapped: cyp-n106
 		Poisoned: cyp-n104
-	DisableVariants: Die, Burned, Zapped, Poisoned
+		Boink: boink
+	DisableVariants: Die, Burned, Zapped, Poisoned, Boink
+
+CyborgCommandoVoice:
+	Voices:
+		Select: 23-i000, 23-i002, 23-i004, 23-i006
+		Move: 23-i008, 23-i010, 23-i012, 23-i016
+		Attack: 23-i014, 23-i018, 23-i020, 23-i022
+		Action: 23-i008, 23-i010, 23-i012, 23-i016
+		Demolish: 23-i016
+		Die: 22-n104, 22-n106, 22-n108
+		Burned: 22-n104, 22-n106, 22-n108
+		Zapped: 22-n104, 22-n106, 22-n108
+		Poisoned: 22-n104, 22-n106, 22-n108
+		Build: 23-i000
+		Kill: 23-i008, 23-i010, 23-i012, 23-i016
+		Boink: boink
+	DisableVariants: Die, Burned, Zapped, Poisoned, Boink
 
 MoebiusVoice:
 	Voices:
@@ -209,6 +259,7 @@ MoebiusVoice:
 		Burned: yell1
 		Zapped: nuyell3
 		Poisoned: nuyell12
+		Boink: boink
 
 SlavikVoice:
 	Voices:
@@ -216,10 +267,12 @@ SlavikVoice:
 		Move: 12-i006,12-i008,12-i010
 		Attack: 12-i014,12-i016
 		Action: 12-i006,12-i008,12-i010
+		Build: 12-i002
 		Die: nuyell1,nuyell4,nuyell5,nuyell6
 		Burned: yell1
 		Zapped: nuyell3
 		Poisoned: nuyell12
+		Boink: boink
 	DisableVariants: Die, Burned, Zapped, Poisoned
 
 ScrinVoice:
@@ -229,6 +282,7 @@ ScrinVoice:
 		Attack: 32-i006
 		Action: 32-i002, 32-i004
 		Die: 32-i008
+		Boink: boink
 
 RoboticVoice:
 	DefaultVariant: .wav
@@ -237,7 +291,208 @@ RoboticVoice:
 		Select: vsensela, vsenselb, vsenselc, vsenseld
 		Move: vsenmova, vsenmovb, vsenmovc
 		Action: vsenmova, vsenmovb, vsenmovc
+		Boink: boink
 
-FactBuild:
+NodSoldierVoice:
+	DefaultVariant: .aud
 	Voices:
-		Build: constru2
+		Select: soldierwatchout, soldierlookout
+		Move: soldierhitthere, soldierpieceofcake, officereasy
+		Action: soldieryelldie, soldierinfidel, soldiernextone
+		Die: soldierdie1, soldieroog, soldieruhg2, soldieruhg3
+		Burned: soldierdie1, soldieroog, soldieruhg2, soldieruhg3
+		Zapped: soldierdie1, soldieroog, soldieruhg2, soldieruhg3
+		Build: soldierkillfortheBH
+		Kill: soldierdieinfidel, soldierhahaha, soldiertargeteliminated
+		Boink: boink
+
+FanaticVoice:
+	DefaultVariant: .aud
+	Voices:
+		Select: flamerforthebrotherhood, flamerashestoashes, flamerhahaha
+		Move: flamerhahaha, flamerholdstill, flamertooeasy
+		Action: flamerBURN, flamerforthebrotherhood, flamertoarms
+		Die: dedman1,dedman2,dedman3,dedman4,dedman5,dedman7,dedman8
+		Burned: dedman10
+		Zapped: dedman6
+		Build: flamertoarms
+		Kill: flamertargeteliminated
+		Boink: boink
+	DisableVariants: Die, Burned, Zapped
+
+ChemVoice:
+	DefaultVariant: .aud
+	Voices:
+		Select: chemhithaveyounow, chemhitprepare, chemhitgotme
+		Move: chemhitholdstill, chemkilltooeasy, chemkilltakethat
+		Action: chemkilllaugh
+		Attack: chemhitprepare4death, chemhitattackbreh, chemhitburn, chemhitsprayem
+		Die: chemdie1
+		Burned: chemdiehard, chemdiehard2
+		Zapped: chemdieveryhard
+		Build: chemkilltakevitamins
+		Kill: chemkilldisintegrated, chemkilllaugh, chemkillmelted, chemhitburn
+		Boink: boink
+
+SBHVoice:
+	DefaultVariant: .aud
+	Voices:
+		Select: sbhtauntsafewithme, sbhtauntbrother, sbhassistfaith
+		Move: sbhtauntwithyou, sbhtauntactivity, sbhtauntcovered
+		Action: sbhtakeemout, sbhtauntsilent, sbhassistproud
+		Die: sbhhitwhat, sbhhitwhat2
+		Burned: sbhhitwhat, sbhhitwhat2
+		Zapped: sbhhitwhat, sbhhitwhat2
+		Build: sbhkillgloryofnod
+		Kill: sbhkillinfidel, sbhkillshame, sbhtauntmaggot, sbhkilllaugh
+		Demolish: sbhnobetter, sbhkilltakethat
+		Boink: boink
+
+SAPCVoice:
+	DefaultVariant: .aud
+	Voices:	
+		Select: sbhhitwhat, sbhhitwhat2, sbhkilllaugh
+		Move: sbhhitwhat, sbhhitwhat2, sbhkilltakethat
+		Action: sbhhitwhat, sbhhitwhat2, sbhkilltakethat
+		Boink: boink
+
+LCGVoice:
+	DefaultVariant: .aud
+	Voices:
+		Select: lcgbyfirebecleansed, lcgassistwilldomybest, lcgtauntcovered
+		Move: lcgassistasateam, lcgtauntneedforfaith, lcgmakeitseemeasy
+		Action: lcgtauntammonotwasted, lcgvictorywillbeours, lcgtarget
+		Die: lcgnoteventrying
+		Burned: lcgnoteventrying
+		Zapped: lcgnoteventrying
+		Build: lcggloriousdayfornod
+		Kill: lcgtauntihearinfidels, lcgassistnoeffort, lcgassistnicework
+		Boink: boink
+
+#	crappy :/
+BHSVoice:
+	DefaultVariant: .aud
+	Voices:
+		Select: bhsgotchya, bhshit1, bhshit2
+		Move: bhsstaythere, bhsdeath1
+		Action: bhskillweaklings, bhstracking
+		Attack: bhskillweaklings, bhstracking
+		Die: dedman1,dedman2,dedman3,dedman4,dedman5,dedman7,dedman8
+		Burned: dedman10
+		Zapped: dedman6
+		Build: bhseasytimelong
+		Kill: bhstakingfire
+		Demolish: bhsstructuredown
+		Boink: boink
+	DisableVariants: Die, Burned, Zapped, Boink
+
+MendozaVoice:
+	DefaultVariant: .aud
+	Voices:
+		Select: dozaivegotyournumber, dozaletsgetiton, dozamypleasure, dozabringiton
+		Move: dozakillmeifyoucan, dozafightlikeaman, dozashowmewhatyougot, 
+		Action: dozalineemup, dozaillteachyoualesson, dozafightingtime
+		Die: dozaimnotgettingpaidforthis, dozamissedvitals, dozacowardsandfools
+		Burned: dozafool
+		Zapped: dozafool
+		Build: dozaletsgetiton, dozahopeimpaidextraforthis, dozaallworkedup
+		Kill: dozaeasy, dozainfidel, dozamaggot, dozafool, dozalikesheeptoslaughter
+		Demolish: dozawasteoftime, dozawhataletdown
+		Boink: boink
+
+SakuraVoice:
+	DefaultVariant: .aud
+	Voices:
+		Select: sakuracallahead, sakuraitssister, sakurahandtoself
+		Move: sakuraflattire, sakurathatsgood, sakuratag
+		Action: sakuradidthathurt, sakuragetanybetter, sakurarealman
+		Attack: sakuracompany, sakuragetem, sakurasting
+		Die: sakurashortlived, sakurasaygoodnight
+		Build: sakuraskillspiqued
+		Kill: sakuracryingoutloud, sakuratheysuck, sakuradidthathurt
+		Boink: boink
+
+GunnerVoice:
+	DefaultVariant: .aud
+	Voices:
+		Select: gunnerapologies, gunnerplenty4all, gunneroneliners, gunnergoodtimes
+		Move: gunnerherewego, gunnernotbad, gunnerallyouhave, gunnergoodenough
+		Action: gunnertraining, gunnersorted, gunnernoammo
+		Attack: gunnertakesomeofthis, gunnerabitmuch, gunnergoingdown
+		Die: gunnerimhit
+		Burned: gunnernotthatfunny
+		Zapped: gunnernotthatfunny
+		Build: gunnersnappylines
+		Kill: gunnerdoubt, gunnertoasty, gunnerdestructive
+		Boink: boink
+
+MobiusVoice:
+	DefaultVariant: .aud
+	Voices:
+		Select: mobiusapologiesnotgood, mobiuswhatanatmosphere, mobiusitsonlyme, mobiusdistracted
+		Move: mobiusletsdoit, mobiusbetteruse, mobiusfascinating, mobiusshaking
+		Action: mobiustryshootingenemy, mobiusthisisimmoral, mobiussuchaggressive
+		Die: mobiusohmyimshot
+		Burned: mobiusohmyimshot
+		Zapped: mobiusohmyimshot
+		Build: mobiusmarvelofscience
+		Kill: mobiushowintense, mobiusgettingworkedup, mobiustoomuch, mobiuscranialcapacity
+		Demolish: mobiuswrongbuilding, mobiusdestructive, mobiusstructuralintegrity
+		Teleport: mobiusdontleavemehere, mobiushowmuchlonger, mobiustiredbonesaching
+		Boink: boink
+
+AuroraVoice:
+	DefaultVariant: .aud
+	Voices:
+		Attack: vaurata, vaurmsa, vaurmsb, vaurmsc
+		Select: vaursea, vaurseb, vaursec, vaursed
+		Move: vaurmoa, vaurmob, vaurmoc, vaurmod
+		Action: vaurata, vaurmsa, vaurmsb, vaurmsc
+		Boink: boink
+
+RaptorVoice:
+	DefaultVariant: .aud
+	Voices:
+		Attack: vrapata, vrapatb, vrapatc, vrapatd, vrapate
+		Select: vrapsea, vrapseb, vrapsec, vrapsed, vrapsee, vrapsef
+		Move: vrapmoa, vrapmob, vrapmoc, vrapmod, vrapmoe
+		Action: vrapata, vrapatb, vrapatc, vrapatd, vrapate
+		Boink: boink
+
+StealthFighterVoice:
+	DefaultVariant: .aud
+	Voices:
+		Attack: vsteata, vsteatb, vsteatc, vsteatd, vsteate
+		Select: vstesea, vsteseb, vstesec, vstesed, vstesee, vstesef
+		Move: vstemoa, vstemob, vstemoc, vstemod, vstemoe
+		Action: vsteata, vsteatb, vsteatc, vsteatd, vsteate
+		Boink: boink
+
+GDISoldier:
+	DefaultVariant: .aud
+	Voices:
+		Select: gdisoldiergotyourback, gdisoldierholding, gdisoldierfriendlyfire1
+		Move: gdisoldieraffirmative1, gdisoldieraffirmative2, gdisoldieraffirmative3, gdisoldiermovingout
+		Action: gdisoldieraffirmative1, gdisoldieraffirmative2, gdisoldieraffirmative3
+		Attack: gdisoldieraffirmative1, gdisoldieraffirmative2, gdisoldieraffirmative3
+		Die: gdisoldierdeath, gdisoldierdeath3
+		Burned: gdisoldierdeath, gdisoldierdeath3
+		Zapped: gdisoldierdeath, gdisoldierdeath3
+		Build: gdisoldiermovingout
+		Kill: gdisoldierincoming
+		Boink: boink
+
+GDISoldier2:
+	DefaultVariant: .aud
+	Voices:
+		Select: gdisoldierheh, gdisoldiertoomuchammo, gdisoldierwatchit
+		#	hmm...
+		Move: gdisoldiermoveout
+		Action: gdisoldieropenfire, gdisoldierpaybacktime, gdisoldierigotone
+		Attack: gdisoldieropenfire, gdisoldierpaybacktime, gdisoldierigotone
+		Die: gdisoldierdeath, gdisoldierdeath3
+		Burned: gdisoldierdeath, gdisoldierdeath3
+		Zapped: gdisoldierdeath, gdisoldierdeath3
+		Build: gdisoldiermoveout
+		Kill: gdisoldiertargetdown, gdisoldiertargetwasted, gdisoldieranotheronedown
+		Boink: boink

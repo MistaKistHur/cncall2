@@ -1,6 +1,6 @@
 Player:
 	SupportPowerBotModule@GDI:
-		RequiresCondition: enable-ai-player && player.gdi || player.futurecorps
+		RequiresCondition: enable-ai-player && player.gdi || player.futurecorps || player.socom || player.taskforce
 		Decisions:
 			UseReconDrone:
 				OrderName: ReconDrone
@@ -94,7 +94,7 @@ Player:
 					TargetMetric: None
 					CheckRadius: 2c0
 	BaseBuilderBotModule@GDI:
-		RequiresCondition: enable-ai-player && player.gdi || player.futurecorps
+		RequiresCondition: enable-ai-player && player.gdi || player.futurecorps || player.socom || player.taskforce
 		MinimumExcessPower: 60
 		MaximumExcessPower: 160
 		ExcessPowerIncrement: 40
@@ -144,42 +144,34 @@ Player:
 			afld: 1
 			eye: 1
 			atwr: 3
-	SquadManagerBotModule@GDI:
-		RequiresCondition: enable-ai-player && player.gdi || player.futurecorps
+	SquadManagerBotModule@GDI.land:
+		RequiresCondition: enable-ai-player && player.gdi || player.futurecorps || player.socom || player.taskforce
 		SquadSize: 8
 		SquadSizeRandomBonus: 8
 		RushInterval: 400
 		AttackScanRadius: 16
-		ExcludeFromSquadsTypes: harv.cnc, mcv.cnc, mcv.cnc.ai, pbt, gdidd, gdica, gdipt, orca, mh60, e6, f18, a10, hmmv.scout
+		ExcludeFromSquadsTypes: harv.cnc, harv.cnc.crate, mcv.cnc, mcv.cnc.ai, pbt, gdidd, gdica, gdipt, orca, mh60, e6, f18, a10, orcb, auro, hmmv.scout
 		ConstructionYardTypes: fact.cnc
 	SquadManagerBotModule@GDI.sea:
-		RequiresCondition: enable-ai-player && player.gdi || player.futurecorps && !global-disablenavy
+		RequiresCondition: enable-ai-player && player.gdi || player.futurecorps || player.socom || player.taskforce && !global-disablenavy
 		SquadSize: 4
 		SquadSizeRandomBonus: 4
 		RushInterval: 400
 		AttackScanRadius: 24
-		ExcludeFromSquadsTypes: harv.cnc, mcv.cnc, mcv.cnc.ai, e1.cnc, e1.grenadier, e2.cnc, e3.cnc, hmmv, smch, gapc, 2tnk.gdi, 2tnk.gdi.rail, 4tnk.gdi.rail, lmch, jugg, mrls, mrls.hover, gdirmbo, orca, mh60, e6, f18, disr, mhq, medi.cnc, hmmv.scout, mnly.support, mrpg, snip.gdi, jump, a10, aav
+		ExcludeFromSquadsTypes: harv.cnc, harv.cnc.crate, mcv.cnc, mcv.cnc.ai, e1.cnc, e1.grenadier, e2.cnc, e3.cnc, hmmv, hmmv.tow, smch, gapc, gapc.gatt, 2tnk.gdi, 2tnk.gdi.rail, 2tnk.gdi.rpod, 4tnk.gdi, 4tnk.gdi.rail, 4tnk.gdi.ion, lmch, jugg, mrls, mrls.crate, mrls.hover, gdirmbo, orca, mh60, e6, f18, disr, mhq, medi.cnc, hmmv.scout, mnly.support, mrpg, snip.gdi, jump, a10, aav, orcb, auro
 		NavalUnitsTypes: pbt,gdipt,gdidd,gdica
 		ConstructionYardTypes: fact.cnc
 		NavalProductionTypes: syrd.gdi
-	SquadManagerBotModule@GDI.airplane:
-		RequiresCondition: enable-ai-player && player.gdi || player.futurecorps 
-		SquadSize: 1
+	SquadManagerBotModule@GDI.air:
+		RequiresCondition: enable-ai-player && player.gdi || player.futurecorps || player.socom || player.taskforce
+		SquadSize: 2
 		SquadSizeRandomBonus: 1
 		RushInterval: 400
 		AttackScanRadius: 48
-		ExcludeFromSquadsTypes: harv.cnc, mcv.cnc, mcv.cnc.ai, e1.cnc, e1.grenadier, e2.cnc, e3.cnc, hmmv, smch, gapc, 2tnk.gdi, 2tnk.gdi.rail, 4tnk.gdi.rail, lmch, jugg, mrls, mrls.hover, gdirmbo, orca, mh60, e6, disr, mhq, medi.cnc, hmmv.scout, mnly.support, mrpg, snip.gdi, jump, gdipt, gdidd, gdica, pbt, aav
-		ConstructionYardTypes: fact.cnc
-	SquadManagerBotModule@GDI.helicopter:
-		RequiresCondition: enable-ai-player && player.gdi || player.futurecorps 
-		SquadSize: 2
-		SquadSizeRandomBonus: 2
-		RushInterval: 400
-		AttackScanRadius: 48
-		ExcludeFromSquadsTypes: harv.cnc, mcv.cnc, mcv.cnc.ai, e1.cnc, e1.grenadier, e2.cnc, e3.cnc, hmmv, smch, gapc, 2tnk.gdi, 2tnk.gdi.rail, 4tnk.gdi.rail, lmch, jugg, mrls, mrls.hover, gdirmbo, e6, f18, disr, mhq, medi.cnc, hmmv.scout, mnly.support, mrpg, snip.gdi, jump, a10, gdipt, gdidd, gdica, pbt, aav
+		ExcludeFromSquadsTypes: harv.cnc, harv.cnc.crate, mcv.cnc, mcv.cnc.ai, e1.cnc, e1.grenadier, e2.cnc, e3.cnc, hmmv, hmmv.tow, smch, gapc, gapc.gatt, 2tnk.gdi, 2tnk.gdi.rail, 2tnk.gdi.rpod, 4tnk.gdi, 4tnk.gdi.rail, 4tnk.gdi.ion, lmch, jugg, mrls, mrls.crate, mrls.hover, gdirmbo, e6, disr, mhq, medi.cnc, hmmv.scout, mnly.support, mrpg, snip.gdi, jump, gdipt, gdidd, gdica, pbt, aav
 		ConstructionYardTypes: fact.cnc
 	UnitBuilderBotModule@GDI:
-		RequiresCondition: enable-ai-player && player.gdi || player.futurecorps 
+		RequiresCondition: enable-ai-player && player.gdi || player.futurecorps || player.socom || player.taskforce
 		UnitQueues: Vehicle, Infantry
 		UnitDelays:
 			mcv.cnc.ai: 13500
@@ -190,13 +182,18 @@ Player:
 			e3.cnc: 30
 			harv.cnc: 15
 			hmmv: 20
+			hmmv.tow: 20
 			smch: 15
 			gapc: 30
+			gapc.gatt: 30
 			aav: 20
 			mrpg: 20
 			2tnk.gdi: 60
 			2tnk.gdi.rail: 40
+			2tnk.gdi.rpod: 40
+			4tnk.gdi: 40
 			4tnk.gdi.rail: 40
+			4tnk.gdi.ion: 40
 			lmch: 60
 			jugg: 15
 			mrls: 20
@@ -212,11 +209,14 @@ Player:
 		UnitLimits:
 			harv.cnc: 8
 			hmmv: 4
+			hmmv.tow: 6
 			mrpg: 2
-			4tnk.gdi.rail: 3
+			4tnk.gdi: 4
+			4tnk.gdi.rail: 4
+			4tnk.gdi.ion: 3
 			disr: 2
 			jugg: 2
-			lmch: 2
+			lmch: 3
 			gdirmbo: 1
 			e6: 2
 			jump: 3
@@ -227,7 +227,7 @@ Player:
 			mrls.hover: 4
 			aav: 3
 	UnitBuilderBotModule@GDI.sea:
-		RequiresCondition: enable-ai-player && player.gdi || player.futurecorps  && !global-disablenavy
+		RequiresCondition: enable-ai-player && player.gdi || player.futurecorps || player.socom || player.taskforce  && !global-disablenavy
 		IdleBaseUnitsMaximum: 6
 		UnitQueues: Ship
 		UnitsToBuild:
@@ -240,25 +240,24 @@ Player:
 			gdidd: 3
 			gdica: 4
 			gdipt: 2
-	UnitBuilderBotModule@GDI.airplane:
-		RequiresCondition: enable-ai-player && player.gdi || player.futurecorps 
+	UnitBuilderBotModule@GDI.air:
+		RequiresCondition: enable-ai-player && player.gdi || player.futurecorps || player.socom || player.taskforce
 		IdleBaseUnitsMaximum: 0
 		UnitQueues: Aircraft
 		UnitDelays:
 			f18: 7500
+			auro: 3250
+			mh60: 40
+			orca: 60
+			orcb: 20
 		UnitsToBuild:
 			f18: 90
 			a10: 10
+			auro: 10
 		UnitLimits:
 			f18: 2
 			a10: 1
-	UnitBuilderBotModule@GDI.helicopter:
-		RequiresCondition: enable-ai-player && player.gdi || player.futurecorps 
-		IdleBaseUnitsMaximum: 2
-		UnitQueues: Aircraft
-		UnitsToBuild:
-			mh60: 40
-			orca: 60
-		UnitLimits:
+			auro: 2
 			mh60: 4
 			orca: 6
+			orcb: 2

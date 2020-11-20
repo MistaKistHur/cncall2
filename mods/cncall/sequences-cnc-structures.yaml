@@ -1609,3 +1609,29 @@ hgate-nod:
 		Length: 7
 		ZOffset: -1c511
 	icon: hgateicon
+
+cncagun:
+	Inherits: emp-overlay
+	idle:
+		Facings: 32
+		UseClassicFacingFudge: True
+		Offset: 0,-13
+	make: cncagunmake
+		Length: *
+		Offset: 0,-13
+	damaged-idle:
+		Start: 32
+		Facings: 32
+		UseClassicFacingFudge: True
+		Offset: 0,-13
+	muzzle: gunfire2
+		Start: 1
+		Length: 4
+	place: cncagunmake
+		Start: 10
+		Length: 1
+		Offset: 0,-13		
+	bib: mbAGUN
+		Length: *
+		UseTilesetExtension: true
+	icon: cncagunicon

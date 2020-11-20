@@ -40,12 +40,16 @@ HARV.cnc:
 	-Explodes:
 	-SpawnActorOnDeath:
 	Buildable:
-		Prerequisites: proc, ~!vehicles.allies, ~!vehicles.soviet, ~techlevel.infonly
+		Prerequisites: proc, ~!vehicles.allies, ~!vehicles.soviet, ~!player.cabal, ~techlevel.infonly
 		Description: Collects Tiberium for processing.\n  Unarmed
 	Tooltip@sidebar:
 		Name: Tiberium Harvester
+		RequiresCondition: !produced
 	Tooltip@ingame:
 		Name: Harvester
+		RequiresCondition: produced
+	ExternalCondition@PRODUCED:
+		Condition: produced
 	Harvester:
 		Capacity: 30
 		PipCount: 9
@@ -71,11 +75,30 @@ HARV.cnc:
 		FactionImages:
 			nod: nodharv
 			bossnod: nodharv
+			cabal: nodharv
+			rebels: nodharv
 	ProximityExternalCondition@REFANIM:
 		Condition: dockincoming
 		Range: 6c826
 		ValidStances: Ally
 		RequiresCondition:	!no-tiberium && !empdisable && !docked
+
+HARV.cnc.Crate:
+	Inherits: HARV.cnc
+	-Buildable:
+	-Tooltip@sidebar:
+	-Tooltip@ingame:
+	-ExternalCondition@PRODUCED:
+	Tooltip:
+		Name: Harvester
+	RenderSprites:
+		Image: gdiharv
+		FactionImages:
+			nod: nodharv
+			bossnod: nodharv
+			cabal: nodharv
+			rebels: nodharv
+	-MapEditorData:
 
 TRUK.cnc:
 	Inherits: TRUK
@@ -94,7 +117,7 @@ HMMV:
 	Buildable:
 		Queue: Vehicle, MWFVehicle
 		BuildPaletteOrder: 2
-		Prerequisites: ~vehicles.gdi, ~!player.futurecorps, ~techlevel.low
+		Prerequisites: ~vehicles.gdi, ~!player.futurecorps, ~!player.socom, ~techlevel.low
 		Description: Fast scout & anti-infantry vehicle.\nCan carry one infantry.\n  Strong vs Infantry\n  Weak vs Vehicles, Aircraft
 	Valued:
 		Cost: 500
@@ -325,7 +348,7 @@ GAPC:
 	-AutoTargetPriority@DEFAULT:
 	-AutoTargetPriority@ATTACKANYTHING:
 	Buildable:
-		Prerequisites: barracks, ~vehicles.gdi, ~!player.futurecorps, ~techlevel.low
+		Prerequisites: barracks, ~vehicles.gdi, ~!player.futurecorps, ~!player.taskforce, ~techlevel.low
 		Description: Tough infantry transport with AA gun.\nCan transport up to 3 Infantry.\n  Strong vs Infantry, Aircraft\n  Weak vs Tanks, Aircraft
 	Valued:
 		Cost: 650
@@ -340,8 +363,8 @@ GAPC:
 		TurnSpeed: 7
 	Armament@PRIMARY:
 		Name: primary
-		Weapon: FLAK-23-AG
-		Recoil: 48
+		Weapon: FLAK-23-AG-Dual
+		Recoil: 24
 		RecoilRecovery: 18
 		LocalOffset: 265,100,189, 265,-100,189
 		MuzzleSequence: muzzle-flak
@@ -349,8 +372,8 @@ GAPC:
 		ReloadingCondition: reload-ground
 	Armament@SECONDARY:
 		Name: secondary
-		Weapon: FLAK-23-AA
-		Recoil: 48
+		Weapon: FLAK-23-AA-Dual
+		Recoil: 24
 		RecoilRecovery: 18
 		LocalOffset: 175,100,299, 175,-100,299
 		MuzzleSequence: muzzle-flak
@@ -391,7 +414,7 @@ NAPC:
 	Buildable:
 		Queue: Vehicle
 		BuildPaletteOrder: 3
-		Prerequisites: barracks, ~vehicles.nod, ~!player.blackhand, ~techlevel.low
+		Prerequisites: barracks, ~vehicles.nod, ~!player.blackhand, ~!player.rebels, ~techlevel.low
 		Description: Fast infantry transport.\nCan transport up to 5 Infantry.\nAllows adjacent Infantry to self-heal.\n  Unarmed
 	Valued:
 		Cost: 650
@@ -493,7 +516,7 @@ MRPG:
 	Inherits: 1TNK
 	-Armament@PRIMARY:
 	Buildable:
-		Prerequisites: proc, ~vehicles.nod, ~techlevel.low
+		Prerequisites: proc, ~vehicles.nod, ~!player.cabal, ~techlevel.low
 		Description: Fast tank, good for scouting.\n  Special ability: Amphibian\nCan swim through sea and river.\n  Strong vs Light armor\n  Weak vs Infantry, Tanks, Aircraft
 	Valued:
 		Cost: 700
@@ -548,7 +571,7 @@ MRPG:
 	Buildable:
 		Queue: Vehicle, MWFVehicle
 		BuildPaletteOrder: 4
-		Prerequisites: fix, ~vehicles.gdi, ~!player.futurecorps, ~techlevel.medium
+		Prerequisites: fix, ~vehicles.gdi, ~!player.futurecorps, ~!player.taskforce, ~techlevel.medium
 		Description: Main Battle Tank.\n  Strong vs Vehicles, Infantry\n  Weak vs Ships, Aircraft
 	Valued:
 		Cost: 900
@@ -562,26 +585,6 @@ MRPG:
 		OwnerType: InternalName
 	Carryable:
 		LocalOffset: 0,0,100
-
-2TNK.gdi.rail:
-	Inherits: 2TNK.gdi
-	-WithMuzzleOverlay:
-	Buildable:
-		Prerequisites: fix, ~vehicles.gdi, ~player.futurecorps, ~techlevel.medium
-		Description: Main Battle Tank, armed with Railgun.\n  Strong vs Vehicles, Infantry\n  Weak vs Ships, Aircraft
-	Tooltip:
-		Name: Railgun Medium
-	Valued:
-		Cost: 1000
-	Armament@PRIMARY:
-		Weapon: Railgun
-		LocalOffset: 768,0,90
-		Recoil: 170
-		RecoilRecovery: 42
-		PauseOnCondition: empdisable
-	SpawnActorOnDeath:
-		Actor: 2tnk.gdi.rail.husk
-		OwnerType: InternalName
 
 FTNK:
 	Inherits: ^TrackedVehicle
@@ -716,6 +719,18 @@ MRLS:
 	Carryable:
 		LocalOffset: 0,0,100
 
+MRLS.Crate:
+	Inherits: MRLS
+	-Buildable:
+	-Tooltip@sidebar:
+	-Tooltip@ingame:
+	-ExternalCondition@PRODUCED:
+	Tooltip:
+		Name: MRLS
+	RenderSprites:
+		Image: mrls
+	-MapEditorData:
+
 SSM:
 	Inherits: ^TrackedVehicle
 	Inherits@EXPERIENCE: ^GainsExperience
@@ -736,7 +751,7 @@ SSM:
 	Buildable:
 		Queue: Vehicle
 		BuildPaletteOrder: 14
-		Prerequisites: nodbio, ~vehicles.nod, ~!player.blackhand, ~techlevel.high
+		Prerequisites: nodbio, ~vehicles.nod, ~player.nod, ~techlevel.high
 		Description: Long-range rocket artillery.\nHas very weak Armor.\n  Strong vs Everything at range\n  Weak vs Close ranged attacks
 	Mobile:
 		Speed: 85
@@ -790,6 +805,18 @@ SSM:
 	RenderRangeCircle:
 	Passenger:
 		PipType: Red
+
+SSM.Crate:
+	Inherits: SSM
+	-Buildable:
+	-Tooltip@sidebar:
+	-Tooltip@ingame:
+	-ExternalCondition@PRODUCED:
+	Tooltip:
+		Name: SSM
+	RenderSprites:
+		Image: ssm
+	-MapEditorData:
 
 ICBM:
 	Inherits: ^Vehicle
@@ -943,8 +970,8 @@ MNLY.Stealth:
 	Buildable:
 		Queue: Vehicle
 		BuildPaletteOrder: 8
-		Prerequisites: ~disabled
-		#	Prerequisites: fix, techcenter, ~vehicles.gdi, ~techlevel.high
+		#	Prerequisites: ~disabled
+		Prerequisites: fix, techcenter, ~vehicles.gdi, ~player.taskforce, ~techlevel.high
 	Tooltip:
 		Name: GDI Mammoth
 	SpawnActorOnDeath:
@@ -956,7 +983,7 @@ MNLY.Stealth:
 	-WithMuzzleOverlay:
 	Buildable:
 		BuildPaletteOrder: 8
-		Prerequisites: fix, techcenter, ~vehicles.gdi, ~!player.futurecorps, ~techlevel.high
+		Prerequisites: fix, techcenter, ~vehicles.gdi, ~player.gdi, ~techlevel.high
 		Queue: Vehicle
 		Description: Big and slow tank, with anti-air capability.\nArmed with powerful dual Railguns.\nCan crush concrete walls.\nSelf-repairs when below 50% of maximum Health.\n  Strong vs Vehicles, Infantry, Buildings\n  Weak vs Artillery
 	Tooltip:
@@ -997,7 +1024,7 @@ STNK.Nod:
 	Armament@ROCKET:
 		Weapon: APTusk
 		LocalOffset: 213,43,128, 213,-43,128
-		PauseOnCondition: empdisable		
+		PauseOnCondition: empdisable
 	Turreted:
 		TurnSpeed: 5
 	AttackTurreted:
@@ -1121,7 +1148,7 @@ HVRC:
 	Buildable:
 		Queue: Vehicle
 		BuildPaletteOrder: 12
-		Prerequisites: dome, fix, ~vehicles.nod, ~techlevel.medium
+		Prerequisites: dome, fix, ~vehicles.nod, ~!player.cabal, ~techlevel.medium
 		Description: Amphibian anti-air unit with\ntoken basic gun for self-defense.\nCan carry one Infantry.\n  Strong vs Infantry, Aircraft\n  Weak vs Tanks, Ships
 	Valued:
 		Cost: 600
@@ -1154,7 +1181,7 @@ HVRC:
 		TurnSpeed: 5
 		Offset: 0,0,128
 	Armament@PRIMARY:
-		Weapon: FLAK-23-AA
+		Weapon: FLAK-23-AA-Dual
 		Turret:
 		LocalOffset: 86,160,220, 86,-160,220
 		MuzzleSequence: muzzle
@@ -1338,14 +1365,14 @@ MWAV:
 	Buildable:
 		Queue: Vehicle
 		BuildPaletteOrder: 15
-		Prerequisites: ncom, ~vehicles.nod, ~!player.blackhand, ~techlevel.high
+		Prerequisites: ncom, ~vehicles.nod, ~!player.blackhand, ~!player.cabal, ~techlevel.high
 		Description: Experimental vehicle armed with an Laser\nthat can disable its target Vehicle.\n Immune to EMP.\n  Strong vs Vehicles, Ships\n  Weak vs Infantry, Aircraft
 	Valued:
 		Cost: 1350
 	Tooltip:
 		Name: Microwave Tank
 	Health:
-		HP: 52500
+		HP: 42500
 	Armor:
 		Type: Heavy
 	Mobile:
@@ -1362,18 +1389,30 @@ MWAV:
 		DecorationBounds: 28,28
 	Passenger:
 		Weight: 4
+		PipType: Red
+	#	Armament:
+	#	Weapon: MicroLaser
+	#	LocalOffset: 500,-85,326
 	Armament:
-		Weapon: MicroLaser
-		LocalOffset: 500,-85,326
+		Weapon: MicrowaveZap
+		FireDelay: 7
+		#	LocalOffset: 500,-85,326
+		LocalOffset: 560,0,264
+		MuzzleSequence: muzzle-emp
+	Armament@PRIMARYSOUND:
+		Weapon: MicrowaveZapSound
 	Turreted:
-		TurnSpeed: 10
+		TurnSpeed: 4
 	AttackTurreted:
+		TargetFrozenActors: True
+		OpportunityFire: False
 	WithSpriteTurret:
+	WithMuzzleOverlay:
 	SpawnActorOnDeath:
 		Actor: mwav.husk
 		OwnerType: InternalName
 	ReloadArmamentsBar:
-		Color: FFFF00
+		Color: 2879DB
 	Targetable@DontEMP:
 		TargetTypes: EMPInvalid
 	GpsDot:

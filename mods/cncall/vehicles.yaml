@@ -462,7 +462,7 @@ APC.soviet:
 	UpdatesPlayerStatistics:
 		AddToArmyValue: true
 	Health:
-		HP: 22000
+		HP: 22500
 	Armor:
 		Type: Heavy
 	Mobile:
@@ -1382,7 +1382,7 @@ DTRK:
 		Condition: triggered
 	GrantConditionOnDeploy:
 		DeployedCondition: triggered
-	KillsSelf:
+	KillsSelf@DETONATE:
 		RequiresCondition: invulnerability || triggered
 	Chronoshiftable:
 		ExplodeInstead: true

@@ -31,12 +31,13 @@ gdiharv:
 	dock-loop: gdiharvdump
 		Start: 7
 	icon: gdiharvicon
+	iconcloak: nodharvstealthicon
 
 nodharv:
 	Inherits: gdiharv
 	Defaults: gdiharv
 	icon: nodharvicon
-
+	
 cncharv.husk:
 	idle: gdiharv
 		Facings: 32
@@ -56,6 +57,9 @@ hmmv:
 		Facings: 32
 		UseClassicFacingFudge: True
 	turret: btr-tur
+		Facings: 32
+		UseClassicFacingFudge: True
+	turret-tow: hmmv-tow
 		Facings: 32
 		UseClassicFacingFudge: True
 	muzzle: minigun
@@ -94,9 +98,17 @@ gapc:
 		Start: 32
 		Facings: 32
 		UseClassicFacingFudge: True
+	turret-gatt-ag: vulc-tur
+		Start: 32
+		Facings: 32
+		UseClassicFacingFudge: True
+	turret-gatt-aa: vulc-tur
+		Facings: 32
+		UseClassicFacingFudge: True
 	muzzle-flak: gunfire2
 		Length: 2
 	icon: gapcicon
+	gatticon: gapcgatticon
 
 napc:
 	Inherits: emp-overlay
@@ -106,7 +118,14 @@ napc:
 	medic: mouse
 		Start: 194
 		Length: 1
+	turret: apc-tur3
+		Facings: 32
+		UseClassicFacingFudge: True
+	muzzle: minigun
+		Length: 6
+		Facings: 8
 	icon: napcicon
+	iconalt: napcalticon
 
 mrpg:
 	Inherits: emp-overlay
@@ -196,6 +215,31 @@ mrpg.husk:
 		UseClassicFacingFudge: True
 		ZOffset: -512
 	turret: mtnk-rtur
+		Facings: 32
+		UseClassicFacingFudge: True
+		ZOffset: -512
+
+2tnk.gdi.rpod:
+	Inherits: emp-overlay
+	idle: 2tnk
+		Facings: 32
+		UseClassicFacingFudge: True
+	turret: mtnk-rpod
+		Facings: 32
+		UseClassicFacingFudge: True
+	muzzle: gunfire2
+		Length: *
+	mg-muzzle: minigun
+		Length: 6
+		Facings: 8
+	icon: 2tnkicon
+
+2tnk.gdi.rpod.husk:
+	idle: 2tnk
+		Facings: 32
+		UseClassicFacingFudge: True
+		ZOffset: -512
+	turret: mtnk-rpod
 		Facings: 32
 		UseClassicFacingFudge: True
 		ZOffset: -512
@@ -291,7 +335,13 @@ ctnk.nod.husk:
 		Start: 32
 		Facings: 32
 		UseClassicFacingFudge: True
-	icon: 4tnkicon
+	ionturret: 4tnk-gdi-ion
+		Facings: 32
+		UseClassicFacingFudge: True
+	muzzle: gunfire2
+		Length: 5
+	icon: gdi4tnkicon
+	ionicon: gdi4tnkionicon
 
 4tnk.gdi.husk:
 	idle: 4tnk-gdi
@@ -299,6 +349,7 @@ ctnk.nod.husk:
 		UseClassicFacingFudge: True
 		ZOffset: -512
 	turret: 4tnk-gdi
+		Start: 32
 		Facings: 32
 		UseClassicFacingFudge: True
 		ZOffset: -512
@@ -311,7 +362,7 @@ ctnk.nod.husk:
 	turret: 4tnk-gdi-rtur
 		Facings: 32
 		UseClassicFacingFudge: True
-	icon: gdi4tnkicon
+	icon: gdi4tnkiconold
 
 4tnk.gdi.rail.husk:
 	idle: 4tnk-gdi
@@ -319,6 +370,16 @@ ctnk.nod.husk:
 		UseClassicFacingFudge: True
 		ZOffset: -512
 	turret: 4tnk-gdi-rtur
+		Facings: 32
+		UseClassicFacingFudge: True
+		ZOffset: -512
+
+4tnk.gdi.ion.husk:
+	idle: 4tnk-gdi
+		Facings: 32
+		UseClassicFacingFudge: True
+		ZOffset: -512
+	turret: 4tnk-gdi-ion
 		Facings: 32
 		UseClassicFacingFudge: True
 		ZOffset: -512
@@ -382,6 +443,8 @@ ssm:
 		Facings: 32
 		UseClassicFacingFudge: True
 	icon: ssmicon
+	vanillaicon: ssmorigicon
+	nuclearicon: ssmnukeicon
 
 icbm:
 	Inherits: emp-overlay
@@ -535,6 +598,12 @@ mwav:
 		Facings: 32
 	muzzle: gunfire2
 		Length: *
+	muzzle-emp: empfx02
+		Length: *
+		BlendMode: Additive
+		Offset: 0, 0
+		UseTilesetCode: false
+		ZOffset: 512
 	icon: mwavicon
 	lasticon: lasticon
 
@@ -548,13 +617,35 @@ mwav.husk:
 		UseClassicFacingFudge: True
 		ZOffset: -512
 
-last.husk:
+ltnk.husk:
 	idle: mwav
 		Facings: 32
 		UseClassicFacingFudge: True
 		ZOffset: -512
 	turret: laser-tur
 		Facings: 32
+		ZOffset: -512
+
+ptnk:
+	Inherits: emp-overlay
+	idle:
+		Facings: 32
+		UseClassicFacingFudge: True
+	turret:
+		Start: 32
+		Facings: 32
+		UseClassicFacingFudge: True
+	icon: ptnkicon
+
+ptnk.husk:
+	idle: ptnk
+		Facings: 32
+		UseClassicFacingFudge: True
+		ZOffset: -512
+	turret: ptnk
+		Start: 32
+		Facings: 32
+		UseClassicFacingFudge: True
 		ZOffset: -512
 
 mrep:
@@ -722,10 +813,16 @@ smch:
 		Start: 32
 		Facings: 32
 		UseClassicFacingFudge: True
+	cannon-turret: aav-tur
+		Facings: 32
+		UseClassicFacingFudge: True
 	muzzle: minigun
 		Length: 6
 		Facings: 8
+	cannon-muzzle: gunfire2
+		Length: *
 	icon: smchicon
+	tankicon: smchicon
 
 attbggy:
 	Inherits: emp-overlay
@@ -773,6 +870,15 @@ srty:
 	muzzle: gunfire2
 		Length: *
 	icon: srtyicon
+
+nodhvr:
+	Inherits: emp-overlay
+	idle:
+		Facings: 32
+		UseClassicFacingFudge: True
+	muzzle: gunfire2
+		Length: *
+	icon: nodhvricon
 
 hvrmrls:
 	Inherits: emp-overlay
@@ -905,3 +1011,23 @@ mh60:
 		Length: 6
 		Facings: 8
 	icon: mh60icon
+
+esub:
+	Inherits: emp-overlay
+	idle: esub
+		Facings: 32
+	turret: memp-ball
+		Facings: 32
+	attack-anim: pulsball
+		Length: 23
+		BlendMode: Additive
+		Tick: 40
+		ZOffset: 511
+	icon: ssicon
+
+auro:
+	Inherits: emp-overlay
+	idle: auro
+		Facings: 32
+		UseClassicFacingFudge: True
+	icon: auroicon

@@ -207,7 +207,7 @@ Player:
 	CaptureManagerBotModule@thf:
 		RequiresCondition: enable-ai-player && player.soviet
 		CapturingActorTypes: thf
-		CapturableActorTypes: harv,harv.crate,harv.soviet,harv.soviet.crate,mcv,v2rl,v2rl.ukraine,arty,arty.france,4tnk,ttnk,ctnk,mrj,5tnk,prsm,4tnk.gdi.rail,mwav,disr,icbm,mrls,ssm,arty.nod,mcv.cnc,harv.cnc
+		CapturableActorTypes: harv,harv.crate,harv.soviet,harv.soviet.crate,mcv,v2rl,v2rl.ukraine,arty,arty.france,4tnk,ttnk,ctnk,mrj,mrj.crate,5tnk,prsm,4tnk.gdi,4tnk.gdi.rail,mwav,disr,icbm,mrls,mrls.crate,ssm,ssm.crate,arty.nod,mcv.cnc,harv.cnc,harv.cnc.crate,harv.cnc.stealth
 		CheckCaptureTargetsForVisibility: true
 		MaximumCaptureTargetOptions: 15
 	SquadManagerBotModule@soviet:

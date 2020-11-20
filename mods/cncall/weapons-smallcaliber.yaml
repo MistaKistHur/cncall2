@@ -44,6 +44,10 @@ FLAK-23-AA:
 	Warhead@1Dam: SpreadDamage
 		ValidTargets: Air, Ground, Water
 
+FLAK-23-AA-Dual:
+	Inherits: FLAK-23-AA
+	Burst: 2
+
 FLAK-23-AG:
 	Inherits: ^AACannon
 	Range: 6c0
@@ -59,6 +63,10 @@ FLAK-23-AG:
 		Explosions: small_splash
 		ValidTargets: Water, Underwater
 		InvalidTargets: Ship, Structure, Bridge
+
+FLAK-23-AG-Dual:
+	Inherits: FLAK-23-AG
+	Burst: 2
 
 ^HeavyMG:
 	ReloadDelay: 30
@@ -206,6 +214,10 @@ Vulcan:
 		ValidTargets: Water, Underwater
 		InvalidTargets: Ship, Structure, Bridge
 		Delay: 10
+
+Vulcan.ship:
+	Inherits: Vulcan
+	ReloadDelay: 45
 
 ChainGun:
 	Inherits: ^HeavyMG
@@ -507,3 +519,61 @@ Autocannon:
 		ValidTargets: Ground, Ship, Trees
 	FirstBurstTargetOffset: -768,0,0
 	FollowingBurstTargetOffset: 256,0,0
+
+Gatt.0:
+	Inherits: ^AACannon
+	ReloadDelay: 20
+	Range: 8c0
+	Report: vgatlo1a.aud
+	Projectile: Bullet
+		Speed: 3c340
+	Warhead@1Dam: SpreadDamage
+		Damage: 1000
+		Versus:
+			None: 30
+			Wood: 75
+			Light: 15
+			Heavy: 50
+			Concrete: 50
+	Warhead@2Eff: CreateEffect
+		ValidTargets: Air
+		Explosions: small_explosion_air
+
+Gatt.1:
+	Inherits: Gatt.0
+	ReloadDelay: 5
+	Report: vgatlo2a.aud, vgatlo2b.aud, vgatlo2c.aud
+	Warhead@1Dam: SpreadDamage
+		Damage: 2000
+		Versus:
+			None: 30
+			Wood: 75
+			Light: 15
+			Heavy: 50
+			Concrete: 50
+
+Gatt.2:
+	Inherits: Gatt.1
+	Report: vgatlo5a.aud, vgatlo5b.aud
+	ReloadDelay: 5
+	Warhead@1Dam: SpreadDamage
+		Damage: 2200
+		Versus:
+			None: 30
+			Wood: 75
+			Light: 15
+			Heavy: 50
+			Concrete: 50
+
+Gatt.3:
+	Inherits: Gatt.2
+	Report: vgatlo8a.aud, vgatlo8b.aud
+	ReloadDelay: 5
+	Warhead@1Dam: SpreadDamage
+		Damage: 2400
+		Versus:
+			None: 30
+			Wood: 75
+			Light: 15
+			Heavy: 50
+			Concrete: 50

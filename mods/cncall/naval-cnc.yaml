@@ -353,7 +353,7 @@ CARR.New:
 		Prerequisites: ~syrd, dome, techcenter, ~ships.gdi, ~techlevel.high
 		Description: Nautical Support vessel.\nCan be deployed, becoming immobile\nto produce, repair and rearm Aircrafts.\nDetects Submarines when deployed.\n  Unarmed
 	Valued:
-		Cost: 2000
+		Cost: 1500
 	Tooltip:
 		Name: Aircraft Carrier
 	Health:
@@ -414,7 +414,7 @@ CARR.New.Deployed:
 		Weapon: UnitExplodeShip
 		EmptyWeapon: UnitExplodeShip
 	Valued:
-		Cost: 2000
+		Cost: 1500
 	Tooltip:
 		Name: Aircraft Carrier
 	Building:
@@ -622,7 +622,7 @@ ASUB:
 		Queue: Ship
 		BuildAtProductionType: Submarine
 		BuildPaletteOrder: 4
-		Prerequisites: ~spen, dome, ~ships.nod, ~techlevel.medium
+		Prerequisites: ~spen, dome, ~ships.nod, ~!player.rebels, ~techlevel.medium
 		Description: Submerged anti-ship unit\narmed with Torpedoes and Cluster Missile.\nCan detect other submarines.\n  Strong vs Infantry, Naval units\n  Weak vs Ground units, Aircraft\n  Special Ability: Submerge\nCan dive underwater to become invisible\nmove unseen and avoid damage of most weapons.\nCan be manually ordered to surface for Repairs.\nMovespeed increase by 20% when on surface\nunless the Submarine is heavily damaged.
 	Valued:
 		Cost: 875
@@ -729,7 +729,7 @@ BSUB:
 		Queue: Ship
 		BuildAtProductionType: Submarine
 		BuildPaletteOrder: 6
-		Prerequisites: ~spen, tmpl, ~ships.nod, ~techlevel.high
+		Prerequisites: ~spen, tmpl, ~ships.nod, ~!player.rebels, ~techlevel.high
 		Description: Submersible siege unit armed with\nanti-ground missile battery.\n  Strong vs Ships, Buildings\n  Weak vs attacks at close range.\n  Special Ability: Submerge\nCan dive underwater to become invisible\nmove unseen and avoid damage of most weapons.\nCan be manually ordered to surface for Repairs.\nMovespeed increase by 20% when on surface\nunless the Submarine is heavily damaged.
 	Valued:
 		Cost: 2400
@@ -785,3 +785,64 @@ BSUB:
 			Radius: 341
 			PointA: 0, -676
 			PointB: 0, 876
+
+#	EMP Submarine
+ESUB:
+	Inherits: ^Submarine
+	Inherits@AUTOTARGET: ^AutoTargetNavalAssaultMove
+	Buildable:
+		Queue: Ship
+		BuildAtProductionType: Submarine
+		BuildPaletteOrder: 7
+		Prerequisites: ncom, ~ships.nod, ~!player.rebels, ~techlevel.high
+		Description: Submarine that emits an EMP blast.\nCan detect other submarines.\n  Immune to EMP\n  Strong vs Naval units\n  Weak vs everything Else\n  Special Ability: Submerge\nCan dive underwater to become invisible\nmove unseen and avoid damage of most weapons.\nCan be manually ordered to surface for Repairs.\nMovespeed increase by 20% when on surface\nunless the Submarine is heavily damaged.
+	Valued:
+		Cost: 1000
+	Tooltip:
+		Name: EMP Submarine
+	Health:
+		HP: 25000
+	Armor:
+		Type: Light
+	Mobile:
+		TurnSpeed: 4
+		Speed: 56
+	Targetable@DontEMP:
+		TargetTypes: EMPInvalid
+	Armament:
+		Weapon: Microlaser.Sub
+		LocalOffset: 0,0,0
+		PauseOnCondition: !ammo
+	AmmoPool:
+		Ammo: 1
+		PipCount: 1
+		PipType: Blue
+		ReloadDelay: 25
+		AmmoCondition: ammo
+	ReloadAmmoPool:
+		Delay: 275
+		Count: 1
+	AttackTurreted:
+	Turreted:
+		Offset: 450,0,155
+	WithSpriteTurret:
+		RequiresCondition: !underwater
+	WithIdleOverlay@ATTACKANIM:
+		RequiresCondition: is-shooting
+		Offset: 450,0,155
+		Sequence: attack-anim
+	GrantConditionOnAttack@ATTACKANIM:
+		Condition: is-shooting
+		RevokeDelay: 32
+	ReloadArmamentsBar:
+		Color: 2879DB
+	HitShape:
+		TargetableOffsets: 448,0,0, -448,0,0
+		Type: Capsule
+			Radius: 256
+			PointA: 0, -448
+			PointB: 0, 448
+	Power:
+		Amount: -20
+	GpsDot:
+		String: EMP

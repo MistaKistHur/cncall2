@@ -151,10 +151,6 @@ Player:
 		Name: Unrestricted
 		Prerequisites: techlevel.infonly, techlevel.low, techlevel.medium, techlevel.high, techlevel.unrestricted
 		Id: unrestricted
-	ProvidesTechPrerequisite@nofieldrepair:
-		Name: No Field Repair
-		Prerequisites: techlevel.infonly, techlevel.low, techlevel.medium, techlevel.high, techlevel.unrestricted, techlevel.nofieldrepair
-		Id: nofieldrepair
 	GrantConditionOnPrerequisiteManager:
 	EnemyWatcher:
 	VeteranProductionIconOverlay:
@@ -218,30 +214,54 @@ Player:
 	ProvidesPrerequisite@GDI:
 		Factions: gdi
 		Prerequisite: player.gdi
-	ProvidesPrerequisite@Nod:
-		Factions: nod
-		Prerequisite: player.nod
 	ProvidesPrerequisite@FutureCorps:
 		Factions: ubergdi
 		Prerequisite: player.futurecorps
+	ProvidesPrerequisite@Socom:
+		Factions: socom
+		Prerequisite: player.socom
+	ProvidesPrerequisite@Taskforce:
+		Factions: taskforce
+		Prerequisite: player.taskforce
+	ProvidesPrerequisite@Nod:
+		Factions: nod
+		Prerequisite: player.nod
 	ProvidesPrerequisite@BlackHand:
 		Factions: bossnod
 		Prerequisite: player.blackhand
+	ProvidesPrerequisite@Cabal:
+		Factions: cabal
+		Prerequisite: player.cabal
+	ProvidesPrerequisite@Rebels:
+		Factions: rebels
+		Prerequisite: player.rebels
 	ProvidesPrerequisite@CnC:
-		Factions: gdi, nod, ubergdi, bossnod
+		Factions: gdi, ubergdi, socom, taskforce, nod, bossnod, cabal, rebels
 		Prerequisite: player.cnc
 	GrantConditionOnPrerequisite@GDI:
 		Condition: player.gdi
 		Prerequisites: player.gdi
-	GrantConditionOnPrerequisite@Nod:
-		Condition: player.nod
-		Prerequisites: player.nod
 	GrantConditionOnPrerequisite@FutureCorps:
 		Condition: player.futurecorps
 		Prerequisites: player.futurecorps
+	GrantConditionOnPrerequisite@Socom:
+		Condition: player.socom
+		Prerequisites: player.socom
+	GrantConditionOnPrerequisite@Taskforce:
+		Condition: player.taskforce
+		Prerequisites: player.taskforce
+	GrantConditionOnPrerequisite@Nod:
+		Condition: player.nod
+		Prerequisites: player.nod
 	GrantConditionOnPrerequisite@BlackHand:
 		Condition: player.blackhand
 		Prerequisites: player.blackhand
+	GrantConditionOnPrerequisite@Cabal:
+		Condition: player.cabal
+		Prerequisites: player.cabal
+	GrantConditionOnPrerequisite@Rebels:
+		Condition: player.rebels
+		Prerequisites: player.rebels
 	ProvidesPrerequisite@alliesorengland:
 		Factions: allies, england
 		Prerequisite: allies.or.england
@@ -265,22 +285,6 @@ Player:
 		Prerequisite: england.or.france
 	ProvidesPrerequisite@IsPlaying:
 		Prerequisite: player.online
-	#	On refinery spawn a freeactor dummy, that grants prereq in 0c968
-	#	for its parent refinery that checks against itself not being present to
-	#	spawn itself, in order to limit it to one on the board.
-	#	Then also on Refinery spawn a second dummy actor that kills self 
-	#	and triggers the delivery checking against first dummy's presence.
-	#	Then rig the first dummy to delete itself when second is gone.
-	#	To implement an cooldown for the whole thing ? timer of first
-	#	dummy should act as it.
-	#	Alternately can do it simply as an IoncannonPower that activates
-	#	external condition for free actor insurance delivery.
-	#	ProvidesPrerequisite@InsuranceCheck:
-	#	Prerequisite: noharv
-	#	RequiresPrerequiste: !harv
-	#	ProvidesPrerequisite@Insurance:
-	#	Prerequisite: insurance.on
-	#	RequiresPrerequiste: noharv, proc
 	ProvidesRadar@GLOBALRADAR:
 		RequiresCondition: minimap.always.on && !isbeingjammed
 	GrantConditionOnPrerequisite@GLOBALRADAR:
@@ -322,15 +326,6 @@ Player:
 		Enabled: False
 		DisplayOrder: 14
 		Prerequisites: global-freeaircraft
-	#	Need custom FreeActor trait that isnt 
-	#	tied to building placement for this
-	#	LobbyPrerequisiteCheckbox@FREEHARVESTER:
-	#	ID: freeharvester
-	#	Label: Harvester Insurance
-	#	Description: Receive a free Harvester at a Refinery when having lost the last Harvester, has 3 minutes cooldown
-	#	Enabled: False
-	#	DisplayOrder: 15
-	#	Prerequisites: global-harvinsurance
 	LobbyPrerequisiteCheckbox@FREERADAR:
 		ID: freeradar
 		Label: Minimap Always On
@@ -338,5 +333,19 @@ Player:
 		Enabled: False
 		DisplayOrder: 16
 		Prerequisites: global-minimap
+	LobbyPrerequisiteCheckbox@BOINK:
+		ID: boinksound
+		Label: Boink !
+		Description: All units emit Renegade's "boink" sound on die
+		Enabled: False
+		DisplayOrder: 17
+		Prerequisites: global-boink
+	LobbyPrerequisiteCheckbox@FIELDREPAIRS:
+		ID: fieldrepairstoggle
+		Label: Field Repairs
+		Description: Service Depots will grant the 'Field Repairs' support-power
+		Enabled: False
+		DisplayOrder: 18
+		Prerequisites: global-fieldrepairs
 	GameSaveViewportManager:
 	PlayerRadarTerrain:

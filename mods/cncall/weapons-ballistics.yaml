@@ -300,6 +300,11 @@ TurretGun.tnkd:
 	Warhead@4EffWater: CreateEffect
 		Explosions: large_splash
 
+8Inch.singular:
+	Inherits: 8Inch
+	ReloadDelay: 65
+	-Burst:
+
 2Inch:
 	Inherits: ^Cannon
 	ReloadDelay: 45

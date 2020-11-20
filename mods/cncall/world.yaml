@@ -214,17 +214,29 @@
 		Side: Random
 		Description: Random Side\nA random side will be chosen when the game starts.
 	Faction@randomallies:
-		Name: Allies
+		Name: R. Allies
 		InternalName: RandomAllies
 		RandomFactionMembers: england, france, germany
 		Side: Random
 		Description: Random Allied Country\nA random Allied country will be chosen when the game starts.
 	Faction@randomsoviet:
-		Name: Soviet
+		Name: R. Soviet
 		InternalName: RandomSoviet
 		RandomFactionMembers: russia, ukraine, belarus
 		Side: Random
 		Description: Random Soviet Country\nA random Soviet country will be chosen when the game starts.
+	Faction@randomgdi:
+		Name: R. GDI
+		InternalName: RandomGDI
+		RandomFactionMembers: ubergdi,socom,taskforce
+		Side: Random
+		Description: Random GDI subfaction\nA random GDI subfaction will be chosen when the game starts.
+	Faction@randomnod:
+		Name: R. Nod
+		InternalName: RandomNod
+		RandomFactionMembers: bossnod,cabal,rebels
+		Side: Random
+		Description: Random Nod subfaction\nA random Nod subfaction will be chosen when the game starts.
 	Faction@0:
 		Name: Allies
 		InternalName: allies
@@ -279,14 +291,12 @@
 		Name: SOCOM
 		InternalName: socom
 		Side: GDI
-		Description: Special Operations Command\nThe SOCOM is the special operations branch of the GDI tasked with carrying out tasks of a more secretive nature.\nTBD
-		Selectable: False
+		Description: Special Operations Command\nThe SOCOM is the special operations branch of the GDI tasked with carrying out operations of a more secretive nature.\nThe SOCOM are authorized to utilize methods of warfare that require highest clearance, including experimental weapons\nand prototype military systems that are still in development.
 	Faction@Taskforce:
 		Name: Task F.
 		InternalName: taskforce
 		Side: GDI
-		Description: Task Force\nAn typical task force of the GDI is adequately equipped to deal with threats in their area of deployment.\nTBD
-		Selectable: False
+		Description: Task Force\nAn typical task force of the GDI is adequately equipped to deal with all threats in their area of deployment.\nTBD
 	Faction@Nod:
 		Name: Nod
 		InternalName: nod
@@ -301,14 +311,12 @@
 		Name: Cabal L.
 		InternalName: cabal
 		Side: Nod
-		Description: Cabal Legion\nThis legion of cybernetically assisted bio augmented lifeforms is a cybernetic task-force that is operating\nunder the central authority and command of an Brotherhood of Nod developed super-ai named only as 'Cabal Prime'.\nTBD
-		Selectable: False
+		Description: Cabal Legion\nThis legion of cybernetically assisted bio augmented lifeforms is a mechanized lethal task-force that operates as one\nunder the central authority and command of an presumably Brotherhood of Nod developed super-ai known only as 'Cabal'.
 	Faction@Rebels:
 		Name: Rebels
 		InternalName: rebels
 		Side: Nod
-		Description: Insurrectionists\nA Nod affiliated guerilla force of fanatical rebels that cause trouble across the globus in the name of Kane, mostly comprised of anarchists and ex-militants of other terrorist organisations brainwashed into joining the Nod.\nTargeting second and mostly third world countries to cause and outcarry an planned insurrection that would end with this country becoming openly affiliated with the brotherhood of Nod.\nThey receive their training and equipment through external means and from the Brotherhood only.\nTBD
-		Selectable: False
+		Description: Insurrectionists\nA Nod affiliated guerilla force of fanatical rebels that cause trouble across the globus in the name of Kane,\nmostly comprised of anarchists and ex-militants of other terrorist organisations. Targeting ex-curtain and\nmostly third world countries to outcarry planned uprising and rebellions that have the destructive end goal\nof Destabilizing that country to the point of total submission and open affiliance with the Brotherhood of Nod.\nThis paramilitary terrorist organization receive their training, funds and equipment through external means\nand only from the Brotherhood of Nod or its affiliates.
 	ResourceType@ore:
 		Type: Ore
 		Name: Tiberium
@@ -393,6 +401,11 @@ World:
 		GameSpeedDropdownDisplayOrder: 3
 		GameSpeed: fast
 	CreateMPPlayers:
+	MPStartUnits@cratehunters:
+		Class: mhq
+		ClassName: Crate Hunters
+		Factions: allies, england, france, germany, soviet, russia, ukraine, belarus, gdi, ubergdi, socom, taskforce, nod, bossnod, cabal, rebels
+		BaseActor: MHQ.Start
 	MPStartUnits@mcvonly:
 		Class: mcv
 		ClassName: MCV Only
@@ -403,38 +416,18 @@ World:
 		ClassName: MCV Only
 		Factions: gdi, ubergdi, socom, taskforce, nod, bossnod, cabal, rebels
 		BaseActor: mcv.cnc
-	MPStartUnits@deployedallies:
-		Class: none
-		ClassName: Conyard + Scout
-		Factions: allies, england, france, germany
-		BaseActor: fact
-		SupportActors: jeep.scout
-		InnerSupportRadius: 3
-		OuterSupportRadius: 5
-	MPStartUnits@deployedsoviet:
-		Class: none
-		ClassName: Conyard + Scout
-		Factions: soviet, russia, ukraine, belarus
-		BaseActor: fact
-		SupportActors: ftrk.scout
-		InnerSupportRadius: 3
-		OuterSupportRadius: 5
-	MPStartUnits@deployedgdi:
-		Class: none
-		ClassName: Conyard + Scout
-		Factions: gdi,ubergdi,socom,taskforce
-		BaseActor: fact.cnc
-		SupportActors: hmmv.scout
-		InnerSupportRadius: 3
-		OuterSupportRadius: 5
-	MPStartUnits@deployednod:
-		Class: none
-		ClassName: Conyard + Scout
-		Factions: nod,bossnod,cabal,rebels
-		BaseActor: fact.cnc
-		SupportActors: bggy.scout
-		InnerSupportRadius: 3
-		OuterSupportRadius: 5
+	MPStartUnits@doublemcv:
+		Class: doublemcv
+		ClassName: Double MCV
+		Factions: allies, england, france, germany, soviet, russia, ukraine, belarus
+		BaseActor: mcv
+		SupportActors: mcv
+	MPStartUnits@doublemcv2:
+		Class: doublemcv
+		ClassName: Double MCV
+		Factions: gdi, ubergdi, socom, taskforce, nod, bossnod, cabal, rebels
+		BaseActor: mcv.cnc
+		SupportActors: mcv.cnc
 	MPStartUnits@lightalliesa:
 		Class: light
 		ClassName: Light Support
@@ -465,38 +458,6 @@ World:
 		Factions: soviet, russia, ukraine, belarus
 		BaseActor: mcv
 		SupportActors: e1,e1,e1,e3,e3,ftrk,3tnk.1b
-		InnerSupportRadius: 3
-		OuterSupportRadius: 5
-	MPStartUnits@heavyalliesa:
-		Class: heavy
-		ClassName: Heavy Support
-		Factions: allies, england, france, germany
-		BaseActor: mcv
-		SupportActors: e1,e1,e1,e3,e3,jeep,1tnk,2tnk,1tnk,2tnk
-		InnerSupportRadius: 3
-		OuterSupportRadius: 5
-	MPStartUnits@heavyalliesb:
-		Class: heavy
-		ClassName: Heavy Support
-		Factions: allies, england, france, germany
-		BaseActor: mcv
-		SupportActors: e1,e1,e1,e3,e3,apc,jeep,2tnk,2tnk,1tnk
-		InnerSupportRadius: 3
-		OuterSupportRadius: 5
-	MPStartUnits@heavysovieta:
-		Class: heavy
-		ClassName: Heavy Support
-		Factions: soviet, russia, ukraine, belarus
-		BaseActor: mcv
-		SupportActors: e1,e1,e1,e3,e3,ftrk,ftrk,3tnk.1b,3tnk.1b
-		InnerSupportRadius: 3
-		OuterSupportRadius: 5
-	MPStartUnits@heavysovietb:
-		Class: heavy
-		ClassName: Heavy Support
-		Factions: soviet, russia, ukraine, belarus
-		BaseActor: mcv
-		SupportActors: e1,e1,e1,e3,e3,apc.soviet,ftrk,3tnk,3tnk
 		InnerSupportRadius: 3
 		OuterSupportRadius: 5
 	MPStartUnits@lightgdia:
@@ -531,6 +492,38 @@ World:
 		SupportActors: e1,e1,e1,e3,e3,napc,bggy
 		InnerSupportRadius: 3
 		OuterSupportRadius: 5
+	MPStartUnits@heavyalliesa:
+		Class: heavy
+		ClassName: Heavy Support
+		Factions: allies, england, france, germany
+		BaseActor: mcv
+		SupportActors: e1,e1,e1,e3,e3,jeep,1tnk,2tnk,1tnk,2tnk
+		InnerSupportRadius: 3
+		OuterSupportRadius: 5
+	MPStartUnits@heavyalliesb:
+		Class: heavy
+		ClassName: Heavy Support
+		Factions: allies, england, france, germany
+		BaseActor: mcv
+		SupportActors: e1,e1,e1,e3,e3,apc,jeep,2tnk,2tnk,1tnk
+		InnerSupportRadius: 3
+		OuterSupportRadius: 5
+	MPStartUnits@heavysovieta:
+		Class: heavy
+		ClassName: Heavy Support
+		Factions: soviet, russia, ukraine, belarus
+		BaseActor: mcv
+		SupportActors: e1,e1,e1,e3,e3,ftrk,ftrk,3tnk.1b,3tnk.1b
+		InnerSupportRadius: 3
+		OuterSupportRadius: 5
+	MPStartUnits@heavysovietb:
+		Class: heavy
+		ClassName: Heavy Support
+		Factions: soviet, russia, ukraine, belarus
+		BaseActor: mcv
+		SupportActors: e1,e1,e1,e3,e3,apc.soviet,ftrk,3tnk,3tnk
+		InnerSupportRadius: 3
+		OuterSupportRadius: 5
 	MPStartUnits@heavygdia:
 		Class: heavy
 		ClassName: Heavy Support
@@ -563,11 +556,112 @@ World:
 		SupportActors: e1,e1,e1,e3,e3,napc,bggy,1tnk.nod,1tnk.nod,1tnk.nod
 		InnerSupportRadius: 3
 		OuterSupportRadius: 5
-	MPStartUnits@cratehunters:
-		Class: mhq
-		ClassName: Crate Hunters
-		Factions: allies, england, france, germany, soviet, russia, ukraine, belarus, gdi, ubergdi, socom, taskforce, nod, bossnod, cabal, rebels
-		BaseActor: MHQ.Start
+	MPStartUnits@deployedallies:
+		Class: none
+		ClassName: Conyard + Scout
+		Factions: allies, england, france, germany
+		BaseActor: fact
+		SupportActors: jeep.scout
+		InnerSupportRadius: 3
+		OuterSupportRadius: 5
+	MPStartUnits@deployedsoviet:
+		Class: none
+		ClassName: Conyard + Scout
+		Factions: soviet, russia, ukraine, belarus
+		BaseActor: fact
+		SupportActors: ftrk.scout
+		InnerSupportRadius: 3
+		OuterSupportRadius: 5
+	MPStartUnits@deployedgdi:
+		Class: none
+		ClassName: Conyard + Scout
+		Factions: gdi,ubergdi,socom,taskforce
+		BaseActor: fact.cnc
+		SupportActors: hmmv.scout
+		InnerSupportRadius: 3
+		OuterSupportRadius: 5
+	MPStartUnits@deployednod:
+		Class: none
+		ClassName: Conyard + Scout
+		Factions: nod,bossnod,cabal,rebels
+		BaseActor: fact.cnc
+		SupportActors: bggy.scout
+		InnerSupportRadius: 3
+		OuterSupportRadius: 5
+	#	throws some nonsense about IPositionableInfo 
+	#	when is about placing the building right at begin
+	#	MPStartUnits@smallbaseallies:
+	#	Class: smallbase
+	#	ClassName: Small Base
+	#	Factions: allies, england, france, germany
+	#	BaseActor: fact
+	#	SupportActors: jeep, powr, tent, proc, pbox, pbox
+	#	InnerSupportRadius: 3
+	#	OuterSupportRadius: 5
+	#	MPStartUnits@smallbasesoviet:
+	#	Class: smallbase
+	#	ClassName: Small Base
+	#	Factions: soviet, russia, ukraine, belarus
+	#	BaseActor: fact
+	#	SupportActors: ftrk, powr, barr, proc, pbox, pbox
+	#	InnerSupportRadius: 3
+	#	OuterSupportRadius: 5
+	#	MPStartUnits@smallbasegdi:
+	#	Class: smallbase
+	#	ClassName: Small Base
+	#	Factions: gdi,ubergdi,socom,taskforce
+	#	BaseActor: fact.cnc
+	#	SupportActors: hmmv, powr.cnc, pyle, proc.cnc, gtwr, gtwr
+	#	InnerSupportRadius: 3
+	#	OuterSupportRadius: 5
+	#	MPStartUnits@smallbasenod:
+	#	Class: smallbase
+	#	ClassName: Small Base
+	#	Factions: nod,bossnod,cabal,rebels
+	#	BaseActor: fact.cnc
+	#	SupportActors: bggy, powr.cnc, hand, proc.cnc, gtwr, gtwr
+	#	InnerSupportRadius: 3
+	#	OuterSupportRadius: 5
+	#	MPStartUnits@largebaseallies:
+	#	Class: largebase
+	#	ClassName: Large Base
+	#	Factions: allies, england, france, germany
+	#	BaseActor: fact
+	#	SupportActors: jeep, 2tnk, powr, powr, tent, proc, weap, dome, gun, gun, hbox
+	#	InnerSupportRadius: 3
+	#	OuterSupportRadius: 5
+	#	MPStartUnits@largebasesoviet:
+	#	Class: largebase
+	#	ClassName: Large Base
+	#	Factions: soviet, russia, ukraine, belarus
+	#	BaseActor: fact
+	#	SupportActors: ftrk, 3tnk, powr, powr, barr, proc, weap, dome, ftur, ftur, tsla
+	#	InnerSupportRadius: 3
+	#	OuterSupportRadius: 5
+	#	MPStartUnits@largebasegdi:
+	#	Class: largebase
+	#	ClassName: Large Base
+	#	Factions: gdi,ubergdi,socom,taskforce
+	#	BaseActor: fact.cnc
+	#	SupportActors: hmmv, 2tnk.gdi, powr.cnc, powr.cnc, pyle, proc.cnc, weap.gdi, hq.gdi, gtwr, gtwr, atwr
+	#	InnerSupportRadius: 3
+	#	OuterSupportRadius: 5
+	#	MPStartUnits@largebasenod:
+	#	Class: largebase
+	#	ClassName: Large Base
+	#	Factions: nod,bossnod,cabal
+	#	BaseActor: fact.cnc
+	#	SupportActors: bggy, e3, e3, powr.cnc, powr.cnc, hand, proc.cnc, weap.nod, hq.nod, gun.nod, gun.nod, obel
+	#	InnerSupportRadius: 3
+	#	OuterSupportRadius: 5
+	#	MPStartUnits@largebasenodrebel:
+	#	Class: largebase
+	#	ClassName: Large Base
+	#	Factions: rebels
+	#	BaseActor: fact.cnc
+	#	SupportActors: bggy, e3, e3, powr.cnc, powr.cnc, hand, proc.cnc, strp.rebels, hq.nod, gun.nod, gun.nod, obel
+	#	InnerSupportRadius: 3
+	#	OuterSupportRadius: 5
 	MPStartLocations:
 		SeparateTeamSpawnsCheckboxDisplayOrder: 6
 		SeparateTeamSpawnsCheckboxVisible: False

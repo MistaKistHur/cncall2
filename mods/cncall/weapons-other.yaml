@@ -668,13 +668,18 @@ LaserGun:
 	Warhead@1Dam: SpreadDamage
 		Spread: 42
 		Damage: 6750
-		DamageTypes: Prone60Percent, TriggerProne, ElectricityDeath
+		DamageTypes: TriggerProne, ElectricityDeath
+		Versus:
+			None: 150
+			Wood: 75
+			Heavy: 90
+			Light: 100
 
 LaserChainGun:
 	Inherits: LaserGun
 	Burst: 3
 	StartBurstReport: lasgun.aud
-	Report: lastur1.aud
+	Report: minilasr.aud
 	Projectile: LaserZap
 		Width: 30
 		Duration: 3
@@ -683,10 +688,22 @@ LaserChainGun:
 		SecondaryBeamColor: FF000030
 	Warhead@1Dam: SpreadDamage
 		Damage: 1500
-		Versus:
-			None: 150
-			Wood: 75
-			Heavy: 90
+
+HoverLaser:
+	Inherits: LaserGun
+	ValidTargets: Ground, Water, Air
+	ReloadDelay: 30
+	Range: 5c768
+	Report: minilasr.aud
+	Projectile: LaserZap
+		Width: 30
+		Duration: 5
+		Color: FF000080
+		SecondaryBeamWidth: 50
+		SecondaryBeamColor: FF000030
+	Warhead@1Dam: SpreadDamage
+		Damage: 3000
+		ValidTargets: Ground, Water, Air
 
 Laser:
 	ReloadDelay: 45
@@ -706,9 +723,32 @@ Laser:
 		SmudgeType: Scorch
 		InvalidTargets: Vehicle, Structure, Wall, Husk, Trees, Creep
 
+LaserAA:
+	ReloadDelay: 45
+	Range: 7c512
+	Report: obelray1.aud
+	ValidTargets: Helicopter
+	Projectile: LaserZap
+		Width: 85
+		HitAnim: laserfire
+		ZOffset: 2047
+	Warhead@1Dam: SpreadDamage
+		Spread: 42
+		Damage: 9000
+		ValidTargets: Helicopter
+		Versus:
+			Wood: 50
+		DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath
+	Warhead@2EffAir: CreateEffect
+		Explosions: small_explosion
+		ImpactSounds: kaboom12.aud
+		ImpactActors: false
+		ValidTargets: Helicopter
+
 PortaLaser:
 	Inherits: Laser
 	-Report:
+	InvalidTargets: NotThis
 	ReloadDelay: 30
 	Range: 3c768
 	Burst: 2
@@ -772,6 +812,12 @@ MicroLaser:
 		InvalidTargets: EMPInvalid, InvulNoEMP
 	Warhead@3Smu: LeaveSmudge
 		SmudgeType: Scorch
+
+MicroLaser.Sub:
+	Inherits: MicroLaser
+	ReloadDelay: 275
+	Range: 1c128
+	Projectile: InstantHit
 
 SonicZap:
 	ReloadDelay: 120
@@ -978,11 +1024,12 @@ ScrinTorp:
 	Warhead@3Eff: CreateEffect
 		Explosions: large_explosion
 		ImpactSounds: expnew16.aud, expnew17.aud
-	#	Warhead@green: GrantExternalCondition
-	#	Range: 0c511
-	#	Duration: 2
-	#	Condition: greenhighlight
-	#	ValidTargets: Ground, Vehicle
+	Warhead@Plasma: GrantExternalCondition
+		Range: 0c768
+		Duration: 125
+		Condition: hitbyplasma
+		ValidTargets: Ground, Water
+		InvalidTargets: HasPlasma
 
 ScrinTorpAA:
 	Inherits: ^AntiAirMissile
@@ -1008,19 +1055,25 @@ ScrinTorpAA:
 	Warhead@3Eff: CreateEffect
 		Explosions: med_explosion_air
 		ImpactSounds: expnew17.aud
-	#	Warhead@green: GrantExternalCondition
-	#	Range: 0c511
-	#	Duration: 2
-	#	Condition: greenhighlight
-	#	ValidTargets: Air
+	Warhead@Plasma: GrantExternalCondition
+		Range: 0c768
+		Duration: 125
+		Condition: hitbyplasma
+		ValidTargets: Air
+		InvalidTargets: HasPlasma
+
+ScrinTorp.singular:
+	Inherits: ScrinTorp
+	-Burst:
+	-BurstDelays:
 
 OrcaBomb:
 	ValidTargets: Ground, Water
 	InvalidTargets: Air
 	ReloadDelay: 50
 	Report: chute1.aud
-	Burst: 2
-	BurstDelays: 5
+	Burst: 6
+	BurstDelays: 3
 	Range: 2c0
 	TargetActorCenter: true
 	Projectile: GravityBomb
@@ -1058,3 +1111,262 @@ KamikazeTargeting.hunter:
 	Projectile: InstantHit
 	Warhead@1Dam: TargetDamage
 		ValidTargets: Harvester
+
+MicrowaveZap:
+	ValidTargets: Ground, Water
+	InvalidTargets: Air
+	TargetActorCenter: true
+	ReloadDelay: 100
+	Range: 6c0
+	Report: corefir1.aud
+	Projectile: Railgun
+		Duration: 5
+		Blockable: true
+		DamageActorsInLine: false
+		BeamColor: FFFFFFFF
+		BeamWidth: 0c0
+		HelixThickness: 0c32
+		HelixRadius: 0c16
+		HelixAngleDeltaPerTick: 64
+		QuantizationCount: 64
+		ZOffset: 2046
+	Warhead@1Dam: SpreadDamage
+		InvalidTargets: Air
+		Spread: 512
+		Damage: 5000
+		DamageTypes: Prone50Percent, TriggerProne, FireDeath
+		Versus:
+			None: 400
+			Wood: 45
+			Concrete: 50
+			Light: 70
+			Heavy: 85
+	Warhead@emp: GrantExternalCondition
+		Range: 0c256
+		Duration: 90
+		Condition: empdisable
+		ValidTargets: Structure, Vehicle, Ship, Submarine
+		InvalidTargets: EMPInvalid, InvulNoEMP
+	Warhead@Arc: FireCluster
+		Weapon: MicrowaveArc
+		RandomClusterCount: 1
+		Dimensions: 3,3
+		Footprint: x_x _x_ x_x
+
+#	problems
+#	FireCluster gets generated at position
+#	of unit itself instead of targets
+#	'Attempting to query the position of invalid target'
+#	due to interaction among TargetActorCenter and
+#	GrantExternalCondition warhead
+#	does not accept palette for transparency, 
+#	is always opaque
+MicrowaveZapNew:
+	ReloadDelay: 100
+	Range: 5c768
+	TargetActorCenter: true
+	ValidTargets: Ground, Water
+	InvalidTargets: Air
+	Report: corefir1.aud
+	Projectile: AreaBeam
+		Speed: 0c428
+		Duration: 50
+		DamageInterval: 3
+		Width: 195
+		Shape: Cylindrical
+		ZOffset: 2046
+		BeyondTargetRange: 0c256
+		Blockable: true
+		TrackTarget: false
+		Color: FFFFFFFF
+	Warhead@1Dam: SpreadDamage
+		Spread: 512
+		Range: 0, 32
+		Falloff: 100, 100
+		Damage: 5000
+		AffectsParent: false
+		ValidStances: Neutral, Enemy
+		ValidTargets: Ground, Water
+		InvalidTargets: Flamer, Air
+		Versus:
+			None: 200
+			Wood: 45
+			Concrete: 50
+			Light: 70
+			Heavy: 85
+		DamageTypes: Prone50Percent, TriggerProne, FireDeath
+	Warhead@2Dam: SpreadDamage
+		Spread: 512
+		Range: 0, 32
+		Falloff: 50, 50
+		Damage: 2500
+		InvalidTargets: Flamer, Air
+		AffectsParent: false
+		ValidStances: Ally
+		Versus:
+			None: 200
+			Wood: 45
+			Concrete: 50
+			Light: 70
+			Heavy: 85
+		DamageTypes: Prone50Percent, TriggerProne, FireDeath
+	Warhead@emp: GrantExternalCondition
+		Range: 0c256
+		Duration: 90
+		Condition: empdisable
+		ValidTargets: Structure, Vehicle, Ship, Submarine
+		InvalidTargets: EMPInvalid, InvulNoEMP
+	Warhead@Arc: FireCluster
+		Weapon: MicrowaveArc
+		RandomClusterCount: 1
+		Dimensions: 3,3
+		Footprint: x_x _x_ x_x
+
+MicrowaveArc:
+	Inherits: MicrowaveZap
+	Range: 1c256
+	Projectile: Bullet
+		Image: mwarc
+		Sequences: idle, idle2, idle3
+		Palette: effect-alpha75
+		Speed: 260
+	Warhead@1Dam: SpreadDamage
+		Damage: 1250
+		ValidStances: Enemy, Neutral
+	-Report:
+	Warhead@emp: GrantExternalCondition
+		Duration: 30
+		ValidTargets: Structure, Vehicle, Ship, Submarine
+		InvalidTargets: EMPInvalid, InvulNoEMP
+	Warhead@Arc: FireCluster
+		Weapon: MicrowaveArc2
+		RandomClusterCount: 2
+		Dimensions: 3,3
+		Footprint: _x_ x_x _x_
+
+MicrowaveArc2:
+	Inherits: MicrowaveArc
+	-Warhead@Arc:
+	-Warhead@1Dam:
+	Warhead@emp: GrantExternalCondition
+		Duration: 15
+		ValidTargets: Structure, Vehicle, Ship, Submarine
+		InvalidTargets: EMPInvalid, InvulNoEMP
+
+MicrowaveZapSound:
+	Inherits: MicrowaveZap
+	Report: coreup1.aud
+	Projectile: InstantHit
+	Warhead@1Dam: SpreadDamage
+		Damage: 1
+		Versus:
+			None: 0
+			Wood: 0
+			Concrete: 0
+			Light: 0
+			Heavy: 0
+			Brick: 0
+	-Warhead@emp:
+	-Warhead@Arc:
+
+IonPainter:
+	ReloadDelay: 70
+	Range: 5c768
+	#	need some nice looping sound
+	#	Report: ion1.aud
+	ValidTargets: Vehicle, Structure
+	InvalidTargets: Air
+	#	this one functions closest to how i envision it
+	#	AreaBeam effects all in a line however, need
+	#	only one single target at a time effected by it
+	Projectile: AreaBeam
+		Speed: 20c0
+		Duration: 70
+		DamageInterval: 1
+		Width: 97
+		Shape: Flat
+		ZOffset: 1023
+		BeyondTargetRange: 0c0
+		Blockable: true
+		TrackTarget: true
+		Color: 0000C3
+	#	this is just one shot, need it be continous
+	#	DONE. check above
+	#	Projectile: LaserZap
+	#	Width: 70
+	#	Color: 0042FF
+	#	Duration: 8
+	#	SecondaryBeamWidth: 65
+	#	SecondaryBeamColor: 0000C3
+	#	ZOffset: 4096
+	Warhead@1Dam: TargetDamage
+		ValidTargets: Vehicle, Structure
+	Warhead@2Con: GrantExternalCondition
+		ValidTargets: Vehicle, Structure
+		Range: 0c32
+		Duration: 70
+		Condition: ionpainted
+		InvalidTargets: GotIon
+	Warhead@3Con: GrantExternalCondition
+		ValidTargets: GotIon
+		Range: 0c32
+		Duration: 70
+		Condition: ionstrike
+
+JDAM:
+	ValidTargets: Ground, Water, Trees
+	InvalidTargets: Air
+	ReloadDelay: 50
+	Report: bwhis.aud
+	Range: 3c0
+	TargetActorCenter: true
+	Projectile: GravityBomb
+		Image: MOAB_BOMB
+		Velocity: 75, 0, -74
+		Acceleration: 0, 0, 0
+		Shadow: true
+	Warhead@1Dam: SpreadDamage
+		Spread: 1c0
+		Damage: 3800
+		Falloff: 1000, 255, 128, 50, 0
+		ValidTargets: Ground, Water
+		Versus:
+			None: 80
+			Wood: 90
+			Light: 80
+			Heavy: 65
+			Concrete: 100
+			Brick: 65
+		DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath
+	Warhead@2Smu: LeaveSmudge
+		SmudgeType: Scorch
+	Warhead@3Eff: CreateEffect
+		Explosions: fuelbomb
+		ImpactSounds: kaboom25.aud
+	Warhead@Flames: FireCluster
+		Weapon: BurnFx
+		RandomClusterCount: 3
+		Dimensions: 3,3
+		Footprint: xxx xxx xxx
+	Warhead@Shake: ShakeScreen
+		Duration: 10
+		Intensity: 2
+		Multiplier: 1,0
+	Warhead@6Dam: HealthPercentageDamage
+		Spread: 4c512
+		Damage: 20
+		InvalidTargets: MADTank
+		ValidTargets: Structure
+	Warhead@7Dam: HealthPercentageDamage
+		Spread: 4c512
+		Damage: 20
+		InvalidTargets: MADTank
+		ValidTargets: Vehicle
+		Versus:
+			Light: 50
+			Heavy: 50
+	Warhead@8: GrantExternalCondition
+		Range: 8c0
+		Duration: 24
+		Condition: thumpsnare
+		ValidTargets: Vehicle

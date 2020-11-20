@@ -3,10 +3,10 @@ MINV:
 	RenderSprites:
 		Image: minv
 		FactionImages:
-			soviet: minp
-			russia: minp
-			ukraine: minp
-			belarus: minp
+			soviet: minv
+			russia: minv
+			ukraine: minv
+			belarus: minv
 	Explodes:
 		Weapon: ATMine
 
@@ -63,7 +63,7 @@ CRATE:
 		SelectionShares: 0
 		NoBaseSelectionShares: 100
 		Units: mcv.cnc
-		ValidFactions: gdi, ubergdi, nod, bossnod
+		ValidFactions: gdi, ubergdi, socom, taskforce, nod, bossnod, cabal, rebels
 	GiveUnitCrateAction@harv:
 		SelectionShares: 5
 		Units: harv.crate
@@ -76,9 +76,14 @@ CRATE:
 		TimeDelay: 7500
 	GiveUnitCrateAction@harvcnc:
 		SelectionShares: 5
-		Units: harv.cnc
-		ValidFactions: gdi, ubergdi, nod, bossnod
+		Units: harv.cnc.crate
+		ValidFactions: gdi, ubergdi, socom, taskforce, nod, bossnod, rebels
 		TimeDelay: 7500
+	GiveUnitCrateAction@harvstealth:
+		SelectionShares: 5
+		Units: harv.cnc.stealth
+		ValidFactions: cabal
+		TimeDelay: 7500		
 	GiveUnitCrateAction@jeep:
 		SelectionShares: 6
 		Units: jeep
@@ -92,12 +97,12 @@ CRATE:
 	GiveUnitCrateAction@hmmv:
 		SelectionShares: 6
 		Units: hmmv
-		ValidFactions: gdi, ubergdi
+		ValidFactions: gdi, ubergdi, socom, taskforce
 		Prerequisites: techlevel.low
 	GiveUnitCrateAction@bggy:
 		SelectionShares: 6
 		Units: bggy
-		ValidFactions: nod, bossnod
+		ValidFactions: nod, bossnod, cabal, rebels
 		Prerequisites: techlevel.low
 	GiveUnitCrateAction@1tnk:
 		SelectionShares: 6
@@ -112,12 +117,12 @@ CRATE:
 	GiveUnitCrateAction@mrpg:
 		SelectionShares: 6
 		Units: mrpg
-		ValidFactions: gdi, ubergdi
+		ValidFactions: gdi, ubergdi, socom, taskforce
 		Prerequisites: techlevel.low
 	GiveUnitCrateAction@ltnk:
 		SelectionShares: 6
 		Units: 1tnk.nod
-		ValidFactions: nod, bossnod
+		ValidFactions: nod, bossnod, cabal, rebels
 		Prerequisites: techlevel.low
 	GiveUnitCrateAction@apc:
 		SelectionShares: 6
@@ -132,12 +137,12 @@ CRATE:
 	GiveUnitCrateAction@gapc:
 		SelectionShares: 6
 		Units: gapc
-		ValidFactions: gdi, ubergdi
+		ValidFactions: gdi, ubergdi, socom, taskforce
 		Prerequisites: techlevel.low
 	GiveUnitCrateAction@napc:
 		SelectionShares: 6
 		Units: napc
-		ValidFactions: nod, bossnod
+		ValidFactions: nod, bossnod, cabal, rebels
 		Prerequisites: techlevel.low
 	GiveUnitCrateAction@arty:
 		SelectionShares: 5
@@ -151,13 +156,13 @@ CRATE:
 		Prerequisites: techlevel.medium, dome
 	GiveUnitCrateAction@mrls:
 		SelectionShares: 5
-		Units: mrls
-		ValidFactions: gdi, ubergdi
+		Units: mrls.crate
+		ValidFactions: gdi, ubergdi, socom, taskforce
 		Prerequisites: techlevel.medium, dome
 	GiveUnitCrateAction@howi:
 		SelectionShares: 5
 		Units: arty.nod
-		ValidFactions: nod, bossnod
+		ValidFactions: nod, bossnod, cabal, rebels
 		Prerequisites: techlevel.medium, dome
 	GiveUnitCrateAction@2tnk:
 		SelectionShares: 4
@@ -172,12 +177,12 @@ CRATE:
 	GiveUnitCrateAction@2tnk.gdi:
 		SelectionShares: 4
 		Units: 2tnk.gdi
-		ValidFactions: gdi, ubergdi
+		ValidFactions: gdi, ubergdi, socom, taskforce
 		Prerequisites: techlevel.medium, fix
 	GiveUnitCrateAction@ftnk:
 		SelectionShares: 4
 		Units: ftnk
-		ValidFactions: nod, bossnod
+		ValidFactions: nod, bossnod, cabal, rebels
 		Prerequisites: techlevel.medium, fix
 	GiveUnitCrateAction@msam:
 		SelectionShares: 6
@@ -187,7 +192,7 @@ CRATE:
 	GiveUnitCrateAction@bikes:
 		SelectionShares: 3
 		Units: bike,bike
-		ValidFactions: nod
+		ValidFactions: nod, rebels
 		Prerequisites: techlevel.medium, dome
 	GiveUnitCrateAction@ctnk:
 		SelectionShares: 2
@@ -202,13 +207,13 @@ CRATE:
 	GiveUnitCrateAction@4tnk.gdi:
 		SelectionShares: 2
 		Units: 4tnk.gdi.rail
-		ValidFactions: gdi
+		ValidFactions: gdi, ubergdi, socom, taskforce
 		Prerequisites: techlevel.high, techcenter, fix
 	GiveUnitCrateAction@ssm:
 		SelectionShares: 2
-		Units: ssm
-		ValidFactions: nod
-		Prerequisites: techlevel.high, techcenter, dome	
+		Units: ssm.crate
+		ValidFactions: nod, bossnod, cabal, rebels
+		Prerequisites: techlevel.high, techcenter, dome
 	GiveUnitCrateAction@mrj:
 		SelectionShares: 2
 		Units: mrj.crate
@@ -216,12 +221,12 @@ CRATE:
 	GiveUnitCrateAction@disr:
 		SelectionShares: 1
 		Units: disr
-		ValidFactions: gdi, ubergdi
+		ValidFactions: gdi, ubergdi, socom, taskforce
 		Prerequisites: techcenter, techlevel.high
 	GiveUnitCrateAction@mwav:
 		SelectionShares: 1
 		Units: mwav
-		ValidFactions: nod, bossnod
+		ValidFactions: nod, bossnod, cabal, rebels
 		Prerequisites: techcenter, techlevel.high
 	GiveUnitCrateAction@supertank:
 		SelectionShares: 1
@@ -234,7 +239,7 @@ CRATE:
 	GiveUnitCrateAction@squadlight:
 		SelectionShares: 10
 		Units: e1,e1,e1,e3,e3
-		ValidFactions: allies, england, france, germany, soviet, russia, ukraine, belarus, gdi, ubergdi, nod, bossnod
+		ValidFactions: allies, england, france, germany, soviet, russia, ukraine, belarus, gdi, ubergdi, socom, taskforce, nod, bossnod, cabal, rebels
 	GiveUnitCrateAction@squadlightallies:
 		SelectionShares: 8
 		Units: e1,e1,e1,e3,e3,medi,jeep
@@ -248,12 +253,12 @@ CRATE:
 	GiveUnitCrateAction@squadlightgdi:
 		SelectionShares: 9
 		Units: e1,e1,e2,e2,e3,medi,mrpg
-		ValidFactions: gdi
+		ValidFactions: gdi,ubergdi,socom,taskforce
 		TimeDelay: 2250
 	GiveUnitCrateAction@squadlightnod:
 		SelectionShares: 9
 		Units: e1,e1,e1,e3,e3,bggy,bggy
-		ValidFactions: nod
+		ValidFactions: nod,bossnod,cabal,rebels
 		TimeDelay: 2250
 	GiveUnitCrateAction@squadheavyalliesa:
 		SelectionShares: 7
@@ -278,22 +283,22 @@ CRATE:
 	GiveUnitCrateAction@squadheavygdia:
 		SelectionShares: 7
 		Units: e1,e1,e1,e2,e3,e3,e2,e6,medi
-		ValidFactions: gdi
+		ValidFactions: gdi,ubergdi,socom,taskforce
 		TimeDelay: 4500
 	GiveUnitCrateAction@squadheavygdib:
 		SelectionShares: 6
 		Units: e1,e1,e1,medi,e3,e3,hmmv,hmmv,2tnk.gdi
-		ValidFactions: gdi
+		ValidFactions: gdi,ubergdi,socom,taskforce
 		TimeDelay: 4500
 	GiveUnitCrateAction@squadheavynoda:
 		SelectionShares: 7
 		Units: e1,e1,e1,e5,e5,e3,e3,e3,e6
-		ValidFactions: nod
+		ValidFactions: nod,bossnod,cabal,rebels
 		TimeDelay: 4500
 	GiveUnitCrateAction@squadheavynodb:
 		SelectionShares: 6
 		Units: e1,e1,e1,e5,e3,e3,1tnk.nod,ftnk,1tnk.nod
-		ValidFactions: nod
+		ValidFactions: nod,bossnod,cabal,rebels
 		TimeDelay: 4500
 	GiveUnitCrateAction@horde:
 		SelectionShares: 3
