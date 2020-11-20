@@ -3014,7 +3014,7 @@ TSLA:
 		Queue: Defense
 		BuildPaletteOrder: 5
 		Prerequisites: dome, ~structures.soviet, ~techlevel.medium
-		Description: Advanced base defense.\nTesla briefly short-circuits Vehicle and Ships.\nCan detect cloaked units.\n  Strong vs Vehicles, Infantry\n  Weak vs Aircraft
+		Description: Advanced base defense.\nTesla briefly short-circuits Vehicle and Ships.\nImmune to EMP\nCan detect cloaked units.\n  Strong vs Vehicles, Infantry\n  Weak vs Aircraft
 	Valued:
 		Cost: 1200
 	Tooltip:
@@ -3070,7 +3070,7 @@ TSLA:
 		ValidPowerStates: Low, Critical
 		RequiresCondition: !TeslaChargeApplied
 	GrantCondition@IDISABLE:
-		RequiresCondition: lowpower || powerdown && !TeslaHasCharge && !empdisable
+		RequiresCondition: lowpower || powerdown && !TeslaHasCharge
 		Condition: disabled
 	ToggleConditionOnOrder:
 		DisabledSound: EnablePower
@@ -3084,6 +3084,8 @@ TSLA:
 	SpawnActorOnDeath:
 		Actor: tsla.husk
 		OwnerType: InternalName
+	Targetable@DontEMP:
+		TargetTypes: EMPInvalid
 
 GUN:
 	Inherits: ^Defense

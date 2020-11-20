@@ -1832,7 +1832,7 @@ GUN.gdi:
 	-WithEmbeddedTurretSpriteBody:
 	Buildable:
 		BuildPaletteOrder: 4
-		Prerequisites: weap, ~structures.gdi, ~techlevel.medium
+		Prerequisites: weap, ~structures.gdi, ~!player.socom, ~techlevel.medium
 	Armament@SECONDARY:
 		Name: secondary
 		Weapon: Dragon
@@ -1892,6 +1892,7 @@ ATWR:
 	Inherits: GTWR
 	Inherits@AUTOTARGET: ^AutoTargetGroundAntiTankandAirDefense
 	Inherits@IDISABLE: ^DisableOnLowPowerOrPowerDown
+	Inherits@EMPMechanic: ^BuildingAffectedByEMP
 	-Tooltip:
 	-Tooltip@Upgraded:
 	-Selectable:
@@ -1905,6 +1906,7 @@ ATWR:
 	-SequencePlaceBuildingPreview:
 	-WithBuildingBib:
 	-SpawnActorOnDeath:
+	-Targetable@DontEMP:
 	Selectable:
 		Bounds: 24,24
 		DecorationBounds: 22,48,0,-12
@@ -1927,15 +1929,16 @@ ATWR:
 		Weapon: Stinger
 		LocalOffset: 256,128,0, 256,-128,0
 		LocalYaw: -100,100
-		PauseOnCondition: disabled
+		PauseOnCondition: disabled || empdisable
 	Armament@SECONDARY:
 		Weapon: StingerAA
 		LocalOffset: 256,128,0, 256,-128,0
 		LocalYaw: -100,100
-		PauseOnCondition: disabled
+		PauseOnCondition: disabled || empdisable
 	AttackTurreted:
 		Armaments: primary, secondary
 		Turrets: primary
+		PauseOnCondition: disabled || empdisable
 		RequiresCondition: !build-incomplete
 	Power:
 		Amount: -60
@@ -1945,52 +1948,6 @@ ATWR:
 	SpawnActorOnDeath:
 		Actor: atwr.husk
 		OwnerType: InternalName
-
-RTUR:
-	Inherits: ^Defense
-	Inherits@IDISABLE: ^DisableOnPowerDown
-	Inherits@AUTOTARGET: ^AutoTargetGroundAntiTankDefense
-	Selectable:
-		Bounds: 36,36
-	Valued:
-		Cost: 1000
-	Tooltip:
-		Name: Railgun Turret
-	Buildable:
-		Queue: Defense
-		BuildPaletteOrder: 11
-		Prerequisites: ~disabled
-		Description: Advanced anti-tank defense, armed with Railgun.\n Can detect cloaked units.\n  Strong vs Tanks, Vehicles\n  Weak vs Infantry
-	Building:
-	Health:
-		HP: 40000
-	Armor:
-		Type: Heavy
-	RevealsShroud:
-		Range: 6c0
-		RevealGeneratedShroud: False
-	RevealsShroud@GAPGEN:
-		Range: 5c0
-	WithBuildingBib:
-		HasMinibib: true
-	Turreted:
-		TurnSpeed: 6
-		InitialFacing: 128
-		Offset: 0,0,-86
-	Armament:
-		Weapon: Railgun
-		LocalOffset: 1468,-32,256
-		PauseOnCondition: disabled || empdisable
-	AttackTurreted:
-		PauseOnCondition: disabled || empdisable
-		RequiresCondition: !build-incomplete
-	WithSpriteTurret:
-		RequiresCondition: !build-incomplete
-	Power:
-		Amount: -40
-	BodyOrientation:
-	RenderSprites:
-		Image: rtur
 
 HSAM.nod:
 	Inherits: HSAM
@@ -2044,6 +2001,7 @@ OBEL:
 	-Armament:
 	-ActorPreviewPlaceBuildingPreview:
 	-SpawnActorOnDeath:
+	-Targetable@DontEMP:
 	Buildable:
 		Queue: Defense
 		BuildPaletteOrder: 5

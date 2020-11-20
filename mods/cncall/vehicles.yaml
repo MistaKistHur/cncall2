@@ -163,7 +163,7 @@ JEEP:
 	Mobile:
 		TurnSpeed: 10
 		Speed: 170
-		PauseOnCondition: notmobile || being-captured
+		PauseOnCondition: notmobile || being-captured || empdisable
 	RevealsShroud:
 		MinRange: 4c0
 		Range: 8c0

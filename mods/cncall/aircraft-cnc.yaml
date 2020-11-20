@@ -165,6 +165,7 @@ RH66:
 	VoiceAnnouncement:
 		RequiresCondition: produced
 		Voice: Build
+		ValidStances: Ally
 	Aircraft:
 		AltitudeVelocity: 0c100
 		TurnSpeed: 5

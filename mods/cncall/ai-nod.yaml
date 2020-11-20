@@ -49,13 +49,13 @@ Player:
 					Types: Vehicle
 					Attractiveness: 1
 					TargetMetric: Value
-					CheckRadius: 3c0
+					CheckRadius: 1c0
 				Consideration@2:
 					Against: Ally
 					Types: Air, Ground, Water
 					Attractiveness: -10
 					TargetMetric: Value
-					CheckRadius: 7c0
+					CheckRadius: 5c0
 			UseBlackout:
 				OrderName: Blackout
 				MinimumAttractiveness: 1000

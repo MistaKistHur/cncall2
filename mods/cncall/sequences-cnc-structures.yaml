@@ -1188,6 +1188,9 @@ rtur:
 	make: rturmake
 		Length: *
 		Tick: 80
+	place: rturmake
+		Start: 20
+		Length: 1
 	bib: mbGUN
 		Length: *
 		Offset: -1,-1
@@ -1619,6 +1622,7 @@ cncagun:
 	make: cncagunmake
 		Length: *
 		Offset: 0,-13
+		Tick: 80
 	damaged-idle:
 		Start: 32
 		Facings: 32

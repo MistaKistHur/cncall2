@@ -69,6 +69,7 @@ E1.Grenadier:
 	VoiceAnnouncement:
 		RequiresCondition: produced
 		Voice: Build
+		ValidStances: Ally
 	AnnounceOnKill:
 	Voiced:
 		VoiceSet: gdisoldier
@@ -156,6 +157,7 @@ JUMP:
 	VoiceAnnouncement:
 		RequiresCondition: produced
 		Voice: Build
+		ValidStances: Ally
 	AnnounceOnKill:
 
 E4.Nod:
@@ -1917,6 +1919,61 @@ OBEL.Cabal:
 		ReloadingCondition: reload-air
 	RenderSprites:
 		Image: obel
+
+RTUR:
+	Inherits: ^Defense
+	Inherits@IDISABLE: ^DisableOnLowPowerOrPowerDown
+	Inherits@AUTOTARGET: ^AutoTargetGroundAntiTankDefense
+	-ActorPreviewPlaceBuildingPreview:
+	SelectionDecorations:
+	Selectable:
+		Bounds: 36,36
+	Valued:
+		Cost: 1000
+	Tooltip:
+		Name: Railgun Turret
+	Buildable:
+		Queue: Defense
+		BuildPaletteOrder: 4
+		Prerequisites: weap, ~structures.gdi, ~player.socom, ~techlevel.medium
+		Description: Anti-tank defense with Railgun.\n Can detect cloaked units.\n  Strong vs Tanks, Vehicles\n  Weak vs Infantry
+	Health:
+		HP: 40000
+	Armor:
+		Type: Heavy
+	RevealsShroud:
+		MinRange: 5c0
+		Range: 7c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 5c0
+	DetectCloaked:
+		Range: 3c768
+		RequiresCondition: !disabled && !lowpower && !build-incomplete
+	RenderDetectionCircle:
+	WithBuildingBib:
+		HasMinibib: true
+	Turreted:
+		TurnSpeed: 6
+		InitialFacing: 128
+		Offset: 400,0,-286
+	Armament:
+		Weapon: Railgun
+		LocalOffset: 1468,-32,256
+		PauseOnCondition: disabled || empdisable
+	AttackTurreted:
+		PauseOnCondition: disabled || empdisable
+		RequiresCondition: !build-incomplete
+	WithSpriteTurret:
+		RequiresCondition: !build-incomplete
+	Power:
+		Amount: -40
+	BodyOrientation:
+	SequencePlaceBuildingPreview:
+		Sequence: place
+		SequencePalette: placebuilding	
+	RenderSprites:
+		Image: rtur
 
 AGUN.cnc:
 	Inherits: AGUN
